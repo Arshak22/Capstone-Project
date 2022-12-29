@@ -104,16 +104,20 @@ nav {
     height: 233px;
 }
 
-#dropdownMenu>li {
+#dropdownIcon {
+    padding-left: 5px;
+}
+
+#dropdownMenu>ul>li {
     padding: 25px 25px 20px 30px;
 }
 
-#dropdownMenu>li:hover {
+#dropdownMenu>ul>li:hover {
     background-color: var(--bg);
 }
 
 
-#dropdownMenu>li>a {
+#dropdownMenu>ul>li>a {
     font-size: 17px !important;
 }
 
@@ -207,6 +211,10 @@ nav {
 }
 
 @media screen and (max-width: 1100px) {
+    #mobile {
+        display: block;
+    }
+
     #mainLogo {
         width: 300px;
     }
@@ -220,7 +228,7 @@ nav {
         top: 200px;
         right: 0px;
         width: 400px;
-        height: 150vh;
+        height: 200vh;
         background: rgba(20, 20, 20, 0.5) !important;
         backdrop-filter: blur(0.625em);
         padding: 40px 0 0 10px;
@@ -250,7 +258,7 @@ nav {
         margin-bottom: 25px;
     }
 
-    #mobile {
-        display: block;
+    #dropdownMenu {
+        height: 300px;
     }
 }

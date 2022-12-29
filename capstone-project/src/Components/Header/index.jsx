@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./style.css";
 import MainLogo from "../../assets/images/Logo1.png";
 import User from "../../assets/images/user.png";
+import { FaAngleDown } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
@@ -52,15 +53,17 @@ export default function Header() {
                         <li className="pages">
                             <a href="#" className="navItem">
                                 <span data-text="PAGES">
-                                </span>Pages
+                                </span>Pages<FaAngleDown id="dropdownIcon"/>
                             </a>
                             <div id="dropdownMenu">
-                                <li><a href="#" className="navItem"><span data-text="ABOUT US">
-                                </span>About Us</a></li>
-                                <li><a href="#" className="navItem"><span data-text="FAQ">
-                                </span>FAQ</a></li>
-                                <li><a href="#" className="navItem"><span data-text="PRIVACY POLICY">
-                                </span>Privacy Policy</a></li>
+                                <ul>
+                                    <li><a href="#" className="navItem"><span data-text="ABOUT US">
+                                    </span>About Us</a></li>
+                                    <li><a href="#" className="navItem"><span data-text="FAQ">
+                                    </span>FAQ</a></li>
+                                    <li><a href="#" className="navItem"><span data-text="PRIVACY POLICY">
+                                    </span>Privacy Policy</a></li>
+                                </ul>
                             </div>
                         </li>
                     </ul>
