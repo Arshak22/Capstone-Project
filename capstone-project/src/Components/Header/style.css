@@ -1,0 +1,256 @@
+@keyframes anim-out-text{0%{transform:translateZ(0)}to{transform:translate3d(-100%,0,0)}}
+@keyframes anim-out-layer{0%{transform:translateZ(0)}to{transform:translate3d(100%,0,0)}}
+@keyframes anim-in-layer{0%{transform:translate3d(-100%,0,0)}to{transform:translateZ(0)}}
+@keyframes anim-in-text{0%{transform:translate3d(100%,0,0)}to{transform:translateZ(0)}}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    height: 100px;
+    /* background-color: #e50914; */
+    background: rgba(20, 20, 20, 0.5) !important;
+    backdrop-filter: blur(0.625em);
+}
+
+#mainLogo {
+    max-width: 100%;
+    width: 250px;
+    height: auto;
+    cursor: pointer;
+    position: relative;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+#navbar li a {
+    transition: all 0.3s ease 0s;
+} 
+
+
+/* instead of active should be class activeNav */
+#navbar li a:hover, #navbar li a:active {
+    color: var(--main-red);
+    filter: drop-shadow(0 0 0.2rem #e50914);
+    transform: scale(1.2);
+}
+
+#navbar>li, a {
+    font-size: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.navItem {
+    position: relative;
+    overflow: hidden;
+    transition: color .3s ease-in-out;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.navItem span {
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    transform: translate3d(-100%,0,0);
+    animation: anim-out-layer .3s ease-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+  
+.navItem:hover span {
+    animation: anim-in-layer .3s ease forwards;
+}
+  
+.navItem span::before {
+    content: attr(data-text);
+    width: 100%;
+    display: block;
+    transform: translate3d(100%,0,0);
+    color: var(--main-red);
+    animation: anim-out-text .3s ease-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+  
+.navItem:hover span::before {
+    animation: anim-in-text .3s ease forwards;
+}
+
+#dropdownMenu {
+    display: none;
+    position: absolute;
+    background-color: var(--main-red);
+    top: 69px;
+    width: 200px;
+    height: 233px;
+}
+
+#dropdownMenu>li {
+    padding: 25px 25px 20px 30px;
+}
+
+#dropdownMenu>li:hover {
+    background-color: var(--bg);
+}
+
+
+#dropdownMenu>li>a {
+    font-size: 17px !important;
+}
+
+.pages {
+    position: relative;
+    top: 16px;
+    height: 70px;
+}
+
+.pages:hover>#dropdownMenu{
+    display: block;
+}
+
+#dropdownMenu:hover {
+    display: block;
+}
+
+#searchAndUser {
+    width: 25%;
+    position: relative;
+    bottom: 5px;
+}
+
+#searchAndUserBox {
+    width: 100%;
+    position: relative;
+    display: flex;
+    filter: drop-shadow(0 0 1rem #e5091467);
+}
+
+
+#searchMovie {
+    width: 100%;
+    border: 3px solid var(--main-red);
+    font-size: 20px;
+    border-right: none;
+    padding: 0 15px;
+    height: 40px;
+    border-radius: 20px 0px 0px 20px;
+    outline: none;
+    color: #ffffff;
+    background-color: transparent;
+    filter: drop-shadow(0 0 0.2rem var(--main-red));
+}
+
+#searchMovie::placeholder {
+    color: #ffffff;
+}
+
+#search-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    width: 40px;
+    cursor: pointer;
+    border: 3px solid var(--main-red);
+    border-left: none;
+    border-radius: 0px 20px 20px 0px;
+    padding-top: 5px;
+    padding-right: 20px;
+    filter: drop-shadow(0 0 0.2rem var(--main-red));
+}
+
+#searchIcon {
+    color: var(--main-red);
+}
+
+.user {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.2rem var(--main-red));
+    margin-left: 20px;
+}
+
+#mainLogo:hover, .user:hover {
+    transition: all 0.3s ease 0.1s;
+    transform: scale(1.2);
+}
+
+.bars, .close {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.2rem var(--main-red));
+    color: var(--main-red);
+}
+
+#mobile {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    #mainLogo {
+        width: 300px;
+    }
+
+    #navbar, #searchAndUser {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 200px;
+        right: 0px;
+        width: 400px;
+        height: 150vh;
+        background: rgba(20, 20, 20, 0.5) !important;
+        backdrop-filter: blur(0.625em);
+        padding: 40px 0 0 10px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #navbar {
+        z-index: 3;
+    }
+
+    #searchAndUser {
+        position: absolute;
+        top: 100px;
+        padding-left: 20px;
+        backdrop-filter: blur(0em);
+    }
+
+    #searchAndUserBox {
+        width: 80%;
+    }
+
+    #navbar.activeMenu, #searchAndUser.activeMenu {
+        display: flex;
+    }
+
+    #navbar li {
+        margin-bottom: 25px;
+    }
+
+    #mobile {
+        display: block;
+    }
+}
