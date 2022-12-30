@@ -3,7 +3,7 @@
     text-align: center;
     z-index: -1;
     top: -20px;
-    height: 650px;
+    height: 90vh;
 }
 
 .mainImage img {
@@ -15,7 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 80px;
+    font-size: 5vw;
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
@@ -23,8 +23,8 @@
     filter: drop-shadow(0 0 0.2rem #ffffffbd);
 }
 
-@media screen and (max-width: 1000px) {
-    .centeredHeadline h1 {
-        font-size: 50px;
+@media screen and (max-width: 300px) {
+    .mainImage {
+        height: 50vh;
     }
 }

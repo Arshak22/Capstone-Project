@@ -5,7 +5,7 @@ import MainPicture from "../../Components/MainPicture";
 export default function Movies() {
     return (
         <div className="main">
-            <MainPicture img={MainPic} headline="Welcome into the world of cinema"/>
+            <MainPicture img={MainPic} headline="Enter a world of endless entertainment"/>
         </div>
     );
 }

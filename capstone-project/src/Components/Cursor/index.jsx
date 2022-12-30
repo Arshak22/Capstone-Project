@@ -9,7 +9,7 @@ export default function Cursor() {
         x: -20,
         y: 0,
     });
-    const [cursorVariant, setCursorVariant] = useState("default");
+    const [cursorVariant] = useState("default");
 
     useEffect(() => {
         const mouseMove = (e) => {
@@ -18,13 +18,10 @@ export default function Cursor() {
                 y: e.clientY
             })
         }
-
         window.addEventListener("mousemove", mouseMove);
-
         return () => {
             window.removeEventListener("mousemove", mouseMove);
         }
-
     }, []);
 
 
