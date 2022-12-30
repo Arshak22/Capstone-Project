@@ -8,6 +8,7 @@
 
 .mainImage img {
     filter: brightness(0.35);
+    height: 100%;
 }
 
 .centeredHeadline h1 {

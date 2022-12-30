@@ -1,0 +1,15 @@
+.flash {
+    animation: flash 1s linear infinite;
+  }
+  
+  @keyframes flash {
+    0% {
+      background-color: white;
+    }
+    50% {
+      background-color: transparent;
+    }
+    100% {
+      background-color: white;
+    }
+  }
