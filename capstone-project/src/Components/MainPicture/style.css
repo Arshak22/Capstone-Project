@@ -10,7 +10,7 @@
     filter: brightness(0.35);
 }
 
-.centeredHeadline {
+.centeredHeadline h1 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,7 +24,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .centeredHeadline {
+    .centeredHeadline h1 {
         font-size: 50px;
     }
 }

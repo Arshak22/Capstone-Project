@@ -9,3 +9,9 @@
     outline: 2px solid #fff;
     outline-offset: 5px;
 }
+
+@media screen and (max-width: 800px) { 
+    .cursor {
+        display: none;
+    }
+}

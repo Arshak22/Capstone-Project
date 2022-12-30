@@ -6,8 +6,8 @@ import "./style.css";
 
 export default function Cursor() {
     const[mousePosition, setMousePosition] = useState({
-        x: 0,
-        y: 0
+        x: -20,
+        y: 0,
     });
     const [cursorVariant, setCursorVariant] = useState("default");
 
@@ -35,11 +35,14 @@ export default function Cursor() {
         }
     }
 
-    return(
+    return (
         <motion.div 
         className="cursor"
         variants={variants}
         animate={cursorVariant}
+        whileHover={{
+            scale: 0.5
+        }}
         />
     );
 }
