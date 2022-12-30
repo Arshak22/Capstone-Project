@@ -1,11 +1,18 @@
 import React from "react";
-import Header from "./Components/Header";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Pages/Layout";
+import Home from "./Pages/Home";
+import Movies from "./Pages/Movies";
 
-function App() {
+ function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          {/* <Route path="*" element={<Home />} /> */}
+        </Route>
+    </Routes>
   );
 }
 

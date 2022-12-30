@@ -1,0 +1,30 @@
+.mainImage {
+    position: relative;
+    text-align: center;
+    z-index: -1;
+    top: -20px;
+    height: 650px;
+}
+
+.mainImage img {
+    filter: brightness(0.35);
+}
+
+.centeredHeadline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    filter: drop-shadow(0 0 0.2rem #ffffffbd);
+}
+
+@media screen and (max-width: 1000px) {
+    .centeredHeadline {
+        font-size: 50px;
+    }
+}

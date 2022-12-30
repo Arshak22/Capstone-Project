@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./style.css";
 import MainLogo from "../../assets/images/Logo1.png";
 import User from "../../assets/images/user.png";
@@ -9,66 +10,77 @@ import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 
 export default function Header() {
-    const [activeBar1, setActiveBar1] = useState(true);
-    const [activeBar2, setActiveBar2] = useState(true);
+    const [activeBar, setActiveBar] = useState(true);
 
-    const handleBar1 = () => {
-        setActiveBar1(!activeBar1);
-    }
 
-    const handleBar2 = () => {
-        setActiveBar2(!activeBar2);
+    const handleBar = () => {
+        setActiveBar(!activeBar);
     }
 
     return (
         <>
             <nav>
-                <a href="#"><img src={MainLogo} alt="MainLogog" id="mainLogo" /></a>
+                <NavLink to="/" end><img src={MainLogo} alt="MainLogog" id="mainLogo" /></NavLink>
                 <div>
-                    <ul id="navbar" className={!activeBar1 ? "activeMenu": null}>
+                    <ul id="navbar" className={!activeBar ? "activeMenu": null}>
                         <li>
-                            <a href="#" className="navItem">
+                            <NavLink to="/" className="navItem" end>
                                 <span data-text="HOME">
                                 </span>Home
-                            </a>
+                            </NavLink>
+                            {/* <a href="#" >
+                                
+                            </a> */}
                         </li>
                         <li>
-                            <a href="#" className="navItem">
+                            <NavLink to="/movies" className="navItem" end>
                                 <span data-text="MOVIES">
                                 </span>Movies
-                            </a>
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="#" className="navItem">
+                            <NavLink to="/" className="navItem" end>
                                 <span data-text="TV SHOWS">
                                 </span>TV Shows
-                            </a>
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="#" className="navItem">
+                            <NavLink to="/" className="navItem" end>
                                 <span data-text="FAN PAGE">
                                 </span>Fan Page
-                            </a>
+                            </NavLink>
                         </li>
                         <li className="pages">
-                            <a href="#" className="navItem">
+                            <NavLink to="/" className="navItem" end>
                                 <span data-text="PAGES">
                                 </span>Pages<FaAngleDown id="dropdownIcon"/>
-                            </a>
+                            </NavLink>
                             <div id="dropdownMenu">
                                 <ul>
-                                    <li><a href="#" className="navItem"><span data-text="ABOUT US">
-                                    </span>About Us</a></li>
-                                    <li><a href="#" className="navItem"><span data-text="FAQ">
-                                    </span>FAQ</a></li>
-                                    <li><a href="#" className="navItem"><span data-text="PRIVACY POLICY">
-                                    </span>Privacy Policy</a></li>
+                                    <li>
+                                        <NavLink to="/" className="navItem" end>
+                                            <span data-text="ABOUT US">
+                                            </span>About Us
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/" className="navItem" end>
+                                            <span data-text="FAQ">
+                                            </span>FAQ
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/" className="navItem" end>
+                                            <span data-text="PRIVACY POLICY">
+                                            </span>Privacy Policy
+                                        </NavLink>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div id="searchAndUser" className={!activeBar1 ? "activeMenu": null}>
+                <div id="searchAndUser" className={!activeBar ? "activeMenu": null}>
                     <div id="searchAndUserBox">
                         <input type="text" id="searchMovie" placeholder="Search Movie"/>
                         <button type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
@@ -76,7 +88,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div id="mobile">
-                    {activeBar1 ? <FaBars className="bars" onClick={handleBar1}/>: <FaTimes className="close" onClick={handleBar1}/>}
+                    {activeBar ? <FaBars className="bars" onClick={handleBar}/>: <FaTimes className="close" onClick={handleBar}/>}
                 </div>
             </nav>
         </>
