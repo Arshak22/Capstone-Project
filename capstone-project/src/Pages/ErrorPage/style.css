@@ -1,5 +1,5 @@
 .flash {
-    animation: flash 7s linear infinite;
+    animation: flash 8s linear infinite;
   }
   
   @keyframes flash {

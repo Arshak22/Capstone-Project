@@ -15,7 +15,7 @@ export default function ErrorPage() {
         }, 3000);
         const timeout2 = setTimeout(() => {
             navigate('/');
-          }, 6000);
+          }, 4000);
         return () => {
             clearTimeout(timeout1);
             clearTimeout(timeout2);
