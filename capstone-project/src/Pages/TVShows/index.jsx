@@ -5,7 +5,7 @@ import MainPicture from "../../Components/MainPicture";
 export default function TVShows() {
     return (
         <div className="main">
-            <MainPicture img={MainPic} headline="Welcome to the world of cinema"/>
+            <MainPicture img={MainPic} headline="Discover your new favorite series"/>
         </div>
     );
 }

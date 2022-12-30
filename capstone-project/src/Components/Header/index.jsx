@@ -28,9 +28,6 @@ export default function Header() {
                                 <span data-text="HOME">
                                 </span>Home
                             </NavLink>
-                            {/* <a href="#" >
-                                
-                            </a> */}
                         </li>
                         <li>
                             <NavLink to="/movies" className="navItem" end>
@@ -39,38 +36,38 @@ export default function Header() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" className="navItem" end>
+                            <NavLink to="/tv-shows" className="navItem" end>
                                 <span data-text="TV SHOWS">
                                 </span>TV Shows
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" className="navItem" end>
+                            <NavLink to="/fan-page" className="navItem" end>
                                 <span data-text="FAN PAGE">
                                 </span>Fan Page
                             </NavLink>
                         </li>
                         <li className="pages">
-                            <NavLink to="/" className="navItem" end>
+                            <NavLink className="navItem" end>
                                 <span data-text="PAGES">
                                 </span>Pages<FaAngleDown id="dropdownIcon"/>
                             </NavLink>
                             <div id="dropdownMenu">
                                 <ul>
                                     <li>
-                                        <NavLink to="/" className="navItem" end>
+                                        <NavLink to="/about" className="navItem" end>
                                             <span data-text="ABOUT US">
                                             </span>About Us
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/" className="navItem" end>
+                                        <NavLink to="/faq" className="navItem" end>
                                             <span data-text="FAQ">
                                             </span>FAQ
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/" className="navItem" end>
+                                        <NavLink to="/privacy-policy" className="navItem" end>
                                             <span data-text="PRIVACY POLICY">
                                             </span>Privacy Policy
                                         </NavLink>

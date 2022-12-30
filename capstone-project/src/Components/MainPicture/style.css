@@ -3,7 +3,7 @@
     text-align: center;
     z-index: -1;
     top: -20px;
-    height: 90vh;
+    height: 100vh;
 }
 
 .mainImage img {
@@ -15,7 +15,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 5vw;
+    font-size: 4.8vw;
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
