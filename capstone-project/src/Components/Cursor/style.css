@@ -1,0 +1,11 @@
+.cursor {
+    background-color: var(--main-red);
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+}

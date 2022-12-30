@@ -9,7 +9,6 @@ nav {
     justify-content: space-between;
     padding: 20px 80px;
     height: 100px;
-    /* background-color: #e50914; */
     background: rgba(20, 20, 20, 0.5) !important;
     backdrop-filter: blur(0.625em);
 }
@@ -18,7 +17,6 @@ nav {
     max-width: 100%;
     width: 250px;
     height: auto;
-    cursor: pointer;
     position: relative;
 }
 
@@ -40,7 +38,6 @@ nav {
 } 
 
 
-/* instead of active should be class activeNav */
 #navbar li a:hover, #navbar li a:active {
     color: var(--main-red);
     filter: drop-shadow(0 0 0.2rem #e50914);
@@ -173,7 +170,6 @@ nav {
     border: none;
     font-size: 20px;
     width: 40px;
-    cursor: pointer;
     border: 3px solid var(--main-red);
     border-left: none;
     border-radius: 0px 20px 20px 0px;
@@ -189,7 +185,6 @@ nav {
 .user {
     width: 40px;
     height: 40px;
-    cursor: pointer;
     filter: drop-shadow(0 0 0.2rem var(--main-red));
     margin-left: 20px;
 }
@@ -202,7 +197,6 @@ nav {
 .bars, .close {
     width: 40px;
     height: 40px;
-    cursor: pointer;
     filter: drop-shadow(0 0 0.2rem var(--main-red));
     color: var(--main-red);
 }

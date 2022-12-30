@@ -6,13 +6,15 @@ import Movies from "./Pages/Movies";
 
  function App() {
   return (
-    <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movies />} />
-          {/* <Route path="*" element={<Home />} /> */}
-        </Route>
-    </Routes>
+    <div>
+      <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="movies" element={<Movies />} />
+            {/* <Route path="*" element={<Home />} /> */}
+          </Route>
+      </Routes>
+    </div>
   );
 }
 
