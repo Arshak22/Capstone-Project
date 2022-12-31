@@ -6,7 +6,7 @@
   pointer-events: none;
 }
 
-a, button, img, li {
+a, button, img, li, h1, h2, h3, h4, h5, h6, p, small {
   pointer-events: all;
 }
 
