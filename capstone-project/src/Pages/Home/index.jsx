@@ -72,7 +72,8 @@ export default function Home() {
             <MainPicture img={MainPic} headline="Welcome to the world of cinema"/>
             <SliderHeader header="Latest Movies" link="/movies" btnName="View All"/>
             <HorizontalSlider movies={latestMovies}/>
-            <SliderHeader header="Latest Movies" link="/movies" btnName="View All"/>
+            <SliderHeader header="Popular Movies" link="/movies" btnName="View All"/>
+            <HorizontalSlider movies={latestMovies}/>
         </div>
     );
 }
