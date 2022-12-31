@@ -12,10 +12,10 @@ export default function ErrorPage() {
     useEffect(() => {
         const timeout1 = setTimeout(() => {
           setHasClass(true);
-        }, 3000);
+        }, 5000);
         const timeout2 = setTimeout(() => {
             navigate('/');
-          }, 4000);
+          }, 8000);
         return () => {
             clearTimeout(timeout1);
             clearTimeout(timeout2);
