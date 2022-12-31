@@ -14,7 +14,7 @@
     cursor: none;
     width: 60px;
     height: 60px;
-    background: rgba(0, 0, 0, 0.5);;
+    background: rgba(0, 0, 0, 0.7);
     z-index: 20;
     transition: background 0.5s, border 0s;
 }
