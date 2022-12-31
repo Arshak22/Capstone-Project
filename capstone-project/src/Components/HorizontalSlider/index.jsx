@@ -17,7 +17,7 @@ export default function HorizontalSlider({movies}) {
         slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
-        // autoplay: true,
+        autoplay: true,
         speed: 5000,
         autoplaySpeed: 2000,
         cssEase: "linear",
@@ -56,26 +56,22 @@ export default function HorizontalSlider({movies}) {
                 {movies.map((elem, index) => {
                     return (
                         <div className="movieBlock" key={index}>
-                            <div className="movieBlockImage">
-                                {elem.img ? <img src={elem.img} alt={elem.img} />: null}
-                            </div>
+                            {elem.img ? <img src={elem.img} alt={elem.img} />: null}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to="/movies" end>{elem.title}</NavLink></h6>
-                                <div>
-                                    <span>{elem.duration}</span>
-                                </div>
-                                <NavLink to="/movies" end><button>Read More</button></NavLink>
+                                <span>{elem.duration}</span>
+                                <NavLink to="/movies" end><button className="btn1">READ MORE</button></NavLink>
                             </div>
                             <div className="movieBlockSocialInfo">
                                 <ul>
-                                    <li className="shareIcon">
-                                        <span><FaShareAlt/></span>
+                                    <li className="movieBlockIcon">
+                                        <span><FaShareAlt className="iconInside"/></span>
                                     </li>
-                                    <li className="favoriteIcon">
-                                        <span><FaHeart/></span>
+                                    <li className="movieBlockIcon">
+                                        <span><FaHeart className="iconInside"/></span>
                                     </li>
-                                    <li className="watchListIcon">
-                                        <span><FaPlus/></span>
+                                    <li className="movieBlockIcon">
+                                        <span><FaPlus className="iconInside"/></span>
                                     </li>
                                 </ul>
                             </div>

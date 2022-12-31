@@ -6,7 +6,7 @@
   pointer-events: none;
 }
 
-a, button {
+a, button, img {
   pointer-events: all;
 }
 
@@ -50,6 +50,15 @@ a, button {
 ::selection {
   background: var(--main-red);
   color: var(--bg);
+}
+
+.btn1 {
+  color: #ffffff;
+  background-color: var(--main-red);
+  border: none;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 body {
