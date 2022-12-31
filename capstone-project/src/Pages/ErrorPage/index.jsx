@@ -25,7 +25,7 @@ export default function ErrorPage() {
 
     return (
         <div className={hasClass ? "main flash": "main"}>
-            <MainPicture img={MainPic} headline="Dont even worry about it"/>
+            <MainPicture img={MainPic} headline="Dont even worry about it. Error 404"/>
         </div>
     );
 }
