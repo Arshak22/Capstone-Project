@@ -27,8 +27,8 @@ export default function Cursor() {
 
     const variants = {
         default: {
-            x: mousePosition.x - 10,
-            y: mousePosition.y - 10
+            x: mousePosition.x - 7.5,
+            y: mousePosition.y - 7.5
         }
     }
 

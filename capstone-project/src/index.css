@@ -6,7 +6,7 @@
   pointer-events: none;
 }
 
-a, button, img {
+a, button, img, li {
   pointer-events: all;
 }
 
@@ -58,7 +58,7 @@ a, button, img {
   border: none;
   padding: 10px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 body {

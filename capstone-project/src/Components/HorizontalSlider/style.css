@@ -7,6 +7,32 @@
 
 .slick-slide>div {
     margin: 0 15px;
+    margin-left: 25px;
+}
+
+.slick-prev, .slick-next {
+    cursor: none;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);;
+    z-index: 20;
+    transition: background 0.5s, border 0s;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: var(--main-red-hover);
+    border: 2px solid #ffffff;
+}
+
+.slick-prev:hover:before, .slick-next:hover:before {
+    color: #ffffff;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: red;
+    font-size: 30px;
+    font-weight: 800;
+    transition: color 1s;
 }
 
 .movieBlock {
@@ -98,16 +124,32 @@
     display: flex;
     align-items: center;
     color: var(--main-red);
+    transition: color 0.8s, background 0.8s;
 }
 
 .movieBlockIcon span {
     position: relative;
     width: 2em;
     height: 2em;
-    line-height: 2.3em;
-    font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     background: #ffffff;
     border-radius: 50%;
     margin: 0 auto;
+    transition: background 0.8s;
+}
+
+.iconInside {
+    font-size: 0.7em;
+}
+
+.movieBlockIcon:hover {
+    color: #ffffff;
+    background: #ffffff;
+}
+
+.movieBlockIcon:hover>span {
+    background: var(--main-red-hover);
 }

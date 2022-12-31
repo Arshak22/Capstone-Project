@@ -11,6 +11,8 @@ nav {
     height: 100px;
     background: rgba(20, 20, 20, 0.5) !important;
     backdrop-filter: blur(0.625em);
+    position: sticky;
+    top: 0;
 }
 
 #mainLogo {
