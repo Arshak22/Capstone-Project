@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   cursor: none;
+  pointer-events: none;
+}
+
+a, button {
+  pointer-events: all;
 }
 
 :root {

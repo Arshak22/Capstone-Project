@@ -27,8 +27,8 @@ export default function Cursor() {
 
     const variants = {
         default: {
-            x: mousePosition.x - 16,
-            y: mousePosition.y - 16
+            x: mousePosition.x - 10,
+            y: mousePosition.y - 10
         }
     }
 
@@ -37,9 +37,6 @@ export default function Cursor() {
         className="cursor"
         variants={variants}
         animate={cursorVariant}
-        whileHover={{
-            scale: 0.5
-        }}
         />
     );
 }
