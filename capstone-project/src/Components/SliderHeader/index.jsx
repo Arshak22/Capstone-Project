@@ -6,7 +6,7 @@ export default function SliderHeader(props) {
     return (
         <div className="sliderHeader">
             <h2>{props.header}</h2>
-            <h4><NavLink to={props.link} end>View All</NavLink></h4>
+            <h4 className="view"><NavLink to={props.link} end>{props.btnName}</NavLink></h4>
         </div>
     )
 }

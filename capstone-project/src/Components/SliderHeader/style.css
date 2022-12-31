@@ -10,11 +10,70 @@
     padding: 0 20px;
 }
 
+.sliderHeader h2 {
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.sliderHeader h4 {
+    letter-spacing: 5px;
+}
+
 .sliderHeader a {
-    font-size: 15px;
+    font-size: 20px;
     color: var(--main-red);
-    /* z-index: 999; */
-    /* cursor: pointer !important; */
-    /* pointer-events: all; */
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding: 0.7rem;
+    padding-left: 0.9rem;
+}
+
+.sliderHeader a:hover {
+    color: #ffffff;
+}
+
+.view>a::before {
+    position: absolute;
+    content: "";
+    background: var(--main-red);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0.25em;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.view:hover>a::before {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.view>a::after {
+    position: absolute;
+    content: "";
+    background: transparent linear-gradient( 270deg, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3) 100%);
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: 0;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.view:hover>a::after {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease-in-out;
 }
 
