@@ -100,6 +100,7 @@ nav {
     width: 200px;
     height: 230px;
     z-index: 999;
+    pointer-events: all;
 }
 
 #dropdownIcon {
@@ -123,6 +124,7 @@ nav {
     position: relative;
     top: 16px;
     height: 70px;
+    pointer-events: all;
 }
 
 .pages:hover>#dropdownMenu{
