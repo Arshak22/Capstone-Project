@@ -9,6 +9,9 @@ import { NavLink } from "react-router-dom";
 import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaLink } from "react-icons/fa";
 
 export default function HorizontalSlider({movies}) {
     const settings = {
@@ -64,8 +67,15 @@ export default function HorizontalSlider({movies}) {
                             </div>
                             <div className="movieBlockSocialInfo">
                                 <ul>
-                                    <li className="movieBlockIcon">
+                                    <li className="movieBlockIcon share">
                                         <span><FaShareAlt className="iconInside"/></span>
+                                        <div className="shareBox">
+                                            <div>
+                                                <FaFacebookF className="shareIcons"/>
+                                                <FaTwitter className="shareIcons"/>
+                                                <FaLink className="shareIcons"/>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li className="movieBlockIcon">
                                         <span><FaHeart className="iconInside"/></span>
