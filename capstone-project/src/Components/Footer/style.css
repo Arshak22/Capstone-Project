@@ -1,7 +1,12 @@
 .footer {
     margin-top: 150px;
     height: 350px;
-    background-color: rgb(0, 94, 255);
+    background-color: var(--bg);
+    /* background-image:url("../../assets/images/bg7.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; */
 }
 
 .top {

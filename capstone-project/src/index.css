@@ -142,7 +142,7 @@ body::before {
   right: 0;
   bottom: 0;
   background-image:url("./assets/images/bg5.jpg");
-  filter: brightness(0.3);
+  filter: brightness(50%) contrast(100%);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
