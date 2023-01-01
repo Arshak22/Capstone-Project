@@ -39,6 +39,7 @@
 
 .sliderHeader a:hover {
     color: #ffffff;
+    filter: none;
 }
 
 .view>a::before {
