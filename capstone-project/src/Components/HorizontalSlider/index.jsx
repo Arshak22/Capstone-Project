@@ -54,17 +54,17 @@ export default function HorizontalSlider({movies}) {
         ]
     };
 
-    const getFacebookShareLink = (url) => {
-        return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    }
+    // const getFacebookShareLink = (url) => {
+    //     return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    // }
 
-    const getTwitterShareLink = (url, text="Check Out This Movie") => {
-        return `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    }
+    // const getTwitterShareLink = (url, text="Check Out This Movie") => {
+    //     return `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    // }
 
-    const getPinterestShareLink = (url, media, description="Check Out This Movie") => {
-        return `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(media)}&description=${encodeURIComponent(description)}`;
-    }
+    // const getPinterestShareLink = (url, media, description="Check Out This Movie") => {
+    //     return `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(media)}&description=${encodeURIComponent(description)}`;
+    // }
 
     return (
         <div className="sliderSection">

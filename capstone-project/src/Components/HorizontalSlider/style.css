@@ -5,13 +5,16 @@
     padding: 0 20px;
 }
 
+
 .slick-slider {
     z-index: -1;
 }
 
 .slick-slide>div {
-    margin: 0 15px;
+    margin: 15px 15px;
     margin-left: 25px;
+    height: 200px;
+    
 }
 
 .slick-prev, .slick-next {
@@ -42,12 +45,15 @@
 
 .movieBlock {
     position: relative;
-    transition: transform 0.8s;
+    border: 3px solid #ffffff;
+    transition: transform 0.8s, border 0.8s;
 }
 
 .movieBlock:hover {
     transform: scale(1.15);
-    border-left: 5px solid var(--main-red);
+    border: none;
+    border-left: 10px solid var(--main-red);
+    box-shadow: none;
 }
 
 .movieBlock:hover .movieBlockSocialInfo {
