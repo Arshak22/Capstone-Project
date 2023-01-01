@@ -13,8 +13,8 @@
     display: flex;
     padding-top: 10px;
     padding-left: 4%;
-  padding-right: 7%;
-  width: 100%;
+    padding-right: 7%;
+    width: 100%;
 }
 
 .top div {
@@ -30,7 +30,7 @@
 .footerNav li a {
     padding: 0 20px;
     font-size: 17px;
-    transition: color 0.5s, text-shadow 0.8s;
+    transition: color 0.5s;
 }
 
 .footerNav li a:hover {
@@ -136,12 +136,11 @@
     font-size: 17px;
     padding: 0 5px;
     text-transform: uppercase;
-    transition: color 0.5s, text-shadow 0.8s;
+    transition: color 0.5s;
 }
 
 .top>div>p>a:hover {
     color: var(--main-red);
-    text-shadow: 0 0 2px #ffffff, 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
 }
 
 @media screen and (max-width: 800px) and (min-width: 700px) {
