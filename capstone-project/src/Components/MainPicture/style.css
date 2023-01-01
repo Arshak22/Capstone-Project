@@ -16,7 +16,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4.8vw;
+    font-size: 70px;
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
@@ -27,5 +27,23 @@
 @media screen and (max-width: 300px) {
     .mainImage {
         height: 50vh;
+    }
+}
+
+@media screen and (max-height: 1200px) {
+    .mainImage {
+        height: 60vh;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 710px) { 
+    .centeredHeadline h1 {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .centeredHeadline h1 {
+        font-size: 30px;
     }
 }
