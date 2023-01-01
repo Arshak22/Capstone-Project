@@ -1,10 +1,11 @@
-import React from "react";
+import {React, useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./style.css";
 import MainLogo from "../../assets/images/Logo1.png";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 
 export default function Footer() {
+    const [currentYear] = useState(new Date().getFullYear());
     return (
         <div className="footer">
             <div className="top">
@@ -30,7 +31,7 @@ export default function Footer() {
                             <NavLink to="/faq" end>FAQ</NavLink>
                         </li>
                     </ul>
-                <p><NavLink to="/privacy-policy" end>Privacy Policy</NavLink> | Out Team. All Rights Reserved</p>
+                <p><NavLink to="/privacy-policy" end>Privacy Policy</NavLink> | © {currentYear} Our Team Name. All Rights Reserved</p>
                 </div>
                 <div className="contact">
                     <h4>Contact Us</h4>
