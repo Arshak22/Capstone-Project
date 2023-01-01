@@ -131,7 +131,23 @@ body {
   padding: 0;
   margin: 0;
   color: var(--iq-body-text);
-  background: var(--bg);
+  background-color: var(--bg);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:url("./assets/images/bg5.jpg");
+  filter: brightness(0.3);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
 }
 
 code {
