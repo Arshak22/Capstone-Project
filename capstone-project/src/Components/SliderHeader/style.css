@@ -28,12 +28,13 @@
 
 .sliderHeader a {
     font-size: 20px;
-    color: var(--main-red);
+    color: #ffffff;
     position: relative;
     overflow: hidden;
     display: inline-block;
     padding: 0.7rem;
     padding-left: 0.9rem;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
 }
 
 .sliderHeader a:hover {
