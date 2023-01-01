@@ -35,7 +35,6 @@
 
 .footerNav li a:hover {
     color: var(--main-red);
-    text-shadow: 0 0 2px #ffffff, 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
 }
 
 .contact {
