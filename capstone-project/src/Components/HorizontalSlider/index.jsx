@@ -22,7 +22,7 @@ export default function HorizontalSlider({movies}) {
         slidesToScroll: 1,
         initialSlide: 0,
         autoplay: true,
-        speed: 3000,
+        speed: 5000,
         autoplaySpeed: 5000,
         cssEase: "linear",
         pauseOnHover: true,
