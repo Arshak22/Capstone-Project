@@ -75,7 +75,7 @@ export default function HorizontalSlider({movies}) {
                             <div className="movieBlockDescription">
                                 <h6><NavLink to="/movies" end>{elem.title}</NavLink></h6>
                                 <span>{elem.duration}</span>
-                                <NavLink to="/movies" end><button className="btn1">READ MORE</button></NavLink>
+                                <NavLink to="/movies" end><button className="btn">READ MORE</button></NavLink>
                             </div>
                             <div className="movieBlockSocialInfo">
                                 <ul>

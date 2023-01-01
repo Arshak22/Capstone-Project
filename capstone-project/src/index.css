@@ -14,6 +14,8 @@ a, button, img, li, h1, h2, h3, h4, h5, h6, p, small {
   --main-red: #e50914;
   --main-red-hover: #89040a;
   --bg: #141414;
+  --color: #FFDB58;
+  --color2: #000 !important;
 }
 
 ::-webkit-scrollbar {
@@ -52,14 +54,60 @@ a, button, img, li, h1, h2, h3, h4, h5, h6, p, small {
   color: var(--bg);
 }
 
-.btn1 {
+.btn {
   color: #ffffff;
   background-color: var(--main-red);
-  border: none;
+  border: 3px solid var(--main-red);
   padding: 10px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
-}
+  transition: .5s;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  border-radius: 0px;
+  z-index: 1;
+ }
+ 
+ .btn::after, .btn::before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: skew(90deg) translate(-50%, -50%);
+  position: absolute;
+  inset: 50%;
+  left: 25%;
+  z-index: -1;
+  transition: .5s ease-out;
+  background-color: var(--bg);
+ }
+ 
+ .btn::before {
+  top: -50%;
+  left: -25%;
+  transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+ }
+ 
+ .btn:hover::before {
+  transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+ }
+ 
+ .btn:hover::after {
+  transform: skew(45deg) translate(-50%, -50%);
+ }
+ 
+ .btn:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: var(--bg);
+ }
+ 
+ .btn:active {
+  filter: brightness(.7);
+  transform: scale(.98);
+ }
+
 
 body {
   font-family: 'Roboto', sans-serif;
