@@ -23,6 +23,7 @@
 
 .sliderHeader h4 {
     letter-spacing: 5px;
+    z-index: -1;
 }
 
 .sliderHeader a {
@@ -78,4 +79,3 @@
     transform: translate3d(0, 0, 0);
     transition: all 0.5s ease-in-out;
 }
-

@@ -1,0 +1,141 @@
+.footer {
+    margin-top: 150px;
+    height: 350px;
+    background-color: rgb(0, 94, 255);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 70px;
+}
+
+.footerNav {
+    display: flex;
+    list-style: none;
+    padding-left: 20px;
+}
+
+.footerNav li a {
+    padding: 0 20px;
+    font-size: 17px;
+    transition: color 0.5s, text-shadow 0.8s;
+}
+
+.footerNav li a:hover {
+    color: var(--main-red);
+    text-shadow: 0 0 2px #ffffff, 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
+}
+
+.contact {
+    padding-top: 60px;
+}
+
+.contact h4 {
+    padding-left: 0.9rem;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.contact a {
+    font-size: 14px;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-transform: lowercase;
+    padding: 0.7rem;
+    padding-left: 0.9rem;
+}
+
+.contact a:hover {
+    color: #ffffff;
+}
+
+.mail>a::before {
+    position: absolute;
+    content: "";
+    background: var(--main-red);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0.5em;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+
+.mail:hover>a::before {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.mail>a::after {
+    position: absolute;
+    content: "";
+    background: transparent linear-gradient( 270deg, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3) 100%);
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: 0;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.mail:hover>a::after {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.envelope {
+    padding-top: 5px;
+    padding-right: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+#footerLogo {
+    max-width: 100%;
+    width: 350px;
+    height: auto;
+    position: relative;
+}
+
+#footerLogo:hover {
+    transition: all 0.3s ease 0.1s;
+    transform: scale(1.2);
+}
+
+.top>div>p {
+    padding-left: 35px;
+    padding-top: 30px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.top>div>p>a {
+    font-size: 17px;
+    padding: 0 5px;
+    text-transform: uppercase;
+    transition: color 0.5s, text-shadow 0.8s;
+}
+
+.top>div>p>a:hover {
+    color: var(--main-red);
+    text-shadow: 0 0 2px #ffffff, 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
+}
+
+@media screen and (max-width: 1100px) {
+    #footerLogo {
+        width: 300px;
+    }
+ }

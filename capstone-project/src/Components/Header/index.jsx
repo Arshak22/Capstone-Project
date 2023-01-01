@@ -20,7 +20,7 @@ export default function Header() {
     return (
         <>
             <nav>
-                <NavLink to="/" end><img src={MainLogo} alt="MainLogog" id="mainLogo" /></NavLink>
+                <NavLink to="/" end><img src={MainLogo} alt="MainLogo" id="mainLogo" /></NavLink>
                 <div>
                     <ul id="navbar" className={!activeBar ? "activeMenu": null}>
                         <li>
