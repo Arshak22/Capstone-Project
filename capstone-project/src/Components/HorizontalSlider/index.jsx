@@ -11,7 +11,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import { FaLink } from "react-icons/fa";
+import { FaPinterestP } from "react-icons/fa";
 
 export default function HorizontalSlider({movies}) {
     const settings = {
@@ -53,6 +53,18 @@ export default function HorizontalSlider({movies}) {
         ]
     };
 
+    const getFacebookShareLink = (url) => {
+        return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    }
+
+    const getTwitterShareLink = (url, text="Check Out This Movie") => {
+        return `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+    }
+
+    const getPinterestShareLink = (url, media, description="Check Out This Movie") => {
+        return `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(media)}&description=${encodeURIComponent(description)}`;
+    }
+
     return (
         <div className="sliderSection">
             <Slider {...settings}>
@@ -73,7 +85,7 @@ export default function HorizontalSlider({movies}) {
                                             <div>
                                                 <FaFacebookF className="shareIcons"/>
                                                 <FaTwitter className="shareIcons"/>
-                                                <FaLink className="shareIcons"/>
+                                                <FaPinterestP className="shareIcons"/>
                                             </div>
                                         </div>
                                     </li>
