@@ -6,6 +6,7 @@ import "./style.css";
 import { NavLink } from "react-router-dom";
 
 //icons
+import { FaVideo } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
@@ -75,7 +76,7 @@ export default function HorizontalSlider({movies}) {
                             <div className="movieBlockDescription">
                                 <h6><NavLink to="/movies" end>{elem.title}</NavLink></h6>
                                 <span>{elem.duration}</span>
-                                <NavLink to="/movies" end><button className="btn">READ MORE</button></NavLink>
+                                <NavLink to="/movies" end><button className="btn"><FaVideo className="btnIcon"/> READ MORE</button></NavLink>
                             </div>
                             <div className="movieBlockSocialInfo">
                                 <ul>

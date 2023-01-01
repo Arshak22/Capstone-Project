@@ -202,3 +202,30 @@
 .shareIcons:hover {
     color: var(--main-red);
 }
+
+
+@media screen and (max-width: 1280px) and (min-width: 480px) {
+    .movieBlockDescription {
+        right: 0;
+    }
+    .movieBlockDescription h6>a {
+        font-size: 15px;
+    }
+    .movieBlockDescription span {
+        font-size: 15px;
+        padding-top: 2px;
+    }
+
+    .movieBlockIcon {
+        width: 30px;
+        height: 30px;
+    }
+    .movieBlockIcon span {
+        width: 25px;
+        height: 25px;
+    }
+
+    .shareBox {
+        height: 1.7em;
+    }
+}

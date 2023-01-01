@@ -6,7 +6,7 @@
   pointer-events: none;
 }
 
-a, button, img, li, h1, h2, h3, h4, h5, h6, p, small {
+a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small {
   pointer-events: all;
 }
 
@@ -56,6 +56,7 @@ a, button, img, li, h1, h2, h3, h4, h5, h6, p, small {
 
 .btn {
   color: #ffffff;
+  width: 120px;
   background-color: var(--main-red);
   border: 3px solid var(--main-red);
   padding: 10px;
@@ -104,8 +105,23 @@ a, button, img, li, h1, h2, h3, h4, h5, h6, p, small {
  }
  
  .btn:active {
-  filter: brightness(.7);
-  transform: scale(.98);
+    filter: brightness(.7);
+    transform: scale(.98);
+ }
+
+ .btnIcon {
+    position: relative;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+ }
+
+
+ @media screen and (max-width: 1260px) and (min-width: 480px) { 
+    .btn {
+      padding: 8px;
+      font-size: 10px;
+    }
  }
 
 
