@@ -14,7 +14,7 @@ export default function Layout() {
         setLoaded(true);
         setTimeout(() => {
             setLoaded(false);
-        }, 50000)
+        }, 5000)
     }, [location.pathname])
     return (
         <>
