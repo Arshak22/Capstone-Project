@@ -3,9 +3,27 @@ import { NavLink } from "react-router-dom";
 import "./style.css";
 import MainLogo from "../../assets/images/Logo1.png";
 import { FaEnvelopeOpenText } from "react-icons/fa";
+import { FaAngleDoubleUp } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function Footer() {
     const [currentYear] = useState(new Date().getFullYear());
+    const[showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        const handleScrollButtonVisibility = () => {
+            window.pageYOffset > 300 ? setShowButton(true): setShowButton(false);
+        };
+
+        window.addEventListener('scroll', handleScrollButtonVisibility);
+        return () => {
+            window.removeEventListener('scroll', handleScrollButtonVisibility);
+        }
+    }, []);
+
+    const handleScrollToTop = () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
     return (
         <div className="footer">
             <div className="top">
@@ -52,6 +70,7 @@ export default function Footer() {
                         </h6>
                 </div>
             </div>
+            {showButton ? <button className="moveToTopBtn" onClick={handleScrollToTop}><FaAngleDoubleUp/></button>: null}
         </div>
     );
 }
