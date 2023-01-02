@@ -144,8 +144,19 @@
 
 .moveToTopBtn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px;
+    font-size: 25px;
+    z-index: 900;
+    border: 3px solid #ffffff;
+    background-color: var(--main-red);
+    color: #ffffff;
+    transition: background-color 0.8s;
+}
+
+.moveToTopBtn:hover {
+    background-color: var(--main-red-hover);
 }
 
 @media screen and (max-width: 800px) and (min-width: 700px) {
