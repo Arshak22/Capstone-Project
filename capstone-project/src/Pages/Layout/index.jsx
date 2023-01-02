@@ -18,9 +18,9 @@ export default function Layout() {
     }, [location.pathname])
     return (
         <>
+        <Cursor/>
         {loaded ? <PreLoader/>:
             <>
-                <Cursor/>
                 <Header/>
                 <Outlet/>
                 <Footer/>

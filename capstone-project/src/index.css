@@ -134,11 +134,6 @@ body {
   background-color: var(--bg);
 }
 
-.main {
-  position: relative;
-  top: 20px;
-}
-
 body::before {
   content: "";
   position: fixed;
@@ -155,9 +150,28 @@ body::before {
   z-index: -1;
 }
 
+.main {
+  position: relative;
+  top: 20px;
+}
+
+.preLoader {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-image:url("./assets/images/bg4.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.preLoader div {
+  position: absolute;
+  top: 37%;
+  left: 47%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
