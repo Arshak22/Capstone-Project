@@ -147,16 +147,41 @@
     bottom: 30px;
     right: 30px;
     padding: 15px;
-    font-size: 25px;
+    font-size: 30px;
     z-index: 900;
     border: 3px solid #ffffff;
     background-color: var(--main-red);
     color: #ffffff;
     transition: background-color 0.8s;
+    overflow: hidden;
 }
 
-.moveToTopBtn:hover {
-    background-color: var(--main-red-hover);
+.moveToTopBtn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg);
+    transform: scale(0);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.moveToTopBtn:hover:before {
+    transform: scale(1);
+}
+  
+.moveToTopBtn svg {
+    display: block;
+    position: relative;
+    z-index: 1;
+    transform: translateY(0);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+  
+.moveToTopBtn:hover svg {
+    transform: translateY(-20%);
 }
 
 @media screen and (max-width: 800px) and (min-width: 700px) {
