@@ -1,22 +1,12 @@
-import {React, useRef} from "react";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
 import { NavLink } from "react-router-dom";
-
 import { FaVideo } from "react-icons/fa";
-import { FaShareAlt } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaPinterestP } from "react-icons/fa";
-
 
 export default function VerticalSliderSection({movies}) {
-    const section = useRef(null);
-
     const settings = {
         dots: false,
         infinite: true,
@@ -25,11 +15,16 @@ export default function VerticalSliderSection({movies}) {
         vertical: true,
         verticalSwiping: true,
         swipeToSlide: true,
-        beforeChange: function(currentSlide, nextSlide) {
-          console.log("before change", currentSlide, nextSlide);
-        },
+        autoplay: true,
+        speed: 5000,
+        autoplaySpeed: 5000,
+        cssEase: "linear",
+        pauseOnHover: true,
         afterChange: function(currentSlide) {
-          console.log("after change", currentSlide);
+          let s = document.querySelector(`[data-index="${currentSlide}"]`).querySelector("img").src;
+          console.log(s);
+          const section = document.querySelector('.VerticalSliderSection');
+        section.style.backgroundImage = `url(${s})`;
         },
         responsive: [
             {
@@ -60,7 +55,9 @@ export default function VerticalSliderSection({movies}) {
       };
 
     return (
-        <div className="VerticalSliderSection">
+        <div className="VerticalSliderSection" style={{backgroundImage: `url(${movies[0].img})`}}>
+            {console.log(movies[0].img)}
+            <h1>Upcoming Movies</h1>
             <Slider {...settings}>
                 {movies.map((elem, index) => {
                     return (

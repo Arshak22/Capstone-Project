@@ -14,7 +14,6 @@ export default function Layout() {
     useEffect(() => {
         (location.pathname === "/") ? setPreLoaderTime(5000): setPreLoaderTime(3000);
         setLoaded(true);
-        console.log(location.pathname)
         setTimeout(() => {
             setLoaded(false);
         }, preLoaderTime)
