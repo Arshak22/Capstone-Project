@@ -4,6 +4,7 @@ import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
 import HorizontalSlider from "../../Components/HorizontalSlider";
 import VerticalSliderSection from "../../Components/VerticalSliderSection";
+import FanPageSection from "../../Components/FanPageSection";
 
 
 // Movie Pics
@@ -130,9 +131,6 @@ export default function Home() {
     ];
 
 
-
-
-
     return (
         <div className="main">
             <MainPicture img={MainPic} headline="Welcome to the world of cinema"/>
@@ -141,6 +139,7 @@ export default function Home() {
             <VerticalSliderSection movies={upComingMovies} />
             <SliderHeader header="Popular Movies" link="/movies" btnName="View All"/>
             <HorizontalSlider movies={latestMovies}/>
+            <FanPageSection/>
         </div>
     );
 }
