@@ -25,7 +25,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    box-shadow: inset 0px 0px 100px 20px #000000;
+    box-shadow: inset 0px 0px 100px 100px #000000;
     z-index: 5;    
 }
 
