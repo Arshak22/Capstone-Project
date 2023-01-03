@@ -13,6 +13,7 @@ nav {
     backdrop-filter: blur(0.625em);
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 
 #mainLogo {

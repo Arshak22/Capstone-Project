@@ -3,10 +3,16 @@
     margin-right: auto;
     max-width: 1400px;
     padding: 0 20px;
+    background-image: url("../../assets/images/Movie8.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /* z-index: -1; */
 }
 
 .VerticalSliderSection .slick-slider {
-    z-index: -1;
+    z-index: 5;
     width: 395px;
 }
 
