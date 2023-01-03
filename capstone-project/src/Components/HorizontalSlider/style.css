@@ -12,9 +12,7 @@
 
 .slick-slide>div {
     margin: 15px 15px;
-    margin-left: 25px;
-    height: 200px;
-    
+    margin-left: 25px;    
 }
 
 .slick-prev, .slick-next {
@@ -47,6 +45,7 @@
     position: relative;
     border: 3px solid #ffffff;
     transition: transform 0.8s, border 0.8s;
+    width: 300px; 
 }
 
 .movieBlock:hover {

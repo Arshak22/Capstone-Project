@@ -1,0 +1,113 @@
+.VerticalSliderSection {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.VerticalSliderSection .slick-slider {
+    z-index: -1;
+    width: 395px;
+}
+
+.slick-slide>div {
+    margin: 15px 15px;
+    margin-left: 25px;
+}
+
+.slick-prev, .slick-next {
+    cursor: none;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    transition: background 0.5s, border 0s;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: var(--main-red-hover);
+    border: 2px solid #ffffff;
+}
+
+.slick-prev:hover:before, .slick-next:hover:before {
+    color: #ffffff;
+}
+
+.slick-prev:before, .slick-next:before {
+    position: relative;
+    color: red;
+    font-size: 30px;
+    font-weight: 800;
+    transition: color 1s;
+}
+
+.movieBlock {
+    position: relative;
+    border: 3px solid #ffffff;
+    transition: transform 0.8s, border 0.8s;
+}
+
+.movieBlock:hover {
+    transform: scale(1.15);
+    border: none;
+    border-left: 10px solid var(--main-red);
+    box-shadow: none;
+}
+
+.movieBlock:hover>img {
+    filter: brightness(0.3);
+}
+
+.movieBlock::after {
+    box-shadow: inset 10px 50px 100px 0 #000000;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.movieBlock img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.8s;
+}
+
+.movieBlockDescription {
+    position: absolute;
+    left: 1.563em;
+    right: 10em;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.movieBlockDescription h6>a {
+    font-size: 20px;
+}
+
+.movieBlockDescription span {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 1280px) and (min-width: 480px) {
+    .movieBlockDescription {
+        right: 0;
+    }
+    .movieBlockDescription h6>a {
+        font-size: 15px;
+    }
+    .movieBlockDescription span {
+        font-size: 15px;
+        padding-top: 2px;
+    }
+}

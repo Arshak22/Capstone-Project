@@ -3,6 +3,7 @@ import MainPic from "../../assets/images/HomeMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
 import HorizontalSlider from "../../Components/HorizontalSlider";
+import VerticalSliderSection from "../../Components/VerticalSliderSection";
 
 
 // Movie Pics
@@ -74,6 +75,7 @@ export default function Home() {
             <HorizontalSlider movies={latestMovies}/>
             <SliderHeader header="Popular Movies" link="/movies" btnName="View All"/>
             <HorizontalSlider movies={latestMovies}/>
+            <VerticalSliderSection movies={latestMovies} />
         </div>
     );
 }
