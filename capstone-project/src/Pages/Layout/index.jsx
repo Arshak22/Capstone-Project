@@ -9,12 +9,15 @@ import { useEffect } from "react";
 
 export default function Layout() {
     const [loaded, setLoaded] = useState(true);
+    const [preLoaderTime, setPreLoaderTime] = useState(0);
     const location = useLocation();
     useEffect(() => {
+        (location.pathname === "/") ? setPreLoaderTime(5000): setPreLoaderTime(3000);
         setLoaded(true);
+        console.log(location.pathname)
         setTimeout(() => {
             setLoaded(false);
-        }, 5000)
+        }, preLoaderTime)
     }, [location.pathname])
     return (
         <>
