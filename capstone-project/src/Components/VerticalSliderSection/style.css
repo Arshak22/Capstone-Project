@@ -40,7 +40,7 @@
 
 .VerticalSliderSection .slick-slider {
     z-index: 5;
-    width: 395px;
+    width: 28%;
     position: absolute;
     top: 90px;
 }
@@ -122,5 +122,48 @@
     .movieBlockDescription span {
         font-size: 15px;
         padding-top: 2px;
+    }
+}
+
+@media screen and (max-width: 1150px) and (min-width: 900px) {
+    .VerticalSliderSection .slick-slider {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 900px) and (min-width: 800px) {
+    .VerticalSliderSection .slick-slider {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 700px) {
+    .VerticalSliderSection .slick-slider {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) and (min-width: 600px) {
+    .VerticalSliderSection .slick-slider {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) and (min-width: 500px) {
+    .VerticalSliderSection .slick-slider {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 500px) and (min-width: 400px) {
+    .VerticalSliderSection .slick-slider {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 400px) and (min-width: 300px) {
+    .VerticalSliderSection .slick-slider {
+        width: 90%;
+        top: 110px;
     }
 }
