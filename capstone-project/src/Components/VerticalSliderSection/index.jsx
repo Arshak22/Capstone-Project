@@ -21,10 +21,9 @@ export default function VerticalSliderSection({movies}) {
         cssEase: "linear",
         pauseOnHover: true,
         afterChange: function(currentSlide) {
-          let s = document.querySelector(`[data-index="${currentSlide}"]`).querySelector("img").src;
-          console.log(s);
+          const currentSlideImage = document.querySelector(".slick-vertical").querySelector(".slick-list").querySelector(".slick-track").querySelector(`[data-index="${currentSlide}"]`).querySelector("img").src;
           const section = document.querySelector('.VerticalSliderSection');
-        section.style.backgroundImage = `url(${s})`;
+          section.style.backgroundImage = `url(${currentSlideImage})`;
         },
         responsive: [
             {
@@ -48,7 +47,6 @@ export default function VerticalSliderSection({movies}) {
 
     return (
         <div className="VerticalSliderSection" style={{backgroundImage: `url(${movies[0].img})`}}>
-            {console.log(movies[0].img)}
             <h1>Upcoming Movies</h1>
             <Slider {...settings}>
                 {movies.map((elem, index) => {
