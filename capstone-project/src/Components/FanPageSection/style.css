@@ -1,5 +1,6 @@
 .FanPageSection {
-    margin: 150px auto;
+    margin: 0 auto;
+    margin-top: 150px;
     position: relative;
     width: 100%;
     height: auto;
@@ -74,6 +75,7 @@
     position: absolute;
     bottom: 0px;
     transition: transform 0.8s, box-shadow 0.8s ease;
+    bottom: -4px;
 }
 
 #FanPageSectionPic:hover {
