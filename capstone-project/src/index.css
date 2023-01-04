@@ -164,9 +164,15 @@ body::before {
 }
 
 .preLoader div {
-  position: absolute;
-  top: 20%;
-  left: 38%;
+  margin-top: 100px;
+}
+
+@media screen and (max-width: 500px) {
+  .preLoader div>div {
+    position: absolute;
+    left: 0;
+    top: 20%;
+  }
 }
 
 code {
