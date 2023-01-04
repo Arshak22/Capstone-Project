@@ -2,7 +2,7 @@
     margin: 150px auto;
     position: relative;
     width: 100%;
-    height: 470px;
+    height: auto;
 }
 
 .FanPageSection::before {
@@ -26,7 +26,8 @@
 
 .row {
     margin: 0 auto;
-    width: 1350px;
+    width: 100%;
+    padding-left: 100px;
 }
 
 .row:after {
@@ -56,19 +57,20 @@
     color: #ffffff;
     font-size: 18px;
     line-height: 33px;
-    padding-right: 20px;
+    padding-right: 30px;
 }
 
 .btn2 {
     font-size: 15px;
     margin-top: 20px;
     padding: 20px;
+    margin-bottom: 30px;
     width: 200px;
 }
 
 #FanPageSectionPic {
-    width: 820px;
-    right: 20px;
+    width: 800px;
+    right: 15px;
     position: absolute;
     bottom: 0px;
     transition: transform 0.8s, box-shadow 0.8s ease;
@@ -79,11 +81,66 @@
     filter: drop-shadow(20px 0px 30px var(--main-red-hover));
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
+    .row {
+        padding-left: 0;
+    }
     .col {
       width: 100%;
+      text-align: center;
     }
     #FanPageSectionPic {
-        width: 100%;
+        max-width: 100%;
+        width: 600px;
+        position: relative;
+    }
+    .FanPageSection .col h1 {
+        font-size: 20px;
+        padding: 20px;
+    }
+    .FanPageSection .col p {
+        font-size: 14px;
+        padding-right: 0;
+    }
+    .FanPageSection::before {
+        background-attachment: inherit;
+    }
+}
+
+@media screen and (max-width: 1450px) and (min-width: 1200px) {
+    #FanPageSectionPic {
+        width: 700px;
+    }
+    .FanPageSection .col h1 {
+        font-size: 23px;
+    }
+    .FanPageSection .col p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1050px)  {
+    #FanPageSectionPic {
+        width: 700px;
+        padding-left: 50px;
+    }
+    .FanPageSection .col h1 {
+        font-size: 23px;
+    }
+    .FanPageSection .col p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1050px) and (min-width: 800px)  { 
+    #FanPageSectionPic {
+        width: 700px;
+        padding-left: 200px;
+    }
+    .FanPageSection .col h1 {
+        font-size: 20px;
+    }
+    .FanPageSection .col p {
+        font-size: 14px;
     }
 }
