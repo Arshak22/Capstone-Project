@@ -6,21 +6,29 @@ import "./style.css";
 
 export default function Cursor() {
     const[mousePosition, setMousePosition] = useState({
-        x: -20,
+        x: 0,
         y: 0,
     });
     const [cursorVariant] = useState("default");
+    const [opacity, setOpacity] = useState(0);
 
     useEffect(() => {
         const mouseMove = (e) => {
             setMousePosition({
                 x: e.clientX,
                 y: e.clientY
-            })
+            });
+            setOpacity(1);
+        }
+        const mouseOut = () => {
+            
+            setOpacity(0);
         }
         window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("mouseout", mouseOut);
         return () => {
             window.removeEventListener("mousemove", mouseMove);
+            window.removeEventListener("mouseout", mouseOut);
         }
     }, []);
 
@@ -39,6 +47,10 @@ export default function Cursor() {
     return (
         <motion.div 
         className="cursor"
+        style={{
+            opacity,
+            transition: "opacity 0.6s ease-out"
+        }}
         variants={variants}
         animate={cursorVariant}
         />
