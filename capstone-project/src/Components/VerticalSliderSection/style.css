@@ -35,6 +35,8 @@
     position: absolute;
     top: 25px;
     left: 45px;
+    letter-spacing: 10px;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
     z-index: 5;
 }
 
