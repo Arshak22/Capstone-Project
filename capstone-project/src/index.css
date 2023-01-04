@@ -67,9 +67,9 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small {
   text-transform: uppercase;
   border-radius: 0px;
   z-index: 1;
- }
+}
  
- .btn::after, .btn::before {
+.btn::after, .btn::before {
   content: '';
   display: block;
   height: 100%;
@@ -81,48 +81,56 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small {
   z-index: -1;
   transition: .5s ease-out;
   background-color: var(--bg);
- }
+}
  
- .btn::before {
+.btn::before {
   top: -50%;
   left: -25%;
   transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
- }
+}
  
- .btn:hover::before {
+.btn:hover::before {
   transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
- }
+}
  
- .btn:hover::after {
+.btn:hover::after {
   transform: skew(45deg) translate(-50%, -50%);
- }
+}
  
- .btn:hover {
+.btn:hover {
   color: #ffffff;
   border-color: #ffffff;
   background-color: var(--bg);
- }
- 
- .btn:active {
+}
+
+  
+.btn:active {
     filter: brightness(.7);
     transform: scale(.98);
- }
+}
 
- .btnIcon {
+.btn2 {
+  font-size: 15px;
+  margin-top: 20px;
+  padding: 15px;
+  margin-bottom: 30px;
+  width: auto;
+}
+
+.btnIcon {
     position: relative;
     right: 3px;
     width: 15px;
     height: 15px;
     bottom: 2px;
- }
+}
 
- .btnIcon2 {
+.btnIcon2 {
     right: 5px;
     width: 20px;
     height: 20px;
     bottom: 3px;
- }
-
+}
 
  @media screen and (max-width: 1260px) and (min-width: 480px) { 
     .btn {
