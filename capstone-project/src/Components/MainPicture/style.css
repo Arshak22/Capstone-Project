@@ -2,8 +2,8 @@
     position: relative;
     text-align: center;
     z-index: -1;
-    top: -20px;
-    height: 100vh;
+    top: -120px;
+    height: 120vh;
 }
 
 .mainImage img {
