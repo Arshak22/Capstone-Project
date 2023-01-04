@@ -21,7 +21,7 @@ export default function HorizontalSlider({movies}) {
         slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
-        autoplay: true,
+        autoplay: false,
         speed: 5000,
         autoplaySpeed: 5000,
         cssEase: "linear",

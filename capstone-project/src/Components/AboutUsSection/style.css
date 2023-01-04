@@ -65,7 +65,7 @@
 }
   
 @media (max-width: 600px) {
-    .container {
+    .AboutUsSection {
       flex-direction: column;
     }
     .left-column, .right-column {

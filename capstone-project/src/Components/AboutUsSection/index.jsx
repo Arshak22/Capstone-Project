@@ -9,7 +9,7 @@ export default function AboutUsSection() {
     useEffect(() => {
         const interval = setInterval(() => {
           setFlipped(!flipped);
-        }, 6000);
+        }, 10000);
         return () => clearInterval(interval);
     }, [flipped]);
 
