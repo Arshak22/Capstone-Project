@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
 import { NavLink } from "react-router-dom";
-import { FaVideo } from "react-icons/fa";
+import VideoIcon from "../../assets/images/video.png";
 
 export default function VerticalSliderSection({movies}) {
     const settings = {
@@ -56,7 +56,7 @@ export default function VerticalSliderSection({movies}) {
                             <div className="movieBlockDescription">
                                 <h6><NavLink to="/movies" end>{elem.title}</NavLink></h6>
                                 <span>{elem.duration}</span>
-                                <NavLink to="/movies" end><button className="btn"><FaVideo className="btnIcon"/> READ MORE</button></NavLink>
+                                <NavLink to="/movies" end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
                             </div>
                         </div>
                     )
