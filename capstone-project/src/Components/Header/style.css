@@ -5,15 +5,19 @@
 
 nav {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
     height: 100px;
     background: rgba(20, 20, 20, 0.5) !important;
     backdrop-filter: blur(0.625em);
+    z-index: 10;
+}
+
+.sticky {
     position: sticky;
     top: 0;
-    z-index: 10;
 }
 
 #mainLogo {

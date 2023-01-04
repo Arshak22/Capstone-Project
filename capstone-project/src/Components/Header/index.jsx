@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import {React, useState, useEffect, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import "./style.css";
 import MainLogo from "../../assets/images/Logo1.png";
@@ -11,6 +10,24 @@ import { FaTimes } from "react-icons/fa";
 
 export default function Header() {
     const [activeBar, setActiveBar] = useState(true);
+    const [stickyNav, setStickyNav] = useState('');
+    const prevScrollPos = useRef(0);
+  
+    useEffect(() => {
+        function handleScroll() {
+          const currentScrollPos = window.pageYOffset;
+          if (currentScrollPos > prevScrollPos.current) {
+            setStickyNav('');
+          } else {
+            setStickyNav('sticky');
+          }
+          prevScrollPos.current = currentScrollPos;
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
     const handleBar = () => {
@@ -19,7 +36,7 @@ export default function Header() {
 
     return (
         <>
-            <nav>
+            <nav className={stickyNav}>
                 <NavLink to="/" end><img src={MainLogo} alt="MainLogo" id="mainLogo" /></NavLink>
                 <div>
                     <ul id="navbar" className={!activeBar ? "activeMenu": null}>
