@@ -22,7 +22,7 @@
     text-transform: uppercase;
     letter-spacing: 10px;
     filter: drop-shadow(0 0 0.2rem #ffffffbd);
-    animation: entrance 0.5s ease-in-out;
+    animation: entrance 1s ease-in-out;
 }
 
 @keyframes entrance {
@@ -34,6 +34,18 @@
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
     }
+}
+
+
+@keyframes entrance2 {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0);
+  }
 }
 
 @media screen and (max-width: 500px) {
