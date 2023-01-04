@@ -6,7 +6,7 @@ import "./style.css";
 
 export default function Cursor() {
     const[mousePosition, setMousePosition] = useState({
-        x: 0,
+        x: 900,
         y: 0,
     });
     const [cursorVariant] = useState("default");
@@ -21,7 +21,6 @@ export default function Cursor() {
             setOpacity(1);
         }
         const mouseOut = () => {
-            
             setOpacity(0);
         }
         window.addEventListener("mousemove", mouseMove);
