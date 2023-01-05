@@ -1,0 +1,97 @@
+.Team {
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+.Team::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.teamMember {
+    position: relative;
+    margin-right: 25px;
+    margin-left: 25px;
+    float: left;
+    width: 33.33%;
+    padding: 30px;
+    padding-bottom: 0;
+    overflow: hidden;
+    pointer-events: all;
+}
+
+.teamMember:hover .MemberPic {
+    transform: scale(1.2);
+}
+
+.teamMember::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('../../assets/images/bg2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /* background: rgba(255, 255, 255, 0.19) !important;
+    backdrop-filter: blur(0.625em); */
+    /* box-shadow: inset 0 0 2000px rgb(0, 0, 0);
+    filter: blur(5px); */
+    /* box-shadow: 0px 10px 15px 10px rgba(0 ,0 ,0 ,0.15); */
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    /* backdrop-filter: blur(8px);  */
+
+    box-shadow: inset 0 0 0 200px rgba(0, 0, 0, 0.368);
+ filter: blur(10px);
+    z-index: -1;
+}
+
+.MemberPic {
+    max-width: 100%;
+    object-fit: contain;
+    position: relative;
+    top: 5px;
+    filter: drop-shadow(5px 0px 30px var(--main-red-hover));
+    animation: scaleImage 2s alternate;
+    animation-iteration-count: 2;
+    animation-delay: 5s;
+    transition: transform 1s ease;
+}
+
+@keyframes scaleImage {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+}
+
+.Team div:nth-child(2) img {
+    animation-delay: 8s;
+}
+.Team div:nth-child(3) img {
+    animation-delay: 11s;
+}
+
+.member {
+    position: absolute;
+    top: 0;
+    left: 10;
+    padding-top: 20px;
+}
+
+.member h3, h4 {
+    color: #ffffff;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+    letter-spacing: 5px;
+}
