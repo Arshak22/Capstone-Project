@@ -28,6 +28,10 @@
     transform: scale(1.2);
 }
 
+.teamMember:hover .member { 
+    opacity: 1;
+}
+
 .teamMember::before {
     content: '';
     display: block;
@@ -43,7 +47,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    box-shadow: inset 0 0 0 200px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 0 0 200px rgba(0, 0, 0, 0.7);
     filter: blur(5px);
 }
 
@@ -85,15 +89,39 @@
 }
 
 .member {
+    opacity: 0;
     position: absolute;
+    bottom: 0;
+    left: 0;    
+    width: 100%;
+    height: 100%;
+}
+
+.member:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
-    left: 10;
-    padding-top: 20px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
 }
 
 .member h3, h4 {
     color: #ffffff;
+    position: absolute;
+    bottom: 30px;
+    padding-left: 30px;
     filter: drop-shadow(0 0 0.2rem #ffffff5c);
-    /* text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5); */
+    text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
     letter-spacing: 5px;
+}
+
+.member h3 {
+    padding-bottom: 30px;
 }
