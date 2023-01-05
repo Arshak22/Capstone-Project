@@ -112,7 +112,7 @@
     backdrop-filter: blur(8px);
 }
 
-.member h3, h4 {
+.member h3 h4 {
     color: #ffffff;
     position: absolute;
     bottom: 30px;
