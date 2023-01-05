@@ -4,6 +4,7 @@
     z-index: -1;
     top: -120px;
     height: 120vh;
+    margin-bottom: -100px;
 }
 
 .mainImage img {
