@@ -1,13 +1,7 @@
 .footer {
     height: auto;
     position: relative;
-    /* background-color: var(--bg); */
     z-index: 5;
-    /* background-image:url("../../assets/images/bg2.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed; */
 }
 
 .footer::before {
