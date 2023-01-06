@@ -59,9 +59,9 @@ export default function Header() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/fan-page" className="navItem" end>
-                                <span data-text="FAN PAGE">
-                                </span>Fan Page
+                            <NavLink to="/about" className="navItem" end>
+                                <span data-text="ABOUT US">
+                                </span>About Us
                             </NavLink>
                         </li>
                         <li className="pages">
@@ -72,9 +72,9 @@ export default function Header() {
                             <div id="dropdownMenu">
                                 <ul>
                                     <li>
-                                        <NavLink to="/about" className="navItem" end>
-                                            <span data-text="ABOUT US">
-                                            </span>About Us
+                                        <NavLink to="/fan-page" className="navItem" end>
+                                            <span data-text="FAN PAGE">
+                                            </span>Fan Page
                                         </NavLink>
                                     </li>
                                     <li>
