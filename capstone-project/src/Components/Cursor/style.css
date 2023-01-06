@@ -11,6 +11,10 @@
     z-index: 999;
 }
 
+iframe:hover .cursor{
+    display: none;
+}
+
 @media screen and (max-width: 1000px) { 
     .cursor {
         display: none;

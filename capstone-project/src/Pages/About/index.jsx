@@ -5,6 +5,7 @@ import TeamMembers from "../../Components/TeamMembers";
 
 import Member from "../../assets/images/TeamMember.png";
 import MapAndAboutUs from "../../Components/MapAndAboutUs";
+import Map from "../../Components/Map";
 export default function About() {
     const teamMembers = [
         {
@@ -41,6 +42,7 @@ export default function About() {
             <MainPicture img={MainPic} headline="Find out more about us"/>
             <TeamMembers team={teamMembers}/>
             <MapAndAboutUs/>
+            <Map/>
         </div>
     );
 }

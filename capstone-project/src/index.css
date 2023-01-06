@@ -6,7 +6,7 @@
   pointer-events: none;
 }
 
-a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small {
+a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small, iframe {
   pointer-events: all;
 }
 
@@ -195,4 +195,27 @@ body::before {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.cursor {
+  background-color: var(--main-red);
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+  z-index: 999;
+}
+
+iframe:hover .cursor{
+  display: none;
+}
+
+@media screen and (max-width: 1000px) { 
+  .cursor {
+      display: none;
+  }
 }
