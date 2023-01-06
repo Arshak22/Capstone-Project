@@ -8,7 +8,7 @@ import { FaTelegramPlane } from "react-icons/fa";
 export default function TeamMembers({team}) {
     return (
         <>
-            <h1 className="TeamHeader">Meat The Movie Team</h1>
+            <h1 className="TeamHeader">Meet The <span class="ChangingTeamName"></span></h1>
             <div className="Team">
             {team.map((elem, index) => {
                 return (

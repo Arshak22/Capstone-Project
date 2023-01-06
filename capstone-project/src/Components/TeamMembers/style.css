@@ -13,15 +13,61 @@
 }
 
 .TeamHeader {
-    margin-top: 50px;
+    position: relative;
+    margin-bottom: 100px;
     text-align: center;
     text-transform: uppercase;
     font-size: 40px;
     color: #ffffff;
     filter: drop-shadow(0 0 0.5rem #ffffff5c);
-    /* text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5); */
+    text-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
     letter-spacing: 10px;
 }
+
+
+.ChangingTeamName {
+    position: relative;
+    top: 60px;
+    display: inline-block;
+    width: 300px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: changeBg 12s infinite alternate;
+    filter: drop-shadow(0 0 0.5rem #ffffff8d);
+}
+  
+@keyframes changeBg {
+    0% {
+        background-image: url('../../assets/images/MovieMavericks/MM2.png');
+        filter: drop-shadow(0 0 0.5rem #ff6201b0);
+    }
+    16.66% {
+        background-image: url('../../assets/images/MovieMavericks/MM2.png');
+        filter: drop-shadow(0 0 0.5rem #ff6201b0);
+    }
+    33.33% {
+        background-image: url('../../assets/images/MovieMavericks/MM3.png');
+        filter: drop-shadow(0 0 0.5rem #e1ff01e3);
+    }
+    50% {
+        background-image: url('../../assets/images/MovieMavericks/MM4.png');
+        filter: drop-shadow(0 0 0.2rem #ffc00191);
+    }
+    66.66% {
+        background-image: url('../../assets/images/MovieMavericks/MM5.png');
+        filter: drop-shadow(0 0 0.5rem #4dff0176);
+    }
+    83.33% {
+        background-image: url('../../assets/images/MovieMavericks/MM6.png');
+        filter: drop-shadow(0 0 0.2rem #ffffff77);
+    }
+    100% {
+        background-image: url('../../assets/images/MovieMavericks/MM1.png');
+        filter: drop-shadow(0 0 0.5rem #e1ff0172);
+    }
+} 
 
 .teamMember {
     position: relative;
