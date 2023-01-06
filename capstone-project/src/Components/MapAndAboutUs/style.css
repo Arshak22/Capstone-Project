@@ -1,6 +1,6 @@
 .MapAndAboutUs {
     margin: 0 auto;
-    /* margin-top: 150px; */
+    margin-top: 100px;
     position: relative;
     width: 100%;
     height: auto;
@@ -23,4 +23,113 @@
     background-attachment: fixed;
     filter: brightness(15%);
     z-index: -1;
+}
+
+.row3 {
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    padding-left: 100px;
+}
+
+.row3:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col3 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.col3 img {
+    position: relative;
+    top: 50px;
+    max-width: 100%;
+    width: 650px;
+    transition: transform 0.8s ease, drop-shadow 0.8s ease;
+}
+
+.col3 img:hover {
+    transform: translate(-20px, -15px) scale(1.05);
+    filter: drop-shadow(-20px 0px 30px var(--main-red-hover));
+}
+
+.col3 h1 {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-right: 100px;
+    padding-bottom: 30px;
+    letter-spacing: 0.3em;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.col3 p {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 33px;
+    margin-bottom: 50px;
+    padding-right: 80px;
+}
+
+.col3 .big {
+    font-size: 25px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .row3 {
+        padding: 0 100px;
+        display: block;
+    }
+    .col3 {
+      width: 100%;
+      text-align: center;
+    }
+    .col3 img {
+        max-width: 100%;
+        width: 400px;
+        position: relative;
+    }
+    .MapAndAboutUs .col3 h1 {
+        margin-top: 20px;
+        font-size: 20px;
+        padding: 20px;
+    }
+    .MapAndAboutUs .col3 p {
+        font-size: 14px;
+        padding-right: 0;
+    }
+    .MapAndAboutUs::before {
+        background-attachment: inherit;
+    }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1050px)  {
+    .col3 img {
+        width: 600px;
+    }
+    .col3 h1 {
+        font-size: 25px;
+    }
+    .col3 p {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 1050px) and (min-width: 800px)  { 
+    .col3 img {
+        width: 500px;
+    }
+    .col3 h1 {
+        font-size: 20px;
+    }
+    .col3 p {
+        font-size: 14px;
+    }
 }
