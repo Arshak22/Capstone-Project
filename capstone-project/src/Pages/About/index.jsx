@@ -11,27 +11,27 @@ export default function About() {
             name: "Arshak Kosakyan",
             img: Member,
             profession: "Front-End Developer",
-            FB: "",
-            IG: "",
-            Telegram: ""
+            FB: "https://www.facebook.com/",
+            IG: "https://www.instagram.com/",
+            TG: "https://t.me/"
         },
         {
             id: 2,
             name: "Emin Ter-Mkrtchyan",
             img: Member,
             profession: "Back-End Developer",
-            FB: "",
-            IG: "",
-            Telegram: ""
+            FB: "https://www.facebook.com/",
+            IG: "https://www.instagram.com/",
+            TG: "https://t.me/"
         },
         {
             id: 3,
             name: "Arman Harutyunyan",
             img: Member,
             profession: "Data Specialist",
-            FB: "",
-            IG: "",
-            Telegram: ""
+            FB: "https://www.facebook.com/",
+            IG: "https://www.instagram.com/",
+            TG: "https://t.me/"
         }
     ];
 
