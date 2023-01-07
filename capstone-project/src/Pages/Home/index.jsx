@@ -7,7 +7,6 @@ import VerticalSliderSection from "../../Components/VerticalSliderSection";
 import FanPageSection from "../../Components/FanPageSection";
 import AboutUsSection from "../../Components/AboutUsSection";
 
-
 // Movie Pics
 import Movie1 from "../../assets/images/Movies/Movie1.jpg";
 import Movie2 from "../../assets/images/Movies/Movie2.jpg";
