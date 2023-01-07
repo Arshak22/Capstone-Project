@@ -1,0 +1,85 @@
+.SkillsSection {
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.col4 {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    padding: 10px;
+}
+
+.col4 img {
+    max-width: 100%;
+    width: 200px;
+    position: relative;
+    top: -15px;
+    filter: grayscale(100%) drop-shadow(0px 0px 2px #ffffff);
+    animation: scaleImage2 2s alternate;
+    animation-delay: 15s;
+    transition: transform 2s ease;
+}
+
+@keyframes scaleImage2 {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0px 0px 2px #ffffff) grayscale(0%);
+    }
+    100% {
+        transform: scale(1.2);
+        filter: drop-shadow(0px 0px 5px #ffffff) grayscale(0%);
+    }
+}
+
+#JSLogo {
+    animation-delay: 18s;
+}
+
+#JAVALogo {
+    animation-delay: 21s;
+}
+
+#DBLogo {
+    animation-delay: 24s;
+}
+
+.col4 img:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0px 0px 5px #ffffff) grayscale(0%);
+}
+
+.bottom img {
+    position: relative;
+    top: 50px;
+}
+
+@media screen and (max-width: 750px) {
+    .col4 {
+        width: 100%;
+    }
+
+    .col4 img {
+        top: 0;
+        width: 125px;
+    }
+
+    .SkillsSection {
+        position: relative;
+        top: 120px;
+        display: block;
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) { 
+    .SkillsSection {
+        width: auto;
+    }
+}
