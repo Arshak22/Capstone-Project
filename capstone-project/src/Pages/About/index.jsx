@@ -7,6 +7,7 @@ import Member from "../../assets/images/TeamMember.png";
 import MapAndAboutUs from "../../Components/MapAndAboutUs";
 import Map from "../../Components/Map";
 import SkillsSection from "../../Components/SkillsSection";
+
 export default function About() {
     const teamMembers = [
         {
