@@ -14,8 +14,8 @@ export default function FAQSection({faqs}) {
             <div className="faqs">
                 {faqs.map((faq, index) => {
                     return (
-                        <div className={"faq" + (faqs[index].open ? " open": "")} key={index} onClick={() => toggleFAQ(index)}>
-                            <div className="faqQuestion">
+                        <div className={"faq" + (faqs[index].open ? " open": "")} key={index}>
+                            <div className="faqQuestion" onClick={() => toggleFAQ(index)}>
                                 <h1>{faq.question}</h1>
                             </div>
                             <div className="faqAnswer">
