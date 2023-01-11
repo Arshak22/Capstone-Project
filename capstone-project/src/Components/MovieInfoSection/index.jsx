@@ -1,13 +1,16 @@
 import React from "react";
 import "./style.css";
+import Tilt from 'react-parallax-tilt';
 
 export default function MovieInfoSection({movie}) {
     return (
         <div className="movieInfoSection" style={{backgroundImage: `url(${movie.backdrop})`}}>
             <div className="infoCol1">
-                <div>
-                    <img src={movie.poster} alt="moviePoster" />
-                </div>
+                <Tilt tiltReverse={true} scale={1.02} transitionSpeed={5000} tiltAngleXInitial={10} tiltAngleYInitial={10}>
+                    <div>
+                        <img src={movie.poster} alt="moviePoster" id="moviePoster"/>
+                    </div>
+                </Tilt>
             </div>
             <div className="infoCol2">
                 <div className="titleGenre">
