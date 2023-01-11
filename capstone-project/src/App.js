@@ -9,6 +9,7 @@ import About from "./Pages/About";
 import FAQ from "./Pages/FAQ";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import ErrorPage from "./Pages/ErrorPage";
+import { DefaultMoviePage } from "./Pages/DefaultMoviePage";
 
  function App() {
   return (
@@ -22,6 +23,7 @@ import ErrorPage from "./Pages/ErrorPage";
             <Route path="about" element={<About />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="default-page" element={<DefaultMoviePage />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
       </Routes>
