@@ -26,15 +26,10 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    box-shadow: inset 0px 50px 0px 500px rgba(90, 0, 0, 0.763);
-    filter: brightness(20%);
+    background: linear-gradient(to right, rgba(52.5, 10.5, 10.5, 0.9) calc((50vw - 170px) - 340px), rgba(52.5, 10.5, 10.5, 0.9) 30%, rgba(52.5, 10.5, 10.5, 0.9) 100%);
+    filter: brightness(50%);
     z-index: -1;
 }
-
 
 .infoCol1 {
     float: left;
@@ -45,29 +40,184 @@
 
 .infoCol1 div {
     pointer-events: all;
+    position: relative;
     padding: 0 !important;
     margin: 0 !important;
-    background: none !important;
     transition: all 0.8s ease;
     overflow: hidden;
     box-shadow: none !important;
-    filter: drop-shadow(-15px 15px 10px #ffffff93);
+    transform: scale(1.05);
+    filter: drop-shadow(-15px 15px 10px #7e7e7e4d);
+    border: 5px solid #ffffff;
+    border-radius: 10px;
 }
 
 .infoCol1 div:hover {
-    filter: drop-shadow(-10px 10px 20px #ffffff98);
+    filter: drop-shadow(0px 0px 20px #ffffff4b);
 }
 
 #moviePoster {
+    max-width: 100%;
+    height: auto;
     transition: transform 0.5s ease;
+    filter: saturate(1.15);
 }
 
 .infoCol1 div:hover #moviePoster {
-    transform: scale(1.1);
+    transform: scale(1.2);
+    filter: contrast(115%);
 }
 
 .infoCol2 {
     float: left;
     width: 60%;
     padding: 10px;
+    margin-top: 80px;
+}
+
+.titleGenre {
+    color: #ffffff;
+    letter-spacing: 0.2em;
+}
+
+.titleGenre h1 {
+    font-size: 50px;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.genres {
+    padding-right: 10px;
+}
+
+.titleGenre h2 {
+    font-size: 30px;
+}
+
+.titleGenre p {
+    font-size: 17px;
+}
+
+.moviePageIcons {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.iconBox {
+    padding-right: 20px;
+    position: relative;
+}
+
+.moviePageIcon {
+    position: relative;
+    color: var(--main-red);
+    background-color: #ffffff;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--main-red);
+    border-radius: 50%;
+    transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease;
+}
+
+.moviePageIcon:hover {
+    color: #ffffff;
+    background-color: var(--main-red-hover);
+    border: 8px solid #ffffff;
+    font-size: 15px;
+}
+
+.moviePageShareIcons {
+    width: 120px;
+    position: absolute;
+    opacity: 0;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 55px;
+    right: 0px;
+    left: -30px;
+    transition: opacity 0.5s ease;
+}
+
+#shareBtn:hover+.moviePageShareIcons {
+    opacity: 1;
+}
+
+.moviePageShareIcons:hover {
+    opacity: 1;
+}
+
+.moviePageShareIcon {
+    width: 2em;
+    height: 2em;
+    padding: 0.4em 0.5em;
+    color: #ffffff;
+}
+
+.moviePageShareIcon:hover {
+    color: var(--main-red);
+}
+
+.moviePageShareIcons:hover #shareBtn {
+    color: #ffffff;
+    background-color: var(--main-red-hover);
+    border: 8px solid #ffffff;
+    font-size: 15px;
+}
+
+.rating {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-right: 30px;
+    color: var(--main-red);
+    width: 6rem;
+    height: 6rem;
+    font-size: 25px;
+    line-height: 1;
+}
+
+.rating::before {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    border-radius: inherit;
+    box-shadow: 0 0 0 1rem var(--bg);
+    z-index: -1;
+}
+
+.rating::after {
+    content: "";
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    background: #ffffff;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.rating span {
+    position: relative;
+    display: flex;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.rating span small {
+    font-size: 15px;
+    font-weight: 900;
 }
