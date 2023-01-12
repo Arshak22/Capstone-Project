@@ -8,11 +8,11 @@ import { useEffect } from "react";
 
 export default function Footer() {
     const [currentYear] = useState(new Date().getFullYear());
-    const[showButton, setShowButton] = useState(false);
+    const[showButton, setShowButton] = useState("");
 
     useEffect(() => {
         const handleScrollButtonVisibility = () => {
-            window.pageYOffset > 300 ? setShowButton(true): setShowButton(false);
+            window.pageYOffset > 300 ? setShowButton("show"): setShowButton("");
         };
 
         window.addEventListener('scroll', handleScrollButtonVisibility);
@@ -70,7 +70,7 @@ export default function Footer() {
                         </h6>
                 </div>
             </div>
-            {showButton ? <button className="moveToTopBtn" onClick={handleScrollToTop}><FaAngleDoubleUp/></button>: null}
+            <button className={`moveToTopBtn ${showButton ? "show": ""}`} onClick={handleScrollToTop}><FaAngleDoubleUp/></button>
         </div>
     );
 }
