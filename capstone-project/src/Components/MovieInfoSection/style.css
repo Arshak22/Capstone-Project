@@ -95,6 +95,7 @@
 
 .titleGenre p {
     font-size: 17px;
+    letter-spacing: 0.1em;
 }
 
 .moviePageIcons {
@@ -171,6 +172,15 @@
     font-size: 15px;
 }
 
+.ratingBox {
+    display: flex;
+    align-items: center;
+}
+
+.ratingBox h3 {
+    padding-right: 20px;
+}
+
 .rating {
     position: relative;
     display: flex;
@@ -178,12 +188,14 @@
     justify-content: center;
     border-radius: 100%;
     overflow: hidden;
-    margin-right: 30px;
+    margin-right: 10px;
     color: var(--main-red);
     width: 6rem;
     height: 6rem;
     font-size: 25px;
     line-height: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .rating::before {

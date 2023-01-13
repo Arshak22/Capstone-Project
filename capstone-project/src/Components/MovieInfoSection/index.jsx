@@ -42,9 +42,13 @@ export default function MovieInfoSection({movie}) {
                         return <span key={index} className="genres">{elem} </span>
                     })}</h4>
                     <div className="moviePageIcons">
-                        <div className="rating" style={{background: `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`}}>
-                            <span>{movie.rating} <small>%</small></span>
+                        <div className="ratingBox">
+                            <div className="rating" style={{background: `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`}}>
+                                <span>{movie.rating} <small>%</small></span>
+                            </div>
+                            <h3>User <br/> Rating</h3>
                         </div>
+                        
                         <div className="iconBox">
                             <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
                             <div className="moviePageShareIcons">
