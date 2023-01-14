@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainPic from "../../assets/images/About.jpg";
 import MainPicture from "../../Components/MainPicture";
 import TeamMembers from "../../Components/TeamMembers";
@@ -9,6 +9,10 @@ import Map from "../../Components/Map";
 import SkillsSection from "../../Components/SkillsSection";
 
 export default function About() {
+    useEffect(() => {
+        document.title = "Movie Mavericks: About Us";
+    })
+
     const teamMembers = [
         {
             id: 1,

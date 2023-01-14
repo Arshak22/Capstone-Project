@@ -1,10 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import {React, useEffect, useState} from "react";
 import MainPic from "../../assets/images/FaqMain.jpg";
 import FAQSection from "../../Components/FAQSection";
 import MainPicture from "../../Components/MainPicture";
 
 export default function FAQ() {
+    useEffect(() => {
+        document.title = "Movie Mavericks: FAQ";
+    })
     const [faqs, setFaqs] = useState([
         {
             question: "What types of movies are featured on the website?",

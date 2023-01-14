@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect} from "react";
 import MainPic from "../../assets/images/HomeMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
@@ -28,6 +28,9 @@ import UpComingMovie7 from "../../assets/images/UpComingMovies/Movie7.jpg";
 import UpComingMovie8 from "../../assets/images/UpComingMovies/Movie8.jpg";
 
 export default function Home() {
+    useEffect(() => {
+        document.title = "Movie Mavericks";
+    })
     const latestMovies = [
         {
             id: 1,
