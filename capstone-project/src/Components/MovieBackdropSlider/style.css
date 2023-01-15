@@ -64,8 +64,11 @@
     background-position: bottom;
     background-repeat: no-repeat;
     pointer-events: all;
-    transform: scale(0.85);
-    filter: blur(5px);
+    transform: scale(0.8) perspective(1000px)
+    rotateX(4deg)
+    rotateY(-16deg)
+    rotateZ(4deg);
+    filter: blur(3px);
     box-shadow: 0px 50px 70px rgba(255, 0, 0, 0.3),
               0px 10px 10px rgba(255, 0, 0, 0.1);
     transition: transform 2s ease, filter 2s ease;
@@ -77,9 +80,13 @@
     z-index: 20;
 }
 
+.slick-current .backdropImage::after, .slick-current .backdropImage::before {
+    opacity: 0.5;
+}
+
 .backdropImage::after {
     content: "";
-    opacity: 0.5;
+    opacity: 0;
     background-image: inherit;
     background-size: inherit;
     background-position: inherit;
@@ -92,9 +99,11 @@
     bottom: -37%;
     left: -1%;
     transform: scaleY(-1);
+    transition: opacity 2s ease;
 }
 
 .backdropImage::before {
+    opacity: 0;
     content:"";
     width: 102%;
     border-radius: inherit;
@@ -104,6 +113,7 @@
     left: -1%;
     background: linear-gradient(to bottom, rgba(40, 40, 40, 0.5),black);
     z-index: 1;
+    transition: opacity 2s ease;
 }
 
 @media screen and (max-width: 600px) {
