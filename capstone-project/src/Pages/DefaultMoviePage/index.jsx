@@ -13,6 +13,7 @@ import Cast4 from "../../assets/images/TopCast/Cast4.jpg";
 import Cast5 from "../../assets/images/TopCast/Cast5.jpg";
 import Cast6 from "../../assets/images/TopCast/Cast6.jpg";
 import Cast7 from "../../assets/images/TopCast/Cast7.jpg";
+import TopCast from "../../Components/TopCast";
 
 export function DefaultMoviePage() {
     const movieInfo = {
@@ -67,6 +68,7 @@ export function DefaultMoviePage() {
     return (
         <div className="main">
             <MovieInfoSection movie={movieInfo}/>
+            <TopCast movie={movieInfo}/>
         </div>
     )
 }
