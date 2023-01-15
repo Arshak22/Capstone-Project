@@ -1,6 +1,7 @@
 .footer {
     height: auto;
     position: relative;
+    z-index: 5;
 }
 
 .footer::before {
