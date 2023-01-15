@@ -27,7 +27,7 @@ export default function MovieInfoSection({movie}) {
     return (
         <div className="movieInfoSection" style={{backgroundImage: `url(${movie.backdrop})`}}>
             <div className="infoCol1">
-                <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={10} tiltAngleYInitial={100} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
+                <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
                     <div>
                         <img src={movie.poster} alt="moviePoster" id="moviePoster"/>
                     </div>
