@@ -58,6 +58,7 @@
 
 #moviePoster {
     max-width: 100%;
+    width: 100%;
     height: auto;
     transition: transform 0.5s ease;
     filter: saturate(1.15);
@@ -85,14 +86,6 @@
     filter: drop-shadow(0 0 0.2rem #ffffff5c);
 }
 
-.genres {
-    padding-right: 10px;
-}
-
-.titleGenre h2 {
-    font-size: 30px;
-}
-
 .titleGenre p {
     font-size: 17px;
     letter-spacing: 0.1em;
@@ -103,6 +96,10 @@
     padding-bottom: 25px;
     display: flex;
     align-items: center;
+}
+
+.iconBoxes {
+    display: flex;
 }
 
 .iconBox {
@@ -232,4 +229,60 @@
 .rating span small {
     font-size: 15px;
     font-weight: 900;
+}
+
+@media screen and (max-width: 1300px) {
+    .titleGenre h1 {
+        font-size: 30px;
+    }
+    .titleGenre h4 {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    .movieInfoSection {
+        height: auto;
+    }
+    .infoCol1 {
+        width: 35%;
+    }
+    .titleGenre p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .movieInfoSection {
+        display: grid;
+    }
+    .infoCol1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .infoCol2 {
+        width: 100%;
+        text-align: center;
+        margin-top: 0;
+    }
+    .titleGenre h1 {
+        font-size: 40px;
+    }
+    .moviePageIcons {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .moviePageIcons {
+        display: block;
+    }
+    .ratingBox {
+        justify-content: center;
+    }
+    .iconBoxes {
+        padding-top: 20px;
+    }
 }

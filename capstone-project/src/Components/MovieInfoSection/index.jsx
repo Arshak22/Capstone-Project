@@ -36,10 +36,13 @@ export default function MovieInfoSection({movie}) {
             <div className="infoCol2">
                 <div className="titleGenre">
                     <h1>{movie.title}</h1>
-                    <h4>{movie.duration}</h4>
-                    <h4>{movie.releaseDate}</h4>
-                    <h4>{movie.genres.map((elem, index) => {
-                        return <span key={index} className="genres">{elem} </span>
+                    <h4>Duration: {movie.duration}</h4>
+                    <h4>Realease Date: {movie.releaseDate}</h4>
+                    <h4>Genres: {movie.genres.map((elem, index) => {
+                        return <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ',' : ''} </span>
+                    })}</h4>
+                    <h4>Director/s: {movie.directors.map((elem, index) => {
+                        return <span key={index} className="directors">{elem}{index < movie.directors.length - 1 ? ',' : ''} </span>
                     })}</h4>
                     <div className="moviePageIcons">
                         <div className="ratingBox">
@@ -48,23 +51,24 @@ export default function MovieInfoSection({movie}) {
                             </div>
                             <h3>User <br/> Rating</h3>
                         </div>
-                        
-                        <div className="iconBox">
-                            <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
-                            <div className="moviePageShareIcons">
-                                <FaFacebookF className="moviePageShareIcon"/>
-                                <FaTwitter className="moviePageShareIcon"/>
-                                <FaPinterestP className="moviePageShareIcon"/>
+                        <div className="iconBoxes">
+                            <div className="iconBox">
+                                <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
+                                <div className="moviePageShareIcons">
+                                    <FaFacebookF className="moviePageShareIcon"/>
+                                    <FaTwitter className="moviePageShareIcon"/>
+                                    <FaPinterestP className="moviePageShareIcon"/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="iconBox">
-                            <button className="moviePageIcon"><FaHeart/></button>
-                        </div>
-                        <div className="iconBox">
-                            <button className="moviePageIcon"><FaPlus/></button>
-                        </div>
-                        <div className="iconBox">
-                            <button className="moviePageIcon"><FaStar/></button>
+                            <div className="iconBox">
+                                <button className="moviePageIcon"><FaHeart/></button>
+                            </div>
+                            <div className="iconBox">
+                                <button className="moviePageIcon"><FaPlus/></button>
+                            </div>
+                            <div className="iconBox">
+                                <button className="moviePageIcon"><FaStar/></button>
+                            </div>
                         </div>
                     </div>
                     <h2>Overview</h2>

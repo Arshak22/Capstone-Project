@@ -14,7 +14,8 @@ export function DefaultMoviePage() {
         rating: 76,
         overview: "The origin story of former Special Forces operative turned mercenary Wade Wilson, who, after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.",
         poster: Poster,
-        backdrop: Backdrop 
+        backdrop: Backdrop,
+        directors: ["Tim Miller"]
     }
 
     return (
