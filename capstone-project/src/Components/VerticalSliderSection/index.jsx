@@ -13,6 +13,7 @@ export default function VerticalSliderSection({movies}) {
         slidesToShow: 3,
         slidesToScroll: 1,
         vertical: true,
+        focusOnSelect: true,
         verticalSwiping: true,
         swipeToSlide: true,
         autoplay: true,
