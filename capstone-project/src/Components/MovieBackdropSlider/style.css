@@ -1,0 +1,117 @@
+.backdropSlider {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    padding: 0 20px;
+    margin-bottom: 50px;
+}
+
+.backdropSlider h1 {
+    font-size: 30px;
+    text-align: left;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    filter: drop-shadow(0 0 0.5rem #ffffff5c);
+}
+
+.backdropSlider .slick-list {
+    height: 500px;
+}
+
+.slick-slider {
+    z-index: -1;
+}
+
+.slick-slide>div {
+    margin: 15px 15px;
+    margin-left: 25px;   
+}
+
+.slick-prev, .slick-next {
+    cursor: none;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    transition: background 0.5s, border 0s;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: var(--main-red-hover);
+    border: 2px solid #ffffff;
+}
+
+.slick-prev:hover:before, .slick-next:hover:before {
+    color: #ffffff;
+}
+
+.slick-prev:before, .slick-next:before {
+    position: relative;
+    color: red;
+    font-size: 30px;
+    font-weight: 800;
+    transition: color 1s;
+}
+
+.backdropImage {
+    width: 400px;
+    height: 300px;
+    border: 4px solid #ffffff;
+    border-radius: 5px;
+    position: relative;
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    pointer-events: all;
+    transform: scale(0.85);
+    filter: blur(5px);
+    box-shadow: 0px 50px 70px rgba(255, 0, 0, 0.3),
+              0px 10px 10px rgba(255, 0, 0, 0.1);
+    transition: transform 2s ease, filter 2s ease;
+}
+
+.slick-current .backdropImage {
+    transform: scale(1.1);
+    filter: blur(0px);
+    z-index: 20;
+}
+
+.backdropImage::after {
+    content: "";
+    opacity: 0.5;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    border: inherit;
+    border-radius: inherit;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    bottom: -37%;
+    left: -1%;
+    transform: scaleY(-1);
+}
+
+.backdropImage::before {
+    content:"";
+    width: 102%;
+    border-radius: inherit;
+    position: absolute;
+    height: 32%;
+    bottom: -37%;
+    left: -1%;
+    background: linear-gradient(to bottom, rgba(40, 40, 40, 0.5),black);
+    z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .backdropImage {
+        width: 300px;
+        height: 200px;
+    }
+    .backdropSlider .slick-list {
+        height: 300px;
+    }
+}
