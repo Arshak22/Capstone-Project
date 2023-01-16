@@ -6,6 +6,7 @@ import Backdrop from "../../assets/images/DefaultMovieBackdrop.jpg";
 import MovieInfoSection from "../../Components/MovieInfoSection";
 import TopCast from "../../Components/TopCast";
 import MovieBackdropSlider from "../../Components/MovieBackdropSlider";
+import MovieTrailerSection from "../../Components/MovieTrailerSection";
 
 //Cast Pictures
 import Cast1 from "../../assets/images/TopCast/Cast1.jpg";
@@ -83,6 +84,7 @@ export function DefaultMoviePage() {
             <MovieInfoSection movie={movieInfo}/>
             <TopCast movie={movieInfo}/>
             <MovieBackdropSlider movie={movieInfo}/>
+            <MovieTrailerSection/>
         </div>
     )
 }

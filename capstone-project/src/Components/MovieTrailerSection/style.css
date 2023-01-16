@@ -1,0 +1,69 @@
+.split-section {
+    position: relative;
+    overflow: hidden;
+    pointer-events: all;
+    height: 700px; /* adjust to desired height */
+  }
+  
+  .split-section::before,
+  .split-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    border-top: 20px solid #ffffff;
+    background-image: url(../../assets/images/CinemaCurtains2.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 2s ease-in-out;
+    z-index: 5;
+  }
+  
+  .split-section::before {
+    left: 0;
+    transform: translateX(0);
+  }
+  
+  .split-section::after {
+    right: 0;
+    transform: translateX(0);
+  }
+  
+  .split-section.active::before {
+    transform: translateX(-100%);
+  }
+  
+  .split-section.active::after {
+    transform: translateX(100%);
+  }
+  
+  .split-section__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/images/CinemaElements1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.split-section__content.active {
+    opacity: 1;
+    z-index: 5;
+}
+  
+  .split-section__content {
+    height: 90%;
+    width: 70%;
+    opacity: 0;
+    transition: opacity 5s ease;
+    color: #ffffff;
+  }
+  
