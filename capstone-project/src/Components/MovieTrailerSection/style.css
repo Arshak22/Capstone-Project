@@ -2,11 +2,11 @@
     position: relative;
     overflow: hidden;
     pointer-events: all;
-    height: 700px; /* adjust to desired height */
-  }
+    height: 700px;
+}
   
-  .split-section::before,
-  .split-section::after {
+.split-section::before,
+.split-section::after {
     content: "";
     position: absolute;
     top: 0;
@@ -19,51 +19,73 @@
     background-repeat: no-repeat;
     transition: transform 2s ease-in-out;
     z-index: 5;
-  }
+}
   
-  .split-section::before {
+.split-section::before {
     left: 0;
     transform: translateX(0);
-  }
+}
   
-  .split-section::after {
+.split-section::after {
     right: 0;
     transform: translateX(0);
-  }
+}
   
-  .split-section.active::before {
+.split-section.active::before {
     transform: translateX(-100%);
-  }
+}
   
-  .split-section.active::after {
+.split-section.active::after {
     transform: translateX(100%);
-  }
+}
   
-  .split-section__inner {
+.split-section__inner {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../../assets/images/CinemaElements1.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
+
+.split-section__inner::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('../../assets/images/CinemaElements1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(30%);
+    z-index: -1;
+}
 
 .split-section__content.active {
     opacity: 1;
-    z-index: 5;
 }
   
-  .split-section__content {
+.split-section__content {
     height: 90%;
     width: 70%;
     opacity: 0;
-    transition: opacity 5s ease;
+    transition: opacity 4s ease;
     color: #ffffff;
-  }
-  
+}
+
+.trailer {
+    position: relative;
+    top: -2%;
+    box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.3),
+              0px 0px 50px rgba(255, 255, 255, 0.1);
+    border: 5px solid #ffffff;
+    border-radius: 5px;
+}

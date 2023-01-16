@@ -76,7 +76,8 @@ export function DefaultMoviePage() {
                 image: Cast7
             }
         ],
-        backdrops: [BD1, BD2, BD3, BD4, BD5, BD6]
+        backdrops: [BD1, BD2, BD3, BD4, BD5, BD6],
+        trailerID: "ONHBaC-pfsk"
     }
 
     return (
@@ -84,7 +85,7 @@ export function DefaultMoviePage() {
             <MovieInfoSection movie={movieInfo}/>
             <TopCast movie={movieInfo}/>
             <MovieBackdropSlider movie={movieInfo}/>
-            <MovieTrailerSection/>
+            <MovieTrailerSection movie={movieInfo}/>
         </div>
     )
 }
