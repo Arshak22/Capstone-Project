@@ -76,6 +76,7 @@
     float: left;
     width: 33.33%;
     padding: 30px;
+    border-radius: 3px;
     padding-bottom: 0;
     overflow: hidden;
     pointer-events: all;
