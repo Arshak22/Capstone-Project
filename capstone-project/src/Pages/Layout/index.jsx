@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Layout() {
-    const [loaded, setLoaded] = useState(true);
+    const [loaded, setLoaded] = useState(false);
     const [preLoaderTime, setPreLoaderTime] = useState(5000);
     const location = useLocation();
     useEffect(() => {
@@ -19,20 +19,20 @@ export default function Layout() {
         } else {
             setPreLoaderTime(1000);
         }
-        setLoaded(true);
+        setLoaded(false);
         setTimeout(() => {
-            setLoaded(false);
+            setLoaded(true);
         }, preLoaderTime)
     }, [location.pathname])
     return (
         <>
         <Cursor/>
-        {loaded ? <PreLoader/>:
+        {loaded ?
             <>
                 <Header/>
                 <Outlet/>
                 <Footer/>
-            </>
+            </> : <PreLoader/>            
         }   
         </>
     )
