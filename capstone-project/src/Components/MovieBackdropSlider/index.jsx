@@ -10,6 +10,7 @@ export default function MovieBackdropSlider({movie}) {
         centerMode: true,
         dots: false,
         infinite: true,
+        focusOnSelect: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         initialSlide: 0,
