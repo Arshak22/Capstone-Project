@@ -36,11 +36,11 @@
 }
   
 .split-section.active::before {
-    transform: translateX(-150%) translateY(-15%) rotate(15deg);
+    transform: translateX(-90%) translateY(-20%) rotate(15deg);
 }
   
 .split-section.active::after {
-    transform: translateX(150%) translateY(-15%) rotate(-15deg);
+    transform: translateX(90%) translateY(-20%) rotate(-15deg);
 }
   
 .split-section__inner {
