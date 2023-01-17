@@ -4,9 +4,9 @@
     pointer-events: all;
     height: 700px;
     /* border-top: 20px solid #ffffff; */
-    border-top: 70px solid transparent;
+    border-top: 40px solid transparent;
     border-image: url(../../assets/images/CurtainTop.png) 20 stretch;
-    border-image-slice: 70; 
+    border-image-slice: 30; 
     border-image-repeat: round;
 }
   
