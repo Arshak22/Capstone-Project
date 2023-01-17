@@ -3,6 +3,11 @@
     overflow: hidden;
     pointer-events: all;
     height: 700px;
+    /* border-top: 20px solid #ffffff; */
+    border-top: 70px solid transparent;
+    border-image: url(../../assets/images/CurtainTop.png) 20 stretch;
+    border-image-slice: 70; 
+    border-image-repeat: round;
 }
   
 .split-section::before,
@@ -12,12 +17,11 @@
     top: 0;
     width: 50%;
     height: 100%;
-    border-top: 20px solid #ffffff;
     background-image: url(../../assets/images/CinemaCurtains2.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: transform 2s ease-in-out;
+    transition: transform 3s ease-in-out;
     z-index: 5;
 }
   
@@ -32,11 +36,11 @@
 }
   
 .split-section.active::before {
-    transform: translateX(-100%);
+    transform: translateX(-150%) translateY(-15%) rotate(15deg);
 }
   
 .split-section.active::after {
-    transform: translateX(100%);
+    transform: translateX(150%) translateY(-15%) rotate(-15deg);
 }
   
 .split-section__inner {
