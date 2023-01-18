@@ -32,13 +32,13 @@
     cursor: none;
     width: 60px;
     height: 60px;
-    background: rgba(0, 0, 0, 0.7);
+    background: var(--bg) !important;
     z-index: 20;
     transition: background 0.5s, border 0s;
 }
 
 .slick-prev:hover, .slick-next:hover {
-    background: var(--main-red-hover);
+    background: var(--main-red-hover) !important;
     border: 2px solid #ffffff;
 }
 
