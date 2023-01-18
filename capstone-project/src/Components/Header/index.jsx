@@ -99,7 +99,9 @@ export default function Header() {
                     <div id="searchAndUserBox">
                         <input type="text" id="searchMovie" placeholder="Search Movie"/>
                         <button type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
-                        <img src={User} alt="userPic" className="user"/>
+                        <div className="userBox">
+                            <img src={User} alt="userPic" className="user"/>
+                        </div>
                     </div>
                 </div>
                 <div id="mobile">
