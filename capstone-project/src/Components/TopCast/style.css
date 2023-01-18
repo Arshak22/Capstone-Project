@@ -50,12 +50,12 @@
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(2px);
     transition: opacity 0.5s ease;
 }
 
 .castMember:hover {
-    background-size: 600px;
+    background-size: 500px;
     background-position: left center;
 }
 
