@@ -5,6 +5,7 @@ import MainLogo from "../../assets/images/Logo1.png";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import { useEffect } from "react";
+import { ROUTE_NAMES } from "../../Routes";
 
 export default function Footer() {
     const [currentYear] = useState(new Date().getFullYear());
@@ -28,28 +29,28 @@ export default function Footer() {
         <div className="footer">
             <div className="top">
                 <div> 
-                    <NavLink to="/" end><img src={MainLogo} alt="MainLogog" id="footerLogo" /></NavLink>
+                    <NavLink to={ROUTE_NAMES.HOME} end><img src={MainLogo} alt="MainLogog" id="footerLogo" /></NavLink>
                     <ul className="footerNav">
                         <li>
-                            <NavLink to="/" end>Home</NavLink>
+                            <NavLink to={ROUTE_NAMES.HOME} end>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/movies" end>Movies</NavLink>
+                            <NavLink to={ROUTE_NAMES.MOVIES} end>Movies</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/tv-shows" end>TV Shows</NavLink>
+                            <NavLink to={ROUTE_NAMES.TV_SHOWS} end>TV Shows</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/fan-page" end>Fan Page</NavLink>
+                            <NavLink to={ROUTE_NAMES.FAN_PAGE} end>Fan Page</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about" end>About Us</NavLink>
+                            <NavLink to={ROUTE_NAMES.ABOUT_US} end>About Us</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/faq" end>FAQ</NavLink>
+                            <NavLink to={ROUTE_NAMES.FAQ} end>FAQ</NavLink>
                         </li>
                     </ul>
-                <p><NavLink to="/privacy-policy" end>Privacy Policy</NavLink> | © {currentYear} Our Team Name. All Rights Reserved</p>
+                <p><NavLink to={ROUTE_NAMES.PRIVACY_POLICY} end>Privacy Policy</NavLink> | © {currentYear} Our Team Name. All Rights Reserved</p>
                 </div>
                 <div className="contact">
                     <h4>Contact Us</h4>

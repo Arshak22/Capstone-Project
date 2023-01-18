@@ -7,6 +7,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import { ROUTE_NAMES } from "../../Routes";
 
 export default function Header() {
     const [activeBar, setActiveBar] = useState(true);
@@ -37,29 +38,29 @@ export default function Header() {
     return (
         <>
             <nav className={stickyNav}>
-                <NavLink to="/" end><img src={MainLogo} alt="MainLogo" id="mainLogo" /></NavLink>
+                <NavLink to={ROUTE_NAMES.HOME} end><img src={MainLogo} alt="MainLogo" id="mainLogo" /></NavLink>
                 <div>
                     <ul id="navbar" className={!activeBar ? "activeMenu": null}>
                         <li>
-                            <NavLink to="/" className="navItem" end>
+                            <NavLink to={ROUTE_NAMES.HOME} className="navItem" end>
                                 <span data-text="HOME">
                                 </span>Home
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/movies" className="navItem" end>
+                            <NavLink to={ROUTE_NAMES.MOVIES} className="navItem" end>
                                 <span data-text="MOVIES">
                                 </span>Movies
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/tv-shows" className="navItem" end>
+                            <NavLink to={ROUTE_NAMES.TV_SHOWS} className="navItem" end>
                                 <span data-text="TV SHOWS">
                                 </span>TV Shows
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/about" className="navItem" end>
+                            <NavLink to={ROUTE_NAMES.ABOUT_US} className="navItem" end>
                                 <span data-text="ABOUT US">
                                 </span>About Us
                             </NavLink>
@@ -72,19 +73,19 @@ export default function Header() {
                             <div id="dropdownMenu">
                                 <ul>
                                     <li>
-                                        <NavLink to="/fan-page" className="navItem" end>
+                                        <NavLink to={ROUTE_NAMES.FAN_PAGE} className="navItem" end>
                                             <span data-text="FAN PAGE">
                                             </span>Fan Page
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/faq" className="navItem" end>
+                                        <NavLink to={ROUTE_NAMES.FAQ} className="navItem" end>
                                             <span data-text="FAQ">
                                             </span>FAQ
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/privacy-policy" className="navItem" end>
+                                        <NavLink to={ROUTE_NAMES.PRIVACY_POLICY} className="navItem" end>
                                             <span data-text="PRIVACY POLICY">
                                             </span>Privacy Policy
                                         </NavLink>

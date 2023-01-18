@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import MainPic from "../../assets/images/ErrorPageMain.jpg";
 import MainPicture from "../../Components/MainPicture";
+import { ROUTE_NAMES } from "../../Routes";
 
 export default function ErrorPage() {
     const [hasClass, setHasClass] = useState(false);
@@ -14,7 +15,7 @@ export default function ErrorPage() {
           setHasClass(true);
         }, 5000);
         const timeout2 = setTimeout(() => {
-            navigate('/');
+            navigate(ROUTE_NAMES.HOME);
           }, 8000);
         return () => {
             clearTimeout(timeout1);
