@@ -21,7 +21,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: transform 3s ease-in-out;
+    transition: transform 1.7s ease-in-out;
     z-index: 5;
 }
   
