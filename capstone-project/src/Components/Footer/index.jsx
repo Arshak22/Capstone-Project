@@ -50,7 +50,7 @@ export default function Footer() {
                             <NavLink to={ROUTE_NAMES.FAQ} end>FAQ</NavLink>
                         </li>
                     </ul>
-                <p><NavLink to={ROUTE_NAMES.PRIVACY_POLICY} end>Privacy Policy</NavLink> | © {currentYear} Our Team Name. All Rights Reserved</p>
+                <p><NavLink to={ROUTE_NAMES.PRIVACY_POLICY} end>Privacy Policy</NavLink> | © {currentYear} Movie Mavericks. All Rights Reserved</p>
                 </div>
                 <div className="contact">
                     <h4>Contact Us</h4>
