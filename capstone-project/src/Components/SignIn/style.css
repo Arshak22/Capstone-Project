@@ -1,0 +1,24 @@
+.signIn {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.signIn h1 {
+    color: #ffffff;
+}
+
+.loginInput {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--main-red);
+    border-top: 0px;
+    border-radius: 0px;
+    font-weight: bold;
+    outline: 0;
+    margin-top: 40px;
+    padding-left: 0px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: #ffffff;
+}
