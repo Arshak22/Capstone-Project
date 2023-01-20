@@ -22,6 +22,11 @@ export default function VerticalSliderSection({movies}) {
         autoplaySpeed: 5000,
         cssEase: "linear",
         pauseOnHover: true,
+        onMovieHover: function(index) {
+          const currentSlideImage = document.querySelector(".slick-vertical").querySelector(".slick-list").querySelector(".slick-track").querySelector(`[data-index="${index}"]`).querySelector("img").src;
+          const section = document.querySelector('.VerticalSliderSection');
+          section.style.backgroundImage = `url(${currentSlideImage})`;
+        },
         afterChange: function(currentSlide) {
           const currentSlideImage = document.querySelector(".slick-vertical").querySelector(".slick-list").querySelector(".slick-track").querySelector(`[data-index="${currentSlide}"]`).querySelector("img").src;
           const section = document.querySelector('.VerticalSliderSection');
@@ -53,7 +58,7 @@ export default function VerticalSliderSection({movies}) {
             <Slider {...settings}>
                 {movies.map((elem, index) => {
                     return (
-                        <div className="movieBlock" key={index}>
+                        <div className="movieBlock" key={index} onMouseEnter={() => settings.onMovieHover(index)}>
                             {elem.img ? <img src={elem.img} alt={elem.img} />: null}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.title}</NavLink></h6>
