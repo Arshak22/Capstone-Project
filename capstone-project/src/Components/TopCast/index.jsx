@@ -9,7 +9,6 @@ export default function TopCast({movie}) {
                 {movie.cast.map((elem, index) => {
                     return (
                         <div className="castMember" key={index} style={{backgroundImage: `url(${elem.image})`}}>
-                            {/* <img src={elem.image} alt="castMemberPic" className="castMemberPic"/> */}
                             <div className="castMemberInfo">
                                 <h4>{elem.name}</h4>
                                 <h6>{elem.role}</h6>
