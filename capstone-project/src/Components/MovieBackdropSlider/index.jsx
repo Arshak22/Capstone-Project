@@ -15,7 +15,7 @@ export default function MovieBackdropSlider({movie}) {
         slidesToScroll: 1,
         initialSlide: 0,
         autoplay: true,
-        speed: 5000,
+        speed: 2000,
         autoplaySpeed: 5000,
         cssEase: "linear",
         pauseOnHover: true,
