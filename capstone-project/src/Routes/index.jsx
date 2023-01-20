@@ -7,4 +7,5 @@ export const ROUTE_NAMES = {
     FAQ: "/faq",
     PRIVACY_POLICY: "/privacy-policy",
     DEFAULT_PAGE: "/default-page",
+    LOGIN_PAGE: "/login"
 }

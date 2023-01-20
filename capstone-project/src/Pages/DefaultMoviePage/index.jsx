@@ -1,5 +1,4 @@
 import {React, useEffect} from "react";
-import "./style.css";
 
 import Poster from "../../assets/images/DefaultMoviePoster.jpg";
 import Backdrop from "../../assets/images/DefaultMovieBackdrop.jpg";
