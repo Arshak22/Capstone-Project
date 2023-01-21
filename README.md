@@ -8,14 +8,9 @@ then \
 cd capstone-project \
 npm start
 
-# Image Showcase
+### Image Showcase
 
 <table>
-  <!-- <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple and selected day in pink</td>
-  </tr> -->
   <tr>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg" width=350 height=200></td>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_2.jpg" width=350 height=200></td>
