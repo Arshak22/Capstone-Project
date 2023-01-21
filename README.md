@@ -17,9 +17,9 @@ npm start
      <td>Present day in purple and selected day in pink</td>
   </tr> -->
   <tr>
-    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg" width=270 height=480></td>
-    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_2.jpg" width=270 height=480></td>
-    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_3.jpg" width=270 height=480></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg" width=300 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_2.jpg" width=300 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_3.jpg" width=300 height=200></td>
   </tr>
  </table>
 
