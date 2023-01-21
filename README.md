@@ -10,4 +10,4 @@ npm start
 
 # Image Showcase
 
-![Alt text](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg);
+![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg);
