@@ -10,9 +10,7 @@ npm start
 
 # Image Showcase
 
-![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg)
-![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_2.jpg)
-![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_3.jpg)
+| ![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_1.jpg) | ![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_2.jpg) | ![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_3.jpg)
 ![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_4.jpg)
 ![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_5.jpg)
 ![](/capstone-project/src/assets/images/ShowCaseImages/Screenshot_6.jpg)
