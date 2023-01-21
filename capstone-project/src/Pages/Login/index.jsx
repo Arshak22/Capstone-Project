@@ -15,7 +15,7 @@ export default function Login() {
 
     return (
         <div className="loginPage">
-            <div className="loginBox" style={!flag ? {height: "500px"}: {height: "400px"}}>
+            <div className="loginBox">
                 <div className="loginAvatar">
                     <img src={User} alt="userPic" className="user2"/>
                 </div>
