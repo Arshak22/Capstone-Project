@@ -33,7 +33,7 @@
     top: 220px;
     width: 500px;
     height: auto;
-    filter: drop-shadow(0px 0px 50px #ff000038);
+    filter: drop-shadow(0px 0px 50px #85000038);
 }
 
 .loginBox::before, .loginBtn::before {
@@ -62,9 +62,9 @@
     display: flex;
     justify-content: center;
     align-self: center;
-    filter: drop-shadow(0 0 0.2rem var(--main-red));
     overflow: hidden;
     border-radius: 50%;
+    filter: brightness(80%);
 }
 
 .user2 {
@@ -141,7 +141,7 @@
     border-top: none;
     text-align: center;
     pointer-events: all;
-    filter: drop-shadow(0px 0px 50px #ff000038);
+    filter: drop-shadow(0px 0px 50px #85000038);
     transition: background 1s ease;
 }
 
