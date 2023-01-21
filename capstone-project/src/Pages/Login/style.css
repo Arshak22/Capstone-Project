@@ -1,12 +1,9 @@
 .loginPage {
     width: 100%;
-    height: 110vh;
+    height: 120vh;
     top: -120px;
     margin-bottom: -130px;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     pointer-events: all;
 }
 
@@ -28,12 +25,14 @@
 }
 
 .loginBox {
+    margin: 0 auto;
     border: 3px solid var(--main-red);
     border-radius: 25px;
     padding: 50px;
     position: relative;
+    top: 220px;
     width: 500px;
-    height: 400px;
+    height: 500px;
     filter: drop-shadow(0px 0px 50px #ff000038);
 }
 
@@ -75,9 +74,65 @@
     object-fit: cover;
 }
 
-.loginBtn {
+.loginSection h2 {
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 10px;
+    padding-right: 60px;
+    font-size: 20px;
     position: relative;
-    top: 130px;
+    overflow: hidden;
+    display: inline-block;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.loginSection h2:hover, .loginSection h2.active {
+    color: #ffffff;
+    filter: none;
+}
+
+.loginSection h2::before {
+    position: absolute;
+    content: "";
+    background: var(--main-red);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0.25em;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.loginSection h2::after {
+    position: absolute;
+    content: "";
+    background: transparent linear-gradient( 270deg, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3) 100%);
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: 0;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.loginSection h2:hover::before, .loginSection h2:hover::after, .loginSection h2.active::before, .loginSection h2.active::after {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.loginBtn {
+    width: 350px;
+    position: relative;
+    top: 220px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
     padding: 15px;
     color: #ffffff;
     border: 3px solid var(--main-red);
@@ -95,9 +150,12 @@
     background-color: transparent;
     border: none;
     font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 5px;
     text-transform: uppercase;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
 }
 
-.loginBtn:hover::before {
+.loginBtn:hover {
     background: var(--main-red);
 }
