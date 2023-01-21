@@ -8,7 +8,7 @@ then \
 cd capstone-project \
 npm start
 
-### Image Showcase
+#### Image Showcase
 
 <table>
   <tr>
