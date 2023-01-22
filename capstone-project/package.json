@@ -19,6 +19,7 @@
         "react-loading": "^2.0.3",
         "react-lottie": "^1.2.3",
         "react-mailto": "^0.4.0",
+        "react-paginate": "^8.1.4",
         "react-parallax-tilt": "^1.7.85",
         "react-router-dom": "^6.6.1",
         "react-scripts": "^5.0.1",
