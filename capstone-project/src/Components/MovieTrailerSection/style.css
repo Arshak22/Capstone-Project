@@ -3,9 +3,8 @@
     overflow: hidden;
     pointer-events: all;
     height: 700px;
-    /* border-top: 20px solid #ffffff; */
     border-top: 40px solid transparent;
-    border-image: url(../../assets/images/CurtainTop.png) 20 stretch;
+    border-image: url(../../assets/images/TrailerSection/CurtainTop.png) 20 stretch;
     border-image-slice: 30; 
     border-image-repeat: round;
 }
@@ -17,7 +16,7 @@
     top: 0;
     width: 50%;
     height: 130%;
-    background-image: url(../../assets/images/CinemaCurtains2.jpg);
+    background-image: url(../../assets/images/TrailerSection/CinemaCurtains2.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -64,7 +63,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: url('../../assets/images/CinemaElements1.jpg');
+    background-image: url('../../assets/images/TrailerSection/CinemaElements1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
