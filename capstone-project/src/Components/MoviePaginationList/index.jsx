@@ -19,12 +19,10 @@ export default function MoviePaginationList({movies}) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6;
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    console.log(movies);
-    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentItems(movies.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(movies.length / itemsPerPage));
     console.log(currentItems);
@@ -32,7 +30,6 @@ export default function MoviePaginationList({movies}) {
 
   const handlePageClick = (event) => {
     const newOffset = event.selected * itemsPerPage % movies.length;
-    // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
     setItemOffset(newOffset);
   };
 
@@ -42,7 +39,7 @@ export default function MoviePaginationList({movies}) {
             {currentItems.map((elem, index) => {
                 return (
                     <div className="paginationMovieBlock" key={index}>
-                            {elem.img ? <img src={elem.img} alt={elem.img} />: null}
+                            {elem.img ? <img src={elem.img} alt={elem.img} className="paginationMovie" />: null}
                             <div className="paginationMovieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.title}</NavLink></h6>
                                 <span>{elem.duration}</span>
@@ -73,12 +70,12 @@ export default function MoviePaginationList({movies}) {
             })}
         </div>
       <ReactPaginate
-        nextLabel="next >"
+        nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel="<"
         pageClassName="page-item"
         pageLinkClassName="page-link"
         previousClassName="page-item"

@@ -1,28 +1,52 @@
 .paginationList {
-    margin: 0 auto;
-    margin-top: 50px;
-    width: 1400px;
+    margin: 50px auto;
+    width: 100%;
+    padding-left: 70px;
     display: flex;
     flex-wrap: wrap;
 }
 
+.pagination {
+    width: 100%;
+    padding-left: 20px;
+    margin-bottom: 100px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination .page-link {
+    padding: 8px 15px;
+    border: 2px solid #ffffff;
+    border-radius: 3px;
+    background-color: var(--main-red);
+    color: #ffffff;
+    transition: background-color 0.5s ease;
+}
+
+.pagination .page-link:hover, .pagination .page-item.active .page-link{
+    background-color: var(--bg);
+}
+
 .paginationMovieBlock {
     position: relative;
-    border: 3px solid #ffffff;
+    border: 5px solid #ffffff;
     border-radius: 3px;
-    transition: transform 0.8s, border 0.8s;
-    width: 300px;
-    margin: 25px;
+    transition: transform 0.5s, border 0.5s;
+    width: 250px;
+    height: 350px;
+    margin: 15px;
 }
 
 .paginationMovieBlock:hover {
-    transform: scale(1.15);
-    border: none;
-    border-left: 10px solid var(--main-red);
+    transform: scale(1.05);
+    border: 5px solid var(--main-red);
     box-shadow: none;
 }
 
-.paginationMovieBlock:hover .paginationMovieBlockSocialInfo {
+.paginationMovieBlock:hover .paginationMovieBlockSocialInfo, .paginationMovieBlock:hover .paginationMovieBlockDescription {
     opacity: 1;
 }
 
@@ -47,6 +71,11 @@
     transition: transform 0.8s;
 }
 
+.paginationMovie {
+    width: 100%;
+    height: 100% !important;
+}
+
 .paginationMovieBlockSocialInfo {
     position: absolute;
     top: 0;
@@ -63,13 +92,15 @@
 .paginationMovieBlockDescription {
     position: absolute;
     left: 1.563em;
-    right: 10em;
+    right: 4em;
     top: 0;
     bottom: 0;
     z-index: 999;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
 .paginationMovieBlockDescription h6>a {
