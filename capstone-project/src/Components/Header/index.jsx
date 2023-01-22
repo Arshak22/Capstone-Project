@@ -1,7 +1,7 @@
 import {React, useState, useEffect, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import "./style.css";
-import MainLogo from "../../assets/images/Logo1.png";
+import MainLogo from "../../assets/images/Logos/Logo1.png";
 import User from "../../assets/images/user.png";
 import { FaAngleDown } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";

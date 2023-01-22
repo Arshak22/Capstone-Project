@@ -1,7 +1,7 @@
 import {React, useState} from "react";
 import { NavLink } from "react-router-dom";
 import "./style.css";
-import MainLogo from "../../assets/images/Logo1.png";
+import MainLogo from "../../assets/images/Logos/Logo1.png";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import { useEffect } from "react";
