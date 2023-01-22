@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-import Map from "../../assets/images/YerevanAUAMap.png";
+import Map from "../../assets/images/YerevanMap/YerevanAUAMap.png";
 
 export default function MapAndAboutUs() {
     return (
