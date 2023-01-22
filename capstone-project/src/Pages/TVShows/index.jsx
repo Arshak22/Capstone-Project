@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import MainPic from "../../assets/images/TVShowsMain.jpg";
+import MainPic from "../../assets/images/BackgroundImages/TVShowsMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 
 export default function TVShows() {

@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import MainPic from "../../assets/images/ErrorPageMain.jpg";
+import MainPic from "../../assets/images/BackgroundImages/ErrorPageMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 import { ROUTE_NAMES } from "../../Routes";
 

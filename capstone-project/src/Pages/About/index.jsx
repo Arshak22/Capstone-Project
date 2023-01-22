@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import MainPic from "../../assets/images/About.jpg";
+import MainPic from "../../assets/images/BackgroundImages/About.jpg";
 import MainPicture from "../../Components/MainPicture";
 import TeamMembers from "../../Components/TeamMembers";
 

@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import MainPic from "../../assets/images/FanPageMain.jpg";
+import MainPic from "../../assets/images/BackgroundImages/FanPageMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 
 export default function FanPage() {

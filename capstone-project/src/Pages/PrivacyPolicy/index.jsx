@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import MainPic from "../../assets/images/PrivacyPolicyMain.jpeg";
+import MainPic from "../../assets/images/BackgroundImages/PrivacyPolicyMain.jpeg";
 import MainPicture from "../../Components/MainPicture";
 
 export default function PrivacyPolicy() {

@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import MainPic from "../../assets/images/FaqMain.jpg";
+import MainPic from "../../assets/images/BackgroundImages/FaqMain.jpg";
 import FAQSection from "../../Components/FAQSection";
 import MainPicture from "../../Components/MainPicture";
 

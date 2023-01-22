@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import MainPic from "../../assets/images/MoviesMain.jpg";
+import MainPic from "../../assets/images/BackgroundImages/MoviesMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 
 export default function Movies() {

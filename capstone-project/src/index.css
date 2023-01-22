@@ -157,7 +157,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image:url("./assets/images/bg5.jpg");
+  background-image:url("./assets/images/BackgroundImages/bg5.jpg");
   filter: brightness(50%) contrast(100%);
   background-repeat: no-repeat;
   background-position: center;
@@ -175,7 +175,7 @@ body::before {
   height: 100%;
   width: 100%;
   position: absolute;
-  background-image:url("./assets/images/bg4.jpg");
+  background-image:url("./assets/images/BackgroundImages/bg4.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
