@@ -12,6 +12,8 @@ import { FaPlus } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
+import { IoIosArrowDropleftCircle } from "react-icons/io";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 import VideoIcon from "../../assets/images/Icons/video.png";
 
 export default function MoviePaginationList({movies}) {
@@ -70,12 +72,12 @@ export default function MoviePaginationList({movies}) {
             })}
         </div>
       <ReactPaginate
-        nextLabel=">"
+        nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={pageCount}
-        previousLabel="<"
+        previousLabel={<IoIosArrowDropleftCircle className="paginationArrows"/>}
         pageClassName="page-item"
         pageLinkClassName="page-link"
         previousClassName="page-item"
