@@ -13,7 +13,7 @@ import { FaPlus } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
-import VideoIcon from "../../assets/images/video.png";
+import VideoIcon from "../../assets/images/Icons/video.png";
 
 export default function HorizontalSlider({movies}) {
     const settings = {

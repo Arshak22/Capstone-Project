@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
 import { NavLink } from "react-router-dom";
-import VideoIcon from "../../assets/images/video.png";
+import VideoIcon from "../../assets/images/Icons/video.png";
 import { ROUTE_NAMES } from "../../Routes";
 
 export default function VerticalSliderSection({movies}) {

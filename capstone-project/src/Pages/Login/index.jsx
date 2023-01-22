@@ -3,7 +3,7 @@ import "./style.css";
 
 import SignIn from "../../Components/SignIn";
 import SignUp from "../../Components/SignUp";
-import User from "../../assets/images/user.png";
+import User from "../../assets/images/Icons/user.png";
 
 export default function Login() {
     const [flag, setFlag] = useState(true);

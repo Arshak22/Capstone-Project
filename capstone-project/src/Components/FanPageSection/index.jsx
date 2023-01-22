@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import Pic from "../../assets/images/FanPageSectionPic/Surprised-Deadpool.png";
 import { NavLink } from "react-router-dom";
-import VideoIcon from "../../assets/images/video.png";
+import VideoIcon from "../../assets/images/Icons/video.png";
 import { ROUTE_NAMES } from "../../Routes";
 
 export default function FanPageSection() {

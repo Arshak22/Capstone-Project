@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from "react";
 import "./style.css";
 import { NavLink } from "react-router-dom";
-import VideoIcon from "../../assets/images/video.png";
+import VideoIcon from "../../assets/images/Icons/video.png";
 import { ROUTE_NAMES } from "../../Routes";
 
 export default function AboutUsSection() {
