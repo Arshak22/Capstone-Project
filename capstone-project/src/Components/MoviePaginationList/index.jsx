@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from "react";
+import {React, useEffect, useState, useRef} from "react";
 import "./style.css"
 import ReactPaginate from "react-paginate";
 
@@ -13,19 +13,42 @@ export default function MoviePaginationList({movies}) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const ratingRef = useRef([]);
   const itemsPerPage = 10;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(movies.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(movies.length / itemsPerPage));
-    console.log(currentItems);
-  }, [itemOffset, itemsPerPage, movies]);
+  }, [itemOffset, itemsPerPage, movies, ratingRef]);
+
+  useEffect(() => {
+    setTimeout(handleRatingFill, 1000);
+  }, [currentItems]);
 
   const handlePageClick = (event) => {
     const newOffset = event.selected * itemsPerPage % movies.length;
     setItemOffset(newOffset);
   };
+
+  const handleRatingFill = () => {
+    currentItems.map((elem, index) => {
+      let rating = 0;
+      let intervalId;
+      for (let i = index; i < ratingRef.current.length; i++) {
+          if (rating < elem.rating) {
+              intervalId = setInterval(() => {
+                  rating++;
+                  ratingRef.current[i].style.background = `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`;
+                  if (rating === elem.rating) {
+                      clearInterval(intervalId);
+                  }
+              }, 20);
+          }
+          return () => clearInterval(intervalId);
+      }
+    })
+  }
 
   return (
     <>
@@ -39,7 +62,7 @@ export default function MoviePaginationList({movies}) {
                                 
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
-                              <div className="ratingSmall" style={{background: `conic-gradient(rgb(299 9 20) ${elem.rating}%, transparent 0 100%)`}}>
+                              <div className="ratingSmall" ref={(elem) => ratingRef.current[index] = elem}>
                                   <span>{elem.rating} <small>%</small></span>
                               </div>
                             </div>
