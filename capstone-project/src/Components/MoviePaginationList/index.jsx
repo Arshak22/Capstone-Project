@@ -34,8 +34,8 @@ export default function MoviePaginationList({movies}) {
   const handleRatingFill = () => {
     currentItems.map((elem, index) => {
       let rating = 0;
-      let intervalId;
       for (let i = index; i < ratingRef.current.length; i++) {
+        let intervalId;
           if (rating < elem.rating) {
               intervalId = setInterval(() => {
                   rating++;
@@ -47,6 +47,7 @@ export default function MoviePaginationList({movies}) {
           }
           return () => clearInterval(intervalId);
       }
+      return rating;
     })
   }
 
@@ -58,8 +59,13 @@ export default function MoviePaginationList({movies}) {
                   <div className="paginationBox">
                     <div className="paginationMovieBlock" key={index}>
                             {elem.img ? <img src={elem.img} alt={elem.img} className="paginationMovie" />: null}
-                            <div className="paginationMovieBlockDescription">
-                                
+                            <div className="paginationMovieBlockPlayer">
+                              <NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">
+                                    <polygon className="triangle" fill="none" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1"></polygon>
+                                    <circle className="circle" fill="none" strokeWidth="15" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                                  </svg>
+                              </NavLink>
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
                               <div className="ratingSmall" ref={(elem) => ratingRef.current[index] = elem}>

@@ -83,7 +83,7 @@
     height: 100% !important;
 }
 
-.paginationMovieBlockSocialInfo {
+.paginationMovieBlockSocialInfo, .paginationMovieBlockPlayer {
     position: absolute;
     top: 0;
     left: auto;
@@ -92,6 +92,72 @@
     z-index: 20;
     display: flex;
     align-items: center;
+}
+
+.paginationMovieBlockPlayer {
+    width: 100%;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.triangle {
+    transition: all 0.7s ease-in-out;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 480;
+    stroke: #ffffff;
+    transform: translateY(0);
+}
+
+.circle {
+    stroke: #ffffff;
+    stroke-dasharray: 650;
+    stroke-dashoffset: 1300;
+    transition: all 0.7s ease-in-out;
+}
+
+.paginationMovieBlockPlayer svg {
+    transition: background-color 1s ease-in-out;
+    background-color: var(--main-red-hover);
+    border-radius: 50%;
+}
+
+.paginationMovieBlockPlayer svg:hover {
+    background-color: var(--bg);
+}
+
+.paginationMovieBlockPlayer svg:hover .triangle {
+    stroke-dashoffset: 0;
+	opacity: 1;
+	stroke: #ffffff;
+	animation: playerHover 0.7s ease-in-out;
+}
+
+.paginationMovieBlockPlayer svg:hover .circle {
+    stroke-dashoffset: 0;
+	stroke: var(--main-red);
+}
+
+@keyframes playerHover {
+	0% {
+		transform: translateX(0);
+	}
+	30% {
+		transform: translateX(-0.313em);
+	}
+	50% {
+		transform: translateX(0.313em);
+	}
+	70% {
+		transform: translateX(-0.125em);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.paginationMovieBlock:hover .paginationMovieBlockPlayer {
+    opacity: 1;
 }
 
 .paginationMovieBlockDescription {
@@ -125,7 +191,7 @@
     justify-content: center;
     border-radius: 100%;
     overflow: hidden;
-    color: var(--main-red);
+    color: #ffffff;
     width: 4rem;
     height: 4rem;
     font-size: 17px;
@@ -142,18 +208,18 @@
     bottom: 0.7rem;
     left: 0.7rem;
     border-radius: inherit;
-    box-shadow: 0 0 0 1rem var(--bg);
+    box-shadow: 0 0 0 0.7rem var(--bg);
     z-index: -1;
 }
 
 .ratingSmall::after {
     content: "";
     position: absolute;
-    top: 0.7rem;
-    right: 0.7rem;
-    bottom: 0.7rem;
-    left: 0.7rem;
-    background: #ffffff;
+    top: 0.6rem;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    background: var(--bg);
     border-radius: inherit;
     z-index: 1;
 }
