@@ -100,6 +100,7 @@
 .movieBlockDescription {
     position: absolute;
     left: 1.563em;
+    width: 250px;
     right: 10em;
     top: 0;
     bottom: 0;
@@ -111,6 +112,8 @@
 
 .movieBlockDescription h6>a {
     font-size: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .movieBlockDescription span {

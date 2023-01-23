@@ -96,6 +96,7 @@
     right: 10em;
     top: 0;
     bottom: 0;
+    width: 250px;
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -104,6 +105,8 @@
 
 .movieBlockDescription h6>a {
     font-size: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .movieBlockDescription span {

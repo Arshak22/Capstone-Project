@@ -57,10 +57,6 @@
     box-shadow: none;
 }
 
-.paginationMovieBlock:hover .paginationMovieBlockSocialInfo, .paginationMovieBlock:hover .paginationMovieBlockDescription {
-    opacity: 1;
-}
-
 .paginationMovieBlock:hover>img {
     filter: brightness(0.3);
 }
@@ -92,30 +88,24 @@
     top: 0;
     left: auto;
     bottom: 0;
-    right: 1.563em;
-    z-index: 999;
+    right: 0;
+    z-index: 20;
     display: flex;
     align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s;
 }
 
 .paginationMovieBlockDescription {
-    position: absolute;
-    left: 1.563em;
+    position: relative;
+    width: 200px;
+    left: 1.5em;
     right: 4em;
-    top: 0;
-    bottom: 0;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 0.5s;
+    margin-bottom: 10px;
 }
 
 .paginationMovieBlockDescription h6>a {
     font-size: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .paginationMovieBlockDescription span {
@@ -126,96 +116,59 @@
     padding-bottom: 10px;
 }
 
-.paginationMovieBlockSocialInfo ul {
-    list-style: none;
-    padding: 50px 0;
-}
-
-.paginationMovieBlockIcon {
+.ratingSmall {
     position: relative;
-    height: 2.5em;
-    width: 2.5em;
-    line-height: 2.188em;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.30);
-    border-radius: 50%;
-    margin: 0 auto 0.438em;
+    top: 180px;
+    left: 20px;
     display: flex;
     align-items: center;
-    color: var(--main-red);
-    transition: color 0.8s, background 0.8s;
-}
-
-.paginationMovieBlockIcon span {
-    position: relative;
-    width: 2em;
-    height: 2em;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: #ffffff;
-    border-radius: 50%;
-    margin: 0 auto;
-    transition: background 0.8s;
-}
-
-.iconInside {
-    font-size: 0.7em;
-}
-
-.paginationMovieBlockIcon:hover {
-    color: #ffffff;
-    background: #ffffff;
-}
-
-.paginationMovieBlockIcon:hover>span {
-    background: var(--main-red-hover);
-}
-
-.shareBox {
-    box-shadow: 0em 0.188em 0.625em rgb(0 0 0 / 75%);
-    display: flex;
-    position: absolute;
-    width: 6.563em;
-    height: 2.2em;
-    top: 0.188em;
-    right: 2.5em;
-    left: auto;
-    background-color: var(--bg);
-    padding: 0em 0.625em;
-    border-radius: 0em;
-    text-align: center;
-    z-index: 2;
-    animation: side-in 0.5s forwards;
-    margin-bottom: 0.625em;
-    opacity: 0;
-    transition: all 0.45s ease-out 0.5s;
-    pointer-events: all;
-}
-
-.paginationMovieBlockIcon.share:hover .shareBox {
-    opacity: 1;
-}
-
-.shareBox>div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.shareIcons {
-    font-size: 1em;
-    color: #ffffff;
-    pointer-events: all;
-    transition: color 0.5s;
-}
-
-.shareIcons:hover {
+    border-radius: 100%;
+    overflow: hidden;
     color: var(--main-red);
+    width: 4rem;
+    height: 4rem;
+    font-size: 17px;
+    line-height: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
+.ratingSmall::before {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    left: 0.7rem;
+    border-radius: inherit;
+    box-shadow: 0 0 0 1rem var(--bg);
+    z-index: -1;
+}
+
+.ratingSmall::after {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    left: 0.7rem;
+    background: #ffffff;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.ratingSmall span {
+    position: relative;
+    display: flex;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.ratingSmall span small {
+    font-size: 10px;
+    font-weight: 900;
+}
 
 @media screen and (max-width: 1280px) and (min-width: 480px) {
     .paginationMovieBlockDescription {
@@ -227,18 +180,5 @@
     .paginationMovieBlockDescription span {
         font-size: 15px;
         padding-top: 2px;
-    }
-
-    .paginationMovieBlockIcon {
-        width: 30px;
-        height: 30px;
-    }
-    .paginationMovieBlockIcon span {
-        width: 25px;
-        height: 25px;
-    }
-
-    .shareBox {
-        height: 1.7em;
     }
 }

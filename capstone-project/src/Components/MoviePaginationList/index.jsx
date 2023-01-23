@@ -6,18 +6,10 @@ import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
 
 //icons
-import { FaShareAlt } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaPinterestP } from "react-icons/fa";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-import VideoIcon from "../../assets/images/Icons/video.png";
 
 export default function MoviePaginationList({movies}) {
-//   const {data} = props;
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -40,34 +32,23 @@ export default function MoviePaginationList({movies}) {
         <div className="paginationList">
             {currentItems.map((elem, index) => {
                 return (
+                  <div className="paginationBox">
                     <div className="paginationMovieBlock" key={index}>
                             {elem.img ? <img src={elem.img} alt={elem.img} className="paginationMovie" />: null}
                             <div className="paginationMovieBlockDescription">
-                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.title}</NavLink></h6>
-                                <span>{elem.duration}</span>
-                                <NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
+                                
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
-                                <ul>
-                                    <li className="paginationMovieBlockIcon share">
-                                        <span><FaShareAlt className="iconInside"/></span>
-                                        <div className="shareBox">
-                                            <div>
-                                                <FaFacebookF className="shareIcons"/>
-                                                <FaTwitter className="shareIcons"/>
-                                                <FaPinterestP className="shareIcons"/>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li className="paginationMovieBlockIcon">
-                                        <span><FaHeart className="iconInside"/></span>
-                                    </li>
-                                    <li className="paginationMovieBlockIcon">
-                                        <span><FaPlus className="iconInside"/></span>
-                                    </li>
-                                </ul>
+                              <div className="ratingSmall" style={{background: `conic-gradient(rgb(299 9 20) ${elem.rating}%, transparent 0 100%)`}}>
+                                  <span>{elem.rating} <small>%</small></span>
+                              </div>
                             </div>
                     </div>
+                    <div className="paginationMovieBlockDescription">
+                      <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.title}</NavLink></h6>
+                      <span>{elem.duration}</span>
+                    </div>
+                  </div>
                 )
             })}
         </div>
