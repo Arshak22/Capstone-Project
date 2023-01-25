@@ -127,14 +127,15 @@
 
 #footerLogo {
     max-width: 100%;
-    width: 350px;
+    width: 300px;
     height: auto;
     position: relative;
+    margin-left: 35px;
 }
 
 #footerLogo:hover {
     transition: all 0.3s ease 0.1s;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .top>div>p {

@@ -22,7 +22,8 @@ nav {
 
 #mainLogo {
     max-width: 100%;
-    width: 250px;
+    width: 200px;
+    padding-top: 10px;
     height: auto;
     position: relative;
 }
@@ -208,7 +209,7 @@ nav {
 
 #mainLogo:hover, .userBox:hover {
     transition: all 0.3s ease 0.1s;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .bars, .close {
@@ -246,6 +247,7 @@ nav {
 
     #mainLogo {
         width: 300px;
+        padding-right: 20px;
     }
 
     #navbar, #searchAndUser {
