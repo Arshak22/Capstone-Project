@@ -1,0 +1,74 @@
+.magicSection {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.magicSection::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('../../assets/images/FanPagePictures/Hogwarts.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(40%);
+    z-index: -1;
+}
+
+.magic {
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.magicCard {
+    position: relative;
+    margin-right: 25px;
+    margin-left: 25px;
+    float: left;
+    width: 33.33%;
+    padding: 30px;
+    padding-bottom: 0;
+    pointer-events: all;
+}
+
+.wrapper {
+    transition: all 0.6s ease;
+    position: absolute;
+    width: 80%;
+}
+
+.wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.magicCard:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(50deg) translateZ(0);
+}
+
+.magicCharachter {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.6s ease;
+    transform: translate3d(-10%, 0%, 0px);
+    filter: drop-shadow(5px 0px 30px #ffffff91);
+}
+
+.magicCard:hover .magicCharachter {
+    opacity: 1;
+    transform: translate3d(-10%, -16%, 200px);
+}
