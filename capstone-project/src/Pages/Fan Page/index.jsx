@@ -1,6 +1,5 @@
 import {React, useEffect} from "react";
-import MainPic from "../../assets/images/BackgroundImages/FanPageMain.jpg";
-import MainPicture from "../../Components/MainPicture";
+import FanPageMainPicture from "../../Components/FanPageMainPicture";
 
 export default function FanPage() {
     useEffect(() => {
@@ -8,7 +7,7 @@ export default function FanPage() {
     })
     return (
         <div className="main">
-            <MainPicture img={MainPic} headline="Get lost in the magic of movies"/>
+            <FanPageMainPicture/>
         </div>
     );
 }

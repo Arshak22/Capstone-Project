@@ -1,0 +1,89 @@
+.magicalSplit {
+    position: relative;
+    text-align: center;
+    z-index: -1;
+    top: -120px;
+    height: 120vh;
+    margin-bottom: -100px;
+    overflow: hidden;
+}
+
+.magicalSplit::before,
+.magicalSplit::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 105%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 3s ease;
+    z-index: 5;
+}
+
+.magicalSplit::before {
+    left: 0;
+    transform: translateX(0);
+    background-image: url(../../assets/images/FanPagePictures/Closing-Tree-Left.png);
+}
+
+.magicalSplit::after {
+    right: 0;
+    transform: translateX(0);
+    background-image: url(../../assets/images/FanPagePictures/Closing-Tree-Right.png);
+}
+
+.magicalSplit.active::before {
+    transform: translateX(-100%);
+}
+
+.magicalSplit.active::after {
+    transform: translateX(100%);
+}
+
+.magicalSplitInner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.magicalSplitInner::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('../../assets/images/FanPagePictures/Magic-Background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(50%);
+    z-index: -1;
+}
+
+
+.magicalSplitInner h1 {
+    opacity: 0;
+    position: absolute;
+    top: 35%;
+    font-size: 75px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    filter: drop-shadow(0 0 0.2rem #ffffffbd);
+    transition: opacity 4s ease;
+}
+
+.magicalSplitInner.active h1 {
+    opacity: 1;
+}
