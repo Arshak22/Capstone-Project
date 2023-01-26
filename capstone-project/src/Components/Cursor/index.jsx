@@ -34,8 +34,8 @@ export default function Cursor() {
 
     const variants = {
         default: {
-            x: mousePosition.x - 7.5,
-            y: mousePosition.y - 7.5,
+            x: mousePosition.x - 5,
+            y: mousePosition.y - 5,
             transition: {
                 duration: 0.1,
                 ease: "easeOut"
