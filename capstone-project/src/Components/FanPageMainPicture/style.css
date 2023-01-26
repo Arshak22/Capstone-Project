@@ -87,3 +87,21 @@
 .magicalSplitInner.active h1 {
     opacity: 1;
 }
+
+@media screen and (max-width: 500px) {
+    .magicalSplit {
+        height: 65vh;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 710px) { 
+    .magicalSplitInner h1 {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    .magicalSplitInner h1 {
+        font-size: 25px;
+    }
+}
