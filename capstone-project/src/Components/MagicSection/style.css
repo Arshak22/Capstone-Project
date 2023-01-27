@@ -70,8 +70,8 @@
 
 .magicCharachterGeralt {
     filter: drop-shadow(5px 0px 30px #ffffff91);
-    width: 60%;
-    transform: translate3d(20%, 0%, 0px);
+    width: 70%;
+    transform: translate3d(10%, 0%, 0px);
 }
 
 .magicCard:hover .magicCharachter {
@@ -81,5 +81,5 @@
 
 .magicCard:hover .magicCharachterGeralt {
     opacity: 1;
-    transform: translate3d(20%, -13%, 200px);
+    transform: translate3d(10%, -25%, 200px);
 }
