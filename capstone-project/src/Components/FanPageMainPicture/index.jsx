@@ -6,7 +6,7 @@ export default function FanPageMainPicture() {
     useEffect(() => {
         setTimeout(() => {
             setActive(true);
-        }, 2000);
+        }, 3000);
     }, [])
     return (
         <div className={`magicalSplit ${active ? "active" : ""}`}>

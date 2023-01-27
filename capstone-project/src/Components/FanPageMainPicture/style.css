@@ -18,7 +18,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: transform 3s ease;
+    transition: transform 3s ease-in-out;
     z-index: 5;
 }
 
@@ -81,7 +81,7 @@
     text-transform: uppercase;
     letter-spacing: 10px;
     filter: drop-shadow(0 0 0.2rem #ffffffbd);
-    transition: opacity 4s ease;
+    transition: opacity 4s ease-in-out;
 }
 
 .magicalSplitInner.active h1 {

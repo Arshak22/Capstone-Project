@@ -30,7 +30,7 @@ export default function MagicSection() {
                     <div className="wrapper">
                         <img src={WitcherCard} alt="WitcherCard" />
                     </div>
-                    <img src={Geralt} alt="Geralt" className="magicCharachter"/>
+                    <img src={Geralt} alt="Geralt" className="magicCharachterGeralt"/>
                 </div>
             </div>
         </div>

@@ -59,7 +59,7 @@
     transform: perspective(900px) translateY(-5%) rotateX(50deg) translateZ(0);
 }
 
-.magicCharachter {
+.magicCharachter, .magicCharachterGeralt {
     position: absolute;
     width: 100%;
     opacity: 0;
@@ -68,7 +68,18 @@
     filter: drop-shadow(5px 0px 30px #ffffff91);
 }
 
+.magicCharachterGeralt {
+    filter: drop-shadow(5px 0px 30px #ffffff91);
+    width: 60%;
+    transform: translate3d(20%, 0%, 0px);
+}
+
 .magicCard:hover .magicCharachter {
     opacity: 1;
     transform: translate3d(-10%, -16%, 200px);
+}
+
+.magicCard:hover .magicCharachterGeralt {
+    opacity: 1;
+    transform: translate3d(20%, -13%, 200px);
 }
