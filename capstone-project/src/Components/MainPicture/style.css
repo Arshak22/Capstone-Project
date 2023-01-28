@@ -1,15 +1,27 @@
 .mainImage {
     position: relative;
     text-align: center;
+    width: 100%;
     z-index: -1;
     top: -120px;
     height: 120vh;
     margin-bottom: -100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-.mainImage img {
-    filter: brightness(0.35);
-    height: 100%;
+.mainImage::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(35%);
 }
 
 .centeredHeadline h1 {
@@ -52,6 +64,7 @@
 @media screen and (max-width: 500px) {
     .mainImage {
         height: 65vh;
+        background-attachment: local;
     }
 }
 
