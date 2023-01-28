@@ -2,15 +2,26 @@ import {React, useState, useEffect} from "react";
 import "./style.css";
 
 export default function FanPageMainPicture() {
-    const [active, setActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+
     useEffect(() => {
-        setTimeout(() => {
-            setActive(true);
-        }, 3000);
-    }, [])
+        const handleScroll = () => {
+            const scrollPosition = window.pageYOffset;
+            if (scrollPosition > 0) {
+                setIsActive(true);
+            } else {
+                setIsActive(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+        window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <div className={`magicalSplit ${active ? "active" : ""}`}>
-            <div className={`magicalSplitInner ${active ? "active" : ""}`}>
+        <div className={`magicalSplit ${isActive ? "active" : ""}`}>
+            <div className={`magicalSplitInner ${isActive ? "active" : ""}`}>
                 <h1>Enter The World of Magic</h1>
             </div>
         </div>
