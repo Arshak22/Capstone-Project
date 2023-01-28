@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import MainPic from "../../assets/images/BackgroundImages/HomeMain.jpg";
+import MainPic from "../../assets/images/BackgroundImages/HomeMain2.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
 import HorizontalSlider from "../../Components/HorizontalSlider";
