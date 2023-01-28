@@ -12,6 +12,7 @@ import { ROUTE_NAMES } from "../../Routes";
 export default function Header() {
     const [activeBar, setActiveBar] = useState(true);
     const [stickyNav, setStickyNav] = useState('');
+    const [hideNav, setHideNav] = useState(false);
     const prevScrollPos = useRef(0);
   
     useEffect(() => {
@@ -19,10 +20,15 @@ export default function Header() {
           const currentScrollPos = window.pageYOffset;
           if (currentScrollPos > prevScrollPos.current) {
             setStickyNav('');
+            setHideNav(true);
           } else {
             setStickyNav('sticky');
+            setHideNav(false);
           }
           prevScrollPos.current = currentScrollPos;
+          setTimeout(() => {
+            
+          }, 500)
         }
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -37,7 +43,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className={stickyNav}>
+            <nav className={`${stickyNav} ${hideNav ? "hide" : ""}`}>
                 <NavLink to={ROUTE_NAMES.HOME} end><img src={MainLogo} alt="MainLogo" id="mainLogo" /></NavLink>
                 <div>
                     <ul id="navbar" className={!activeBar ? "activeMenu": null}>

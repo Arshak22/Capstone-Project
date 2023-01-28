@@ -18,6 +18,12 @@ nav {
 .sticky {
     position: sticky;
     top: 0;
+    transition: top 0.8s;
+}
+
+.hide {
+    top: -100px;
+    transition: top 0.8s;
 }
 
 #mainLogo {
