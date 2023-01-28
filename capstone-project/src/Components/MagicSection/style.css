@@ -1,8 +1,11 @@
 .magicSection {
     margin: 0 auto;
     position: relative;
-    width: 100%;
-    height: 500px;
+    width: 80%;
+    height: auto;
+    color: #ffffff;
+    padding: 20px 50px 0 50px;
+    margin-top: 50px;
 }
 
 .magicSection::before {
@@ -20,24 +23,42 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    filter: brightness(40%);
+    filter: brightness(20%);
     z-index: -1;
 }
 
+.magicSection h1 {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff46);
+}
+
+.magicSection p {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 18px;
+    line-height: 30px;
+    filter: drop-shadow(0 0 0.2rem #ffffff23);
+}
+
 .magic {
+    position: relative;
     margin: 50px auto;
     display: flex;
     justify-content: space-between;
-    max-width: 1400px;
+    height: 500px;
     padding: 0 20px;
 }
 
 .magicCard {
     position: relative;
-    margin-right: 25px;
-    margin-left: 25px;
     float: left;
     width: 33.33%;
+    height: 100%;
     padding: 30px;
     padding-bottom: 0;
     pointer-events: all;
@@ -82,4 +103,45 @@
 .magicCard:hover .magicCharachterGeralt {
     opacity: 1;
     transform: translate3d(10%, -25%, 200px);
+}
+
+@media screen and (max-width: 1200px) and (min-width: 800px) {
+    .magic {
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .magic {
+        display: block;
+        height: 1000px;
+        margin: 0 auto;
+    }
+    .magicCard {
+        width: 100%;
+        height: 30%;
+    }
+    .wrapper {
+        height: 100%;
+        padding: 10px;
+        transform: none !important;
+    }
+    .wrapper img {
+        object-fit: contain;
+    }
+    .magicCharachter, .magicCharachterGeralt {
+        opacity: 0 !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .magicSection {
+        width: 100%;
+    }
+    .magicSection h1 {
+        font-size: 25px;
+    }
+    .magicSection p {
+        font-size: 17px;
+    }
 }

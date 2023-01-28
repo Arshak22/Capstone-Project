@@ -13,6 +13,10 @@ import Geralt from "../../assets/images/FanPagePictures/Geralt.png";
 export default function MagicSection() {
     return (
         <div className="magicSection">
+            <h1>Discover the Enchantment of Fantasy Movies</h1>
+            <p>
+                Step into the magical world of fantasy films. From the wizarding world of Harry Potter to the epic fantasy of Game of Thrones, to the monster-hunting adventure of The Witcher, we've got a selection of films that will transport you to new realms. Each film is represented by a unique card design featuring symbols that connect them - an owl for Harry Potter, a dragon for Game of Thrones, and a wolf for The Witcher. Discover the wonder and excitement of these beloved fantasy worlds and let your imagination run wild. Browse through our selection and find your next magical cinematic adventure.
+            </p>
             <div className="magic">
                 <div className="magicCard">
                     <div className="wrapper">
