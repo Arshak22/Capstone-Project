@@ -1,0 +1,43 @@
+.IntroFanPage {
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    padding-top: 20px;
+    padding-right: 20em;
+    padding-left: 20em;
+}
+
+.IntroFanPage h1 {
+    font-size: 35px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff2a);
+}
+
+.IntroFanPage p {
+    padding-top: 20px;
+    font-size: 18px;
+    line-height: 35px;
+    filter: drop-shadow(0 0 0.2rem #ffffff23);
+}
+
+.quotes {
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1000px) {
+    .IntroFanPage {
+        padding-left: 10em;
+        padding-right: 10em;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .IntroFanPage {
+        padding-left: 5em;
+        padding-right: 5em;
+    }
+}

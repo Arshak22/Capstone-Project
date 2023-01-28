@@ -76,6 +76,8 @@
     position: absolute;
     top: 35%;
     font-size: 75px;
+    padding-right: 0px;
+    padding-left: 25px;
     color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
@@ -102,6 +104,16 @@
 
 @media screen and (max-width: 710px) {
     .magicalSplitInner h1 {
-        font-size: 25px;
+        font-size: 35px;
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .magicalSplit::before, .magicalSplit::after {
+        opacity: 0;
+    }
+    .magicalSplitInner::before {
+        background-attachment: local;
     }
 }
