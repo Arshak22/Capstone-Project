@@ -40,4 +40,21 @@
         padding-left: 5em;
         padding-right: 5em;
     }
+    .IntroFanPage h1 {
+        font-size: 25px;
+    }
+    .IntroFanPage p {
+        font-size: 15px;
+    }
+    .quotes {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .IntroFanPage {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
 }
