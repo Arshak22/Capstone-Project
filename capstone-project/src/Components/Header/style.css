@@ -5,7 +5,8 @@
 
 nav {
     display: flex;
-    position: relative;
+    position: sticky;
+    top: 0;
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
@@ -13,11 +14,6 @@ nav {
     background: rgba(20, 20, 20, 0.5) !important;
     backdrop-filter: blur(0.625em);
     z-index: 50;
-}
-
-.sticky {
-    position: sticky;
-    top: 0;
     transition: top 0.8s;
 }
 
