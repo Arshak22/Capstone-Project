@@ -106,7 +106,7 @@ export default function HeroVillianSection() {
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 0,
-        // autoplay: true,
+        autoplay: true,
         speed: 1000,
         autoplaySpeed: 5000,
         cssEase: "linear",
