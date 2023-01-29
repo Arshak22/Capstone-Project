@@ -217,7 +217,7 @@
 #SpiderMan p {
     left: 80px;
     top: 150px;
-    padding-right: 7em;
+    padding-right: 3em;
 }
 
 #SpiderMan .HeroVillianCharachter {
@@ -230,9 +230,9 @@
 }
 
 #Homelender .MovieTitlePic {
-    width: 350px;
-    top: 20px;
-    left: 70px;
+    width: 400px;
+    top: -10px;
+    left: 50px;
 }
 
 #Homelender p {
