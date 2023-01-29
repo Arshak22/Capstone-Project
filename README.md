@@ -57,5 +57,10 @@ npm start
   <tr>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_28.jpg" width=350 height=200></td>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_29.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_30.jpg" width=350 height=200></td>
+  </tr>
+  <tr>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_31.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_32.jpg" width=350 height=200></td>
   </tr>
  </table>
