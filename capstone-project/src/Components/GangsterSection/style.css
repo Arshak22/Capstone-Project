@@ -97,3 +97,21 @@
     padding-right: 20px;
     object-fit: contain;
 }
+
+@media screen and (max-width: 1000px) {
+    .GangsterSection h1, .GangsterSection p {
+        font-size: 25px;
+        padding-left: 5em;
+        padding-right: 5em;
+    }
+    .GangsterSection p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .GangsterSection h1, .GangsterSection p {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
