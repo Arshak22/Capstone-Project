@@ -9,7 +9,7 @@ import { ROUTE_NAMES } from "../../Routes";
 
 export default function Footer() {
     const [currentYear] = useState(new Date().getFullYear());
-    const[showButton, setShowButton] = useState("");
+    const [showButton, setShowButton] = useState("");
 
     useEffect(() => {
         const handleScrollButtonVisibility = () => {

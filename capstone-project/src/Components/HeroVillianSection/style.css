@@ -1,0 +1,120 @@
+.HeroVillianSection {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    margin-top: 10em;
+}
+
+.HeroVillianSection>div {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+}
+
+.HeroVillianSection .slick-list {
+    padding: 0 !important;
+    height: 600px;
+    overflow: visible;
+    overflow-x: clip;
+}
+
+.HeroVillianSection .slick-slide {
+    transition: width 2s ease;
+}
+
+.HeroVillianSection .slick-slide>div {
+    margin: 0;
+}
+
+.HeroVillianSection .slick-current {
+    width: 1200px !important;
+}
+
+.CharacterSection {
+    position: relative;
+    display: flex;
+    width: 1200px;
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.CharacterSection::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: brightness(30%) blur(5px);
+}
+
+.HeroVillianSection .leftCol {
+    position: relative;
+    width: 60%;
+}
+
+.CharacterSection p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-bottom: 50px;
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 25px;
+    letter-spacing: 2px;
+}
+
+.HeroVillianSection .rightCol {
+    position: relative;
+    width: 40%;
+}
+
+.MovieTitlePic {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    max-width: 100%;
+    width: 400px;
+    height: auto;
+}
+
+.HeroVillianCharachter {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(5px 0px 10px #ffffff91);
+}
+
+#Thanos .MovieTitlePic {
+    top: 20px;
+}
+
+#Thanos .HeroVillianCharachter {
+    width: 600px;
+    right: 10px;
+}
+
+#Thanos p {
+    left: 80px;
+    top: 210px;
+    padding-right: 7em;
+}
+
+#SpiderMan .MovieTitlePic {
+    width: 500px;
+}
+
+#SpiderMan .HeroVillianCharachter {
+    width: 550px;
+    bottom: 40px;
+}

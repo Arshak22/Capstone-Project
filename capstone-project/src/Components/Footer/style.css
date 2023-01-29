@@ -1,7 +1,9 @@
 .footer {
-    height: auto;
+    height: 400px;
     position: relative;
     z-index: 5;
+    bottom: 0;
+    margin-bottom: 0;
 }
 
 .footer::before {
@@ -24,8 +26,9 @@
 }
 
 .top {
+    position: absolute;
     display: flex;
-    padding-top: 10px;
+    padding-top: 50px;
     padding-left: 4%;
     padding-right: 7%;
     width: 100%;
