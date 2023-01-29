@@ -25,13 +25,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: inherit;
-    background-position: inherit;
-    background-repeat: inherit;
-    background-size: inherit;
-    background-attachment: inherit;
-    transition: background-image 1s ease;
-    filter: brightness(20%);
+    backdrop-filter: brightness(20%);
 }
 
 .GangsterSection h1 {
