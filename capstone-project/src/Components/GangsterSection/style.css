@@ -1,0 +1,99 @@
+.GangsterSection {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-image 1s ease;
+}
+
+.GangsterSection::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    background-size: inherit;
+    background-attachment: inherit;
+    transition: background-image 1s ease;
+    filter: brightness(20%);
+}
+
+.GangsterSection h1 {
+    text-align: center;
+    font-size: 30px;
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-top: 35px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff46);
+}
+
+.GangsterSection p {
+    text-align: center;
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-top: 20px;
+    font-size: 18px;
+    line-height: 30px;
+    filter: drop-shadow(0 0 0.2rem #ffffff23);
+}
+
+.GangsterSlider {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    padding: 0 20px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    z-index: 5;
+}
+
+.slick-prev, .slick-next {
+    cursor: none;
+    width: 60px;
+    height: 60px;
+    background: var(--bg) !important;
+    z-index: 20;
+    transition: background 0.5s, border 0s;
+}
+
+.Gangster {
+    width: 400px !important;
+    height: 250px;
+    background-color: #ffffff;
+    border: 30px solid transparent;
+    border-image: url("../../assets/images/FanPagePictures/RetroMoviesPics/Strip-1.jpg");
+    border-image-slice: 200; 
+    border-image-repeat: round;
+    transition: transform 0.5s ease;
+}
+
+.Gangster:hover {
+    transform: scale(1.2);
+}
+
+.Gangster img {
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+    object-fit: contain;
+}
