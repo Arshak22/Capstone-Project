@@ -6,6 +6,6 @@ export const ROUTE_NAMES = {
     FAN_PAGE: "/fan-page",
     FAQ: "/faq",
     PRIVACY_POLICY: "/privacy-policy",
-    DEFAULT_PAGE: "/default-page",
+    DEFAULT_PAGE: "/film/",
     LOGIN_PAGE: "/login"
 }

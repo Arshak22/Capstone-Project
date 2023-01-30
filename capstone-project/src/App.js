@@ -1,4 +1,4 @@
-import React from "react";
+import {React} from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Pages/Layout";
 import Home from "./Pages/Home";
@@ -25,7 +25,7 @@ import { ROUTE_NAMES } from "./Routes";
             <Route path={ROUTE_NAMES.ABOUT_US} element={<About />} />
             <Route path={ROUTE_NAMES.FAQ} element={<FAQ />} />
             <Route path={ROUTE_NAMES.PRIVACY_POLICY} element={<PrivacyPolicy />} />
-            <Route path={ROUTE_NAMES.DEFAULT_PAGE} element={<DefaultMoviePage />} />
+            <Route path={ROUTE_NAMES.DEFAULT_PAGE + ":id"} element={<DefaultMoviePage />} />
             <Route path={ROUTE_NAMES.LOGIN_PAGE} element={<Login />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
