@@ -16,19 +16,49 @@
 
 .slick-dots {
     position: absolute;
-    bottom: 25px;
-    left: 70px;
+    bottom: 40px;
+    left: 78px;
     display: flex !important;
     justify-content: flex-start;
 }
 
 .slick-dots li button::before {
-    color: #ffffffac;
+    cursor: none;
+    font-size: 0;
     opacity: 0.5;
 }
 
+.slick-dots li {
+    cursor: none;
+    list-style: none;
+    background-color: #ffffff;
+    border-top: 4px solid var(--main-red-hover);
+    border-bottom: 4px solid var(--main-red-hover);
+    margin: 0;
+    width: 50px;
+    height: 25px;
+    transition: background-color 0.5s ease;
+}
+
+.slick-dots li:nth-child(1) {
+    border-left: 4px solid var(--main-red-hover);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.slick-dots li:nth-last-child(1) {
+    border-right: 4px solid var(--main-red-hover);
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.slick-dots li.slick-active {
+    background-color: var(--main-red-hover);
+    transition: background-color 0.5s ease;
+}
+
 .slick-dots li.slick-active button::before {
-    color: #ffffff;
+    cursor: none;
     opacity: 1;
 }
 
@@ -52,6 +82,7 @@
     display: flex;
     width: 1200px;
     height: 600px;
+    border-radius: 5px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -63,6 +94,7 @@
     display: block;
     position: absolute;
     width: 100%;
+    border-radius: inherit;
     height: 100%;
     top: 0;
     left: 0;
@@ -235,14 +267,14 @@
 }
 
 #SpiderMan .MovieTitlePic {
-    width: 600px;
+    width: 500px;
     top: 70px;
-    left: 70px;
+    left: 80px;
 }
 
 #SpiderMan p {
     left: 80px;
-    top: 150px;
+    top: 120px;
     padding-right: 3em;
 }
 
