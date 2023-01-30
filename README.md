@@ -62,5 +62,19 @@ npm start
   <tr>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_31.jpg" width=350 height=200></td>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_32.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_33.jpg" width=350 height=200></td>
+  </tr>
+  <tr>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_34.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_35.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_36.jpg" width=350 height=200></td>
+  </tr>
+  <tr>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_37.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_38.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_39.jpg" width=350 height=200></td>
+  </tr>
+  <tr>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_40.jpg" width=350 height=200></td>
   </tr>
  </table>
