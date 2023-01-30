@@ -100,9 +100,12 @@ export default function HeroVillianSection() {
     const settings = {
         className: "center",
         centerMode: true,
-        dots: false,
+        dots: true,
+        fade: true,
         infinite: true,
         focusOnSelect: true,
+        adaptiveHeight: true,
+        arrows: false,
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 0,

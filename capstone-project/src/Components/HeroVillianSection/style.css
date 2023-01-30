@@ -11,7 +11,25 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 1200px;
-    filter: drop-shadow(0px 0px 30px #ffffff91);
+    filter: drop-shadow(0px 0px 10px #ffffffbe);
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: 25px;
+    left: 70px;
+    display: flex !important;
+    justify-content: flex-start;
+}
+
+.slick-dots li button::before {
+    color: #ffffffac;
+    opacity: 0.5;
+}
+
+.slick-dots li.slick-active button::before {
+    color: #ffffff;
+    opacity: 1;
 }
 
 .HeroVillianSection .slick-list {
@@ -27,10 +45,6 @@
 
 .HeroVillianSection .slick-slide>div {
     margin: 0 auto;
-}
-
-.HeroVillianSection .slick-current {
-    width: 1200px !important;
 }
 
 .CharacterSection {
