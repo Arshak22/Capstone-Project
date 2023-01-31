@@ -74,10 +74,10 @@ export default function HorizontalSlider({movies}) {
                 {movies.map((elem, index) => {
                     return (
                         <div className="movieBlock" key={index}>
-                            {elem.img ? <img src={elem.img} alt={elem.img} />: null}
+                            {elem.backdropPath ? <img src={elem.backdropPath} alt={elem.backdropPath} />: null}
                             <div className="movieBlockDescription">
-                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.title}</NavLink></h6>
-                                <span>{elem.duration}</span>
+                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
+                                <span>{elem.releaseDate}</span>
                                 <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
                             </div>
                             <div className="movieBlockSocialInfo">
