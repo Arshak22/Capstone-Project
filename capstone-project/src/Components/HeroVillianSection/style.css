@@ -92,6 +92,19 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    animation: backgroundScale 50s infinite;
+}
+
+@keyframes backgroundScale {
+	0% {
+		background-size:100%;
+	}
+	50% {
+		background-size:250%;
+	}
+	100% {
+		background-size:100%;
+	}
 }
 
 .CharacterSection::before {
