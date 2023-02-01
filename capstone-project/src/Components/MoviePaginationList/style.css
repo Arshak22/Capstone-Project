@@ -163,7 +163,7 @@
 .paginationMovieBlockDescription {
     position: relative;
     width: 200px;
-    left: 1.5em;
+    left: 1em;
     right: 4em;
     margin-bottom: 10px;
 }
@@ -171,7 +171,6 @@
 .paginationMovieBlockDescription h6>a {
     font-size: 20px;
     word-wrap: break-word;
-    word-break: break-all;
 }
 
 .paginationMovieBlockDescription span {
