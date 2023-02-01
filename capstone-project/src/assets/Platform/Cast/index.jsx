@@ -7,8 +7,8 @@ export const getMovieCast = (id) => {
     return axios.get(`${API}${cast}/${id}`);
 }
 
-export const addMovieCast = (movieId, actorId, actor) => {
-    return axios.post(`${API}${cast}/${movieId}/${actorId}`, actor);
+export const addMovieCast = (movieId, actorId) => {
+    return axios.post(`${API}${cast}/${movieId}/${actorId}`);
 }
 
 export const deleteMovieCast = (movieId, actorId) => {

@@ -7,8 +7,8 @@ export const getProfileWatchlist = (id) => {
     return axios.get(`${API}${watchlist}/${id}`);
 }
 
-export const addToWatchlist = (profileID, movieID, movie) => {
-    return axios.post(`${API}${watchlist}/${profileID}/${movieID}`, movie);
+export const addToWatchlist = (profileID, movieID) => {
+    return axios.post(`${API}${watchlist}/${profileID}/${movieID}`);
 }
 
 export const deleteFromWatchlist = (profileID, movieID) => {
