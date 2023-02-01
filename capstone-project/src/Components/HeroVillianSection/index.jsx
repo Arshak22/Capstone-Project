@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
 
-
 //images
 import Thanos from "../../assets/images/FanPagePictures/HeroAndVillan/Thanos.png";
 import Thanos_Logo from "../../assets/images/FanPagePictures/HeroAndVillan/Thanos-Name.png";
@@ -129,14 +128,16 @@ export default function HeroVillianSection() {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              initialSlide: 1
+              initialSlide: 1,
+              dots: false
             }
           },
           {
             breakpoint: 480,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              dots: false
             }
           }
         ]
