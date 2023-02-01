@@ -8,7 +8,7 @@ export const getWatchables = () => {
     return axios.get(`${API}${watchables}`);
 }
 
-export const postWatchable = (movie) => {
+export const addWatchable = (movie) => {
     return axios.post(`${API}${watchables}`, movie);
 }
 
