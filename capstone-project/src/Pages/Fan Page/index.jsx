@@ -4,6 +4,7 @@ import FanPageMainPicture from "../../Components/FanPageMainPicture";
 import MagicSection from "../../Components/MagicSection";
 import GangsterSection from "../../Components/GangsterSection";
 import HeroVillianSection from "../../Components/HeroVillianSection";
+import SciFiSection from "../../Components/SciFiSection";
 
 //icons
 import { RiDoubleQuotesL } from "react-icons/ri";
@@ -23,6 +24,7 @@ export default function FanPage() {
             <MagicSection/>
             <GangsterSection/>
             <HeroVillianSection/>
+            <SciFiSection/>
         </div>
     );
 }
