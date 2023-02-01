@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
 
 export default function MovieBackdropSlider({movie}) {
-    const settings = {
+     const settings = {
         className: "center",
         centerMode: true,
         dots: false,
@@ -19,6 +19,17 @@ export default function MovieBackdropSlider({movie}) {
         autoplaySpeed: 5000,
         cssEase: "linear",
         pauseOnHover: true,
+        beforeChange: function(currentSlide) {
+          console.log(currentSlide);
+          for(let i = currentSlide; i > currentSlide - 2; i--) {
+            document.querySelector(".backdropSlider .slick-list").querySelector(".slick-track").querySelector(`[data-index="${i}"]`).querySelector(".backdropImage").style.transform = "scale(0.8) perspective(1000px) rotateX(4deg) rotateY(16deg) rotateZ(-4deg)";
+          }
+          setTimeout(() => {
+            for(let i = currentSlide; i > currentSlide - 2; i--) {
+              document.querySelector(".backdropSlider .slick-list").querySelector(".slick-track").querySelector(`[data-index="${i}"]`).querySelector(".backdropImage").style.transform = "scale(0.8) perspective(1000px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg)";
+            }
+          }, 10000);
+        },
         responsive: [
           {
             breakpoint: 1024,

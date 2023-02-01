@@ -23,7 +23,7 @@ export default function MoviePaginationList({movies}) {
   }, [itemOffset, itemsPerPage, movies, ratingRef]);
 
   useEffect(() => {
-    // setTimeout(handleRatingFill, 1000);
+    setTimeout(handleRatingFill, 1000);
   }, [currentItems]);
 
   const handlePageClick = (event) => {
@@ -36,11 +36,11 @@ export default function MoviePaginationList({movies}) {
       let rating = 0;
       for (let i = index; i < ratingRef.current.length; i++) {
         let intervalId;
-          if (rating < elem.rating) {
+          if (rating <70) {
               intervalId = setInterval(() => {
                   rating++;
                   ratingRef.current[i].style.background = `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`;
-                  if (rating === elem.rating) {
+                  if (rating === 70) {
                       clearInterval(intervalId);
                   }
               }, 20);
