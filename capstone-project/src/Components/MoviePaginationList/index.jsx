@@ -14,7 +14,7 @@ export default function MoviePaginationList({movies}) {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const ratingRef = useRef([]);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -23,7 +23,7 @@ export default function MoviePaginationList({movies}) {
   }, [itemOffset, itemsPerPage, movies, ratingRef]);
 
   useEffect(() => {
-    setTimeout(handleRatingFill, 1000);
+    // setTimeout(handleRatingFill, 1000);
   }, [currentItems]);
 
   const handlePageClick = (event) => {
@@ -58,7 +58,7 @@ export default function MoviePaginationList({movies}) {
                 return (
                   <div className="paginationBox">
                     <div className="paginationMovieBlock" key={index}>
-                            {elem.img ? <img src={elem.img} alt={elem.img} className="paginationMovie" />: null}
+                            {elem.posterPath ? <img src={elem.posterPath} alt={elem.posterPath} className="paginationMovie" />: null}
                             <div className="paginationMovieBlockPlayer">
                               <NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">
@@ -69,13 +69,13 @@ export default function MoviePaginationList({movies}) {
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
                               <div className="ratingSmall" ref={(elem) => ratingRef.current[index] = elem}>
-                                  <span>{elem.rating} <small>%</small></span>
+                                  <span>70<small>%</small></span>
                               </div>
                             </div>
                     </div>
                     <div className="paginationMovieBlockDescription">
-                      <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.title}</NavLink></h6>
-                      <span>{elem.duration}</span>
+                      <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.name}</NavLink></h6>
+                      <span>{elem.releaseDate}</span>
                     </div>
                   </div>
                 )
