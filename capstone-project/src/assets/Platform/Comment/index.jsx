@@ -15,11 +15,11 @@ export const deleteComment = (id) => {
     return axios.delete(`${API}${comments}/${id}`);
 }
 
-export const profileMovieComments = (profileID, movieID) => {
+export const getProfileMovieComments = (profileID, movieID) => {
     return axios.get(`${API}${comments}/${profileID}/${movieID}`);
 }
 
-export const allMovieComments = (movieID) => {
+export const getAlllMovieComments = (movieID) => {
     return axios.get(`${API}${comments}/${movieID}`);
 }
 
