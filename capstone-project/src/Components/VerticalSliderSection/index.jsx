@@ -54,13 +54,13 @@ export default function VerticalSliderSection({movies}) {
 
     return (
       <div>
-        {movies[0] ? <div className="VerticalSliderSection" style={{backgroundImage: `url(${movies[0].backdropPath})`}}>
+        {movies[0] ? <div className="VerticalSliderSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movies[0].backdropPaths[0]})`}}>
             <h1>Upcoming Movies</h1>
             <Slider {...settings}>
                 {movies.map((elem, index) => {
                     return (
                         <div className="movieBlock" key={index} onMouseEnter={() => settings.onMovieHover(index)}>
-                            {elem.backdropPath ? <img src={elem.backdropPath} alt={elem.backdropPath} />: null}
+                            {elem.backdropPaths[0] ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.backdropPaths[0]} alt={elem.backdropPaths[0]} />: null}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.name}</NavLink></h6>
                                 <span>{elem.releaseDate}</span>

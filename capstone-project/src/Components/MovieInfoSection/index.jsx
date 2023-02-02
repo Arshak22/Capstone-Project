@@ -12,42 +12,57 @@ import { FaPinterestP } from "react-icons/fa";
 
 export default function MovieInfoSection({movie}) {
     const [rating, setRating] = useState(0);
+    const [duration, setDuration] = useState("");
     useEffect(() => {
+        convertToHoursAndMinutes(movie.duration);
         let intervalId;
-        if (rating < movie.rating) {
+        if (rating < movie.rating * 10) {
             intervalId = setInterval(() => {
                 setRating(rating => rating + 1);
-                if (rating === movie.rating) {
+                if (rating === movie.rating * 10) {
                     clearInterval(intervalId);
                 }
             }, 10);
         }
         return () => clearInterval(intervalId);
-    }, [rating, movie.rating]);
+    }, [rating]);
+
+    function convertToHoursAndMinutes(minutes) {
+        const hours = Math.floor(minutes / 60);
+        const remainingMinutes = minutes % 60;
+        setDuration(` ${hours}h ${remainingMinutes}m`);
+        if(hours === 0) {
+            setDuration(` ${remainingMinutes}m`);
+        }
+        if(remainingMinutes === 0) {
+            setDuration(` ${hours}h`);
+        }
+    }
+
     return (
-        <div className="movieInfoSection" style={{backgroundImage: `url(${movie.backdrop})`}}>
+        <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdropPaths[0]})`}}>
             <div className="infoCol1">
                 <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
                     <div>
-                        <img src={movie.poster} alt="moviePoster" id="moviePoster"/>
+                        <img src={movie.posterPath} alt="moviePoster" id="moviePoster"/>
                     </div>
                 </Tilt>
             </div>
             <div className="infoCol2">
                 <div className="titleGenre">
-                    <h1>{movie.title}</h1>
-                    <h4>Duration: {movie.duration}</h4>
+                    <h1>{movie.name}</h1>
+                    {duration ? <h4>Duration:{duration}</h4>: null}
                     <h4>Realease Date: {movie.releaseDate}</h4>
                     <h4>Genres: {movie.genres.map((elem, index) => {
-                        return <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ',' : ''} </span>
+                        return <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
                     })}</h4>
-                    <h4>Director/s: {movie.directors.map((elem, index) => {
+                    {/* <h4>Director/s: {movie.directors.map((elem, index) => {
                         return <span key={index} className="directors">{elem}{index < movie.directors.length - 1 ? ',' : ''} </span>
-                    })}</h4>
+                    })}</h4> */}
                     <div className="moviePageIcons">
                         <div className="ratingBox">
                             <div className="rating" style={{background: `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`}}>
-                                <span>{movie.rating} <small>%</small></span>
+                                <span>{movie.rating * 10} <small>%</small></span>
                             </div>
                             <h3>User <br/> Rating</h3>
                         </div>
@@ -72,7 +87,7 @@ export default function MovieInfoSection({movie}) {
                         </div>
                     </div>
                     <h2>Overview</h2>
-                    <p>{movie.overview}</p>
+                    <p>{movie.description}</p>
                 </div>
             </div>
         </div>

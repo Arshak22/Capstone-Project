@@ -26,7 +26,7 @@ export default function MovieTrailerSection({movie}) {
     <div className={`split-section ${isActive ? 'active' : ''}`}>
       <div className="split-section__inner">
         <div className={`split-section__content ${isActive ? 'active' : ''}`}>
-            <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${movie.trailerID}?rel=0`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className='trailer'></iframe>
+            {movie.trailerLink ? <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${movie.trailerLink}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className='trailer'></iframe>: null}
         </div>
       </div>
     </div>

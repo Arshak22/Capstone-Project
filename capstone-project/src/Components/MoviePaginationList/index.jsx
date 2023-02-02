@@ -36,14 +36,14 @@ export default function MoviePaginationList({movies}) {
       let rating = 0;
       for (let i = index; i < ratingRef.current.length; i++) {
         let intervalId;
-          if (rating <70) {
+          if (rating < 70) {
               intervalId = setInterval(() => {
                   rating++;
                   ratingRef.current[i].style.background = `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`;
                   if (rating === 70) {
                       clearInterval(intervalId);
                   }
-              }, 20);
+              }, 5);
           }
           return () => clearInterval(intervalId);
       }
@@ -69,7 +69,7 @@ export default function MoviePaginationList({movies}) {
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
                               <div className="ratingSmall" ref={(elem) => ratingRef.current[index] = elem}>
-                                  <span>70<small>%</small></span>
+                                  <span>{elem.rating * 10}<small>%</small></span>
                               </div>
                             </div>
                     </div>

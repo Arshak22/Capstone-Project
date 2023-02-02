@@ -1,4 +1,6 @@
 import {React, useEffect} from "react";
+import { useParams } from 'react-router-dom';
+import { getWatchable } from "../../Platform/Watchables";
 
 import Poster from "../../assets/images/DefaultMoviePoster.jpg";
 import Backdrop from "../../assets/images/DefaultMovieBackdrop.jpg";
@@ -23,11 +25,29 @@ import BD3 from "../../assets/images/BackDrops/BD3.jpg";
 import BD4 from "../../assets/images/BackDrops/BD4.jpg";
 import BD5 from "../../assets/images/BackDrops/BD5.jpg";
 import BD6 from "../../assets/images/BackDrops/BD6.jpg";
+import { useState } from "react";
 
 export function DefaultMoviePage() {
+    const {id} = useParams();
+    const [movieData, setMovieData] = useState();
     useEffect(() => {
-        document.title = `Movie Mavericks: ${movieInfo.title}`
+        getMovie(id);
     }, [])
+
+    useEffect(() => {
+        if(movieData) {
+            document.title = `Movie Mavericks: ${movieData.name}`;
+        }
+    }, [movieData])
+
+    const getMovie = async (movieID) => {
+        try {
+            const response = await getWatchable(movieID);
+            setMovieData(response.data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     const movieInfo = {
         title: "Deadpool",
         releaseDate: "02/12/2016",
@@ -81,10 +101,16 @@ export function DefaultMoviePage() {
 
     return (
         <div className="main">
-            <MovieInfoSection movie={movieInfo}/>
-            <TopCast movie={movieInfo}/>
-            <MovieBackdropSlider movie={movieInfo}/>
-            <MovieTrailerSection movie={movieInfo}/>
+            {console.log(movieData)};
+            {movieData ? 
+                <>
+                {console.log(movieData)}
+                    <MovieInfoSection movie={movieData}/>
+                    <TopCast movie={movieData}/>
+                    <MovieBackdropSlider movie={movieData}/>
+                    <MovieTrailerSection movie={movieData}/>
+                </>
+            : null}
         </div>
     )
 }

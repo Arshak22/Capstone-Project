@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import { getWatchables } from "../../assets/Platform/Watchables";
+import { getWatchables } from "../../Platform/Watchables";
 import MainPic from "../../assets/images/BackgroundImages/HomeMain2.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";

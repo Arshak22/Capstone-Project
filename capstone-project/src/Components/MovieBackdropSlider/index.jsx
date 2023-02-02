@@ -20,12 +20,11 @@ export default function MovieBackdropSlider({movie}) {
         cssEase: "linear",
         pauseOnHover: true,
         beforeChange: function(currentSlide) {
-          console.log(currentSlide);
-          for(let i = currentSlide; i > currentSlide - 2; i--) {
+          for(let i = currentSlide; i > currentSlide - 1; i--) {
             document.querySelector(".backdropSlider .slick-list").querySelector(".slick-track").querySelector(`[data-index="${i}"]`).querySelector(".backdropImage").style.transform = "scale(0.8) perspective(1000px) rotateX(4deg) rotateY(16deg) rotateZ(-4deg)";
           }
           setTimeout(() => {
-            for(let i = currentSlide; i > currentSlide - 2; i--) {
+            for(let i = currentSlide; i > currentSlide - 1; i--) {
               document.querySelector(".backdropSlider .slick-list").querySelector(".slick-track").querySelector(`[data-index="${i}"]`).querySelector(".backdropImage").style.transform = "scale(0.8) perspective(1000px) rotateX(4deg) rotateY(-16deg) rotateZ(4deg)";
             }
           }, 10000);
@@ -61,10 +60,10 @@ export default function MovieBackdropSlider({movie}) {
         <div className="backdropSlider">
             <h1>Images</h1>
             <Slider {...settings}>
-                {movie.backdrops.map((elem, index) => {
+                {movie.backdropPaths.map((elem, index) => {
                     return (
                         <div key={index}>
-                            <div className="backdropImage" style={{backgroundImage: `url(${elem})`}}>
+                            <div className="backdropImage" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem})`}}>
                             </div>
                         </div>
                     );

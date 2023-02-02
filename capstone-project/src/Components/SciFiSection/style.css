@@ -7,8 +7,23 @@
 
 .SciFiGIF {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
+}
+
+.SciFiGIF h1 { 
+    text-align: center;
+    font-size: 50px;
+    color: #ffffff;
+    font-weight: bold;
+    padding-left: 3em;
+    padding-right: 3em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff46);
 }
 
 .SciFiGIF::before {
@@ -25,6 +40,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: brightness(60%) blur(2px) contrast(110%);
+    filter: brightness(40%) blur(3px) contrast(110%);
     z-index: -1;
 }
