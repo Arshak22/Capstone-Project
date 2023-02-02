@@ -62,9 +62,9 @@ export default function VerticalSliderSection({movies}) {
                         <div className="movieBlock" key={index} onMouseEnter={() => settings.onMovieHover(index)}>
                             {elem.backdropPaths[0] ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.backdropPaths[0]} alt={elem.backdropPaths[0]} />: null}
                             <div className="movieBlockDescription">
-                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.name}</NavLink></h6>
+                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
                                 <span>{elem.releaseDate}</span>
-                                <NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
+                                <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
                             </div>
                         </div>
                     )

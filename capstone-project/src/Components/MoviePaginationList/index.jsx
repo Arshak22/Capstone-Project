@@ -1,4 +1,4 @@
-import {React, useEffect, useState, useRef} from "react";
+import {React, useEffect, useState} from "react";
 import "./style.css"
 import ReactPaginate from "react-paginate";
 
@@ -13,42 +13,29 @@ export default function MoviePaginationList({movies}) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const ratingRef = useRef([]);
   const itemsPerPage = 5;
+
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(movies.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(movies.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, movies, ratingRef]);
-
-  useEffect(() => {
-    setTimeout(handleRatingFill, 1000);
-  }, [currentItems]);
+  }, [itemOffset, itemsPerPage, movies]);
 
   const handlePageClick = (event) => {
     const newOffset = event.selected * itemsPerPage % movies.length;
     setItemOffset(newOffset);
   };
-
-  const handleRatingFill = () => {
-    currentItems.map((elem, index) => {
-      let rating = 0;
-      for (let i = index; i < ratingRef.current.length; i++) {
-        let intervalId;
-          if (rating < elem.rating * 10) {
-              intervalId = setInterval(() => {
-                  rating++;
-                  ratingRef.current[i].style.background = `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`;
-                  if (rating === elem.rating * 10) {
-                      clearInterval(intervalId);
-                  }
-              }, 20);
-          }
-          return () => clearInterval(intervalId);
-      }
-      return rating;
-    })
+  
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    };
+    setDate(date.toLocaleDateString("en-US", options));
   }
 
   return (
@@ -56,11 +43,11 @@ export default function MoviePaginationList({movies}) {
         <div className="paginationList">
             {currentItems.map((elem, index) => {
                 return (
-                  <div className="paginationBox">
-                    <div className="paginationMovieBlock" key={index}>
+                  <div className="paginationBox" key={index}>
+                    <div className="paginationMovieBlock">
                             {elem.posterPath ? <img src={elem.posterPath} alt={elem.posterPath} className="paginationMovie" />: null}
                             <div className="paginationMovieBlockPlayer">
-                              <NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>
+                              <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">
                                     <polygon className="triangle" fill="none" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1"></polygon>
                                     <circle className="circle" fill="none" strokeWidth="15" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
@@ -68,13 +55,13 @@ export default function MoviePaginationList({movies}) {
                               </NavLink>
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
-                              <div className="ratingSmall" ref={(elem) => ratingRef.current[index] = elem}>
+                              <div className="ratingSmall" style={{background: `conic-gradient(rgb(299 9 20) ${elem.rating * 10}%, transparent 0 100%)`}}>
                                   <span>{elem.rating * 10}<small>%</small></span>
                               </div>
                             </div>
                     </div>
                     <div className="paginationMovieBlockDescription">
-                      <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE} end>{elem.name}</NavLink></h6>
+                      <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
                       <span>{elem.releaseDate}</span>
                     </div>
                   </div>

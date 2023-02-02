@@ -13,8 +13,10 @@ import { FaPinterestP } from "react-icons/fa";
 export default function MovieInfoSection({movie}) {
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
+    const [date, setDate] = useState("");
     useEffect(() => {
         convertToHoursAndMinutes(movie.duration);
+        formatDate(movie.releaseDate);
         let intervalId;
         if (rating < movie.rating * 10) {
             intervalId = setInterval(() => {
@@ -27,7 +29,7 @@ export default function MovieInfoSection({movie}) {
         return () => clearInterval(intervalId);
     }, [rating]);
 
-    function convertToHoursAndMinutes(minutes) {
+    const convertToHoursAndMinutes = (minutes) => {
         const hours = Math.floor(minutes / 60);
         const remainingMinutes = minutes % 60;
         setDuration(` ${hours}h ${remainingMinutes}m`);
@@ -38,6 +40,16 @@ export default function MovieInfoSection({movie}) {
             setDuration(` ${hours}h`);
         }
     }
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        };
+        setDate(date.toLocaleDateString("en-US", options));
+      }
 
     return (
         <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdropPaths[0]})`}}>
@@ -52,7 +64,7 @@ export default function MovieInfoSection({movie}) {
                 <div className="titleGenre">
                     <h1>{movie.name}</h1>
                     {duration ? <h4>Duration:{duration}</h4>: null}
-                    <h4>Realease Date: {movie.releaseDate}</h4>
+                    <h4>Realease Date: {date}</h4>
                     <h4>Genres: {movie.genres.map((elem, index) => {
                         return <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
                     })}</h4>
