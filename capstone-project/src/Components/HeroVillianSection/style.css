@@ -3,7 +3,7 @@
     max-width: 100%;
     margin: 0 auto;
     margin-bottom: 100px;
-    margin-top: 10em;
+    margin-top: 6em;
 }
 
 .HeroVillianSection>div {
@@ -12,6 +12,20 @@
     margin-right: auto;
     max-width: 1200px;
     filter: drop-shadow(0px 0px 10px #ffffffbe);
+}
+
+.HeroVillianSection>div h1 {
+    text-align: center;
+    font-size: 30px;
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-bottom: 40px;
+    /* padding-top: 35px; */
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff46);
 }
 
 .slick-dots {
@@ -354,6 +368,11 @@
         width: 900px;
         animation: none;
     }
+    .HeroVillianSection>div h1 {
+        font-size: 25px;
+        padding-left: 5em;
+        padding-right: 5em;
+    }
     .HeroVillianCharachter {
         width: 400px !important;
         right: 0 !important;
@@ -375,6 +394,11 @@
     .CharacterSection {
         width: 800px;
         animation: none;
+    }
+    .HeroVillianSection>div h1 {
+        font-size: 25px;
+        padding-left: 1em;
+        padding-right: 1em;
     }
     .HeroVillianCharachter {
         width: 300px !important;

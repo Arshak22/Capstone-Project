@@ -145,6 +145,7 @@ export default function HeroVillianSection() {
     return (
         <div className="HeroVillianSection">
             <div>
+                <h1>The Heroes We Love and The Villains We Love to Hate</h1>
                 <Slider {...settings}>
                 {charachters.map((elem, index) => {
                     return (
