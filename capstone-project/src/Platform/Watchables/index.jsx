@@ -8,8 +8,8 @@ export const getWatchables = () => {
     return axios.get(`${API}${watchables}`);
 }
 
-export const addWatchable = (movie) => {
-    return axios.post(`${API}${watchables}`, movie);
+export const addWatchables = (movies) => {
+    return axios.post(`${API}${watchables}`, movies);
 }
 
 export const getWatchable = (id) => {
@@ -22,4 +22,16 @@ export const updateWatchable = (id, movie) => {
 
 export const deleteWatchable = (id) => {
     return axios.delete(`${API}${watchables}/${id}`);
+}
+
+export const getLatestWatchables = () => {
+    return axios.get(`${API}${watchables}/latest`);
+}
+
+export const getPopularWatchables = () => {
+    return axios.get(`${API}${watchables}/popular`);
+}
+
+export const getUpcomingWatchables = () => {
+    return axios.get(`${API}${watchables}/upcoming`);
 }
