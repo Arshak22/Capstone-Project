@@ -36,14 +36,14 @@ export default function MoviePaginationList({movies}) {
       let rating = 0;
       for (let i = index; i < ratingRef.current.length; i++) {
         let intervalId;
-          if (rating < 70) {
+          if (rating < elem.rating * 10) {
               intervalId = setInterval(() => {
                   rating++;
                   ratingRef.current[i].style.background = `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`;
-                  if (rating === 70) {
+                  if (rating === elem.rating * 10) {
                       clearInterval(intervalId);
                   }
-              }, 5);
+              }, 20);
           }
           return () => clearInterval(intervalId);
       }
