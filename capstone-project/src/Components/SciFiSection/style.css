@@ -43,3 +43,184 @@
     filter: brightness(40%) blur(3px) contrast(110%);
     z-index: -1;
 }
+
+.SciFiMovies {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+.SciFiMovies::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url(../../assets/images/FanPagePictures/SciFiPics/SpaceBG.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(30%);
+    z-index: -1;
+}
+
+.SciFiMovieShowcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding-top: 8em;
+}
+
+.SciFiMovie {
+    position: relative;
+    pointer-events: all;
+    display: flex;
+    align-items: flex-end;
+    flex-grow: 0;
+    height: 500px;
+    width: 300px;
+    border-radius: 120px;
+    margin: 15px;
+    filter: drop-shadow(0 0 0.3rem #ffffff85);
+    transition: all 0.5s ease, width 2s ease;
+}
+
+.SciFiMovie::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100.5%;
+    height: 100%;
+    border-radius: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: brightness(80%);
+    transition: backdrop-filter 0.8s ease;
+}
+
+.SciFiMovie:hover {
+    width: 120%;
+    border-radius: 20px;
+}
+
+.SciFiMovie:hover::before {
+    width: 100%;
+    backdrop-filter: brightness(25%);
+}
+
+.SciFiMovie>div {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 50px;
+    color: #ffffff;
+    opacity: 0;
+    transition: all 5s ease-in-out;
+}
+
+.SciFiMovie>div h1 {
+    opacity: 0;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff46);
+    transition: all 0.5s ease;
+}
+
+.SciFiMovie>div p {
+    font-size: 15px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.SciFiMovie:hover>div {
+    opacity: 1;
+}
+
+.SciFiMovie:hover>div h1, .SciFiMovie:hover>div p {
+    opacity: 1;
+}
+
+#Interstellar:hover {
+    background: url(../../assets/images/FanPagePictures/SciFiPics/SpaceMovies/Interstellar-BG.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+#Dune:hover {
+    background: url(../../assets/images/FanPagePictures/SciFiPics/SpaceMovies/Dune-BG.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+#Passengers:hover {
+    background: url(../../assets/images/FanPagePictures/SciFiPics/SpaceMovies/Passengers-BG.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+#Martian:hover {
+    background: url(../../assets/images/FanPagePictures/SciFiPics/SpaceMovies/Martian-BG.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+#AdAstra:hover {
+    background: url(../../assets/images/FanPagePictures/SciFiPics/SpaceMovies/AdAstra-BG.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+#FirstMan:hover {
+    background: url(../../assets/images/FanPagePictures/SciFiPics/SpaceMovies/FirstMan-BG.jpg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .SciFiMovie>div p {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .SciFiSection {
+        height: auto;
+    }
+
+    .SciFiGIF h1 {
+        font-size: 25px;
+        padding-top: 5em;
+        padding-bottom: 5em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .SciFiMovie {
+        margin-bottom: 20px;
+    }
+
+    .SciFiMovie:hover {
+        width: 90%;
+    }
+
+    .SciFiMovieShowcase {
+        display: block;
+    }
+}
