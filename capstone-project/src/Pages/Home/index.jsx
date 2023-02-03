@@ -17,7 +17,7 @@ export default function Home() {
         document.title = "Movie Mavericks";
         getLatestMovies();
         getUpcomingMovies();
-    })
+    }, [])
 
     const getLatestMovies = async () => {
         try {
