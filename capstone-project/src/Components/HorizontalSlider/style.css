@@ -16,8 +16,8 @@
 
 .slick-prev, .slick-next {
     cursor: none;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: var(--bg) !important;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3),
               0px 0px 10px rgba(255, 255, 255, 0.1);
@@ -39,7 +39,7 @@
 .slick-prev:before, .slick-next:before {
     position: relative;
     color: #ff0000;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 800;
     transition: color 1s;
 }

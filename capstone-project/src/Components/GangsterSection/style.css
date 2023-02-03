@@ -63,8 +63,8 @@
 
 .slick-prev, .slick-next {
     cursor: none;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: var(--bg) !important;
     z-index: 20;
     transition: background 0.5s, border 0s;
