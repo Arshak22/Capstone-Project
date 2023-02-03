@@ -6,10 +6,11 @@ import { getWatchables } from "../../Platform/Watchables";
 
 export default function Movies() {
     const [movieList, setMovieList] = useState([]);
+
     useEffect(() => {
         document.title = "Movie Mavericks: Movies";
         getMovieList();
-    })
+    }, [])
 
     const getMovieList = async () => {
         try {
@@ -17,7 +18,7 @@ export default function Movies() {
             setMovieList(result.data);
         } catch (e) {
             console.log(e);
-        } 
+        }
     }
     return (
         <div className="main">

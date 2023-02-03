@@ -9,6 +9,7 @@ import VerticalSliderSection from "../../Components/VerticalSliderSection";
 import FanPageSection from "../../Components/FanPageSection";
 import AboutUsSection from "../../Components/AboutUsSection";
 
+// let i = 0;
 export default function Home() {
     const [latestMovies, setLatestMovie] = useState([]);
     const [upComingMovies, setUpComingMovies] = useState([]);
@@ -17,7 +18,7 @@ export default function Home() {
         document.title = "Movie Mavericks";
         getLatestMovies();
         getUpcomingMovies();
-    }, [])
+    }, []);
 
     const getLatestMovies = async () => {
         try {

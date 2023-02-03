@@ -19,17 +19,13 @@ const AppProvider = ({ children }) => {
     }
   );
 
-  const [isLoading, setIsLoading] = useState(false);
-
   return (
     <AppContext.Provider
       value={{
         user,
         setUser,
         newUser,
-        setNewUser,
-        isLoading,
-        setIsLoading
+        setNewUser
       }}
     >
       {children}
