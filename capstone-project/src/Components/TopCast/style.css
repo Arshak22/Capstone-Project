@@ -153,12 +153,12 @@ svg.popup-arrow {
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: url(../../assets/images/BackgroundImages/bg9.jpg);
+    background-image: url(../../assets/images/BackgroundImages/BG1.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    filter: brightness(40%);
+    filter: brightness(25%) blur(5px);
     z-index: -1;
 }
 
