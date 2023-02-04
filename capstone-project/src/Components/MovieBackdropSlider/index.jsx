@@ -3,8 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
+import { useGlobalContext } from "../../Context/Context";
 
 export default function MovieBackdropSlider({movie}) {
+  const {castPopUpOpen} = useGlobalContext();
      const settings = {
         className: "center",
         centerMode: true,
@@ -57,7 +59,7 @@ export default function MovieBackdropSlider({movie}) {
         ]
     };
     return (
-        <div className="backdropSlider">
+        <div className={`backdropSlider ${castPopUpOpen ? 'popup-open' : ''}`}>
             <h1>Stunning Backdrops</h1>
             <Slider {...settings}>
                 {movie.backdropPaths.map((elem, index) => {

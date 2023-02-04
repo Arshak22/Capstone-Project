@@ -19,13 +19,17 @@ const AppProvider = ({ children }) => {
     }
   );
 
+  const [castPopUpOpen, setCastPopUpOpen] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
         user,
         setUser,
         newUser,
-        setNewUser
+        setNewUser,
+        castPopUpOpen,
+        setCastPopUpOpen
       }}
     >
       {children}

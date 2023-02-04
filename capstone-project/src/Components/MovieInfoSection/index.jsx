@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from "react";
 import "./style.css";
 import Tilt from 'react-parallax-tilt';
+import { useGlobalContext } from "../../Context/Context";
 
 import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
@@ -11,6 +12,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
 
 export default function MovieInfoSection({movie}) {
+    const {castPopUpOpen} = useGlobalContext();
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
     const [date, setDate] = useState("");
@@ -52,7 +54,7 @@ export default function MovieInfoSection({movie}) {
       }
 
     return (
-        <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
+        <div className={`movieInfoSection ${castPopUpOpen ? 'popup-open' : ''}`} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
             <div className="infoCol1">
                 <a href={movie.posterPath} target="_blank" rel="noreferrer">
                     <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
