@@ -200,8 +200,8 @@
 }
 
 #Thanos .HeroVillianCharachter {
-    width: 600px;
-    right: 10px;
+    width: 690px;
+    right: -50px;
 }
 
 #Thanos p {
@@ -443,8 +443,8 @@
         text-align: center !important;
     }
     #Thanos .HeroVillianCharachter {
-        width: 450px !important;
-        top: 26.5em !important;
+        width: 500px !important;
+        top: 34em !important;
     }
 
     #Joker .HeroVillianCharachter {
@@ -458,7 +458,7 @@
     }
 
     #Venom .HeroVillianCharachter, #SpiderMan .HeroVillianCharachter, #Darkside .HeroVillianCharachter  {
-        top: 32em !important;
+        top: 35em !important;
     }
 
     #Homelender .HeroVillianCharachter {
@@ -486,8 +486,8 @@
         margin-left: -80px;
     }
     #Thanos .HeroVillianCharachter {
-        width: 350px !important;
-        top: 35em !important;
+        width: 400px !important;
+        top: 39.8em !important;
         left: 0 !important;
     }
 
