@@ -58,7 +58,7 @@ export default function MovieBackdropSlider({movie}) {
     };
     return (
         <div className="backdropSlider">
-            <h1>Images</h1>
+            <h1>Stunning Backdrops</h1>
             <Slider {...settings}>
                 {movie.backdropPaths.map((elem, index) => {
                     return (
