@@ -1,5 +1,4 @@
 import {React} from "react";
-import { useGlobalContext } from "../../Context/Context";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -74,7 +73,7 @@ export default function HorizontalSlider({movies}) {
                 {movies.map((elem, index) => {
                     return (
                         <div className="movieBlock" key={index}>
-                            {elem.backdropPaths[0] ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.backdropPaths[0]} alt={elem.backdropPaths[0]} />: null}
+                            {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} />: null}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
                                 <span>{elem.releaseDate}</span>

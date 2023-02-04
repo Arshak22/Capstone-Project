@@ -52,13 +52,15 @@ export default function MovieInfoSection({movie}) {
       }
 
     return (
-        <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.backdropPaths[0]})`}}>
+        <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
             <div className="infoCol1">
-                <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
-                    <div>
-                        <img src={movie.posterPath} alt="moviePoster" id="moviePoster"/>
-                    </div>
-                </Tilt>
+                <a href={movie.posterPath} target="_blank" rel="noreferrer">
+                    <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
+                        <div>
+                            <img src={movie.posterPath} alt="moviePoster" id="moviePoster"/>
+                        </div>
+                    </Tilt>
+                </a>
             </div>
             <div className="infoCol2">
                 <div className="titleGenre">
@@ -66,7 +68,11 @@ export default function MovieInfoSection({movie}) {
                     {duration ? <h4>Duration:{duration}</h4>: null}
                     <h4>Realease Date: {date}</h4>
                     <h4>Genres: {movie.genres.map((elem, index) => {
-                        return <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
+                        return (
+                            <>
+                                <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
+                            </>
+                        )
                     })}</h4>
                     {/* <h4>Director/s: {movie.directors.map((elem, index) => {
                         return <span key={index} className="directors">{elem}{index < movie.directors.length - 1 ? ',' : ''} </span>

@@ -63,8 +63,10 @@ export default function MovieBackdropSlider({movie}) {
                 {movie.backdropPaths.map((elem, index) => {
                     return (
                         <div key={index}>
+                          <a href={`https://www.themoviedb.org/t/p/original/${elem}`} target="_blank" rel="noreferrer">
                             <div className="backdropImage" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem})`}}>
                             </div>
+                          </a>
                         </div>
                     );
                 })}

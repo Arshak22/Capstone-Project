@@ -1,6 +1,5 @@
 import {React, useEffect, useState} from "react";
 import { getWatchables } from "../../Platform/Watchables";
-import { useGlobalContext } from "../../Context/Context";
 import MainPic from "../../assets/images/BackgroundImages/HomeMain2.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
@@ -9,7 +8,6 @@ import VerticalSliderSection from "../../Components/VerticalSliderSection";
 import FanPageSection from "../../Components/FanPageSection";
 import AboutUsSection from "../../Components/AboutUsSection";
 
-// let i = 0;
 export default function Home() {
     const [latestMovies, setLatestMovie] = useState([]);
     const [upComingMovies, setUpComingMovies] = useState([]);
