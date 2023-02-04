@@ -3,7 +3,6 @@ import axios from "axios";
 import {API} from "../api";
 const watchables = "/watchables";
 
-// Watchable
 export const getWatchables = () => {
     return axios.get(`${API}${watchables}`);
 }
@@ -34,4 +33,12 @@ export const getPopularWatchables = () => {
 
 export const getUpcomingWatchables = () => {
     return axios.get(`${API}${watchables}/upcoming`);
+}
+
+export const getAllMovies = () => {
+    return axios.get(`${API}${watchables}/movies`);
+}
+
+export const getAllSeries = () => {
+    return axios.get(`${API}${watchables}/series`);
 }
