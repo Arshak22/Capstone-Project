@@ -27,7 +27,7 @@ export default function MovieInfoSection({movie}) {
             }, 10);
         }
         return () => clearInterval(intervalId);
-    }, [rating]);
+    }, [rating, movie.duration, movie.rating, movie.releaseDate]);
 
     const convertToHoursAndMinutes = (minutes) => {
         const hours = Math.floor(minutes / 60);

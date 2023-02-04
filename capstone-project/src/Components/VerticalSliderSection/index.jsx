@@ -58,12 +58,14 @@ export default function VerticalSliderSection({movies}) {
             <h1>Upcoming Movies</h1>
             <Slider {...settings}>
                 {movies.map((elem, index) => {
+                  const date = new Date(elem.releaseDate);
+                  const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                     return (
                         <div className="movieBlock" key={index} onMouseEnter={() => settings.onMovieHover(index)}>
                             {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} />: null}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
-                                <span>{elem.releaseDate}</span>
+                                <span>{dateString}</span>
                                 <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
                             </div>
                         </div>

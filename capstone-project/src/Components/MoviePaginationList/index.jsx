@@ -15,8 +15,6 @@ export default function MoviePaginationList({movies}) {
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 5;
 
-  const [date, setDate] = useState("");
-
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(movies.slice(itemOffset, endOffset));
@@ -27,21 +25,13 @@ export default function MoviePaginationList({movies}) {
     const newOffset = event.selected * itemsPerPage % movies.length;
     setItemOffset(newOffset);
   };
-  
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const options = {
-      day: "2-digit",
-      month: "short",
-      year: "numeric"
-    };
-    setDate(date.toLocaleDateString("en-US", options));
-  }
 
   return (
     <>
         <div className="paginationList">
             {currentItems.map((elem, index) => {
+              const date = new Date(elem.releaseDate);
+              const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                 return (
                   <div className="paginationBox" key={index}>
                     <div className="paginationMovieBlock">
@@ -62,7 +52,7 @@ export default function MoviePaginationList({movies}) {
                     </div>
                     <div className="paginationMovieBlockDescription">
                       <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
-                      <span>{elem.releaseDate}</span>
+                      <span>{dateString}</span>
                     </div>
                   </div>
                 )
