@@ -71,9 +71,7 @@ export default function MovieInfoSection({movie}) {
                     <h4>Realease Date: {date}</h4>
                     <h4>Genres: {movie.genres.map((elem, index) => {
                         return (
-                            <>
                                 <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
-                            </>
                         )
                     })}</h4>
                     {/* <h4>Director/s: {movie.directors.map((elem, index) => {

@@ -13,14 +13,14 @@ export default function TopCast({movie}) {
 
   const handleOpen = (index) => {
     setPopupState(popupState.map((popup, i) => i === index ? true : false));
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('hiddenScroll');
     setCastPopUpOpen(true);
     document.querySelector(".cast").classList.add('popup-open');
   };
 
   const handleClose = () => {
     setPopupState(Array(movie.length).fill(false));
-    document.body.style.overflow = 'scroll';
+    document.body.classList.remove('hiddenScroll');
     setCastPopUpOpen(false);
     document.querySelector(".cast").classList.remove('popup-open');
   };
@@ -34,6 +34,7 @@ export default function TopCast({movie}) {
           const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
           return (
             <Popup
+              key={index}
               trigger={
                 <div className="castMember" key={index} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath}.jpg)`}}>
                   <div className="castMemberInfo">
@@ -47,7 +48,7 @@ export default function TopCast({movie}) {
               onOpen={() => handleOpen(index)}
               onClose={handleClose}
             >
-              <div className="castPopUp">
+              <div className="castPopUp" key={index}>
                 <div className="castPopUpLCol" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath}.jpg)`}}>
                 </div>
                 <div className="castPopUpRCol">
