@@ -113,7 +113,7 @@ export default function Header() {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to={ROUTE_NAMES.FAQ} className="navItem" end>
+                                        <NavLink to={ROUTE_NAMES.PROFILE_PAGE} className="navItem" end>
                                             <span data-text="PROFILE">
                                             </span>Profile
                                         </NavLink>

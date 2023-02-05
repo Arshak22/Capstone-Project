@@ -1,0 +1,140 @@
+.profileContainer {
+    display: flex;
+    width: 100%;
+    height: 800px;
+    flex-wrap: wrap;
+}
+.sideBar, .profileRCol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileHeader, .sideBar {
+    flex: 0.2;
+    position: relative;
+}
+
+.profileHeader {
+    display: flex;
+}
+
+.profileHeader::before, .sideBar::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url(../../assets/images/BackgroundImages/PlainBG-1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(60%);
+    z-index: -1;
+}
+
+.sideBar::before {
+    filter: brightness(50%);
+    background-attachment: fixed;
+}
+
+.profileInfoSection {
+    flex: 1;
+    position: relative;
+}
+
+.profileInfoSection::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url(../../assets/images/BackgroundImages/Modern-Cinema.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(70%);
+    z-index: -1;
+}
+  
+.rowspan {
+    flex: 2;
+    color: #ffffff;
+}
+
+.rowspan h3 {
+    position: relative;
+    overflow: hidden;
+    margin-left: 30px;
+    margin-top: 30px;
+    padding: 15px;
+    padding-left: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.rowspan h3::before {
+    position: absolute;
+    content: "";
+    background: var(--main-red);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0.35em;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.rowspan h3::after {
+    position: absolute;
+    content: "";
+    background: transparent linear-gradient( 270deg, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3) 100%);
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: 0;
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.rowspan h3:hover::before, .rowspan h3:hover::after, .rowspan h3.activeSideBar::before, .rowspan h3.activeSideBar::after {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease-in-out;
+}
+
+.userAvatar {
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    border: 3px solid var(--main-red);
+    border-radius: 10px;
+    background-image: url(../../assets/images/Avatar.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.profileInfo {
+    margin: 20px;
+    margin-left: 0;
+    color: #ffffff;
+}
+
+.profileInfo h1, h3 {
+    letter-spacing: 5px;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}

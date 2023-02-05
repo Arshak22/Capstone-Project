@@ -10,7 +10,8 @@ import FAQ from "./Pages/FAQ";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import ErrorPage from "./Pages/ErrorPage";
 import Login from "./Pages/Login";
-import { DefaultMoviePage } from "./Pages/DefaultMoviePage";
+import DefaultMoviePage from "./Pages/DefaultMoviePage";
+import Profile from "./Pages/Profile";
 import { ROUTE_NAMES } from "./Routes";
 
  function App() {
@@ -27,6 +28,7 @@ import { ROUTE_NAMES } from "./Routes";
             <Route path={ROUTE_NAMES.PRIVACY_POLICY} element={<PrivacyPolicy />} />
             <Route path={ROUTE_NAMES.DEFAULT_PAGE + ":id"} element={<DefaultMoviePage />} />
             <Route path={ROUTE_NAMES.LOGIN_PAGE} element={<Login />} />
+            <Route path={ROUTE_NAMES.PROFILE_PAGE} element={<Profile />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
       </Routes>

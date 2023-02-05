@@ -8,7 +8,7 @@ import TopCast from "../../Components/TopCast";
 import MovieBackdropSlider from "../../Components/MovieBackdropSlider";
 import MovieTrailerSection from "../../Components/MovieTrailerSection";
 
-export function DefaultMoviePage() {
+export default function DefaultMoviePage() {
     const {id} = useParams();
     const [movieData, setMovieData] = useState();
     const [allActors, setAllActors] = useState();
