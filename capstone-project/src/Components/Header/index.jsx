@@ -104,6 +104,22 @@ export default function Header() {
                         <button type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
                         <div className="userBox">
                             <img src={User} alt="userPic" className="user"/>
+                            <div id="dropdownMenu2">
+                                <ul>
+                                    <li>
+                                        <NavLink to={ROUTE_NAMES.LOGIN_PAGE} className="navItem" end>
+                                            <span data-text="LOG IN">
+                                            </span>Log In
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to={ROUTE_NAMES.FAQ} className="navItem" end>
+                                            <span data-text="PROFILE">
+                                            </span>Profile
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

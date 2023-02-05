@@ -43,12 +43,12 @@ nav {
     text-transform: uppercase;
 }
 
-#navbar li a {
+#navbar li a, #dropdownMenu2 li a:hover {
     transition: all 0.3s ease 0s;
 } 
 
 
-#navbar li a:hover, #navbar li a:active {
+#navbar li a:hover, #navbar li a:active, #dropdownMenu2 li a:hover {
     color: var(--main-red);
     filter: drop-shadow(0 0 0.2rem #e50914);
     transform: scale(1.2);
@@ -103,7 +103,7 @@ nav {
 }
 
 #dropdownMenu {
-    display: none;
+    opacity: 0;
     position: absolute;
     background-color: var(--main-red);
     top: 69px;
@@ -111,6 +111,23 @@ nav {
     height: 230px;
     z-index: 999;
     pointer-events: all;
+    transition: opacity 1s ease;
+}
+
+#dropdownMenu2 {
+    opacity: 0;
+    position: absolute;
+    background-color: var(--main-red);
+    top: 75px;
+    width: 110px;
+    height: 125px;
+    z-index: 999;
+    transition: opacity 1s ease;
+    pointer-events: all;
+}
+
+#dropdownMenu2 li {
+    list-style: none;
 }
 
 #dropdownIcon {
@@ -121,10 +138,17 @@ nav {
     padding: 25px 25px 20px 30px;
 }
 
-#dropdownMenu>ul>li:hover {
-    background-color: var(--bg);
+#dropdownMenu2>ul>li {
+    padding: 12px 10px 20px 15px;
 }
 
+#dropdownMenu2>ul>li>a {
+    font-size: 16px !important;
+}
+
+#dropdownMenu>ul>li:hover, #dropdownMenu2>ul>li:hover {
+    background-color: var(--bg);
+}
 
 #dropdownMenu>ul>li>a {
     font-size: 17px !important;
@@ -138,11 +162,11 @@ nav {
 }
 
 .pages:hover>#dropdownMenu{
-    display: block;
+    opacity: 1;
 }
 
 #dropdownMenu:hover {
-    display: block;
+    opacity: 1;
 }
 
 #searchAndUser {
@@ -198,18 +222,25 @@ nav {
     width: 60px;
     height: 40px;
     margin-left: 20px;
-    filter: drop-shadow(0 0 0.2rem var(--main-red));
-    overflow: hidden;
     border-radius: 50%;
+}
+
+.userBox:hover #dropdownMenu2 {
+    opacity: 1;
 }
 
 .user {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
 }
 
-#mainLogo:hover, .userBox:hover {
+#mainLogo:hover {
     transition: all 0.3s ease 0.1s;
     transform: scale(1.1);
 }
