@@ -220,8 +220,8 @@ nav {
 }
 
 .userMainBox {
-    background-color: #ffffff;
-    height: 120%;
+    pointer-events: all;
+    height: 130%;
     width: 100%;
     z-index: 5;
 }
@@ -274,9 +274,6 @@ nav {
     }
     .pages {
         top: 20px;
-    }
-    .userBox {
-        width: 80px;
     }
 }
 
