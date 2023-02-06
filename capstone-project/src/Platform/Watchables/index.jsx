@@ -3,8 +3,8 @@ import axios from "axios";
 import {API} from "../api";
 const watchables = "/watchables";
 
-export const getWatchables = () => {
-    return axios.get(`${API}${watchables}`);
+export const getWatchables = (pageNumber, pageSize) => {
+    return axios.get(`${API}${watchables}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
 export const addWatchables = (movies) => {
@@ -23,22 +23,22 @@ export const deleteWatchable = (id) => {
     return axios.delete(`${API}${watchables}/${id}`);
 }
 
-export const getLatestWatchables = () => {
-    return axios.get(`${API}${watchables}/latest`);
+export const getLatestWatchables = (pageNumber, pageSize) => {
+    return axios.get(`${API}${watchables}/latest?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
-export const getPopularWatchables = () => {
-    return axios.get(`${API}${watchables}/popular`);
+export const getPopularWatchables = (pageNumber, pageSize) => {
+    return axios.get(`${API}${watchables}/popular?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
-export const getUpcomingWatchables = () => {
-    return axios.get(`${API}${watchables}/upcoming`);
+export const getUpcomingWatchables = (pageNumber, pageSize) => {
+    return axios.get(`${API}${watchables}/upcoming?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
-export const getAllMovies = () => {
-    return axios.get(`${API}${watchables}/movies`);
+export const getAllMovies = (pageNumber, pageSize) => {
+    return axios.get(`${API}${watchables}/movies?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
-export const getAllSeries = () => {
-    return axios.get(`${API}${watchables}/series`);
+export const getAllSeries = (pageNumber, pageSize) => {
+    return axios.get(`${API}${watchables}/series?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }

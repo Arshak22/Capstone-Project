@@ -113,7 +113,6 @@
 .movieBlockDescription h6>a {
     font-size: 20px;
     word-wrap: break-word;
-    word-break: break-all;
 }
 
 .movieBlockDescription span {

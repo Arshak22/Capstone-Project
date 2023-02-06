@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import { getWatchables } from "../../Platform/Watchables";
+import { getLatestWatchables, getUpcomingWatchables, getPopularWatchables } from "../../Platform/Watchables";
 import MainPic from "../../assets/images/BackgroundImages/HomeMain2.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
@@ -11,17 +11,19 @@ import AboutUsSection from "../../Components/AboutUsSection";
 export default function Home() {
     const [latestMovies, setLatestMovie] = useState([]);
     const [upComingMovies, setUpComingMovies] = useState([]);
+    const [popularMovies, setPopularMovies] = useState([]);
 
     useEffect(() => {
         document.title = "Movie Mavericks";
         getLatestMovies();
         getUpcomingMovies();
+        getPopularMovies();
     }, []);
 
     const getLatestMovies = async () => {
         try {
-            const response = await getWatchables();
-            setLatestMovie(response.data);
+            const response = await getLatestWatchables(0, 10);
+            setLatestMovie(response.data.content);
         } catch (e) {
             console.log(e);
         }
@@ -29,8 +31,17 @@ export default function Home() {
 
     const getUpcomingMovies = async () => {
         try {
-            const response = await getWatchables();
-            setUpComingMovies(response.data);
+            const response = await getUpcomingWatchables(0, 10);
+            setUpComingMovies(response.data.content);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const getPopularMovies = async () => {
+        try {
+            const response = await getPopularWatchables(0, 10);
+            setPopularMovies(response.data.content);
         } catch (e) {
             console.log(e);
         }
@@ -43,7 +54,7 @@ export default function Home() {
             <HorizontalSlider movies={latestMovies}/>
             <VerticalSliderSection movies={upComingMovies} />
             <SliderHeader header="Popular Movies" link="/movies" btnName="View All"/>
-            <HorizontalSlider movies={latestMovies}/>
+            <HorizontalSlider movies={popularMovies}/>
             <AboutUsSection/>
             <FanPageSection/>
         </div>

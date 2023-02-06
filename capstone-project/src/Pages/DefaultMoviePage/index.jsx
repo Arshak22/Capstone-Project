@@ -35,6 +35,7 @@ export default function DefaultMoviePage() {
     const getAllActors = async () => {
         try {
             const response = await getActors();
+            console.log(response.data);
             setAllActors(response.data);
         } catch (e) {
             console.log(e);

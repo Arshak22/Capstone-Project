@@ -103,7 +103,7 @@ nav {
 }
 
 #dropdownMenu {
-    opacity: 0;
+    display: none;
     position: absolute;
     background-color: var(--main-red);
     top: 69px;
@@ -111,18 +111,16 @@ nav {
     height: 230px;
     z-index: 999;
     pointer-events: all;
-    transition: opacity 1s ease;
 }
 
 #dropdownMenu2 {
-    opacity: 0;
+    display: none;
     position: absolute;
     background-color: var(--main-red);
     top: 75px;
     width: 110px;
     height: 125px;
     z-index: 999;
-    transition: opacity 1s ease;
     pointer-events: all;
 }
 
@@ -162,21 +160,23 @@ nav {
 }
 
 .pages:hover>#dropdownMenu{
-    opacity: 1;
+    display: block;
 }
 
 #dropdownMenu:hover {
-    opacity: 1;
+    display: block;
 }
 
 #searchAndUser {
     width: 25%;
+    height: 100%;
     position: relative;
-    bottom: 5px;
+    top: 5px;
 }
 
 #searchAndUserBox {
     width: 100%;
+    height: 100%;
     position: relative;
     display: flex;
     filter: drop-shadow(0 0 1rem #e5091467);
@@ -206,6 +206,7 @@ nav {
     border: none;
     font-size: 20px;
     width: 40px;
+    height: 40px;
     border: 3px solid var(--main-red);
     border-left: none;
     border-radius: 0px 20px 20px 0px;
@@ -218,15 +219,26 @@ nav {
     color: var(--main-red);
 }
 
+.userMainBox {
+    background-color: #ffffff;
+    height: 120%;
+    width: 100%;
+    z-index: 5;
+}
+
 .userBox {
-    width: 60px;
+    width: 40px;
     height: 40px;
     margin-left: 20px;
     border-radius: 50%;
 }
 
-.userBox:hover #dropdownMenu2 {
-    opacity: 1;
+.userMainBox:hover #dropdownMenu2 {
+    display: block;
+}
+
+#dropdownMenu2:hover {
+    display: block;
 }
 
 .user {

@@ -20,10 +20,10 @@ export default function MovieInfoSection({movie}) {
         convertToHoursAndMinutes(movie.duration);
         formatDate(movie.releaseDate);
         let intervalId;
-        if (rating < movie.rating * 10) {
+        if (rating < Math.floor(movie.rating * 10)) {
             intervalId = setInterval(() => {
                 setRating(rating => rating + 1);
-                if (rating === movie.rating * 10) {
+                if (rating === Math.floor(movie.rating * 10)) {
                     clearInterval(intervalId);
                 }
             }, 10);
@@ -56,10 +56,10 @@ export default function MovieInfoSection({movie}) {
     return (
         <div className={`movieInfoSection ${castPopUpOpen ? 'popup-open' : ''}`} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
             <div className="infoCol1">
-                <a href={movie.posterPath} target="_blank" rel="noreferrer">
+                <a href={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} target="_blank" rel="noreferrer">
                     <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
                         <div>
-                            <img src={movie.posterPath} alt="moviePoster" id="moviePoster"/>
+                            <img src={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} alt="moviePoster" id="moviePoster"/>
                         </div>
                     </Tilt>
                 </a>
@@ -67,20 +67,17 @@ export default function MovieInfoSection({movie}) {
             <div className="infoCol2">
                 <div className="titleGenre">
                     <h1>{movie.name}</h1>
-                    {duration ? <h4>Duration:{duration}</h4>: null}
+                    {duration && movie.duration !== 0 ? <h4>Duration:{duration}</h4>: null}
                     <h4>Realease Date: {date}</h4>
                     <h4>Genres: {movie.genres.map((elem, index) => {
                         return (
                                 <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
                         )
                     })}</h4>
-                    {/* <h4>Director/s: {movie.directors.map((elem, index) => {
-                        return <span key={index} className="directors">{elem}{index < movie.directors.length - 1 ? ',' : ''} </span>
-                    })}</h4> */}
                     <div className="moviePageIcons">
                         <div className="ratingBox">
                             <div className="rating" style={{background: `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`}}>
-                                <span>{movie.rating * 10} <small>%</small></span>
+                            <span>{movie.rating ? Math.floor(movie.rating * 10) + '%' : 'NR'}</span>
                             </div>
                             <h3>User <br/> Rating</h3>
                         </div>
