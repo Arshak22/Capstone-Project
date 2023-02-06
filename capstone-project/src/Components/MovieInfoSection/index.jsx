@@ -71,7 +71,7 @@ export default function MovieInfoSection({movie}) {
                     <h4>Realease Date: {date}</h4>
                     <h4>Genres: {movie.genres.map((elem, index) => {
                         return (
-                                <span key={index} className="genres">{elem}{index < movie.genres.length - 1 ? ', ' : ''}</span>
+                                <span key={index} className="genres">{elem.replace("_", " ").split(" ").map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(" ")}{index < movie.genres.length - 1 ? ', ' : ''}</span>
                         )
                     })}</h4>
                     <div className="moviePageIcons">

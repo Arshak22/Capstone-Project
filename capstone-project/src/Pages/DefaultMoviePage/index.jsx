@@ -31,20 +31,10 @@ export default function DefaultMoviePage() {
         }
     }
 
-    // const getAllActors = async () => {
-    //     try {
-    //         const response = await getActors();
-    //         setAllActors(response.data);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
     return (
         <div className="main">
             {movieData ? 
                 <>
-                {/* {console.log(movieData)} */}
                     <MovieInfoSection movie={movieData}/>
                     <TopCast movie={movieData.id}/>
                     <MovieBackdropSlider movie={movieData}/>
