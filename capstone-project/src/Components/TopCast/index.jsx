@@ -2,14 +2,27 @@ import React, { useState, useEffect } from "react";
 import './style.css';
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
+import { getMovieCast } from "../../Platform/Cast";
 
-export default function TopCast({movie}) {
+export default function TopCast(id) {
   const {setCastPopUpOpen} = useGlobalContext();
-  const [popupState, setPopupState] = useState(Array(movie.length).fill(false));
+  const [cast, setCast] = useState([]);
+  const [popupState, setPopupState] = useState(Array(cast.length).fill(false));
 
   useEffect(() => {
     setCastPopUpOpen(false);
+    getCast();
   }, [setCastPopUpOpen])
+
+  const getCast = async () => {
+        try {
+            const response = await getMovieCast(id.movie);
+            setCast(response.data);
+            setPopupState(Array(cast.length).fill(false));
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
   const handleOpen = (index) => {
     setPopupState(popupState.map((popup, i) => i === index ? true : false));
@@ -19,7 +32,7 @@ export default function TopCast({movie}) {
   };
 
   const handleClose = () => {
-    setPopupState(Array(movie.length).fill(false));
+    setPopupState(Array(cast.length).fill(false));
     document.body.classList.remove('hiddenScroll');
     setCastPopUpOpen(false);
     document.querySelector(".cast").classList.remove('popup-open');
@@ -29,14 +42,17 @@ export default function TopCast({movie}) {
     <div className="cast">
       <h1>Top Cast</h1>
       <div className="topCast">
-        {movie.map((elem, index) => {
+        {cast.map((elem, index) => {
           const date = new Date(elem.birthDate);
           const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
+          const bio = elem.bio;
+          const sliceIndex = bio.lastIndexOf(".", 500);
+          const shortBio = bio.slice(0, sliceIndex + 1);
           return (
             <Popup
               key={index}
               trigger={
-                <div className="castMember" key={index} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath}.jpg)`}}>
+                <div className="castMember" key={index} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`}}>
                   <div className="castMemberInfo">
                     <h4>{elem.firstName} {elem.lastName}</h4>
                     <h6>{dateString}</h6>
@@ -49,12 +65,12 @@ export default function TopCast({movie}) {
               onClose={handleClose}
             >
               <div className="castPopUp" key={index}>
-                <div className="castPopUpLCol" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath}.jpg)`}}>
+                <div className="castPopUpLCol" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`}}>
                 </div>
                 <div className="castPopUpRCol">
                   <h2>{elem.firstName} {elem.lastName}</h2>
                   <h4>{dateString}</h4>
-                  <p>{elem.bio}</p>
+                  <p>{shortBio}</p>
                 </div>
               </div>
             </Popup>

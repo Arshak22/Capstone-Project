@@ -1,7 +1,6 @@
 import {React, useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import { getWatchable } from "../../Platform/Watchables";
-import { getActors } from "../../Platform/Actors";
 
 import MovieInfoSection from "../../Components/MovieInfoSection";
 import TopCast from "../../Components/TopCast";
@@ -14,7 +13,7 @@ export default function DefaultMoviePage() {
     const [allActors, setAllActors] = useState();
     useEffect(() => {
         getMovie(id);
-        getAllActors();
+        // getAllActors();
     }, [id])
 
     useEffect(() => {
@@ -32,22 +31,22 @@ export default function DefaultMoviePage() {
         }
     }
 
-    const getAllActors = async () => {
-        try {
-            const response = await getActors();
-            console.log(response.data);
-            setAllActors(response.data);
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    // const getAllActors = async () => {
+    //     try {
+    //         const response = await getActors();
+    //         setAllActors(response.data);
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
 
     return (
         <div className="main">
             {movieData ? 
                 <>
+                {/* {console.log(movieData)} */}
                     <MovieInfoSection movie={movieData}/>
-                    {allActors ? <TopCast movie={allActors}/>: null}
+                    <TopCast movie={movieData.id}/>
                     <MovieBackdropSlider movie={movieData}/>
                     <MovieTrailerSection movie={movieData}/>
                 </>

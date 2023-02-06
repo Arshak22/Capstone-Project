@@ -172,7 +172,7 @@ svg.popup-arrow {
 
 .castPopUpRCol {
     float: left;
-    width: 60%;
+    width: 70%;
     padding-top: 50px;
     padding-left: 25px;
     color: #ffffff;
@@ -216,7 +216,9 @@ svg.popup-arrow {
 }
 
 .castPopUpRCol p {
+    padding-right: 25px;
     padding-top: 20px;
+    font-size: 15px;
 }
 
 @media screen and (max-width: 1190px) {
