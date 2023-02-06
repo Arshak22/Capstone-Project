@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from "react";
 import "./style.css"
 import ReactPaginate from "react-paginate";
-import { getAllMovies } from "../../Platform/Watchables";
+import { getAllMovies, getAllSeries } from "../../Platform/Watchables";
 
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
@@ -10,7 +10,7 @@ import { ROUTE_NAMES } from "../../Routes";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
-export default function MoviePaginationList() {
+export default function MoviePaginationList(type) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -18,7 +18,11 @@ export default function MoviePaginationList() {
   const itemsPerPage = 30;
 
   useEffect(() => {
-    getMovieList(itemOffset, itemsPerPage);
+    if(type.type === "MOVIE") {
+      getMovieList(itemOffset, itemsPerPage);
+    } else if(type.type === "SERIES") {
+      getTVShowsList(itemOffset, itemsPerPage);
+    }
     setPageCount(Math.ceil(total / itemsPerPage));
   }, [itemOffset, total]);
 
@@ -30,6 +34,16 @@ export default function MoviePaginationList() {
   const getMovieList = async (pageNumber, pageSize) => {
     try {
         const result = await getAllMovies(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const getTVShowsList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getAllSeries(pageNumber, pageSize);
         setTotal(result.data.totalElements);
         setCurrentItems(result.data.content);
     } catch (e) {
