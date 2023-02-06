@@ -64,15 +64,20 @@ export default function TopCast(id) {
               onOpen={() => handleOpen(index)}
               onClose={handleClose}
             >
-              <div className="castPopUp" key={index}>
-                <div className="castPopUpLCol" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`}}>
+              {close => (
+                <div className="castPopUp" key={index}>
+                  <div className="castPopUpLCol" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`}}>
+                  </div>
+                  <div className="castPopUpRCol">
+                    <button className="closePopUp" onClick={close}>
+                    x
+                    </button>
+                    <h2>{elem.firstName} {elem.lastName}</h2>
+                    <h4>{dateString}</h4>
+                    <p>{shortBio}</p>
+                  </div>
                 </div>
-                <div className="castPopUpRCol">
-                  <h2>{elem.firstName} {elem.lastName}</h2>
-                  <h4>{dateString}</h4>
-                  <p>{shortBio}</p>
-                </div>
-              </div>
+              )}
             </Popup>
           )
         })}

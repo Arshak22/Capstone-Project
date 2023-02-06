@@ -221,6 +221,25 @@ svg.popup-arrow {
     font-size: 15px;
 }
 
+.closePopUp {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-red-hover);
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+.closePopUp:hover {
+    border-color: var(--main-red-hover);
+    color: var(--main-red-hover);
+    background-color: #ffffff;
+}
+
 @media screen and (max-width: 1190px) {
     .castMember {
         width: 230px;

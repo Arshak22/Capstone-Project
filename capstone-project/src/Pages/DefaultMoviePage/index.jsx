@@ -37,7 +37,7 @@ export default function DefaultMoviePage() {
                 <>
                     <MovieInfoSection movie={movieData}/>
                     <TopCast movie={movieData.id}/>
-                    <MovieBackdropSlider movie={movieData}/>
+                    {/* <MovieBackdropSlider movie={movieData}/> */}
                     <MovieTrailerSection movie={movieData}/>
                 </>
             : null}
