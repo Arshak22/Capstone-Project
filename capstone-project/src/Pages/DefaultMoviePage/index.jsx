@@ -10,10 +10,8 @@ import MovieTrailerSection from "../../Components/MovieTrailerSection";
 export default function DefaultMoviePage() {
     const {id} = useParams();
     const [movieData, setMovieData] = useState();
-    const [allActors, setAllActors] = useState();
     useEffect(() => {
         getMovie(id);
-        // getAllActors();
     }, [id])
 
     useEffect(() => {
@@ -37,7 +35,7 @@ export default function DefaultMoviePage() {
                 <>
                     <MovieInfoSection movie={movieData}/>
                     <TopCast movie={movieData.id}/>
-                    {/* <MovieBackdropSlider movie={movieData}/> */}
+                    <MovieBackdropSlider movie={movieData}/>
                     <MovieTrailerSection movie={movieData}/>
                 </>
             : null}
