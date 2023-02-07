@@ -4,6 +4,8 @@ import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 import { getMovieCast } from "../../Platform/Cast";
 
+import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
+
 export default function TopCast(id) {
   const {setCastPopUpOpen} = useGlobalContext();
   const [cast, setCast] = useState([]);
@@ -43,6 +45,7 @@ export default function TopCast(id) {
       <h1>Top Cast</h1>
       <div className="topCast">
         {cast.map((elem, index) => {
+          const memberPic = elem.imagePath ?  `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`: `url(${DefaultUser})`;
           const date = new Date(elem.birthDate);
           const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
           const bio = elem.bio;
@@ -52,7 +55,7 @@ export default function TopCast(id) {
             <Popup
               key={index}
               trigger={
-                <div className="castMember" key={index} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`}}>
+                <div className="castMember" key={index} style={{backgroundImage: memberPic}}>
                   <div className="castMemberInfo">
                     <h4>{elem.firstName} {elem.lastName}</h4>
                     <h6>{dateString}</h6>
@@ -66,7 +69,7 @@ export default function TopCast(id) {
             >
               {close => (
                 <div className="castPopUp" key={index}>
-                  <div className="castPopUpLCol" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`}}>
+                  <div className="castPopUpLCol" style={{backgroundImage: memberPic}}>
                   </div>
                   <div className="castPopUpRCol">
                     <button className="closePopUp" onClick={close}>
