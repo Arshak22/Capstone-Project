@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from "react";
 import "./style.css";
 import Tilt from 'react-parallax-tilt';
+import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 
 import { FaShareAlt } from "react-icons/fa";
@@ -12,10 +13,17 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
 
 export default function MovieInfoSection({movie}) {
-    const {castPopUpOpen} = useGlobalContext();
+    const {castPopUpOpen, setCastPopUpOpen} = useGlobalContext();
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
     const [date, setDate] = useState("");
+    const [favouritePopupState, setFavouritePopupState] = useState(false);
+    const [watchlistPopupState, setWatchlistPopupState] = useState(false);
+    const [ratePopupState, setRatePopupState] = useState(false);
+    const [shareFacebookPopupState, setShareFacebookPopupState] = useState(false);
+    const [shareTwitterPopupState, setShareTwitterPopupState] = useState(false);
+    const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
+
     useEffect(() => {
         convertToHoursAndMinutes(movie.duration);
         formatDate(movie.releaseDate);
@@ -51,7 +59,43 @@ export default function MovieInfoSection({movie}) {
           year: "numeric"
         };
         setDate(date.toLocaleDateString("en-US", options));
-      }
+    }
+
+    const handleOpen = (type) => {
+        if(type === "favourite") {
+            setFavouritePopupState(true);
+        } else if(type === "watchlist") {
+            setWatchlistPopupState(true);
+        } else if(type === "rate") {
+            setRatePopupState(true);
+        } else if(type === "facebook") {
+            setShareFacebookPopupState(true);
+        } else if(type === "twitter") {
+            setShareTwitterPopupState(true);
+        } else if(type === "pinterest") {
+            setSharePinterestPopupState(true);
+        } 
+        document.body.classList.add('hiddenScroll');
+        setCastPopUpOpen(true);
+    };
+
+    const handleClose = (type) => {
+        if(type === "favourite") {
+            setFavouritePopupState(false);
+        } else if(type === "watchlist") {
+            setWatchlistPopupState(false);
+        } else if(type === "rate") {
+            setRatePopupState(false);
+        } else if(type === "facebook") {
+            setShareFacebookPopupState(true);
+        } else if(type === "twitter") {
+            setShareTwitterPopupState(true);
+        } else if(type === "pinterest") {
+            setSharePinterestPopupState(true);
+        } 
+        document.body.classList.remove('hiddenScroll');
+        setCastPopUpOpen(false);
+    };
 
     return (
         <div className={`movieInfoSection ${castPopUpOpen ? 'popup-open' : ''}`} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
@@ -85,19 +129,97 @@ export default function MovieInfoSection({movie}) {
                             <div className="iconBox">
                                 <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
                                 <div className="moviePageShareIcons">
-                                    <FaFacebookF className="moviePageShareIcon"/>
-                                    <FaTwitter className="moviePageShareIcon"/>
-                                    <FaPinterestP className="moviePageShareIcon"/>
+                                    <Popup trigger={<FaFacebookF className="moviePageShareIcon"/>} 
+                                    position="center"
+                                    open={shareFacebookPopupState}
+                                    onOpen={() => handleOpen("facebook")}
+                                    onClose={() => handleClose("facebook")}>
+                                    {close => (
+                                        <div className="iconPopUp">
+                                            <button className="closePopUp" onClick={close}>
+                                            x
+                                            </button>
+                                            <h3>Please register to share a movie.</h3>
+                                        </div>
+                                    )}
+                                    </Popup>
+                                    <Popup trigger={<FaTwitter className="moviePageShareIcon"/>} 
+                                    position="center"
+                                    open={shareTwitterPopupState}
+                                    onOpen={() => handleOpen("twitter")}
+                                    onClose={() => handleClose("twitter")}>
+                                    {close => (
+                                        <div className="iconPopUp">
+                                            <button className="closePopUp" onClick={close}>
+                                            x
+                                            </button>
+                                            <h3>Please register to share a movie.</h3>
+                                        </div>
+                                    )}
+                                    </Popup>
+                                    <Popup trigger={<FaPinterestP className="moviePageShareIcon"/>} 
+                                    position="center"
+                                    open={sharePinterestPopupState}
+                                    onOpen={() => handleOpen("pinterest")}
+                                    onClose={() => handleClose("pinterest")}>
+                                    {close => (
+                                        <div className="iconPopUp">
+                                            <button className="closePopUp" onClick={close}>
+                                            x
+                                            </button>
+                                            <h3>Please register to share a movie.</h3>
+                                        </div>
+                                    )}
+                                    </Popup>
                                 </div>
                             </div>
                             <div className="iconBox">
-                                <button className="moviePageIcon"><FaHeart/></button>
+                                <Popup trigger={<button className="moviePageIcon"><FaHeart/></button>} 
+                                position="center"
+                                open={favouritePopupState}
+                                onOpen={() => handleOpen("favourite")}
+                                onClose={() => handleClose("favourite")}>
+                                {close => (
+                                    <div className="iconPopUp">
+                                        <button className="closePopUp" onClick={close}>
+                                        x
+                                        </button>
+                                        <h3>Please register to add a movie to your favourites.</h3>
+                                    </div>
+                                )}
+                                </Popup>
                             </div>
                             <div className="iconBox">
-                                <button className="moviePageIcon"><FaPlus/></button>
+                                <Popup trigger={<button className="moviePageIcon"><FaPlus/></button>} 
+                                position="center"
+                                open={watchlistPopupState}
+                                onOpen={() => handleOpen("watchlist")}
+                                onClose={() => handleClose("watchlist")}>
+                                {close => (
+                                    <div className="iconPopUp">
+                                        <button className="closePopUp" onClick={close}>
+                                        x
+                                        </button>
+                                        <h3>Please register to add a movie to your watchlist.</h3>
+                                    </div>
+                                )}
+                                </Popup>
                             </div>
                             <div className="iconBox">
-                                <button className="moviePageIcon"><FaStar/></button>
+                                <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 
+                                position="center"
+                                open={ratePopupState}
+                                onOpen={() => handleOpen("rate")}
+                                onClose={() => handleClose("rate")}>
+                                {close => (
+                                    <div className="iconPopUp">
+                                        <button className="closePopUp" onClick={close}>
+                                        x
+                                        </button>
+                                        <h3>Please register to rate a movie.</h3>
+                                    </div>
+                                )}
+                                </Popup>
                             </div>
                         </div>
                     </div>

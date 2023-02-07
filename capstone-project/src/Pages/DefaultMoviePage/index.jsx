@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getWatchable } from "../../Platform/Watchables";
 
 import MovieInfoSection from "../../Components/MovieInfoSection";
@@ -9,6 +9,7 @@ import MovieTrailerSection from "../../Components/MovieTrailerSection";
 
 export default function DefaultMoviePage() {
     const {id} = useParams();
+    const navigate = useNavigate();
     const [movieData, setMovieData] = useState();
     useEffect(() => {
         getMovie(id);
@@ -26,6 +27,7 @@ export default function DefaultMoviePage() {
             setMovieData(response.data);
         } catch (e) {
             console.log(e);
+            navigate('/error-page', { replace: true });
         }
     }
 
