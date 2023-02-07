@@ -59,36 +59,39 @@ export default function MovieBackdropSlider({movie}) {
         ]
     };
     return (
-        <div className={`backdropSlider ${castPopUpOpen ? 'popup-open' : ''}`}>
-            <h1>Stunning Backdrops</h1>
-            {movie.backdropPaths.length <= 3 ? (<div className="threeorlessBackdrops">
-              {movie.backdropPaths.map((elem, index) => {
-                    return (
-                        <div key={index}>
-                          <div>
-                            <a href={`https://www.themoviedb.org/t/p/original/${elem}`} target="_blank" rel="noreferrer">
-                            <div className="backdropImage" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem})`}}>
-                            </div>
-                          </a>
-                          </div>
-                        </div>
-                    );
-              })}
-            </div>): 
-                <Slider {...settings}>
-                {movie.backdropPaths.map((elem, index) => {
-                    return (
-                        <div key={index}>
+      <>
+        {movie.backdropPaths.length === 0 ? (<div></div>): 
+          <div className={`backdropSlider ${castPopUpOpen ? 'popup-open' : ''}`}>
+          <h1>Stunning Backdrops</h1>
+          {movie.backdropPaths.length <= 3 ? (<div className="threeorlessBackdrops">
+            {movie.backdropPaths.map((elem, index) => {
+                  return (
+                      <div key={index}>
+                        <div>
                           <a href={`https://www.themoviedb.org/t/p/original/${elem}`} target="_blank" rel="noreferrer">
-                            <div className="backdropImage" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem})`}}>
-                            </div>
-                          </a>
+                          <div className="backdropImage" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem})`}}>
+                          </div>
+                        </a>
                         </div>
-                    );
-                })}
-                </Slider>
-                }
-            
-        </div>
+                      </div>
+                  );
+            })}
+          </div>): 
+          <Slider {...settings}>
+          {movie.backdropPaths.map((elem, index) => {
+              return (
+                  <div key={index}>
+                    <a href={`https://www.themoviedb.org/t/p/original/${elem}`} target="_blank" rel="noreferrer">
+                      <div className="backdropImage" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem})`}}>
+                      </div>
+                    </a>
+                  </div>
+              );
+          })}
+          </Slider>
+          }
+          </div>
+        }
+      </> 
     );
 }

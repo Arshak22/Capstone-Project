@@ -41,50 +41,54 @@ export default function TopCast(id) {
   };
 
   return (
-    <div className="cast">
-      <h1>Top Cast</h1>
-      <div className="topCast">
-        {cast.map((elem, index) => {
-          const memberPic = elem.imagePath ?  `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`: `url(${DefaultUser})`;
-          const date = new Date(elem.birthDate);
-          const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
-          const bio = elem.bio;
-          const sliceIndex = bio.lastIndexOf(".", 500);
-          const shortBio = bio.slice(0, sliceIndex + 1);
-          return (
-            <Popup
-              key={index}
-              trigger={
-                <div className="castMember" key={index} style={{backgroundImage: memberPic}}>
-                  <div className="castMemberInfo">
-                    <h4>{elem.firstName} {elem.lastName}</h4>
-                    <h6>{dateString}</h6>
+      <>
+      {cast.length === 0 ? <div></div>:  
+      <div className="cast">
+        <h1>Top Cast</h1>
+        <div className="topCast">
+          {cast.map((elem, index) => {
+            const memberPic = elem.imagePath ?  `url(https://www.themoviedb.org/t/p/original/${elem.imagePath})`: `url(${DefaultUser})`;
+            const date = new Date(elem.birthDate);
+            const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
+            const bio = elem.bio;
+            const sliceIndex = bio.lastIndexOf(".", 500);
+            const shortBio = bio.slice(0, sliceIndex + 1);
+            return (
+              <Popup
+                key={index}
+                trigger={
+                  <div className="castMember" key={index} style={{backgroundImage: memberPic}}>
+                    <div className="castMemberInfo">
+                      <h4>{elem.firstName} {elem.lastName}</h4>
+                      <h6>{dateString}</h6>
+                    </div>
                   </div>
-                </div>
-              }
-              position="center"
-              open={popupState[index]}
-              onOpen={() => handleOpen(index)}
-              onClose={handleClose}
-            >
-              {close => (
-                <div className="castPopUp" key={index}>
-                  <div className="castPopUpLCol" style={{backgroundImage: memberPic}}>
+                }
+                position="center"
+                open={popupState[index]}
+                onOpen={() => handleOpen(index)}
+                onClose={handleClose}
+              >
+                {close => (
+                  <div className="castPopUp" key={index}>
+                    <div className="castPopUpLCol" style={{backgroundImage: memberPic}}>
+                    </div>
+                    <div className="castPopUpRCol">
+                      <button className="closePopUp" onClick={close}>
+                      x
+                      </button>
+                      <h2>{elem.firstName} {elem.lastName}</h2>
+                      <h4>{dateString}</h4>
+                      <p>{shortBio}</p>
+                    </div>
                   </div>
-                  <div className="castPopUpRCol">
-                    <button className="closePopUp" onClick={close}>
-                    x
-                    </button>
-                    <h2>{elem.firstName} {elem.lastName}</h2>
-                    <h4>{dateString}</h4>
-                    <p>{shortBio}</p>
-                  </div>
-                </div>
-              )}
-            </Popup>
-          )
-        })}
+                )}
+              </Popup>
+            )
+          })}
+        </div>
       </div>
-    </div>
+      }
+      </>
   );
 }
