@@ -133,6 +133,41 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small, iframe {
     bottom: 3px;
 }
 
+.popup-content {
+  z-index: 50 !important;
+  position: fixed !important;
+  top: 20% !important;
+  left: 28% !important;
+  animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+@keyframes anvil {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+    transform: scale(0.96) translateY(10px);
+    opacity: 0;
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  100% {
+    transform: scale(1.2) translateY(0px);
+    opacity: 1;
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
+
+svg.popup-arrow {
+  display: none;
+}
+
+.popup-open {
+  filter: blur(10px) brightness(40%);
+  transition: all 0.5s ease;
+}
+
 .closePopUp {
     position: absolute;
     top: 20px;
@@ -199,10 +234,16 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small, iframe {
       width: 500px;
       height: 150px;
   }
+
   .iconPopUp h3 {
       padding-top: 50px;
       font-size: 15px;
   }
+
+  .popup-content {
+    top: 10% !important;
+    left: 10% !important;
+  } 
 }
 
 @media screen and (max-width: 768px) {
@@ -212,9 +253,24 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small, iframe {
       width: 300px;
       height: 220px;
   }
+
+  .popup-content {
+    position: absolute !important;
+    top: 250% !important;
+    left: 30% !important;
+  }
+
+  .hiddenScroll {
+    overflow-y: scroll !important;
+  }
 }
 
 @media screen and (max-width: 425px) {
+  .popup-content {
+    top: 200% !important;
+    left: 12% !important; 
+  }
+
   .iconPopUp {
     top: -50em;
     right: -15em;

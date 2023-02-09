@@ -98,7 +98,7 @@ export default function MovieInfoSection({movie}) {
     };
 
     return (
-        <div className={`movieInfoSection ${castPopUpOpen ? 'popup-open' : ''}`} style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
+        <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
             <div className="infoCol1">
                 <a href={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} target="_blank" rel="noreferrer">
                     <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>

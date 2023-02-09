@@ -30,14 +30,12 @@ export default function TopCast(id) {
     setPopupState(popupState.map((popup, i) => i === index ? true : false));
     document.body.classList.add('hiddenScroll');
     setCastPopUpOpen(true);
-    document.querySelector(".cast").classList.add('popup-open');
   };
 
   const handleClose = () => {
     setPopupState(Array(cast.length).fill(false));
     document.body.classList.remove('hiddenScroll');
     setCastPopUpOpen(false);
-    document.querySelector(".cast").classList.remove('popup-open');
   };
 
   return (

@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { getWatchable } from "../../Platform/Watchables";
+import { useGlobalContext } from "../../Context/Context";
 
 import MovieInfoSection from "../../Components/MovieInfoSection";
 import TopCast from "../../Components/TopCast";
@@ -11,6 +12,7 @@ export default function DefaultMoviePage() {
     const {id} = useParams();
     const navigate = useNavigate();
     const [movieData, setMovieData] = useState();
+    const {castPopUpOpen} = useGlobalContext();
     useEffect(() => {
         getMovie(id);
     }, [id])
@@ -32,7 +34,7 @@ export default function DefaultMoviePage() {
     }
 
     return (
-        <div className="main">
+        <div className={`main ${castPopUpOpen ? 'popup-open' : ''}`}>
             {movieData ? 
                 <>
                     <MovieInfoSection movie={movieData}/>
