@@ -192,6 +192,42 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small, iframe {
     padding-top: 80px;
 }
 
+@media screen and (max-width: 1024px) {
+  .iconPopUp {
+      margin-left: 50px;
+      margin-top: 100px;
+      width: 500px;
+      height: 150px;
+  }
+  .iconPopUp h3 {
+      padding-top: 50px;
+      font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .iconPopUp {
+      top: -25em;
+      right: -18em;
+      width: 300px;
+      height: 220px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .iconPopUp {
+    top: -50em;
+    right: -15em;
+    width: 250px;
+    height: 300px;
+  }
+
+  .iconPopUp h3 {
+    padding-top: 60px;
+    line-height: 30px;
+  }
+}
+
  @media screen and (max-width: 1260px) and (min-width: 480px) { 
     .btn {
       padding: 8px;
