@@ -1,5 +1,7 @@
 import {React, useEffect} from "react";
 import "./style.css"
+import { useGlobalContext } from "../../Context/Context";
+
 import FanPageMainPicture from "../../Components/FanPageMainPicture";
 import MagicSection from "../../Components/MagicSection";
 import GangsterSection from "../../Components/GangsterSection";
@@ -11,7 +13,12 @@ import { RiDoubleQuotesL } from "react-icons/ri";
 import { RiDoubleQuotesR } from "react-icons/ri";
 
 export default function FanPage() {
+    const {setIsLoading} = useGlobalContext();
+
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1500)
         document.title = "Movie Mavericks: Fan Page";
     })
     return (

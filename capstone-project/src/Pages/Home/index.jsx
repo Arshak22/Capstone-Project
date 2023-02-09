@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from "react";
 import { getLatestWatchables, getUpcomingWatchables, getPopularWatchables } from "../../Platform/Watchables";
+import { useGlobalContext } from "../../Context/Context";
 import MainPic from "../../assets/images/BackgroundImages/HomeMain2.jpg";
 import MainPicture from "../../Components/MainPicture";
 import SliderHeader from "../../Components/SliderHeader";
@@ -9,6 +10,7 @@ import FanPageSection from "../../Components/FanPageSection";
 import AboutUsSection from "../../Components/AboutUsSection";
 
 export default function Home() {
+    const {setIsLoading} = useGlobalContext();
     const [latestMovies, setLatestMovie] = useState([]);
     const [upComingMovies, setUpComingMovies] = useState([]);
     const [popularMovies, setPopularMovies] = useState([]);
@@ -42,6 +44,9 @@ export default function Home() {
         try {
             const response = await getPopularWatchables(0, 10);
             setPopularMovies(response.data.content);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 2000)
         } catch (e) {
             console.log(e);
         }

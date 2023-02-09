@@ -1,16 +1,22 @@
 import React from "react";
 import "./style.css";
 import { useState, useEffect } from "react";
+import { useGlobalContext } from "../../Context/Context";
 import { useNavigate } from 'react-router-dom';
 import MainPic from "../../assets/images/BackgroundImages/ErrorPageMain.jpg";
 import MainPicture from "../../Components/MainPicture";
 import { ROUTE_NAMES } from "../../Routes";
 
 export default function ErrorPage() {
+  const {setIsLoading} = useGlobalContext();
+
     const [hasClass, setHasClass] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000)
         const timeout1 = setTimeout(() => {
           setHasClass(true);
         }, 5000);

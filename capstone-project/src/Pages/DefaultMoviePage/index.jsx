@@ -10,12 +10,13 @@ import MovieTrailerSection from "../../Components/MovieTrailerSection";
 
 export default function DefaultMoviePage() {
     const {id} = useParams();
+    const {setIsLoading} = useGlobalContext();
     const navigate = useNavigate();
     const [movieData, setMovieData] = useState();
     const {castPopUpOpen} = useGlobalContext();
     useEffect(() => {
         getMovie(id);
-    }, [id])
+    }, [])
 
     useEffect(() => {
         if(movieData) {
@@ -27,6 +28,9 @@ export default function DefaultMoviePage() {
         try {
             const response = await getWatchable(movieID);
             setMovieData(response.data);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 2000)
         } catch (e) {
             console.log(e);
             navigate('/error-page', { replace: true });

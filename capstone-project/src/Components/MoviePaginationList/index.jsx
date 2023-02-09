@@ -1,5 +1,7 @@
 import {React, useEffect, useState} from "react";
 import "./style.css"
+import { useGlobalContext } from "../../Context/Context";
+
 import ReactPaginate from "react-paginate";
 import { getAllMovies, getAllSeries } from "../../Platform/Watchables";
 
@@ -11,6 +13,7 @@ import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 export default function MoviePaginationList(type) {
+  const {setIsLoading} = useGlobalContext();
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -36,6 +39,9 @@ export default function MoviePaginationList(type) {
         const result = await getAllMovies(pageNumber, pageSize);
         setTotal(result.data.totalElements);
         setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
     } catch (e) {
         console.log(e);
     }
@@ -46,6 +52,9 @@ export default function MoviePaginationList(type) {
         const result = await getAllSeries(pageNumber, pageSize);
         setTotal(result.data.totalElements);
         setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
     } catch (e) {
         console.log(e);
     }

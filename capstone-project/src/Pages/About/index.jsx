@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useGlobalContext } from "../../Context/Context";
 import MainPic from "../../assets/images/BackgroundImages/About.jpg";
 import MainPicture from "../../Components/MainPicture";
 import TeamMembers from "../../Components/TeamMembers";
@@ -9,7 +10,11 @@ import Map from "../../Components/Map";
 import SkillsSection from "../../Components/SkillsSection";
 
 export default function About() {
+    const {setIsLoading} = useGlobalContext();
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000)
         document.title = "Movie Mavericks: About Us";
     })
 

@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
+import { useGlobalContext } from "../../Context/Context";
+
 
 export default function Profile() {
+    const {setIsLoading} = useGlobalContext();
     const [active, setActive] = useState("Profile");
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000)
+    }, [])
 
     const handleClick = (name) => {
         setActive(name);

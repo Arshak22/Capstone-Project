@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-
+import { useGlobalContext } from "../../Context/Context";
 import SignIn from "../../Components/SignIn";
 import SignUp from "../../Components/SignUp";
 import User from "../../assets/images/Icons/user.png";
 
 export default function Login() {
+    const {setIsLoading} = useGlobalContext();
+    const [active, setActive] = useState(false);
     const [flag, setFlag] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+            setActive(true);
+        }, 1000)
+    }, [])
 
     const handleSignInorSignUp = (e) => {
         (e.target.innerHTML === "Sign In") ? setFlag(true) : setFlag(false);
     }
 
-
     return (
-        <div className="loginPage">
+    <>
+    {active ? <div className="loginPage">
             <div className="loginBox">
                 <div className="loginAvatar">
                     <img src={User} alt="userPic" className="user2"/>
@@ -28,6 +37,7 @@ export default function Login() {
             <div className="loginBtn">
                 <button>{flag ? "Sign In": "Sign Up"}</button>
             </div>
-        </div>
+        </div>: null}
+    </>
     );
 }

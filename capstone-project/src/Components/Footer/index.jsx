@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { ROUTE_NAMES } from "../../Routes";
 
 export default function Footer() {
+    const [show, setShow] = useState(false);
     const [currentYear] = useState(new Date().getFullYear());
     const [showButton, setShowButton] = useState("");
 
     useEffect(() => {
+        setShow(true);
         const handleScrollButtonVisibility = () => {
             window.pageYOffset > 300 ? setShowButton("show"): setShowButton("");
         };
@@ -26,6 +28,8 @@ export default function Footer() {
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
     return (
+    <>
+      {!show ? null: 
         <div className="footer">
             <div className="top">
                 <div> 
@@ -73,5 +77,7 @@ export default function Footer() {
             </div>
             <button className={`moveToTopBtn ${showButton ? "show": ""}`} onClick={handleScrollToTop}><FaAngleDoubleUp/></button>
         </div>
+    }
+    </>
     );
 }

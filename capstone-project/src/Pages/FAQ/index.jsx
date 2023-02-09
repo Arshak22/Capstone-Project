@@ -1,12 +1,17 @@
 import {React, useEffect, useState} from "react";
+import { useGlobalContext } from "../../Context/Context";
 import MainPic from "../../assets/images/BackgroundImages/FaqMain.jpg";
 import FAQSection from "../../Components/FAQSection";
 import MainPicture from "../../Components/MainPicture";
 
 export default function FAQ() {
+    const {setIsLoading} = useGlobalContext();
     useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000)
         document.title = "Movie Mavericks: FAQ";
-    })
+    }, [])
     const [faqs, setFaqs] = useState([
         {
             question: "What types of movies are featured on the website?",

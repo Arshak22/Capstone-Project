@@ -3,6 +3,7 @@ import { React, createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(
     {
         email: null,
@@ -29,7 +30,9 @@ const AppProvider = ({ children }) => {
         newUser,
         setNewUser,
         castPopUpOpen,
-        setCastPopUpOpen
+        setCastPopUpOpen,
+        isLoading,
+        setIsLoading
       }}
     >
       {children}

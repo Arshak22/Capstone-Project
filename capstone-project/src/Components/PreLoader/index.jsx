@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from 'react-lottie';
-import * as MovieLoader1 from "../../assets/lotties/Movie1.json";
-import * as MovieLoader2 from "../../assets/lotties/Movie2.json";
+import * as MovieLoader from "../../assets/lotties/Movie2.json";
 
 export default function PreLoader() {  
+
+    useEffect(() => {
+      document.body.classList.add('hiddenScroll');
+    }, [])
 
     const defaultOptions = {
         loop: true,
         autoplay: true, 
-        animationData: MovieLoader2,
+        animationData: MovieLoader,
         rendererSettings: {
           preserveAspectRatio: 'xMidYMid slice'
         }

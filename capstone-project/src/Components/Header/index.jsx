@@ -15,6 +15,7 @@ export default function Header() {
     const prevScrollPos = useRef(0);
   
     useEffect(() => {
+        document.body.classList.remove('hiddenScroll');
         function handleScroll() {
           const currentScrollPos = window.pageYOffset;
           if (currentScrollPos > prevScrollPos.current) {
