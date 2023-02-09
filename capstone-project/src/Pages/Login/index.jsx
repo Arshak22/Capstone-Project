@@ -11,6 +11,7 @@ export default function Login() {
     const [flag, setFlag] = useState(true);
 
     useEffect(() => {
+        document.title = "Movie Mavericks: Register";
         setTimeout(() => {
             setIsLoading(false);
             setActive(true);

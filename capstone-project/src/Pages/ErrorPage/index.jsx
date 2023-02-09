@@ -14,6 +14,7 @@ export default function ErrorPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        document.title = "Movie Mavericks: Error Page";
         setTimeout(() => {
             setIsLoading(false);
         }, 1000)

@@ -8,6 +8,7 @@ export default function Profile() {
     const [active, setActive] = useState("Profile");
 
     useEffect(() => {
+        document.title = "Movie Mavericks: Profile Page";
         setTimeout(() => {
             setIsLoading(false);
         }, 1000)
