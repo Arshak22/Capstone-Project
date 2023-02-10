@@ -8,7 +8,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
-import { getAllMovies, getAllSeries } from "../../Platform/Watchables";
+import { getAllMovies, getAllSeries, getLatestWatchables, getPopularWatchables } from "../../Platform/Watchables";
 
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
@@ -33,6 +33,10 @@ export default function MoviePaginationList() {
       getMovieList(itemOffset, itemsPerPage);
     } else if(type === "show") {
       getTVShowsList(itemOffset, itemsPerPage);
+    } else if(type === "latest") {
+      getLatestList(itemOffset, itemsPerPage);
+    } else if(type === "popular") {
+      getPopularList(itemOffset, itemsPerPage);
     }
     setPageCount(Math.ceil(total / itemsPerPage));
   }, [itemOffset, total]);
@@ -45,6 +49,38 @@ export default function MoviePaginationList() {
   const getMovieList = async (pageNumber, pageSize) => {
     try {
         const result = await getAllMovies(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const getLatestList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getLatestWatchables(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const getPopularList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getPopularWatchables(pageNumber, pageSize);
         setTotal(result.data.totalElements);
         setCurrentItems(result.data.content);
         setTimeout(() => {

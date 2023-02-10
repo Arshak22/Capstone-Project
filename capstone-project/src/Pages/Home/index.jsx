@@ -55,10 +55,10 @@ export default function Home() {
     return (
         <div className="main">
             <MainPicture img={MainPic} headline="Welcome to the world of cinema"/>
-            <SliderHeader header="Latest Movies" link="/movies" btnName="View All"/>
+            <SliderHeader header="Latest Movies" link="/movies/latest" btnName="View All"/>
             <HorizontalSlider movies={latestMovies}/>
             <VerticalSliderSection movies={upComingMovies} />
-            <SliderHeader header="Popular Movies" link="/movies" btnName="View All"/>
+            <SliderHeader header="Popular Movies" link="/movies/popular" btnName="View All"/>
             <HorizontalSlider movies={popularMovies}/>
             <AboutUsSection/>
             <FanPageSection/>

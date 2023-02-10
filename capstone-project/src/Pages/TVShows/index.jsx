@@ -10,7 +10,7 @@ export default function TVShows() {
     return (
         <div className="main">
             <MainPicture img={MainPic} headline="Discover your new favorite series"/>
-            <MoviePaginationList type="SERIES"/>
+            <MoviePaginationList/>
         </div>
     );
 }
