@@ -92,6 +92,11 @@
     border-radius: 0px !important;
 }
 
+.lazy-load-image-background.blur.lazy-load-image-loaded {
+    height: 100%;
+    width: 100%;
+}
+
 .paginationMovieBlockSocialInfo, .paginationMovieBlockPlayer {
     position: absolute;
     top: 0;
