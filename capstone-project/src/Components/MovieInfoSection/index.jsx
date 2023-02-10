@@ -13,10 +13,12 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
 
 export default function MovieInfoSection({movie}) {
-    const {castPopUpOpen, setCastPopUpOpen} = useGlobalContext();
+    const {setCastPopUpOpen} = useGlobalContext();
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
     const [date, setDate] = useState("");
+    const sliceIndex = movie.description.lastIndexOf(".", 800);
+    const [description] = useState(movie.description.slice(0, sliceIndex + 1));
     const [favouritePopupState, setFavouritePopupState] = useState(false);
     const [watchlistPopupState, setWatchlistPopupState] = useState(false);
     const [ratePopupState, setRatePopupState] = useState(false);
@@ -224,7 +226,7 @@ export default function MovieInfoSection({movie}) {
                         </div>
                     </div>
                     <h2>Overview</h2>
-                    <p>{movie.description}</p>
+                    <p>{description}</p>
                 </div>
             </div>
         </div>
