@@ -115,11 +115,12 @@ export default function MovieInfoSection({movie}) {
                     <h1>{movie.name}</h1>
                     {duration && movie.duration !== 0 ? <h4>Duration:{duration}</h4>: null}
                     <h4>Realease Date: {date}</h4>
+                    {movie.genres.length !== 0 ? 
                     <h4>Genres: {movie.genres.map((elem, index) => {
                         return (
                                 <span key={index} className="genres">{elem.replace("_", " ").split(" ").map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(" ")}{index < movie.genres.length - 1 ? ', ' : ''}</span>
                         )
-                    })}</h4>
+                    })}</h4>: null}
                     <div className="moviePageIcons">
                         <div className="ratingBox">
                             <div className="rating" style={{background: `conic-gradient(rgb(299 9 20) ${rating}%, transparent 0 100%)`}}>
