@@ -1,5 +1,7 @@
 import {React, useEffect, useState} from "react";
 import "./style.css"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
@@ -18,9 +20,11 @@ export default function MoviePaginationList(type) {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [total, setTotal] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const itemsPerPage = 30;
 
   useEffect(() => {
+    setLoaded(false);
     if(type.type === "MOVIE") {
       getMovieList(itemOffset, itemsPerPage);
     } else if(type.type === "SERIES") {
@@ -42,6 +46,9 @@ export default function MoviePaginationList(type) {
         setTimeout(() => {
           setIsLoading(false);
         }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
     } catch (e) {
         console.log(e);
     }
@@ -55,6 +62,9 @@ export default function MoviePaginationList(type) {
         setTimeout(() => {
           setIsLoading(false);
         }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
     } catch (e) {
         console.log(e);
     }
@@ -69,7 +79,7 @@ export default function MoviePaginationList(type) {
                 return (
                   <div className="paginationBox" key={index}>
                     <div className="paginationMovieBlock">
-                            {elem.posterPath ? <img src={`https://www.themoviedb.org/t/p/original${elem.posterPath}`} alt={elem.posterPath} className="paginationMovie" />: null}
+                      {!loaded ? <Skeleton variant="rectangular" duration={2} animation="wave" className="paginationMovieSkeleton"/>: elem.posterPath ? <img src={`https://www.themoviedb.org/t/p/original${elem.posterPath}`} alt={elem.posterPath} className="paginationMovie" />: null}
                             <div className="paginationMovieBlockPlayer">
                               <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">
