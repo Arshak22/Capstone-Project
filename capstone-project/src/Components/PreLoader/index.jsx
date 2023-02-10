@@ -5,6 +5,7 @@ import * as MovieLoader from "../../assets/lotties/Movie2.json";
 export default function PreLoader() {  
 
     useEffect(() => {
+      window.scrollTo(0, 0);
       document.body.classList.add('hiddenScroll');
     }, [])
 
