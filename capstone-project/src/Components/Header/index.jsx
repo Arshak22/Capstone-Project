@@ -52,13 +52,13 @@ export default function Header() {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={ROUTE_NAMES.MOVIES} className="navItem" end>
+                            <NavLink to={ROUTE_NAMES.MOVIES + "film"} className="navItem" end>
                                 <span data-text="MOVIES">
                                 </span>Movies
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={ROUTE_NAMES.TV_SHOWS} className="navItem" end>
+                            <NavLink to={ROUTE_NAMES.TV_SHOWS + "show"} className="navItem" end>
                                 <span data-text="TV SHOWS">
                                 </span>TV Shows
                             </NavLink>

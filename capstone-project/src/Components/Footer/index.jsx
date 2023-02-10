@@ -39,10 +39,10 @@ export default function Footer() {
                             <NavLink to={ROUTE_NAMES.HOME} end>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={ROUTE_NAMES.MOVIES} end>Movies</NavLink>
+                            <NavLink to={ROUTE_NAMES.MOVIES + "film"} end>Movies</NavLink>
                         </li>
                         <li>
-                            <NavLink to={ROUTE_NAMES.TV_SHOWS} end>TV Shows</NavLink>
+                            <NavLink to={ROUTE_NAMES.TV_SHOWS + "show"} end>TV Shows</NavLink>
                         </li>
                         <li>
                             <NavLink to={ROUTE_NAMES.FAN_PAGE} end>Fan Page</NavLink>

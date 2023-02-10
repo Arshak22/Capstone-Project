@@ -20,8 +20,8 @@ import { ROUTE_NAMES } from "./Routes";
       <Routes>
           <Route element={<Layout />}>
             <Route path={ROUTE_NAMES.HOME} element={<Home />} />
-            <Route path={ROUTE_NAMES.MOVIES} element={<Movies />} />
-            <Route path={ROUTE_NAMES.TV_SHOWS} element={<TVShows />} />
+            <Route path={ROUTE_NAMES.MOVIES + ":type"} element={<Movies />} />
+            <Route path={ROUTE_NAMES.TV_SHOWS + ":type"} element={<TVShows />} />
             <Route path={ROUTE_NAMES.FAN_PAGE} element={<FanPage />} />
             <Route path={ROUTE_NAMES.ABOUT_US} element={<About />} />
             <Route path={ROUTE_NAMES.FAQ} element={<FAQ />} />

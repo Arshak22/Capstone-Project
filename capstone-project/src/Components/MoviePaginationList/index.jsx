@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from "react";
 import "./style.css"
+import { useParams, useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -16,7 +17,8 @@ import { ROUTE_NAMES } from "../../Routes";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
-export default function MoviePaginationList(type) {
+export default function MoviePaginationList() {
+  const {type} = useParams();
   const {setIsLoading} = useGlobalContext();
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -27,9 +29,9 @@ export default function MoviePaginationList(type) {
 
   useEffect(() => {
     setLoaded(false);
-    if(type.type === "MOVIE") {
+    if(type === "film") {
       getMovieList(itemOffset, itemsPerPage);
-    } else if(type.type === "SERIES") {
+    } else if(type === "show") {
       getTVShowsList(itemOffset, itemsPerPage);
     }
     setPageCount(Math.ceil(total / itemsPerPage));

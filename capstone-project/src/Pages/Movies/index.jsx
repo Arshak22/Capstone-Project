@@ -11,7 +11,7 @@ export default function Movies() {
     return (
         <div className="main">
             <MainPicture img={MainPic} headline="Enter a world of endless entertainment"/>
-            <MoviePaginationList type="MOVIE"/>
+            <MoviePaginationList/>
         </div>
     );
 }
