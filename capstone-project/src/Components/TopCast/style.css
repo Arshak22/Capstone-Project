@@ -34,7 +34,7 @@
     height: 350px;
     border: 5px solid var(--main-red);
     border-radius: 5px;
-    transition: background 1.5s ease;
+    transition: background 1.5s ease, transform 0.8s ease;
 }
 
 .castMember::before {
@@ -57,6 +57,7 @@
 .castMember:hover {
     background-size: 500px;
     background-position: left center;
+    transform: scale(0.9);
 }
 
 .castMember:hover::before {

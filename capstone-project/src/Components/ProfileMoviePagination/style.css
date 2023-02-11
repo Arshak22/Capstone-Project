@@ -9,12 +9,24 @@
 .listItem {
     position: relative;
     border: 5px solid var(--main-red);
-    border-radius: 25px;
-    transition: transform 0.5s, border 0.5s;
+    border-radius: 15px;
+    transition: transform 0.5s ease;
     width: 400px;
     height: 300px;
     margin: 10px;
     overflow: hidden;
+}
+
+.listItem:hover {
+    transform: scale(0.95);
+}
+
+.listItem:hover .listItemInfo::before { 
+    filter: blur(3px) brightness(50%) contrast(110%);
+}
+
+.listItem:hover img {
+    filter: blur(10px) brightness(80%) contrast(100%);
 }
 
 .listItemInfo {
@@ -24,7 +36,8 @@
     width: 90%;
     height: 100px;
     margin: 20px;
-    border-radius: 20px;
+    border: 3px solid var(--main-red);
+    border-radius: 10px;
     bottom: 0;
     padding: 15px;
     padding-left: 20px;
@@ -47,12 +60,14 @@
     background-size: calc(110%);
     filter: blur(5px) brightness(40%) contrast(100%);
     border-radius: inherit;
+    transition: all 0.5s ease;
     z-index: 1;
 }
 
 .listItem img {
     height: auto;
     max-width: 100%;
+    transition: all 0.5s ease;
 }
 
 .listItemName {
@@ -63,10 +78,12 @@
 .listItemRating {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 20%;
     height: 80%;
     z-index: 5;
     background-color: var(--main-red-hover);
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 10px;
+    margin-left: 30px;
 }
