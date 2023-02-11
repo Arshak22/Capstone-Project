@@ -129,7 +129,7 @@ export default function MoviePaginationList() {
                               </NavLink>
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
-                              <div className="ratingSmall" style={{background: `conic-gradient(rgb(299 9 20) ${Math.floor(elem.rating * 10)}%, transparent 0 100%)`}}>
+                              <div className="ratingSmall" style={{backgroundImage: `conic-gradient(rgb(299 9 20) ${Math.floor(elem.rating * 10)}%, transparent 0 100%)`}}>
                                 <span>{elem.rating ? Math.floor(elem.rating * 10) + '%' : 'NR'}</span>
                               </div>
                             </div>

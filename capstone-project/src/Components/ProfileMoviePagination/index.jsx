@@ -68,7 +68,7 @@ export default function ProfileMoviePagination(props) {
                                 <h5>{dateString}</h5>
                             </div>
                             <div className="listItemRating">
-                                <p>{elem.rating}</p>
+                                <p>{Math.floor(elem.rating * 10) / 10}</p>
                             </div>
                         </div>
                     </div>

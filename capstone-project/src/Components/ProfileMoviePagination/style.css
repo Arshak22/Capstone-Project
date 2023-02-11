@@ -20,12 +20,15 @@
 .listItemInfo {
     position: absolute;
     display: flex;
+    align-items: center;
     width: 90%;
     height: 100px;
     margin: 20px;
     border-radius: 20px;
     bottom: 0;
-    padding: 6px;
+    padding: 15px;
+    padding-left: 20px;
+    color: #ffffff;
 }
 
 .listItemInfo::before {
@@ -38,13 +41,11 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: inherit;
+    background-image: inherit;
     background-position: bottom;
     background-repeat: no-repeat;
-    background-size: cover;
-    /* background-attachment: fixed; */
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    filter: blur(5px);
+    background-size: calc(110%);
+    filter: blur(5px) brightness(40%) contrast(100%);
     border-radius: inherit;
     z-index: 1;
 }
@@ -56,8 +57,16 @@
 
 .listItemName {
     width: 70%;
+    z-index: 5;
 }
 
 .listItemRating {
-    width: 30%;
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: 80%;
+    z-index: 5;
+    background-color: var(--main-red-hover);
+    border-radius: 20px;
+    padding: 10px;
 }
