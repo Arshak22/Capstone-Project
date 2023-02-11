@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
 
+import ProfileMoviePagination from "../../Components/ProfileMoviePagination";
+
 
 export default function Profile() {
     const {setIsLoading} = useGlobalContext();
@@ -37,6 +39,7 @@ export default function Profile() {
                         </div>
                     </div>
                 <div className="profileInfoSection">
+                    {active === "Watchlist" ? <ProfileMoviePagination page="Watchlist"/> : null}
                 </div>
             </div>
         </div>
