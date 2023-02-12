@@ -12,7 +12,7 @@
     border-radius: 15px;
     transition: transform 0.5s ease;
     width: 400px;
-    height: 300px;
+    height: 270px;
     margin: 10px;
     overflow: hidden;
 }
@@ -26,7 +26,7 @@
 }
 
 .listItem:hover img {
-    filter: blur(10px) brightness(80%) contrast(100%);
+    filter: brightness(40%) contrast(100%);
 }
 
 .listItemInfo {
