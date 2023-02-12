@@ -1,8 +1,7 @@
 import {React, useEffect, useState} from "react";
 import "./style.css";
-import { getAllMovies } from "../../Platform/Watchables";
+import { getAllMovies, getAllSeries } from "../../Platform/Watchables";
 
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -15,44 +14,66 @@ import { ROUTE_NAMES } from "../../Routes";
 //icons
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { FaHeart } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+
+import Star from "../../assets/images/Icons/star.png"
 
 export default function ProfileMoviePagination(props) {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [loaded, setLoaded] = useState(false);
+    const [itemOffsetWatchlist, setItemOffsetWatchlist] = useState(0);
+    const [itemOffsetFavorite, setItemOffsetFavorite] = useState(0);
+    const [totalWatchlist, setTotalWatchlist] = useState(0);
+    const [totalFavorite, setTotalFavorite] = useState(0);
     const itemsPerPage = 9;
 
     useEffect(() => {
-        setLoaded(false);
         if(props.page === "Watchlist") {
-            getMovieList(itemOffset, itemsPerPage);
+            // setCurrentItems([]);
+            getWatchlist(itemOffsetWatchlist, itemsPerPage);
+            setPageCount(Math.ceil(totalWatchlist / itemsPerPage));
         } else if(props.page === "Favourites") {
-            // getMovieList(itemOffset, itemsPerPage);
+            setCurrentItems([]);
+            // getFavourites(itemOffsetFavorite, itemsPerPage);
+            // setPageCount(Math.ceil(totalFavorite / itemsPerPage));
         }
-        setPageCount(Math.ceil(total / itemsPerPage));
-    }, [itemOffset, total]);
+    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props]);
 
-    const handlePageClick = (event) => {
+    const handlePageClickWatchlist = (event) => {
         const newOffset = event.selected;
-        setItemOffset(newOffset);
+        setItemOffsetWatchlist(newOffset);
     };
 
-    const getMovieList = async (pageNumber, pageSize) => {
+    const handlePageClickFavorite = (event) => {
+        const newOffset = event.selected;
+        setItemOffsetFavorite(newOffset);
+    };
+
+    const getWatchlist = async (pageNumber, pageSize) => {
         try {
             const result = await getAllMovies(pageNumber, pageSize);
-            setTotal(result.data.totalElements);
+            setTotalWatchlist(result.data.totalElements);
             setCurrentItems(result.data.content);
-            setTimeout(() => {
-              setLoaded(true);
-            }, 1500)
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const getFavourites = async (pageNumber, pageSize) => {
+        try {
+            const result = await getAllSeries(pageNumber, pageSize);
+            setTotalFavorite(result.data.totalElements);
+            setCurrentItems(result.data.content);
         } catch (e) {
             console.log(e);
         }
     };
 
     return (
+    <>
+    {currentItems.length === 0 ? <h1 className="emptyListTitle">Your list is empty</h1>:
     <>
         <div className="ProfilePaginationList">
             {currentItems.map((elem, index) => {
@@ -61,23 +82,32 @@ export default function ProfileMoviePagination(props) {
                 const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                 return (
                     <div className="listItem" key={index}>
-                        {elem.mainBackdropPath ? <LazyLoadImage src={`https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath}`} alt={elem.mainBackdropPath} effect="blur" className="paginationMovie"/>: null}
+                        <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
+                        {elem.mainBackdropPath ? <LazyLoadImage src={`https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath}`} alt={elem.mainBackdropPath} effect="blur" className="paginationMovie"/>: null}</NavLink>
+                        <div className="listItemIcons">
+                            {props.page === "Watchlist" ? <FaHeart className="listItemIcon"/>: <FaPlus className="listItemIcon"/>}
+                            <FaTrashAlt className="listItemIcon"/>
+                        </div>
+                        <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
                         <div className="listItemInfo" style={{background: `url(https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath}`}}>
                             <div className="listItemName">
                                 <h3>{shortName}</h3>
                                 <h5>{dateString}</h5>
                             </div>
                             <div className="listItemRating">
+                                <img src={Star} alt="star"/>
                                 <p>{Math.floor(elem.rating * 10) / 10}</p>
                             </div>
                         </div>
+                        </NavLink>
                     </div>
                 );
             })}
         </div>
+        {props.page === "Watchlist" ?
         <ReactPaginate
         nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
-        onPageChange={handlePageClick}
+        onPageChange={handlePageClickWatchlist}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={pageCount}
@@ -92,9 +122,29 @@ export default function ProfileMoviePagination(props) {
         breakClassName="page-item"
         breakLinkClassName="page-link"
         containerClassName="pagination"
-        activeClassName="active"
+        renderOnZeroPageCount={null}
+      />:
+      <ReactPaginate
+        nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
+        onPageChange={handlePageClickFavorite}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={pageCount}
+        previousLabel={<IoIosArrowDropleftCircle className="paginationArrows"/>}
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
         renderOnZeroPageCount={null}
       />
+    }
+    </>}
     </>
     );
 }

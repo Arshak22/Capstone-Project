@@ -1,3 +1,13 @@
+.emptyListTitle {
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 45px;
+    letter-spacing: 5px;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
 .ProfilePaginationList {
     margin: 50px auto;
     width: 100%;
@@ -29,19 +39,53 @@
     filter: brightness(40%) contrast(100%);
 }
 
+.listItem:hover .listItemIcons {
+    opacity: 1;
+}
+
+.listItemIcons {
+    opacity: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: grid;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.listItemIcon {
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    margin-bottom: 15px;
+    background-color: var(--main-red-hover);
+    transition: all 0.5s ease;
+}
+
+.listItemIcon:hover {
+    background-color: var(--main-red);
+    transform: scale(0.9);
+}
+
 .listItemInfo {
+    pointer-events: all;
     position: absolute;
     display: flex;
     align-items: center;
     width: 90%;
     height: 100px;
     margin: 20px;
-    border: 3px solid var(--main-red);
+    border: 5px solid var(--main-red);
     border-radius: 10px;
     bottom: 0;
     padding: 15px;
     padding-left: 20px;
     color: #ffffff;
+    transition: all 0.5s ease;
+    z-index: 10;
 }
 
 .listItemInfo::before {
@@ -64,6 +108,10 @@
     z-index: 1;
 }
 
+.listItemInfo:hover {
+    transform: scale(0.9);
+}
+
 .listItem img {
     height: auto;
     max-width: 100%;
@@ -75,15 +123,43 @@
     z-index: 5;
 }
 
+.listItemName h3 {
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.listItemName h5 {
+    font-size: 13px;
+}
+
 .listItemRating {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20%;
+    width: 22%;
     height: 80%;
     z-index: 5;
+    border: 3px solid #ffffff;
     background-color: var(--main-red-hover);
     border-radius: 8px;
     padding: 10px;
     margin-left: 30px;
+}
+
+.listItemRating p {
+    font-size: 15px;
+}
+
+.listItemRating img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    filter: brightness(100%) !important;
+}
+
+@media screen and (max-width: 1050px) {
+    .listItem {
+        width: 350px;
+    }
 }

@@ -24,9 +24,6 @@ export default function Header() {
             setHideNav(false);
           }
           prevScrollPos.current = currentScrollPos;
-          setTimeout(() => {
-            
-          }, 500)
         }
         window.addEventListener('scroll', handleScroll);
         return () => {
