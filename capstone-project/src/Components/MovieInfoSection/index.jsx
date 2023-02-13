@@ -4,6 +4,8 @@ import Tilt from 'react-parallax-tilt';
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 
+import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
+
 import { FaShareAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
@@ -17,6 +19,7 @@ export default function MovieInfoSection({movie}) {
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
     const [date, setDate] = useState("");
+    const [backdrop, setBackdrop] = useState(DefaultBackdrop);
     const sliceIndex = movie.description.lastIndexOf(".", 800);
     const [description] = useState(movie.description.slice(0, sliceIndex + 1));
     const [favouritePopupState, setFavouritePopupState] = useState(false);
@@ -29,6 +32,11 @@ export default function MovieInfoSection({movie}) {
     useEffect(() => {
         convertToHoursAndMinutes(movie.duration);
         formatDate(movie.releaseDate);
+        if(movie.mainBackdrop) {
+            setBackdrop(`https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath}`);
+        } else if(movie.backdropPaths[0]) {
+            setBackdrop(`https://www.themoviedb.org/t/p/original/${movie.backdropPaths[0]}`)
+        }
         let intervalId;
         if (rating < Math.floor(movie.rating * 10)) {
             intervalId = setInterval(() => {
@@ -100,7 +108,7 @@ export default function MovieInfoSection({movie}) {
     };
 
     return (
-        <div className="movieInfoSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movie.mainBackdropPath})`}}>
+        <div className="movieInfoSection" style={{backgroundImage: `url(${backdrop})`}}>
             <div className="infoCol1">
                 <a href={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} target="_blank" rel="noreferrer">
                     <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>

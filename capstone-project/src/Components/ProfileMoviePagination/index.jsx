@@ -18,6 +18,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 
+import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 import Star from "../../assets/images/Icons/star.png"
 
 export default function ProfileMoviePagination(props) {
@@ -80,16 +81,23 @@ export default function ProfileMoviePagination(props) {
                 const shortName = elem.name.length > 25 ? elem.name.slice(0, elem.name.lastIndexOf(" ", 25)) + "..." : elem.name;
                 const date = new Date(elem.releaseDate);
                 const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
+                let backdrop = DefaultBackdrop;
+                if (elem.mainBackdropPath) {
+                    backdrop = `https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath}`;
+                } else if(elem.backdropPaths[0]) {
+                    backdrop = `https://www.themoviedb.org/t/p/original/${elem.backdropPaths[0]}`;
+                }
                 return (
                     <div className="listItem" key={index}>
                         <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
-                        {elem.mainBackdropPath ? <LazyLoadImage src={`https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath}`} alt={elem.mainBackdropPath} effect="blur" className="paginationMovie"/>: null}</NavLink>
+                            <LazyLoadImage src={backdrop} alt={backdrop} effect="blur" className="paginationMovie"/>
+                        </NavLink>
                         <div className="listItemIcons">
                             {props.page === "Watchlist" ? <FaHeart className="listItemIcon"/>: <FaPlus className="listItemIcon"/>}
                             <FaTrashAlt className="listItemIcon"/>
                         </div>
                         <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
-                        <div className="listItemInfo" style={{background: `url(https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath}`}}>
+                        <div className="listItemInfo" style={{background: `url(${backdrop})`}}>
                             <div className="listItemName">
                                 <h3>{shortName}</h3>
                                 <h5>{dateString}</h5>
