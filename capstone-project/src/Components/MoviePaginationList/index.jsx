@@ -17,6 +17,8 @@ import { ROUTE_NAMES } from "../../Routes";
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
+import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
+
 export default function MoviePaginationList() {
   const {type} = useParams();
   const {setIsLoading} = useGlobalContext();
@@ -119,7 +121,7 @@ export default function MoviePaginationList() {
                 return (
                   <div className="paginationBox" key={index}>
                     <div className="paginationMovieBlock">
-                      {!loaded ? <Skeleton variant="rectangular" duration={2} animation="wave" className="paginationMovieSkeleton"/>: elem.posterPath ? <LazyLoadImage src={`https://www.themoviedb.org/t/p/original${elem.posterPath}`} alt={elem.posterPath} effect="blur" className="paginationMovie"/>: null}
+                      {!loaded ? <Skeleton variant="rectangular" duration={2} animation="wave" className="paginationMovieSkeleton"/>: elem.posterPath ? <LazyLoadImage src={`https://www.themoviedb.org/t/p/original${elem.posterPath}`} alt={elem.posterPath} effect="blur" className="paginationMovie"/>: <LazyLoadImage src={DefaultPoster} alt={DefaultPoster} effect="blur" className="paginationMovie"/>}
                             <div className="paginationMovieBlockPlayer">
                               <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">

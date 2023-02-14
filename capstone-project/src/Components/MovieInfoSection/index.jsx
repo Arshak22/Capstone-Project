@@ -4,6 +4,7 @@ import Tilt from 'react-parallax-tilt';
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 
+import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
 import { FaShareAlt } from "react-icons/fa";
@@ -113,7 +114,7 @@ export default function MovieInfoSection({movie}) {
                 <a href={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} target="_blank" rel="noreferrer">
                     <Tilt glareEnable={true} tiltReverse={true} scale={0.9} transitionSpeed={5000} tiltAngleXInitial={20} tiltAngleYInitial={300} glareColor={"rgba(255, 255, 255, 0.2)"} glarePosition={"bottom"}>
                         <div>
-                            <img src={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} alt="moviePoster" id="moviePoster"/>
+                            {movie.posterPath ? <img src={`https://www.themoviedb.org/t/p/original${movie.posterPath}`} alt="moviePoster" id="moviePoster"/> : <img src={DefaultPoster} alt="moviePoster" id="moviePoster"/>}
                         </div>
                     </Tilt>
                 </a>
