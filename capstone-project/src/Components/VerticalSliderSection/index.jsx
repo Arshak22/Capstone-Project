@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,7 +7,10 @@ import { NavLink } from "react-router-dom";
 import VideoIcon from "../../assets/images/Icons/video.png";
 import { ROUTE_NAMES } from "../../Routes";
 
+import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
+
 export default function VerticalSliderSection({movies}) {
+    const [startingBG, setStartingBG] = useState(DefaultBackdrop);
     const settings = {
         dots: false,
         infinite: true,
@@ -52,9 +55,15 @@ export default function VerticalSliderSection({movies}) {
           ]
     };
 
+    useEffect(() => {
+        if(movies[0]) {
+          setStartingBG(`https://www.themoviedb.org/t/p/original/${movies[0].mainBackdropPath}`);
+        }
+    }, [movies])
+
     return (
       <div>
-        {movies[0] ? <div className="VerticalSliderSection" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${movies[0].mainBackdropPath})`}}>
+        <div className="VerticalSliderSection" style={{backgroundImage: `url(${startingBG})`}}>
             <h1>Upcoming Movies</h1>
             <Slider {...settings}>
                 {movies.map((elem, index) => {
@@ -62,7 +71,7 @@ export default function VerticalSliderSection({movies}) {
                   const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                     return (
                         <div className="movieBlock" key={index} onMouseEnter={() => settings.onMovieHover(index)}>
-                            {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} />: null}
+                            {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} /> : <img src={DefaultBackdrop} alt={DefaultBackdrop} />}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
                                 <span>{dateString}</span>
@@ -72,7 +81,7 @@ export default function VerticalSliderSection({movies}) {
                     )
                 })}
             </Slider>
-        </div>: null}
+        </div>
       </div> 
     );
 }

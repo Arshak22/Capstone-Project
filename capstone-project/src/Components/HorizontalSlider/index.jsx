@@ -15,6 +15,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
 import VideoIcon from "../../assets/images/Icons/video.png";
 
+import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
+
 export default function HorizontalSlider({movies}) {
     const settings = {
         dots: false,
@@ -75,7 +77,7 @@ export default function HorizontalSlider({movies}) {
                     const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                     return (
                         <div className="movieBlock" key={index}>
-                            {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} />: null}
+                            {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} />: <img src={DefaultBackdrop} alt={DefaultBackdrop} />}
                             <div className="movieBlockDescription">
                                 <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
                                 <span>{dateString}</span>
