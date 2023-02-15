@@ -1,0 +1,85 @@
+.ProfileInfoSection {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileInfoL {
+    width: 35%;
+}
+
+.profileInfoR {
+    width: 65%;
+    margin-left: 30px;
+}
+
+.bluryProfileBox {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #ffffff;
+}
+
+.bluryProfileBox::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/images/BackgroundImages/bg9.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    filter: blur(0px) brightness(45%);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+}
+
+.bluryProfileBox img {
+    max-width: 100%;
+    width: 300px;
+    height: auto;
+    border: 5px solid var(--main-red-hover);
+    border-radius: 20px;
+}
+
+.bluryProfileBox h2 {
+    text-align: center;
+    letter-spacing: 3px;
+    padding-top: 20px;
+}
+
+.smallBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallBar h2 {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+
+.smallBar h2:hover, .activeSmallBar {
+    color: var(--main-red);
+    transform: scale(1.1);
+}

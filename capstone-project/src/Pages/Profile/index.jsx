@@ -6,9 +6,10 @@ import ProfileMoviePagination from "../../Components/ProfileMoviePagination";
 
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import ProfileInfoSection from "../../Components/ProfileInfoSection";
 
 export default function Profile() {
-    const {setIsLoading} = useGlobalContext();
+    const {setIsLoading, user} = useGlobalContext();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
 
@@ -39,7 +40,7 @@ export default function Profile() {
             </div>
             <div className="profileRCol">
                 <div className="profileHeader">
-                    <div className="userAvatar">
+                    <div className="userAvatar" style={{backgroundImage: `url(${user.avatar})`}}>
                         </div>
                         <div className="profileInfo">
                             <h1>Name Surname</h1>
@@ -56,7 +57,7 @@ export default function Profile() {
                         </div>
                     </div>
                 <div className="profileInfoSection">
-                    {active === "Watchlist" ? <ProfileMoviePagination page="Watchlist"/> : active === "Favourites" ? <ProfileMoviePagination page="Favourites"/>: null}
+                    {active === "Watchlist" ? <ProfileMoviePagination page="Watchlist"/> : active === "Favourites" ? <ProfileMoviePagination page="Favourites"/>: active === "Profile" ? <ProfileInfoSection/>: null}
                 </div>
             </div>
         </div>
