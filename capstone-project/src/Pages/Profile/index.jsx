@@ -43,8 +43,8 @@ export default function Profile() {
                     <div className="userAvatar" style={{backgroundImage: `url(${user.avatar})`}}>
                         </div>
                         <div className="profileInfo">
-                            <h1>Name Surname</h1>
-                            <h3>Email</h3>
+                            <h1>{user.firstName} {user.lastName}</h1>
+                            <h3>{user.email}</h3>
                         </div>
                         <div className="profileMenu">
                         {activeBar ? <FaBars className="bars" onClick={handleBar}/>: <FaTimes className="close" onClick={handleBar}/>}

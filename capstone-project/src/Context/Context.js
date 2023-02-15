@@ -12,7 +12,7 @@ const AppProvider = ({ children }) => {
         avatar: DefaultUser,
         email: "-",
         password: null,
-
+        favoriteGenres: []
     }
   );
 

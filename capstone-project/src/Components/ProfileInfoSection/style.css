@@ -49,20 +49,31 @@
 .avatar {
     display: flex;
     justify-content: center;
-}
-
-.bluryProfileBox img {
-    max-width: 100%;
-    width: 300px;
-    height: auto;
+    width: 85%;
+    height: 400px;
+    margin-left: 30px;
     border: 5px solid var(--main-red-hover);
-    border-radius: 20px;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .bluryProfileBox h2 {
     text-align: center;
     letter-spacing: 3px;
     padding-top: 20px;
+}
+
+.profileInfoSmall {
+    text-align: center;
+    padding: 20px;
+}
+
+.profileInfoSmall h4 {
+    padding-top: 10px;
+    font-size: 15px;
+    letter-spacing: 2px;
 }
 
 .smallBar {
@@ -90,8 +101,8 @@
 .editProfile {
     width: 100%;
     display: block;
-    padding-left: 8em;
-    padding-right: 7em;
+    padding-left: 4em;
+    padding-right: 3em;
     text-align: center;
 }
 
@@ -110,6 +121,96 @@
     font-size: 20px;
     color: #ffffff;
     box-shadow: 0px 10px 10px -10px #ff000077;
+}
+
+.smallInputs {
+    display: flex;
+    align-items: center;
+}
+
+.smallInputs input {
+    width: 50%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.Email {
+    width: 100% !important;
+}
+
+.myLable {
+    text-align: left;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    letter-spacing: 5px;
+}
+
+.pickFavoriteGenres, .favoriteGenres {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.favoriteGenres {
+    justify-content: center;
+}
+
+.pickFavoriteGenres h4, .favoriteGenres h4 {
+    margin-right: 10px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    padding: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 3px solid #ffffff;
+    border-radius: 5px;
+    background-color: var(--main-red-hover);
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+.pickFavoriteGenres h4:hover, .pickFavoriteGenres .activeGenre {
+    background-color: var(--bg);
+}
+
+#avatarFile {
+    display: none;
+}
+
+.avatarUpload {
+    pointer-events: all;
+    background: var(--main-red-hover);
+    color: #ffffff;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 3px solid #ffffff;
+    border-radius: 5px;
+    background-color: var(--main-red-hover);
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+
+.avatarUpload:hover {
+    background-color: var(--bg);
+}
+
+.avatarPreview {
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+    border: 5px solid var(--main-red-hover);
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .editProfile button {
