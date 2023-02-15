@@ -35,7 +35,7 @@ export default function Profile() {
                 <h3 className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</h3>
                 <h3 className={active === "Favourites" ? "activeSideBar" : ""} onClick={() => handleClick("Favourites")}>Favourites</h3>
                 <h3 className={active === "Watchlist" ? "activeSideBar" : ""} onClick={() => handleClick("Watchlist")}>Watchlist</h3>
-                <h3 className={active === "Log Out" ? "activeSideBar" : ""} onClick={() => handleClick("Log Out")}>Log Out</h3>
+                <h3>Log Out</h3>
                 </div> 
             </div>
             <div className="profileRCol">
@@ -52,7 +52,7 @@ export default function Profile() {
                                 <li className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</li>
                                 <li className={active === "Favourites" ? "activeSideBar" : ""} onClick={() => handleClick("Favourites")}>Favourites</li>
                                 <li className={active === "Watchlist" ? "activeSideBar" : ""} onClick={() => handleClick("Watchlist")}>Watchlist</li>
-                                <li className={active === "Log Out" ? "activeSideBar" : ""} onClick={() => handleClick("Log Out")}>Log Out</li>
+                                <li>Log Out</li>
                         </ul>: null}
                         </div>
                     </div>
