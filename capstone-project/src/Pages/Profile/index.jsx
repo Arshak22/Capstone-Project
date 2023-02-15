@@ -8,6 +8,8 @@ import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import ProfileInfoSection from "../../Components/ProfileInfoSection";
 
+import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
+
 export default function Profile() {
     const {setIsLoading, user} = useGlobalContext();
     const [active, setActive] = useState("Profile");
@@ -40,8 +42,9 @@ export default function Profile() {
             </div>
             <div className="profileRCol">
                 <div className="profileHeader">
-                    <div className="userAvatar" style={{backgroundImage: `url(${user.avatar})`}}>
-                        </div>
+                        {user.avatar ? <div className="userAvatar" style={{backgroundImage: `url(${user.avatar})`}}>
+                        </div>: <div className="userAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
+                        </div>}
                         <div className="profileInfo">
                             <h1>{user.firstName} {user.lastName}</h1>
                             <h3>{user.email}</h3>

@@ -2,6 +2,8 @@ import {React, useEffect, useState} from "react";
 import "./style.css";
 import {useGlobalContext} from "../../Context/Context";
 
+import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
+
 export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
     const [active, setActive] = useState("Comments");
@@ -75,8 +77,9 @@ export default function ProfileInfoSection() {
         <div className="ProfileInfoSection">
             <div className="profileInfoL">
                 <div className="bluryProfileBox">
-                    <div className="avatar" style={{backgroundImage: `url(${user.avatar})`}}>
-                    </div>
+                    {user.avatar ? <div className="avatar" style={{backgroundImage: `url(${user.avatar})`}}>
+                    </div>: <div className="avatar" style={{backgroundImage: `url(${DefaultUser})`}}>
+                    </div>}
                     <div className="profileInfoSmall">
                         <h2>{user.firstName} {user.lastName}</h2>
                         <h4>{user.email}</h4>

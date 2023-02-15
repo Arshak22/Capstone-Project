@@ -1,6 +1,4 @@
 import { React, createContext, useContext, useState } from "react";
-import DefaultUser from "../assets/images/Icons/DefaultUser.jpg";
-
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
@@ -9,7 +7,7 @@ const AppProvider = ({ children }) => {
     {
         firstName: "First Name",
         lastName: "Last Name",
-        avatar: DefaultUser,
+        avatar: null,
         email: "-",
         password: null,
         favoriteGenres: []

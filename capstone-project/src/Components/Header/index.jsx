@@ -1,6 +1,7 @@
 import {React, useState, useEffect, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import "./style.css";
+import { useGlobalContext } from "../../Context/Context";
 import MainLogo from "../../assets/images/Logos/Logo1.png";
 import User from "../../assets/images/Icons/user.png";
 import { FaAngleDown } from "react-icons/fa";
@@ -10,6 +11,7 @@ import { FaTimes } from "react-icons/fa";
 import { ROUTE_NAMES } from "../../Routes";
 
 export default function Header() {
+    const {user, setUser} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
     const prevScrollPos = useRef(0);
@@ -102,7 +104,7 @@ export default function Header() {
                         <button type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
                         <div className="userMainBox">
                             <div className="userBox">
-                                <img src={User} alt="userPic" className="user"/>
+                                {user.avatar ? <img src={user.avatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}
                                 <div id="dropdownMenu2">
                                     <ul>
                                         <li>
