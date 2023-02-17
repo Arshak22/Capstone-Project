@@ -3,6 +3,10 @@ import "./style.css";
 import {useGlobalContext} from "../../Context/Context";
 
 import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
+import {FaFileUpload} from "react-icons/fa";
+import {GiTicket} from "react-icons/gi";
+import {FaUserEdit} from "react-icons/fa";
+import {IoPersonRemove} from "react-icons/io5";
 
 export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
@@ -49,10 +53,11 @@ export default function ProfileInfoSection() {
 
     const handleGenres = (e) => {
         e.target.classList.toggle("activeGenre");
-        if(!tempUser.favoriteGenres.includes(e.target.innerHTML + "")) {
-            tempUser.favoriteGenres.push(e.target.innerHTML + "");
+        const text = e.target.textContent.trim();
+        if(!tempUser.favoriteGenres.includes(text)) {
+            tempUser.favoriteGenres.push(text);
         } else {
-            tempUser.favoriteGenres.splice(tempUser.favoriteGenres.indexOf(e.target.innerHTML + ""), 1)
+            tempUser.favoriteGenres.splice(tempUser.favoriteGenres.indexOf(text), 1)
         }
     };
 
@@ -87,7 +92,7 @@ export default function ProfileInfoSection() {
                    <div className="favoriteGenres">
                     {user.favoriteGenres.map((elem, index) => {
                         return (
-                            <h4 key={index}>{elem}</h4>
+                            <h4 key={index}><GiTicket className="ticket"/>{elem}</h4>
                         );
                     })}
                    </div>
@@ -112,28 +117,28 @@ export default function ProfileInfoSection() {
                         <div className="smallInputs">
                             <input onChange={handleEmail} className="editInput Email" type="email" name="email" placeholder="Email Address" required/>
                         </div>
-                        <h4 className="myLable">Pick Favorite Genres</h4>
+                        <h4 className="myLable">Pick Your Favorite Genres</h4>
                         <div className="pickFavoriteGenres">
-                            <h4 onClick={handleGenres}>Action</h4>
-                            <h4 onClick={handleGenres}>Comedy</h4>
-                            <h4 onClick={handleGenres}>Drama</h4>
-                            <h4 onClick={handleGenres}>Thriller</h4>
-                            <h4 onClick={handleGenres}>Sci-fi</h4>
-                            <h4 onClick={handleGenres}>Horror</h4>
-                            <h4 onClick={handleGenres}>Fantasy</h4>
-                            <h4 onClick={handleGenres}>Adventure</h4>
-                            <h4 onClick={handleGenres}>Mystery</h4>
-                            <h4 onClick={handleGenres}>Romance</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Action</h4>                            
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Comedy</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Drama</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Thriller</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Sci-fi</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Horror</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Fantasy</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Adventure</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Mystery</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Romance</h4>
                         </div>
                         <h4 className="myLable">Upload New Avatar</h4>
                         <div className="smallInputs">
                             <input onChange={handleAvatar} required type="file" id="avatarFile" name="picture" accept="image/*"/>
-                            <label className="avatarUpload" htmlFor="avatarFile">Select File</label>
+                            <label className="avatarUpload" htmlFor="avatarFile"><FaFileUpload className="uploadIcon"/>Select File</label>
                             {uploadedAvatar ? <div className="avatarPreview" style={{backgroundImage: `url(${tempUser.avatar})`}}>
                             </div>: null}
                         </div>
-                        <button onClick={handleEdit} className="btn btn2">Edit Profile</button>
-                        <button className="btn btn2">Delete Profile</button>
+                        <button onClick={handleEdit} className="btn btn2">Edit Profile<FaUserEdit className="userBtnIcon"/></button>
+                        <button className="btn btn2">Delete Profile<IoPersonRemove className="userBtnIcon"/></button>
                     </div>: null}
                 </div>
             </div>

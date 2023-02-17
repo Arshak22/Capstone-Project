@@ -111,16 +111,16 @@
     border: none;
     border-bottom: 2px solid var(--main-red);
     border-top: 0px;
-    border-radius: 0px;
+    border-radius: 15px;
     font-weight: bold;
     outline: 0;
     margin-top: 40px;
     width: 100%;
-    padding-left: 0px;
+    padding-left: 10px;
     padding-bottom: 10px;
     font-size: 20px;
     color: #ffffff;
-    box-shadow: 0px 10px 10px -10px #ff000077;
+    box-shadow: 0px 12px 10px -5px #ff0000a3;
 }
 
 .smallInputs {
@@ -159,9 +159,12 @@
 }
 
 .pickFavoriteGenres h4, .favoriteGenres h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 10px;
     margin-bottom: 15px;
-    font-size: 17px;
+    font-size: 15px;
     padding: 8px;
     padding-left: 20px;
     padding-right: 20px;
@@ -176,11 +179,19 @@
     background-color: var(--bg);
 }
 
+.ticket {
+    margin-right: 5px;
+    padding-bottom: 2px;
+}
+
 #avatarFile {
     display: none;
 }
 
 .avatarUpload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     pointer-events: all;
     background: var(--main-red-hover);
     color: #ffffff;
@@ -200,6 +211,11 @@
 
 .avatarUpload:hover {
     background-color: var(--bg);
+}
+
+.uploadIcon {
+    margin-right: 5px;
+    padding-bottom: 3px;
 }
 
 .avatarPreview {
@@ -222,4 +238,8 @@
 
 .editProfile button:hover {
     transform: scale(0.9);
+}
+
+.userBtnIcon {
+    margin-left: 10px;
 }
