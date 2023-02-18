@@ -9,6 +9,7 @@ import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
 import { getAllMovies, getAllSeries, getLatestWatchables, getPopularWatchables } from "../../Platform/Watchables";
+import { searchWatchable } from "../../Platform/Search";
 
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
@@ -39,6 +40,10 @@ export default function MoviePaginationList() {
       getLatestList(itemOffset, itemsPerPage);
     } else if(type === "popular") {
       getPopularList(itemOffset, itemsPerPage);
+    } else if(type.startsWith("searchItem:")) {
+      const searchItem = type.split("searchItem:")[1].split("/")[0];
+      console.log(searchItem);
+      handlesearchWatchable(itemOffset, itemsPerPage, searchItem);
     }
     setPageCount(Math.ceil(total / itemsPerPage));
   }, [itemOffset, total]);
@@ -107,6 +112,22 @@ export default function MoviePaginationList() {
         setTimeout(() => {
           setLoaded(true);
         }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const handlesearchWatchable = async (pageNumber, pageSize, query) => {
+    try {
+      const result = await searchWatchable(pageNumber, pageSize, query);
+      setTotal(result.data.totalElements);
+      setCurrentItems(result.data.content);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500)
     } catch (e) {
         console.log(e);
     }

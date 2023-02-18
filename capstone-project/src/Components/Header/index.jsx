@@ -1,5 +1,5 @@
 import {React, useState, useEffect, useRef} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
 import MainLogo from "../../assets/images/Logos/Logo1.png";
@@ -14,6 +14,7 @@ export default function Header() {
     const {user, setUser} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
+    const navigate = useNavigate();
     const prevScrollPos = useRef(0);
   
     useEffect(() => {
@@ -36,6 +37,19 @@ export default function Header() {
 
     const handleBar = () => {
         setActiveBar(!activeBar);
+    }
+
+    const handleSearch = () => {
+        const searchValue = document.getElementById("searchMovie").value;
+        if (searchValue) {
+            navigate("/movies/searchItem:" + searchValue);
+        }
+    }
+
+    const handleSearchWithEnter = (e) => {
+        if (e.key === "Enter") {
+            handleSearch();
+        }
     }
 
     return (
@@ -100,8 +114,8 @@ export default function Header() {
                 </div>
                 <div id="searchAndUser" className={!activeBar ? "activeMenu": null}>
                     <div id="searchAndUserBox">
-                        <input type="text" id="searchMovie" placeholder="Search Movie"/>
-                        <button type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
+                        <input onKeyDown={handleSearchWithEnter} type="text" id="searchMovie" placeholder="Search Movie"/>
+                        <button onClick={handleSearch} type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
                         <div className="userMainBox">
                             <div className="userBox">
                                 {user.avatar ? <img src={user.avatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}

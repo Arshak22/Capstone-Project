@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {API} from "../api";
-const search = "/profiles";
+const search = "/search";
 
 export const searchWatchable = (pageNumber, pageSize, query) => {
     return axios.get(`${API}${search}?pageNumber=${pageNumber}&pageSize=${pageSize}&query=${query}&sort=rating`);
