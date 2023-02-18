@@ -28,12 +28,36 @@ export const getLatestWatchables = (pageNumber, pageSize) => {
     return axios.get(`${API}${filteredWatchables}/latest?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
+export const getLatestMovies = (pageNumber, pageSize) => {
+    return axios.get(`${API}${filteredWatchables}/latest/movies?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
+export const getLatestSeries = (pageNumber, pageSize) => {
+    return axios.get(`${API}${filteredWatchables}/latest/series?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
 export const getPopularWatchables = (pageNumber, pageSize) => {
     return axios.get(`${API}${filteredWatchables}/popular?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
+export const getPopularMovies = (pageNumber, pageSize) => {
+    return axios.get(`${API}${filteredWatchables}/popular/movies?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
+export const getPopularSeries = (pageNumber, pageSize) => {
+    return axios.get(`${API}${filteredWatchables}/popular/series?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
 export const getUpcomingWatchables = (pageNumber, pageSize) => {
     return axios.get(`${API}${filteredWatchables}/upcoming?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
+export const getUpcomingMovies = (pageNumber, pageSize) => {
+    return axios.get(`${API}${filteredWatchables}/upcoming/movies?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
+export const getUpcomingSeries = (pageNumber, pageSize) => {
+    return axios.get(`${API}${filteredWatchables}/upcoming/series?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
 export const getAllMovies = (pageNumber, pageSize) => {

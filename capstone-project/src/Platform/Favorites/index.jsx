@@ -11,6 +11,6 @@ export const addFavorite = (profileID, movieID) => {
     return axios.post(`${API}${favorites}/${profileID}/${movieID}`);
 }
 
-export const deleteFavorite = (profileID, movieID, movie) => {
+export const deleteFavorite = (profileID, movieID) => {
     return axios.delete(`${API}${favorites}/${profileID}/${movieID}`);
 }
