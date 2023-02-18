@@ -12,7 +12,7 @@ export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
-    const [tempUser] = useState({
+    const [tempUser, setTempUser] = useState({
         firstName: null,
         lastName: null,
         avatar: null,
@@ -38,12 +38,10 @@ export default function ProfileInfoSection() {
 
     const handleFirstName = (e) => {
         tempUser.firstName = e.target.value;
-        validate();
     };
 
     const handleLastName = (e) => {
         tempUser.lastName = e.target.value;
-        validate();
     };
 
     const validateEmail = (email) => {
@@ -54,18 +52,15 @@ export default function ProfileInfoSection() {
     const handleEmail = (e) => {
         if (validateEmail(e.target.value)) {
             tempUser.email = e.target.value;
-            validate();
         }
     };
 
     const handlePassword = (e) => {
         tempUser.password = e.target.value;
-        validate();
     };
 
     const handleNewPassword = (e) => {
         tempUser.newPassword = e.target.value;
-        validate();
     };
 
     const handleGenres = (e) => {
@@ -73,7 +68,6 @@ export default function ProfileInfoSection() {
         const text = e.target.textContent.trim();
         if(!tempUser.favoriteGenres.includes(text)) {
             tempUser.favoriteGenres.push(text);
-            validate();
         } else {
             tempUser.favoriteGenres.splice(tempUser.favoriteGenres.indexOf(text), 1)
         }
@@ -87,7 +81,6 @@ export default function ProfileInfoSection() {
         reader.onload = () => {
             tempUser.avatar = reader.result;
             setUploadedAvatar(true);
-            validate();
         }
     };
 
@@ -141,6 +134,16 @@ export default function ProfileInfoSection() {
             for (let genre of genres) {
                 genre.classList.remove("activeGenre");
             }
+            const reset = {
+                firstName: null,
+                lastName: null,
+                avatar: null,
+                email: null,
+                password: null,
+                newPassword: null,
+                favoriteGenres: []
+            }
+            setTempUser(reset);
         }
     };
 
@@ -188,7 +191,7 @@ export default function ProfileInfoSection() {
                                 <span className="profileInputError">{errors.passwordError}</span>
                             </div>
                             <div className="inputBox">
-                                <input onChange={handleNewPassword} className="editInput" type="password" name="newPassword" placeholder="New Password" required/>
+                                <input onChange={handleNewPassword} className="editInput" type="password" name="newPassword" placeholder="New Password (Opt.)"/>
                                 <span className="profileInputError"></span>
                             </div>
                         </div>
@@ -198,7 +201,7 @@ export default function ProfileInfoSection() {
                                 <span className="profileInputError">{errors.emailError}</span>
                             </div>
                         </div>
-                        <h4 className="myLable">Pick Your Favorite Genres</h4>
+                        <h4 className="myLable">Pick At Least 3 Favorite Genres</h4>
                         <div className="pickFavoriteGenres">
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Action</h4>                            
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Comedy</h4>

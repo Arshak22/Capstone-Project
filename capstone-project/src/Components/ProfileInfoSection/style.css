@@ -260,3 +260,54 @@
 .userBtnIcon {
     margin-left: 10px;
 }
+
+@media screen and (max-width: 1024px) {
+    .profileInfoSmall h4 {
+        letter-spacing: 0;
+    }
+    .profileInfoR {
+        margin-left: 10px;
+    }
+    .avatar {
+        height: 300px;
+        margin-left: 20px;
+    }
+    .editProfile {
+        padding-left: 1em;
+        padding-right: 2em;
+    }
+    .editInput {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ProfileInfoSection {
+        display: block;
+    }
+    .profileInfoL, .profileInfoR {
+        width: 100%;
+    }
+    .profileInfoR {
+        margin-left: 0;
+        margin-top: 25px;
+    }
+    .avatar {
+        height: 500px;
+        width: 70%;
+        margin-left: 75px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .avatar {
+        margin-left: 20px;
+        width: 90%;
+    }
+    .smallInputs {
+        display: block;
+    }
+    .smallBar h2 {
+        font-size: 15px;
+    }
+}
