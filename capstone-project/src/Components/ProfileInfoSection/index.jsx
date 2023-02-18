@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from "react";
+import {React, useState} from "react";
 import "./style.css";
 import {useGlobalContext} from "../../Context/Context";
 
@@ -12,17 +12,25 @@ export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
-    const [tempUser, setTempUser] = useState({
-        firstName: "",
-        lastName: "",
+    const [tempUser] = useState({
+        firstName: null,
+        lastName: null,
         avatar: null,
-        email: "",
+        email: null,
         password: null,
+        newPassword: null,
         favoriteGenres: []
     });
-
-    useEffect(() => {
-    }, [tempUser.avatar]);
+    const [errors, setErrors] = useState(
+        {
+            firstNameErrror: "",
+            lastNameError: "",
+            passwordError: "",
+            emailError: "",
+            avatarError: "",
+            favoriteGenresError: ""
+        }
+    );
 
     const handleClick = (name) => {
         setActive(name);
@@ -30,10 +38,12 @@ export default function ProfileInfoSection() {
 
     const handleFirstName = (e) => {
         tempUser.firstName = e.target.value;
+        validate();
     };
 
     const handleLastName = (e) => {
         tempUser.lastName = e.target.value;
+        validate();
     };
 
     const validateEmail = (email) => {
@@ -44,11 +54,18 @@ export default function ProfileInfoSection() {
     const handleEmail = (e) => {
         if (validateEmail(e.target.value)) {
             tempUser.email = e.target.value;
+            validate();
         }
     };
 
-    const handleNewPassword = (e) => {
+    const handlePassword = (e) => {
         tempUser.password = e.target.value;
+        validate();
+    };
+
+    const handleNewPassword = (e) => {
+        tempUser.newPassword = e.target.value;
+        validate();
     };
 
     const handleGenres = (e) => {
@@ -56,6 +73,7 @@ export default function ProfileInfoSection() {
         const text = e.target.textContent.trim();
         if(!tempUser.favoriteGenres.includes(text)) {
             tempUser.favoriteGenres.push(text);
+            validate();
         } else {
             tempUser.favoriteGenres.splice(tempUser.favoriteGenres.indexOf(text), 1)
         }
@@ -69,14 +87,62 @@ export default function ProfileInfoSection() {
         reader.onload = () => {
             tempUser.avatar = reader.result;
             setUploadedAvatar(true);
-        };
+            validate();
+        }
+    };
+
+    const validate = () => {
+        let v = true;
+        let error = {
+            firstNameError: "",
+            lastNameError: "",
+            passwordError: "",
+            emailError: "",
+            avatarError: "",
+            favoriteGenresError: ""
+        }
+        if(!tempUser.firstName) {
+            error.firstNameError = "Please enter your first name";
+            v = false;
+        }
+        if(!tempUser.lastName) {
+            error.lastNameError = "Please enter your last name";
+            v = false;
+        }
+        if (!tempUser.password) {
+            error.passwordError = "Please enter your current password";
+            v = false;
+        }
+        if (!tempUser.email) {
+            error.emailError = "Please enter your new email";
+            v = false;
+        }
+        if (tempUser.favoriteGenres.length < 3) {
+            error.favoriteGenresError = "Please pick at least three favorite genres";
+            v = false;
+        }
+        if (!tempUser.avatar) {
+            error.avatarError = "Please submit your new profile picture";
+            v = false;
+        }
+        setErrors(error);
+        return v;
     }
 
     const handleEdit = () => {
-        if(tempUser.firstName && tempUser.lastName && tempUser.email && tempUser.password && tempUser.avatar && tempUser.favoriteGenres.length !== 0) {
+        if(validate()) {
             setUser(tempUser);
+            const inputs = document.querySelectorAll('.editInput');
+            for (let input of inputs) {
+                input.value = "";
+            }
+            setUploadedAvatar(false);
+            const genres = document.querySelectorAll('.pickFavoriteGenres>h4');
+            for (let genre of genres) {
+                genre.classList.remove("activeGenre");
+            }
         }
-    }
+    };
 
     return (
         <div className="ProfileInfoSection">
@@ -107,15 +173,30 @@ export default function ProfileInfoSection() {
                     {active === "Edit" ? 
                     <div className="editProfile">
                         <div className="smallInputs">
-                            <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required/>
-                            <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required/>
+                            <div className="inputBox">
+                                <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required/>
+                                <span className="profileInputError">{errors.firstNameError}</span>
+                            </div>
+                            <div className="inputBox">
+                                <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required/>
+                                <span className="profileInputError">{errors.lastNameError}</span>
+                            </div>
                         </div>
                         <div className="smallInputs">
-                            <input className="editInput" type="password" name="password" placeholder="Password" required/>
-                            <input onChange={handleNewPassword} className="editInput" type="password" name="newPassword" placeholder="New Password" required/>
+                            <div className="inputBox">
+                                <input onChange={handlePassword} className="editInput" type="password" name="password" placeholder="Current Password" required/>
+                                <span className="profileInputError">{errors.passwordError}</span>
+                            </div>
+                            <div className="inputBox">
+                                <input onChange={handleNewPassword} className="editInput" type="password" name="newPassword" placeholder="New Password" required/>
+                                <span className="profileInputError"></span>
+                            </div>
                         </div>
                         <div className="smallInputs">
-                            <input onChange={handleEmail} className="editInput Email" type="email" name="email" placeholder="Email Address" required/>
+                            <div className="inputBox">
+                                <input onChange={handleEmail} className="editInput Email" type="email" name="email" placeholder="Email Address" required/>
+                                <span className="profileInputError">{errors.emailError}</span>
+                            </div>
                         </div>
                         <h4 className="myLable">Pick Your Favorite Genres</h4>
                         <div className="pickFavoriteGenres">
@@ -130,12 +211,18 @@ export default function ProfileInfoSection() {
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Mystery</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Romance</h4>
                         </div>
+                        <div className="inputBox">
+                            <span className="profileInputError genreError">{errors.favoriteGenresError}</span>
+                        </div>
                         <h4 className="myLable">Upload New Avatar</h4>
                         <div className="smallInputs">
                             <input onChange={handleAvatar} required type="file" id="avatarFile" name="picture" accept="image/*"/>
                             <label className="avatarUpload" htmlFor="avatarFile"><FaFileUpload className="uploadIcon"/>Select File</label>
                             {uploadedAvatar ? <div className="avatarPreview" style={{backgroundImage: `url(${tempUser.avatar})`}}>
                             </div>: null}
+                        </div>
+                        <div className="inputBox">
+                            <span className="profileInputError genreError">{errors.avatarError}</span>
                         </div>
                         <button onClick={handleEdit} className="btn btn2">Edit Profile<FaUserEdit className="userBtnIcon"/></button>
                         <button className="btn btn2">Delete Profile<IoPersonRemove className="userBtnIcon"/></button>

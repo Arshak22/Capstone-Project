@@ -128,10 +128,26 @@
     align-items: center;
 }
 
+.inputBox {
+    display: grid;
+    width: 95%;
+}
+
 .smallInputs input {
-    width: 50%;
+    width: 90%;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.profileInputError {
+    color: var(--main-red);
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.genreError {
+    padding-left: 20px;
 }
 
 .Email {
@@ -180,6 +196,7 @@
 }
 
 .ticket {
+    pointer-events: none;
     margin-right: 5px;
     padding-bottom: 2px;
 }
