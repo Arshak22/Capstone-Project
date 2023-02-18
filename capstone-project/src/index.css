@@ -52,6 +52,13 @@ a, button, input, svg, img, li, h1, h2, h3, h4, h5, h6, p, small, iframe {
   color: var(--bg);
 }
 
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  -webkit-transition-delay: 9999s;
+   transition-delay: 9999s;
+  background-color: transparent !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
 .btn {
   color: #ffffff;
   display: inline-flex;
