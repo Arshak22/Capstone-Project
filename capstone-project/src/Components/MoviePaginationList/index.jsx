@@ -42,8 +42,7 @@ export default function MoviePaginationList() {
       getPopularList(itemOffset, itemsPerPage);
     } else if(type.startsWith("searchItem:")) {
       const searchItem = type.split("searchItem:")[1].split("/")[0];
-      console.log(searchItem);
-      handlesearchWatchable(itemOffset, itemsPerPage, searchItem);
+      handleSearchWatchable(itemOffset, itemsPerPage, searchItem);
     }
     setPageCount(Math.ceil(total / itemsPerPage));
   }, [itemOffset, total]);
@@ -117,7 +116,7 @@ export default function MoviePaginationList() {
     }
   };
 
-  const handlesearchWatchable = async (pageNumber, pageSize, query) => {
+  const handleSearchWatchable = async (pageNumber, pageSize, query) => {
     try {
       const result = await searchWatchable(pageNumber, pageSize, query);
       setTotal(result.data.totalElements);
@@ -165,7 +164,9 @@ export default function MoviePaginationList() {
                 )
             })}
         </div>
-      <ReactPaginate
+      {pageCount <= 1 ?
+        null:
+        <ReactPaginate
         nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
@@ -184,7 +185,8 @@ export default function MoviePaginationList() {
         containerClassName="pagination"
         activeClassName="active"
         renderOnZeroPageCount={null}
-      />
+      />        
+      }
     </>
   );
 }
