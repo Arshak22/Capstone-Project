@@ -58,8 +58,9 @@ export default function Header() {
         const searchValue = document.getElementById("searchMovie").value;
         if (searchValue) {
             showcaseSearchList(searchValue);
+        } else {
+            setSearchShowcase([]);
         }
-        console.log(searchShowcase);
     }
 
     const showcaseSearchList = async (query) => {
