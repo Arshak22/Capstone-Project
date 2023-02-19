@@ -8,7 +8,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
-import { getAllMovies, getAllSeries, getLatestWatchables, getPopularWatchables } from "../../Platform/Watchables";
+import { getAllMovies, getAllSeries, getLatestWatchables, getLatestMovies, getLatestSeries, getPopularWatchables, getPopularMovies, getPopularSeries, getUpcomingMovies, getUpcomingSeries } from "../../Platform/Watchables";
 import { searchWatchable } from "../../Platform/Search";
 
 import { NavLink } from "react-router-dom";
@@ -40,6 +40,18 @@ export default function MoviePaginationList() {
       getLatestList(itemOffset, itemsPerPage);
     } else if(type === "popular") {
       getPopularList(itemOffset, itemsPerPage);
+    } else if(type === "film-latest") {
+      getLatestMovieList(itemOffset, itemsPerPage);
+    } else if(type === "series-latest") {
+      getLatestSeriesList(itemOffset, itemsPerPage);
+    } else if(type === "film-popular") {
+      getPopularMovieList(itemOffset, itemsPerPage);
+    } else if(type === "series-popular") {
+      getPopularSeriesList(itemOffset, itemsPerPage);
+    } else if(type === "film-upcoming") {
+      getUpcomingMovieList(itemOffset, itemsPerPage);
+    } else if(type === "series-upcoming") {
+      getUpcomingSeriesList(itemOffset, itemsPerPage);
     } else if(type.startsWith("searchItem:")) {
       const searchItem = type.split("searchItem:")[1].split("/")[0];
       handleSearchWatchable(itemOffset, itemsPerPage, searchItem);
@@ -84,6 +96,38 @@ export default function MoviePaginationList() {
     }
   };
 
+  const getLatestMovieList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getLatestMovies(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  }; 
+
+  const getLatestSeriesList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getLatestSeries(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
   const getPopularList = async (pageNumber, pageSize) => {
     try {
         const result = await getPopularWatchables(pageNumber, pageSize);
@@ -100,9 +144,73 @@ export default function MoviePaginationList() {
     }
   };
 
+  const getPopularMovieList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getPopularMovies(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const getPopularSeriesList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getPopularSeries(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
   const getTVShowsList = async (pageNumber, pageSize) => {
     try {
         const result = await getAllSeries(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const getUpcomingMovieList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getUpcomingMovies(pageNumber, pageSize);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000)
+        setTimeout(() => {
+          setLoaded(true);
+        }, 1500)
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
+  const getUpcomingSeriesList = async (pageNumber, pageSize) => {
+    try {
+        const result = await getUpcomingSeries(pageNumber, pageSize);
         setTotal(result.data.totalElements);
         setCurrentItems(result.data.content);
         setTimeout(() => {

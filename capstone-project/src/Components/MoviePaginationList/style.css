@@ -256,7 +256,8 @@
     font-size: 40px;
     padding: 30px;
     letter-spacing: 5px;
-    margin-bottom: 13em;
+    margin-top: 5em;
+    margin-bottom: 5em;
 }
 
 @media screen and (max-width: 1280px) and (min-width: 480px) {

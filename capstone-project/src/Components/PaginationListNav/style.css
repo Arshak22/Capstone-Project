@@ -1,0 +1,24 @@
+.paginationListNav {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 65px;
+}
+
+.paginationListNav h2 {
+    pointer-events: all;
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding-left: 20px;
+    margin-right: 10px;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+    z-index: -1;
+    transition: all 0.5s ease;
+}
+
+.paginationListNav h2:hover {
+    transform: scale(1.2);
+}
