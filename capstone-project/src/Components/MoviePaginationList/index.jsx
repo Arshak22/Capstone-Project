@@ -134,6 +134,7 @@ export default function MoviePaginationList() {
 
   return (
     <>
+    {currentItems.length > 0 ?
         <div className="paginationList">
             {currentItems.map((elem, index) => {
               const date = new Date(elem.releaseDate);
@@ -163,7 +164,7 @@ export default function MoviePaginationList() {
                   </div>
                 )
             })}
-        </div>
+        </div>: <h2 className="searchResultNone">Sorry no movies with this search</h2>}
       {pageCount <= 1 ?
         null:
         <ReactPaginate
