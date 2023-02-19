@@ -42,7 +42,10 @@ export default function Header() {
     const handleSearch = () => {
         const searchValue = document.getElementById("searchMovie").value;
         if (searchValue) {
-            navigate("/movies/searchItem:" + searchValue);
+            navigate("/");
+            setTimeout(() => {
+                navigate("/movies/searchItem:" + searchValue);
+            }, 300)
         }
     }
 
