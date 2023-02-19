@@ -390,4 +390,7 @@ nav {
     #dropdownMenu {
         height: 300px;
     }
+    .searcShowcase {
+        display: none;
+    }
 }
