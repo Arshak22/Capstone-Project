@@ -182,6 +182,21 @@ nav {
     filter: drop-shadow(0 0 1rem #e5091467);
 }
 
+.searchUserMain {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.searcShowcase {
+    position: absolute;
+    background-color: var(--bg);
+    border: 3px solid #ffffff;
+    height: auto;
+    width: 450px;
+    top: 75px;
+    right: 0;
+}
 
 #searchMovie {
     width: 100%;
@@ -217,6 +232,43 @@ nav {
 
 #searchIcon {
     color: var(--main-red);
+}
+
+.searchShowcaseItem {
+    display: flex;
+    height: 110px;
+    border-bottom: 2px solid #ffffff;
+    transition: all 0.5s ease;
+}
+
+.searchShowcaseItem:hover {
+    background-color: var(--main-red-hover);
+}
+
+.searchShowcaseItemBackdrop {
+    height: 100%;
+    width: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.searchShowcaseItemInfo {
+    color: #ffffff;
+    width: 60%;
+    height: 100%;
+    padding: 20px;
+    padding-top: 30px;
+}
+
+.searchShowcaseItemInfo h2 {
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+.searchShowcaseItemInfo h4 {
+    text-transform: capitalize;
+    font-size: 13px;
 }
 
 .userMainBox {

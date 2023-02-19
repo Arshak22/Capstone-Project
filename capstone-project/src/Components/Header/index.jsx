@@ -10,10 +10,15 @@ import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
 import { ROUTE_NAMES } from "../../Routes";
 
+import { searchWatchable } from "../../Platform/Search";
+
+import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
+
 export default function Header() {
-    const {user, setUser} = useGlobalContext();
+    const {user} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
+    const [searchShowcase, setSearchShowcase] = useState([]);
     const navigate = useNavigate();
     const prevScrollPos = useRef(0);
   
@@ -48,6 +53,23 @@ export default function Header() {
             }, 300)
         }
     }
+
+    const handleSearchShowcase = () => {
+        const searchValue = document.getElementById("searchMovie").value;
+        if (searchValue) {
+            showcaseSearchList(searchValue);
+        }
+        console.log(searchShowcase);
+    }
+
+    const showcaseSearchList = async (query) => {
+        try {
+          const result = await searchWatchable(0, 4, query);
+          setSearchShowcase(result.data.content);
+        } catch (e) {
+            console.log(e);
+        }
+      };
 
     const handleSearchWithEnter = (e) => {
         if (e.key === "Enter") {
@@ -117,8 +139,32 @@ export default function Header() {
                 </div>
                 <div id="searchAndUser" className={!activeBar ? "activeMenu": null}>
                     <div id="searchAndUserBox">
-                        <input onKeyDown={handleSearchWithEnter} type="text" id="searchMovie" placeholder="Search Movie"/>
-                        <button onClick={handleSearch} type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
+                        <div className="searchUserMain">
+                            <input onChange={handleSearchShowcase} onKeyDown={handleSearchWithEnter} type="text" id="searchMovie" placeholder="Search Movie"/>
+                            <button onClick={handleSearch} type="submit" id="search-btn"><FaSearch id="searchIcon"/></button>
+                           {searchShowcase.length > 0 ?
+                            <div className="searcShowcase">
+                                {searchShowcase.map((elem, index) => {
+                                    const shortName = elem.name.length > 25 ? elem.name.slice(0, elem.name.lastIndexOf(" ", 25)) + "..." : elem.name;
+                                    const date = new Date(elem.releaseDate);
+                                    const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
+                                    return (
+                                        <NavLink key={index} to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
+                                            <div  className="searchShowcaseItem">
+                                                    {elem.mainBackdropPath ? 
+                                                    <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath})`}}>
+                                                    </div>: <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(${DefaultBackdrop})`}}>
+                                                    </div>}
+                                                    <div className="searchShowcaseItemInfo">
+                                                        <h2>{shortName}</h2>
+                                                        <h4>{dateString}</h4>
+                                                    </div>
+                                            </div>
+                                        </NavLink>
+                                    );
+                                })}
+                            </div>: null}
+                        </div>
                         <div className="userMainBox">
                             <div className="userBox">
                                 {user.avatar ? <img src={user.avatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}
