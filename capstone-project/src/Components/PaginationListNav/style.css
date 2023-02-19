@@ -54,3 +54,13 @@
 .genresNavList li:hover {
     background-color: var(--main-red-hover);
 }
+
+@media screen and (max-width: 768px) {
+    .paginationListNav {
+        display: block;
+    }
+    .paginationListNav h2 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
