@@ -113,6 +113,7 @@ export default function ProfileMoviePagination(props) {
             })}
         </div>
         {props.page === "Watchlist" ?
+        pageCount > 1 ?
         <ReactPaginate
         nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
         onPageChange={handlePageClickWatchlist}
@@ -131,7 +132,8 @@ export default function ProfileMoviePagination(props) {
         breakLinkClassName="page-link"
         containerClassName="pagination"
         renderOnZeroPageCount={null}
-      />:
+      />: null:
+      pageCount > 1 ?
       <ReactPaginate
         nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
         onPageChange={handlePageClickFavorite}
@@ -150,7 +152,7 @@ export default function ProfileMoviePagination(props) {
         breakLinkClassName="page-link"
         containerClassName="pagination"
         renderOnZeroPageCount={null}
-      />
+      />: null
     }
     </>}
     </>
