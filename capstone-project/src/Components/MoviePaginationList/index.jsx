@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from "react";
 import "./style.css"
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -9,7 +9,7 @@ import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
 import { getAllMovies, getAllSeries, getLatestWatchables, getLatestMovies, getLatestSeries, getPopularWatchables, getPopularMovies, getPopularSeries, getUpcomingMovies, getUpcomingSeries } from "../../Platform/Watchables";
-import { searchWatchable } from "../../Platform/Search";
+import { searchWatchable, searchMovieByGenre, searchSeriesByGenre } from "../../Platform/Search";
 
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
@@ -29,6 +29,7 @@ export default function MoviePaginationList() {
   const [total, setTotal] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const itemsPerPage = 30;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoaded(false);
@@ -55,6 +56,14 @@ export default function MoviePaginationList() {
     } else if(type.startsWith("searchItem:")) {
       const searchItem = type.split("searchItem:")[1].split("/")[0];
       handleSearchWatchable(itemOffset, itemsPerPage, searchItem);
+    } else if(type.startsWith("filmGenre:")) {
+      const filmGenre = type.split("filmGenre:")[1].split("/")[0];
+      handleSearchMovieGenre(itemOffset, itemsPerPage, filmGenre);
+    } else if(type.startsWith("seriesGenre:")) {
+      const seriesGenre = type.split("seriesGenre:")[1].split("/")[0];
+      handleSearchSeriesGenre(itemOffset, itemsPerPage, seriesGenre);
+    } else {
+      navigate("/error-page");
     }
     setPageCount(Math.ceil(total / itemsPerPage));
   }, [itemOffset, total]);
@@ -76,7 +85,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -92,7 +101,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -108,7 +117,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   }; 
 
@@ -124,7 +133,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -140,7 +149,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -156,7 +165,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -172,7 +181,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -188,7 +197,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -204,7 +213,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -220,7 +229,7 @@ export default function MoviePaginationList() {
           setLoaded(true);
         }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
     }
   };
 
@@ -236,7 +245,39 @@ export default function MoviePaginationList() {
         setLoaded(true);
       }, 1500)
     } catch (e) {
-        console.log(e);
+        navigate("/error-page");
+    }
+  };
+
+  const handleSearchMovieGenre = async (pageNumber, pageSize, genre) => {
+    try {
+      const result = await searchMovieByGenre(pageNumber, pageSize, genre);
+      setTotal(result.data.totalElements);
+      setCurrentItems(result.data.content);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500)
+    } catch (e) {
+        navigate("/error-page");
+    }
+  };
+
+  const handleSearchSeriesGenre = async (pageNumber, pageSize, genre) => {
+    try {
+      const result = await searchSeriesByGenre(pageNumber, pageSize, genre);
+      setTotal(result.data.totalElements);
+      setCurrentItems(result.data.content);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500)
+    } catch (e) {
+        navigate("/error-page");
     }
   };
 

@@ -22,3 +22,35 @@
 .paginationListNav h2:hover {
     transform: scale(1.2);
 }
+
+.genresNavList {
+    pointer-events: all;
+    position: absolute;
+    list-style: none;
+    display: none;
+    height: 300px;
+    background-color: var(--bg);
+    border: 5px solid var(--main-red-hover);
+    border-radius: 10px;
+    overflow-y: scroll;
+    z-index: 20;
+}
+
+.genresNavTitle {
+    position: relative;
+}
+
+.genresNav:hover .genresNavList {
+    display: block;
+}
+
+.genresNavList li {
+    padding: 15px;
+    color: #ffffff;
+    background-color: var(--bg);
+    transition: all 0.5s ease;
+}
+
+.genresNavList li:hover {
+    background-color: var(--main-red-hover);
+}
