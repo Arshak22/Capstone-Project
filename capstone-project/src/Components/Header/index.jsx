@@ -78,6 +78,13 @@ export default function Header() {
         }
     }
 
+    const handleShowcaseItemNav = (id) => {
+        navigate("/");
+        setTimeout(() => {
+            navigate(ROUTE_NAMES.DEFAULT_PAGE + id);
+        }, 50)
+    }
+
     return (
         <>
             <nav className={`${hideNav ? "hide" : ""}`}>
@@ -150,18 +157,16 @@ export default function Header() {
                                     const date = new Date(elem.releaseDate);
                                     const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                                     return (
-                                        <NavLink key={index} to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
-                                            <div  className="searchShowcaseItem">
-                                                    {elem.mainBackdropPath ? 
-                                                    <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath})`}}>
-                                                    </div>: <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(${DefaultBackdrop})`}}>
-                                                    </div>}
-                                                    <div className="searchShowcaseItemInfo">
-                                                        <h2>{shortName}</h2>
-                                                        <h4>{dateString}</h4>
-                                                    </div>
-                                            </div>
-                                        </NavLink>
+                                        <div onClick={() => handleShowcaseItemNav(elem.id)} className="searchShowcaseItem">
+                                                {elem.mainBackdropPath ? 
+                                                <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath})`}}>
+                                                </div>: <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(${DefaultBackdrop})`}}>
+                                                </div>}
+                                                <div className="searchShowcaseItemInfo">
+                                                    <h2>{shortName}</h2>
+                                                    <h4>{dateString}</h4>
+                                                </div>
+                                        </div>
                                     );
                                 })}
                             </div>: null}
