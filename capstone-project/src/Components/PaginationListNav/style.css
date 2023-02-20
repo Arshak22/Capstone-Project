@@ -49,6 +49,22 @@
     padding: 10px;
 }
 
+.releaseYearSearch::placeholder {
+    color: #ffffff;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .releaseYear:hover .releaseYearSearch {
     display: block;
 }

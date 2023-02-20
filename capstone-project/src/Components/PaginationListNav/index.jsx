@@ -128,7 +128,7 @@ export default function PaginationListNav(props) {
                 </div>
                 <div className="genresNav releaseYear">
                     <h2 className="genresNavTitle">Release Year</h2>
-                    <input onChange={handleFilmYear} onKeyDown={navigateMovieYear} value={year} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearFilm"/>
+                    <input onChange={handleFilmYear} onKeyDown={navigateMovieYear} value={year} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearFilm" placeholder={`Year range 1895-${currentYear}`}/>
                 </div> 
             </>
             :
@@ -162,7 +162,7 @@ export default function PaginationListNav(props) {
                 </div>
                 <div className="genresNav releaseYear">
                     <h2 className="genresNavTitle">Release Year</h2>
-                    <input onChange={handleFilmYear} onKeyDown={navigateSeriesYear} value={year} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearSeries"/>
+                    <input onChange={handleFilmYear} onKeyDown={navigateSeriesYear} value={year} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearSeries" placeholder={`Year range 1895-${currentYear}`}/>
                 </div> 
             </>
             }
