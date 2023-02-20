@@ -1,10 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.css";
 import {useNavigate } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
 
 export default function PaginationListNav(props) {
     const navigate = useNavigate();
+    const [currentYear] = useState(new Date().getFullYear());
+    const [year, setYear] = useState();
+
+    const handleFilmYear = (event) => {
+        const year = event.target.value;
+        if(year <= 0) {
+            setYear(1895);
+        } else if(year > currentYear) {
+            setYear(currentYear);
+        } else {
+            setYear(year);
+        }
+    }
 
     const navigateLatestMovie = () => {
         navigate("/");
@@ -82,8 +95,6 @@ export default function PaginationListNav(props) {
         }
     }
 
-
-
     return (
         <div className="paginationListNav">
             {props.type === "movie" ?
@@ -117,7 +128,7 @@ export default function PaginationListNav(props) {
                 </div>
                 <div className="genresNav releaseYear">
                     <h2 className="genresNavTitle">Release Year</h2>
-                    <input onKeyDown={navigateMovieYear} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearFilm"/>
+                    <input onChange={handleFilmYear} onKeyDown={navigateMovieYear} value={year} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearFilm"/>
                 </div> 
             </>
             :
@@ -151,7 +162,7 @@ export default function PaginationListNav(props) {
                 </div>
                 <div className="genresNav releaseYear">
                     <h2 className="genresNavTitle">Release Year</h2>
-                    <input onKeyDown={navigateSeriesYear} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearSeries"/>
+                    <input onChange={handleFilmYear} onKeyDown={navigateSeriesYear} value={year} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearSeries"/>
                 </div> 
             </>
             }
