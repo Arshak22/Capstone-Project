@@ -9,7 +9,7 @@ import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
 import { getAllMovies, getAllSeries, getLatestWatchables, getLatestMovies, getLatestSeries, getPopularWatchables, getPopularMovies, getPopularSeries, getUpcomingMovies, getUpcomingSeries } from "../../Platform/Watchables";
-import { searchWatchable, searchMovieByGenre, searchSeriesByGenre } from "../../Platform/Search";
+import { searchWatchable, searchMovieByGenre, searchSeriesByGenre, searchMovieByReleaseYear, searchSeriesByReleaseYear } from "../../Platform/Search";
 
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
@@ -62,6 +62,12 @@ export default function MoviePaginationList() {
     } else if(type.startsWith("seriesGenre:")) {
       const seriesGenre = type.split("seriesGenre:")[1].split("/")[0];
       handleSearchSeriesGenre(itemOffset, itemsPerPage, seriesGenre);
+    } else if(type.startsWith("filmReleaseYear:")) {
+      const filmReleaseYear = type.split("filmReleaseYear:")[1].split("/")[0];
+      handleSearchMovieYear(itemOffset, itemsPerPage, filmReleaseYear);
+    } else if(type.startsWith("seriesReleaseYear:")) {
+      const seriesReleaseYear = type.split("seriesReleaseYear:")[1].split("/")[0];
+      handleSearchSeriesYear(itemOffset, itemsPerPage, seriesReleaseYear);
     } else {
       navigate("/error-page");
     }
@@ -268,6 +274,38 @@ export default function MoviePaginationList() {
   const handleSearchSeriesGenre = async (pageNumber, pageSize, genre) => {
     try {
       const result = await searchSeriesByGenre(pageNumber, pageSize, genre);
+      setTotal(result.data.totalElements);
+      setCurrentItems(result.data.content);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500)
+    } catch (e) {
+        navigate("/error-page");
+    }
+  };
+
+  const handleSearchMovieYear = async (pageNumber, pageSize, year) => {
+    try {
+      const result = await searchMovieByReleaseYear(pageNumber, pageSize, year);
+      setTotal(result.data.totalElements);
+      setCurrentItems(result.data.content);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500)
+    } catch (e) {
+        navigate("/error-page");
+    }
+  };
+
+  const handleSearchSeriesYear = async (pageNumber, pageSize, year) => {
+    try {
+      const result = await searchSeriesByReleaseYear(pageNumber, pageSize, year);
       setTotal(result.data.totalElements);
       setCurrentItems(result.data.content);
       setTimeout(() => {

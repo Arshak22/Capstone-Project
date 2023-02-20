@@ -62,6 +62,28 @@ export default function PaginationListNav(props) {
         }, 300)
     }
 
+    const navigateMovieYear = (e) => {
+        const year = document.getElementById("releaseYearFilm").value;
+        if(e.key === "Enter" && year) {
+            navigate("/");
+            setTimeout(() => {
+                navigate("/movies/filmReleaseYear:" + year);
+            }, 300)
+        }
+    }
+
+    const navigateSeriesYear = (e) => {
+        const year = document.getElementById("releaseYearSeries").value;
+        if(e.key === "Enter" && year) {
+            navigate("/");
+            setTimeout(() => {
+                navigate("/tv-shows/seriesReleaseYear:" + year);
+            }, 300)
+        }
+    }
+
+
+
     return (
         <div className="paginationListNav">
             {props.type === "movie" ?
@@ -93,6 +115,10 @@ export default function PaginationListNav(props) {
                         <li onClick={() => navigateMovieGenre("WESTERN")}>WESTERN</li>
                     </ul>
                 </div>
+                <div className="genresNav releaseYear">
+                    <h2 className="genresNavTitle">Release Year</h2>
+                    <input onKeyDown={navigateMovieYear} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearFilm"/>
+                </div> 
             </>
             :
             <>
@@ -123,6 +149,10 @@ export default function PaginationListNav(props) {
                         <li onClick={() => navigateSeriesGenre("WESTERN")}>WESTERN</li>
                     </ul>
                 </div>
+                <div className="genresNav releaseYear">
+                    <h2 className="genresNavTitle">Release Year</h2>
+                    <input onKeyDown={navigateSeriesYear} type="number" name="releaseYear" className="releaseYearSearch" id="releaseYearSeries"/>
+                </div> 
             </>
             }
         </div>
