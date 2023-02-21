@@ -57,7 +57,9 @@ export default function VerticalSliderSection({movies}) {
 
     useEffect(() => {
         if(movies[0]) {
-          setStartingBG(`https://www.themoviedb.org/t/p/original/${movies[0].mainBackdropPath}`);
+          if(movies[0].mainBackdropPath) {
+            setStartingBG(`https://www.themoviedb.org/t/p/original/${movies[0].mainBackdropPath}`);
+          }
         }
     }, [movies])
 
