@@ -1,0 +1,51 @@
+.WebScreenMockup {
+    width: 100%;
+    height: auto;
+    margin-top: 100px;
+}
+
+.WebScreenMockup h1 {
+    color: #ffffff;
+    padding-left: 6em;
+    padding-right: 6em;
+    font-size: 40px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.WebScreenMockup div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Mockup {
+    margin-top: 25px;
+    max-width: 100%;
+    width: 800px;
+    filter: drop-shadow(-100px 10px 50px var(--main-red-hover));
+}
+
+@media screen and (max-width: 800px) {
+    .WebScreenMockup h1 {
+        font-size: 30px;
+        padding-left: 3em;
+        padding-right: 3em;
+    }
+    .Mockup {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .WebScreenMockup h1 {
+        font-size: 22px;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+    .Mockup {
+        width: 500px;
+    }
+}

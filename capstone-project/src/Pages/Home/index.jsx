@@ -8,6 +8,7 @@ import HorizontalSlider from "../../Components/HorizontalSlider";
 import VerticalSliderSection from "../../Components/VerticalSliderSection";
 import FanPageSection from "../../Components/FanPageSection";
 import AboutUsSection from "../../Components/AboutUsSection";
+import WebScreenMockup from "../../Components/WebScreenMockup";
 
 export default function Home() {
     const {setIsLoading} = useGlobalContext();
@@ -60,6 +61,7 @@ export default function Home() {
             <VerticalSliderSection movies={upComingMovies} />
             <SliderHeader header="Popular Movies" link="/movies/popular" btnName="View All"/>
             <HorizontalSlider movies={popularMovies}/>
+            <WebScreenMockup/>
             <AboutUsSection/>
             <FanPageSection/>
         </div>
