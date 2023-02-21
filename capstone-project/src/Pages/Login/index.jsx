@@ -50,7 +50,10 @@ export default function Login() {
             emailError: "",
             passwordError: "",
             confirmPasswordError: ""
-        });  
+        });
+        if(!flag) {
+            document.getElementById("fullName").value = "";
+        }
     }, [flag])
 
     const handleShowPassword = () => {
@@ -220,7 +223,7 @@ export default function Login() {
                         </div>
                     : <div className="signUp">
                         <div>
-                            <input className="loginInput" type="text" placeholder="Full Name" required onChange={handleNewUserUsername}/>
+                            <input className="loginInput" type="text" placeholder="Full Name" required id="fullName" onChange={handleNewUserUsername}/>
                         </div>
                         {signUpErrors.fullNameError ? <span className="loginErrors">{signUpErrors.fullNameError}</span>: null}
                         <div>
