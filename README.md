@@ -94,4 +94,8 @@ npm start
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_50.jpg" width=350 height=200></td>
     <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_51.jpg" width=350 height=200></td>
   </tr>
+  <tr>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_52.jpg" width=350 height=200></td>
+    <td><img src="capstone-project/src/assets/images/ShowCaseImages/Screenshot_53.jpg" width=350 height=200></td>
+  </tr>
  </table>
