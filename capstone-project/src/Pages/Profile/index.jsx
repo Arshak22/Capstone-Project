@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
+import jwt_decode from 'jwt-decode';
 
 import ProfileMoviePagination from "../../Components/ProfileMoviePagination";
 
@@ -9,13 +10,20 @@ import { FaTimes } from "react-icons/fa";
 import ProfileInfoSection from "../../Components/ProfileInfoSection";
 
 import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
     const {setIsLoading, user} = useGlobalContext();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
+        const decodedToken = jwt_decode(token);
+        if(decodedToken.sub !== user.email) {
+            navigate("/error-page");
+        }
         document.title = "Movie Mavericks: Profile Page";
         setTimeout(() => {
             setIsLoading(false);

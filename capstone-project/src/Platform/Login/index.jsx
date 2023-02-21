@@ -2,6 +2,10 @@ import React from "react";
 import axios from "axios";
 import {API} from "../api";
 
-export const SignIn = (user) => {
-    return axios.post(`${API}login`, user);
+const options = {
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+};  
+
+export const SignInUser = (user) => {
+    return axios.post(`${API}/login`, user, options);
 }

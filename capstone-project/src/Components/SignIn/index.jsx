@@ -6,7 +6,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
 export default function SignIn() {
-    const {user, setUser} = useGlobalContext();
+    const {loginUser, setLoginUser, user, setUser} = useGlobalContext();
     const [show, setShow] = useState(false);
     
     const handleShowPassword = () => {
@@ -14,10 +14,12 @@ export default function SignIn() {
     }
 
     const handleUserEmail = (e) => {
+        setLoginUser({...loginUser, email: e.target.value})
         setUser({...user, email: e.target.value})
     }
 
     const handleUserPassword = (e) => {
+        setLoginUser({...loginUser, password: e.target.value})
         setUser({...user, password: e.target.value})
     }
 

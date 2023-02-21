@@ -3,6 +3,13 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [loginUser, setLoginUser] = useState(
+    {
+      email: "-",
+      password: null,
+    }
+  )
+
   const [user, setUser] = useState(
     {
         firstName: "First Name",
@@ -35,7 +42,9 @@ const AppProvider = ({ children }) => {
         castPopUpOpen,
         setCastPopUpOpen,
         isLoading,
-        setIsLoading
+        setIsLoading,
+        loginUser,
+        setLoginUser
       }}
     >
       {children}

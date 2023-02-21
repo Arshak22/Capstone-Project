@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
+import qs from 'qs';
 import { useGlobalContext } from "../../Context/Context";
 import SignIn from "../../Components/SignIn";
 import SignUp from "../../Components/SignUp";
 import User from "../../assets/images/Icons/user.png";
 
+import { SignInUser } from "../../Platform/Login";
+
 export default function Login() {
-    const {setIsLoading} = useGlobalContext();
+    const {setIsLoading, loginUser} = useGlobalContext();
     const [active, setActive] = useState(false);
     const [flag, setFlag] = useState(true);
 
     useEffect(() => {
         document.title = "Movie Mavericks: Register";
+        localStorage.setItem("token", "");
         setTimeout(() => {
             setIsLoading(false);
             setActive(true);
@@ -20,6 +24,20 @@ export default function Login() {
 
     const handleSignInorSignUp = (e) => {
         (e.target.innerHTML === "Sign In") ? setFlag(true) : setFlag(false);
+    }
+
+    const handleSignIn = (user) => {
+        const data = qs.stringify(user);
+        LogIn(data);
+    }
+      
+    const LogIn = async (user) => {
+        try {
+          const result = await SignInUser(user);
+          localStorage.setItem("token", `${result.headers.access_token}`);
+        } catch (e) {
+          console.log(e);
+        }
     }
 
     return (
@@ -36,7 +54,9 @@ export default function Login() {
                 </div>
             </div>
             <div className="loginBtn">
-                <button>{flag ? "Sign In": "Sign Up"}</button>
+                {flag ? 
+                    <button onClick={() => handleSignIn(loginUser)}>Sign In</button>
+                : <button>Sign Up</button>}
             </div>
         </div>: null}
     </>
