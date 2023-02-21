@@ -126,6 +126,100 @@
     transition: all 0.5s ease-in-out;
 }
 
+.signIn {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.loginInput {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--main-red);
+    border-top: 0px;
+    border-radius: 15px;
+    font-weight: bold;
+    outline: 0;
+    margin-top: 40px;
+    width: 100%;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: #ffffff;
+    box-shadow: 0px 10px 10px -10px #ff000077;
+}
+
+.signIn h3 {
+    margin-top: 40px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 17px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    filter: drop-shadow(0 0 0.2rem #ffffff5c);
+}
+
+.passwordInputContainer {
+    position: relative;
+}
+
+.passwordIcon {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    color: var(--main-red);
+}
+
+.signUp {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.loginInput {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid var(--main-red);
+    border-top: 0px;
+    border-radius: 15px;
+    font-weight: bold;
+    outline: 0;
+    width: 100%;
+    margin-top: 40px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: #ffffff;
+    box-shadow: 0px 10px 10px -10px #ff000077;
+}
+
+.passwordInputContainer {
+    position: relative;
+}
+
+.passwordIcon {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    color: var(--main-red);
+}
+
+.loginErrors {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 10px;
+    color: var(--main-red);
+}
+
 .loginBtn {
     width: 350px;
     position: relative;
@@ -134,7 +228,6 @@
     margin-bottom: 30px;
     left: 0;
     right: 0;
-    padding: 15px;
     color: #ffffff;
     border: 3px solid var(--main-red);
     border-radius: 6px;
@@ -152,6 +245,9 @@
     border: none;
     font-size: 20px;
     font-weight: 600;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
     letter-spacing: 5px;
     text-transform: uppercase;
     filter: drop-shadow(0 0 0.2rem #ffffff5c);

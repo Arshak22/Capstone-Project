@@ -5,7 +5,7 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loginUser, setLoginUser] = useState(
     {
-      email: "-",
+      email: "",
       password: null,
     }
   )
