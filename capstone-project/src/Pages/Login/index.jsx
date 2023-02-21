@@ -8,9 +8,11 @@ import { SignInUser } from "../../Platform/Login";
 
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const {loginUser, setLoginUser, user, setUser, setIsLoading, newUser, setNewUser} = useGlobalContext();
+    const navigate = useNavigate();
     const [active, setActive] = useState(false);
     const [flag, setFlag] = useState(true);
     const [show, setShow] = useState(false);
@@ -130,6 +132,7 @@ export default function Login() {
         try {
           const result = await SignInUser(user);
           localStorage.setItem("token", `${result.headers.access_token}`);
+          navigate("/profile");
         } catch (e) {
             console.log(e);
         }

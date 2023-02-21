@@ -19,10 +19,14 @@ export default function Profile() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const decodedToken = jwt_decode(token);
-        if(decodedToken.sub !== user.email) {
+        const token = localStorage.getItem("token");
+        if(!token) {
             navigate("/error-page");
+        } else {
+            const decodedToken = jwt_decode(token);
+            if(!decodedToken.sub) {
+                navigate("/error-page");
+            }
         }
         document.title = "Movie Mavericks: Profile Page";
         setTimeout(() => {
@@ -38,6 +42,11 @@ export default function Profile() {
         setActiveBar(!activeBar);
     };
 
+    const logOut = () => {
+        localStorage.clear();
+        navigate("/");
+    }
+
     return (
         <div className="profileContainer">
             <div className="sideBar">
@@ -45,7 +54,7 @@ export default function Profile() {
                     <h3 className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</h3>
                     <h3 className={active === "Favourites" ? "activeSideBar" : ""} onClick={() => handleClick("Favourites")}>Favourites</h3>
                     <h3 className={active === "Watchlist" ? "activeSideBar" : ""} onClick={() => handleClick("Watchlist")}>Watchlist</h3>
-                    <h3>Log Out</h3>
+                    <h3 onClick={logOut}>Log Out</h3>
                 </div> 
             </div>
             <div className="profileRCol">
@@ -63,7 +72,7 @@ export default function Profile() {
                                 <li className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</li>
                                 <li className={active === "Favourites" ? "activeSideBar" : ""} onClick={() => handleClick("Favourites")}>Favourites</li>
                                 <li className={active === "Watchlist" ? "activeSideBar" : ""} onClick={() => handleClick("Watchlist")}>Watchlist</li>
-                                <li>Log Out</li>
+                                <li onClick={logOut}>Log Out</li>
                         </ul>: null}
                         </div>
                     </div>

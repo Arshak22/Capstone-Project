@@ -1,5 +1,6 @@
 import {React, useState, useEffect, useRef} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import jwt_decode from 'jwt-decode';
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
 import MainLogo from "../../assets/images/Logos/Logo1.png";
@@ -19,11 +20,19 @@ export default function Header() {
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
     const [searchShowcase, setSearchShowcase] = useState([]);
+    const [showProfile, setShowProfile] = useState(false);
     const navigate = useNavigate();
     const prevScrollPos = useRef(0);
   
     useEffect(() => {
         document.body.classList.remove('hiddenScroll');
+        const token = localStorage.getItem("token");
+        if(token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+                setShowProfile(true);
+            }
+        }
         function handleScroll() {
           const currentScrollPos = window.pageYOffset;
           if (currentScrollPos > prevScrollPos.current) {
@@ -83,6 +92,11 @@ export default function Header() {
         setTimeout(() => {
             navigate(ROUTE_NAMES.DEFAULT_PAGE + id);
         }, 50)
+    }
+
+    const logOut = () => {
+        localStorage.clear();
+        window.location.reload();
     }
 
     return (
@@ -182,12 +196,21 @@ export default function Header() {
                                                 </span>Log In
                                             </NavLink>
                                         </li>
+                                        {showProfile ?
+                                        <>
                                         <li>
                                             <NavLink to={ROUTE_NAMES.PROFILE_PAGE} className="navItem" end>
                                                 <span data-text="PROFILE">
                                                 </span>Profile
                                             </NavLink>
                                         </li>
+                                        <li>
+                                            <NavLink onClick={logOut} to={ROUTE_NAMES.HOME} className="navItem" end>
+                                                <span data-text="LOG OUT">
+                                                </span>Log Out
+                                            </NavLink>
+                                        </li>
+                                        </>:null}
                                     </ul>
                                 </div>
                             </div>
