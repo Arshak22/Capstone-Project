@@ -7,6 +7,7 @@ import {FaFileUpload} from "react-icons/fa";
 import {GiTicket} from "react-icons/gi";
 import {FaUserEdit} from "react-icons/fa";
 import {IoPersonRemove} from "react-icons/io5";
+import ProfileCommentSection from "../ProfileCommentSection";
 
 export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
@@ -229,7 +230,7 @@ export default function ProfileInfoSection() {
                         </div>
                         <button onClick={handleEdit} className="btn btn2">Edit Profile<FaUserEdit className="userBtnIcon"/></button>
                         <button className="btn btn2">Delete Profile<IoPersonRemove className="userBtnIcon"/></button>
-                    </div>: null}
+                    </div>: <ProfileCommentSection/>}
                 </div>
             </div>
         </div>
