@@ -53,6 +53,8 @@ export default function Login() {
         });
         if(!flag) {
             document.getElementById("fullName").value = "";
+        } else if(flag && document.getElementById("emailAddress")) {
+            document.getElementById("emailAddress").value = "";
         }
     }, [flag])
 
@@ -209,7 +211,7 @@ export default function Login() {
                     {flag ? 
                         <div className="signIn">
                             <div>
-                                <input className="loginInput" type="email" placeholder="Email Address" required onChange={handleUserEmail}/>
+                                <input className="loginInput" type="email" placeholder="Email Address" id="emailAddress" required onChange={handleUserEmail}/>
                             </div>
                             {signInErrors.emailError ? <span className="loginErrors">{signInErrors.emailError}</span>:null}
                             <div className="passwordInputContainer">
