@@ -136,7 +136,6 @@ export default function Login() {
 
     const handleEnterSignIn = (e) => {
         if(e.key === "Enter") {
-            console.log(loginUser);
             handleSignIn(loginUser);
         }
     }
@@ -178,7 +177,6 @@ export default function Login() {
             passwordError: "",
             confirmPasswordError: ""
         }
-        console.log(newUser);
         if(!newUser.username) {
             error.fullNameError = "Please enter your full name";
             f = false;
@@ -203,18 +201,38 @@ export default function Login() {
             f = false;
         }
         if(f) {
-            SignUpUser();
+            let registerUser = {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: ""
+            }
+            const substrings = newUser.username.split(" ");
+            const [firstName, ...theRest] = substrings;
+            const lastName = theRest.join(" ");
+            registerUser.firstName = firstName;
+            registerUser.lastName = lastName;
+            registerUser.email = newUser.email;
+            registerUser.password = newUser.password;
+            SignUpUser(registerUser);
         } else if(!f) {
             setSignUpErrors(error);
         }
     }
 
-    const SignUpUser = async () => {
+    const SignUpUser = async (user) => {
         try {
+            console.log(user);
         //   const result = await SignInUser(user);
         //   localStorage.setItem("token", `${result.headers.access_token}`);
         } catch (e) {
             console.log(e);
+        }
+    }
+
+    const handleEnterSignUp = (e) => {
+        if(e.key === "Enter") {
+            handleSignUp();
         }
     }
 
@@ -245,20 +263,20 @@ export default function Login() {
                         </div>
                     : <div className="signUp">
                         <div>
-                            <input className="loginInput" type="text" placeholder="Full Name" required id="fullName" onChange={handleNewUserUsername}/>
+                            <input className="loginInput" type="text" placeholder="Full Name" required id="fullName" onChange={handleNewUserUsername} onKeyDown={handleEnterSignUp}/>
                         </div>
                         {signUpErrors.fullNameError ? <span className="loginErrors">{signUpErrors.fullNameError}</span>: null}
                         <div>
-                            <input className="loginInput" type="email" placeholder="Email Address" required onChange={handleNewUserEmail}/>
+                            <input className="loginInput" type="email" placeholder="Email Address" required onChange={handleNewUserEmail} onKeyDown={handleEnterSignUp}/>
                         </div>
                         {signUpErrors.emailError ? <span className="loginErrors">{signUpErrors.emailError}</span>: null}
                         <div className="passwordInputContainer">
-                            <input className="loginInput" type={show1 ? "text": "password"} placeholder="Password" required onChange={handleNewUserPassword}/>
+                            <input className="loginInput" type={show1 ? "text": "password"} placeholder="Password" required onChange={handleNewUserPassword} onKeyDown={handleEnterSignUp}/>
                             {!show1 ? <FaEyeSlash className="passwordIcon" onClick={handleShowPassword1}/>: <FaEye className="passwordIcon" onClick={handleShowPassword1}/>}
                         </div>
                         {signUpErrors.passwordError ? <span className="loginErrors">{signUpErrors.passwordError}</span>: null}
                         <div className="passwordInputContainer">
-                            <input className="loginInput" type={show2 ? "text": "password"} placeholder="Confirm Password" required onChange={handleNewUserConfirmPassword}/>
+                            <input className="loginInput" type={show2 ? "text": "password"} placeholder="Confirm Password" required onChange={handleNewUserConfirmPassword} onKeyDown={handleEnterSignUp}/>
                             {!show2 ? <FaEyeSlash className="passwordIcon" onClick={handleShowPassword2}/>: <FaEye className="passwordIcon" onClick={handleShowPassword2}/>}
                         </div>
                         {signUpErrors.confirmPasswordError ? <span className="loginErrors">{signUpErrors.confirmPasswordError}</span>: null}
