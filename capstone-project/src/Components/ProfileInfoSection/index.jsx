@@ -77,6 +77,19 @@ export default function ProfileInfoSection() {
     const handleAvatar = (e) => {
         setUploadedAvatar(false);
         const file = e.target.files[0];
+        let error = {
+            firstNameError: "",
+            lastNameError: "",
+            passwordError: "",
+            emailError: "",
+            avatarError: "",
+            favoriteGenresError: ""
+        }
+        if(file.size > 1000000) {
+            error.avatarError = "File size exceeds 1MB"
+            setErrors(error);
+            return;
+        }
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
@@ -118,7 +131,7 @@ export default function ProfileInfoSection() {
         if (!tempUser.avatar) {
             error.avatarError = "Please submit your new profile picture";
             v = false;
-        }
+        } 
         setErrors(error);
         return v;
     }
@@ -218,7 +231,7 @@ export default function ProfileInfoSection() {
                         <div className="inputBox">
                             <span className="profileInputError genreError">{errors.favoriteGenresError}</span>
                         </div>
-                        <h4 className="myLable">Upload New Avatar</h4>
+                        <h4 className="myLable">Upload New Avatar (up to 1MB)</h4>
                         <div className="smallInputs">
                             <input onChange={handleAvatar} required type="file" id="avatarFile" name="picture" accept="image/*"/>
                             <label className="avatarUpload" htmlFor="avatarFile"><FaFileUpload className="uploadIcon"/>Select File</label>
