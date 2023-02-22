@@ -114,17 +114,25 @@ export default function Login() {
             emailError: ""
         }
         const data = qs.stringify(user);
-        if(loginUser.email && !validateEmail(loginUser.email)) {
+        if(!loginUser.email || !validateEmail(loginUser.email)) {
             error.emailError = "Please enter valid email";
             f = false;
-        } else if(!loginUser.email && !loginUser.password) {
-            error.mainError = "Wrong email or password";
+        }
+        if(!loginUser.password) {
+            error.mainError = "Please enter your password";
             f = false;
-        } 
+        }
         if(f) {
             LogIn(data);
         } else {
             setSignInErrors(error);
+        }
+    }
+
+    const handleEnterSignIn = (e) => {
+        if(e.key === "Enter") {
+            console.log(loginUser);
+            handleSignIn(loginUser);
         }
     }
       
@@ -134,7 +142,11 @@ export default function Login() {
           localStorage.setItem("token", `${result.headers.access_token}`);
           navigate("/profile");
         } catch (e) {
-            console.log(e);
+            let error = {
+                mainError: "Wrong email or password",
+                emailError: ""
+            }
+            setSignInErrors(error);
         }
     }
 
@@ -214,12 +226,12 @@ export default function Login() {
                     {flag ? 
                         <div className="signIn">
                             <div>
-                                <input className="loginInput" type="email" placeholder="Email Address" id="emailAddress" required onChange={handleUserEmail}/>
+                                <input className="loginInput" type="email" placeholder="Email Address" id="emailAddress" required onChange={handleUserEmail} onKeyDown={handleEnterSignIn} />
                             </div>
                             {signInErrors.emailError ? <span className="loginErrors">{signInErrors.emailError}</span>:null}
                             <div className="passwordInputContainer">
                                 <div>
-                                    <input className="loginInput" type={show ? "text": "password"} placeholder="Password" required onChange={handleUserPassword}/>
+                                    <input className="loginInput" type={show ? "text": "password"} placeholder="Password" required onKeyDown={handleEnterSignIn} onChange={handleUserPassword}/>
                                     {!show ? <FaEyeSlash className="passwordIcon" onClick={handleShowPassword}/>: <FaEye className="passwordIcon" onClick={handleShowPassword}/>}
                                 </div>
                             </div>
