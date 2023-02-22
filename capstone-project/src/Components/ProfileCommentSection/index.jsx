@@ -19,9 +19,23 @@ export default function ProfileCommentSection() {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [total, setTotal] = useState(0);
-    const itemsPerPage = 30;
+    const itemsPerPage = 3;
 
     useEffect(() => {
+        setCurrentItems([
+            {
+                name: "Name",
+                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
+            },
+            {
+                name: "Name",
+                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
+            },
+            {
+                name: "Name",
+                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
+            }
+        ]);
         setPageCount(Math.ceil(total / itemsPerPage));
     }, [itemOffset, total])
 
@@ -32,34 +46,24 @@ export default function ProfileCommentSection() {
 
     return (
         <>
-            {currentItems.length === 0 ? <div className="profileCommentSection">
-                <div className="profileComment">
-                    <div className="profileCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
-                    </div>
-                    <div className="profileCommentBody">
-                        <h1>Name</h1>
-                        <p>Comment</p>
-                        <div className="profileCommentIcons">
-                            <FaArrowRight className="profileCommentIcon"/>
-                            <AiFillEdit className="profileCommentIcon"/>
-                            <ImCross className="profileCommentIcon"/>
+            {currentItems.length !== 0 ? 
+                currentItems.map((e, i) => {
+                    return (
+                        <div key={i} className="profileComment">
+                            <div className="profileCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
+                            </div>
+                            <div className="profileCommentBody">
+                                <h1>{e.name}</h1>
+                                <p>{e.comment}</p>
+                                <div className="profileCommentIcons">
+                                    <FaArrowRight className="profileCommentIcon"/>
+                                    <AiFillEdit className="profileCommentIcon"/>
+                                    <ImCross className="profileCommentIcon"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="profileComment">
-                    <div className="profileCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
-                    </div>
-                    <div className="profileCommentBody">
-                        <h1>Name</h1>
-                        <p>Comment</p>
-                        <div className="profileCommentIcons">
-                            <FaArrowRight className="profileCommentIcon"/>
-                            <AiFillEdit className="profileCommentIcon"/>
-                            <ImCross className="profileCommentIcon"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    )
+                })
             : <div className="noCommentsYetProfile"><h2>You dont have comments yet</h2></div>}
             {pageCount <= 1 ?
             null:
