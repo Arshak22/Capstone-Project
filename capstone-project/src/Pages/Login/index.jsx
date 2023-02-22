@@ -34,8 +34,13 @@ export default function Login() {
     )
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(token) {
+            navigate("/");
+        } else {
+            localStorage.setItem("token", "");
+        }
         document.title = "Movie Mavericks: Register";
-        localStorage.setItem("token", "");
         setTimeout(() => {
             setIsLoading(false);
             setActive(true);

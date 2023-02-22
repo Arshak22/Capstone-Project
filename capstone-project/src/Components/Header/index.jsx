@@ -190,12 +190,6 @@ export default function Header() {
                                 {user.avatar ? <img src={user.avatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}
                                 <div id="dropdownMenu2">
                                     <ul>
-                                        <li>
-                                            <NavLink to={ROUTE_NAMES.LOGIN_PAGE} className="navItem" end>
-                                                <span data-text="LOG IN">
-                                                </span>Log In
-                                            </NavLink>
-                                        </li>
                                         {showProfile ?
                                         <>
                                         <li>
@@ -210,7 +204,13 @@ export default function Header() {
                                                 </span>Log Out
                                             </NavLink>
                                         </li>
-                                        </>:null}
+                                        </>:
+                                        <li>
+                                            <NavLink to={ROUTE_NAMES.LOGIN_PAGE} className="navItem" end>
+                                                <span data-text="LOG IN">
+                                                </span>Log In
+                                            </NavLink>
+                                        </li>}
                                     </ul>
                                 </div>
                             </div>
