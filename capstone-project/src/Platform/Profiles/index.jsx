@@ -3,6 +3,10 @@ import axios from "axios";
 import {API} from "../api";
 const profiles = "/profiles";
 
+const options = {
+    headers: {'Content-Type': 'application/json'}
+}; 
+
 export const getAllProfiles = () => {
     return axios.get(`${API}${profiles}`);
 }
@@ -12,7 +16,7 @@ export const getProfile = (id) => {
 }
 
 export const addProfile = (profile) => {
-    return axios.post(`${API}${profiles}`, profile);
+    return axios.post(`${API}${profiles}`, profile, options);
 }
 
 export const updateProfile = (id, profile) => {

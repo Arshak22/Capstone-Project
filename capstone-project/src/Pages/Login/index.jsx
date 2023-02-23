@@ -5,6 +5,7 @@ import { useGlobalContext } from "../../Context/Context";
 import User from "../../assets/images/Icons/user.png";
 
 import { SignInUser } from "../../Platform/Login";
+import { addProfile } from "../../Platform/Profiles";
 
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
@@ -214,7 +215,8 @@ export default function Login() {
             registerUser.lastName = lastName;
             registerUser.email = newUser.email;
             registerUser.password = newUser.password;
-            SignUpUser(registerUser);
+            const requestBody  = JSON.stringify(registerUser);
+            SignUpUser(requestBody);
         } else if(!f) {
             setSignUpErrors(error);
         }
@@ -222,11 +224,16 @@ export default function Login() {
 
     const SignUpUser = async (user) => {
         try {
-            console.log(user);
-        //   const result = await SignInUser(user);
+          const result = await addProfile(user);
         //   localStorage.setItem("token", `${result.headers.access_token}`);
         } catch (e) {
-            console.log(e);
+            let error = {
+                fullNameError: "",
+                emailError: "Email already in use",
+                passwordError: "",
+                confirmPasswordError: ""
+            }
+            setSignUpErrors(error);
         }
     }
 

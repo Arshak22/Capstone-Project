@@ -51,7 +51,7 @@ export default function ProfileInfoSection() {
     };
 
     const handleEmail = (e) => {
-        if (validateEmail(e.target.value)) {
+        if(validateEmail(e.target.value)) {
             tempUser.email = e.target.value;
         }
     };
@@ -120,8 +120,8 @@ export default function ProfileInfoSection() {
             error.passwordError = "Please enter your current password";
             v = false;
         }
-        if (!tempUser.email) {
-            error.emailError = "Please enter your new email";
+        if (tempUser.email && !(validateEmail(tempUser.email))) {
+            error.emailError = "Please enter your new valid email";
             v = false;
         }
         if (tempUser.favoriteGenres.length < 3) {
@@ -211,7 +211,7 @@ export default function ProfileInfoSection() {
                         </div>
                         <div className="smallInputs">
                             <div className="inputBox">
-                                <input onChange={handleEmail} className="editInput Email" type="email" name="email" placeholder="Email Address" required/>
+                                <input onChange={handleEmail} className="editInput Email" type="email" name="email" placeholder="New Email Address (Opt.)" required/>
                                 <span className="profileInputError">{errors.emailError}</span>
                             </div>
                         </div>
