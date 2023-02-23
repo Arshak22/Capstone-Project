@@ -134,6 +134,7 @@
     height: auto;
     position: relative;
     margin-left: 35px;
+    margin-bottom: 20px;
 }
 
 #footerLogo:hover {
