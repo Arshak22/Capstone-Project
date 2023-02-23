@@ -51,9 +51,7 @@ export default function ProfileInfoSection() {
     };
 
     const handleEmail = (e) => {
-        if(validateEmail(e.target.value)) {
-            tempUser.email = e.target.value;
-        }
+        tempUser.email = e.target.value;
     };
 
     const handlePassword = (e) => {
