@@ -310,4 +310,7 @@
     .smallBar h2 {
         font-size: 15px;
     }
+    .Email {
+        width: 90% !important;
+    }
 }

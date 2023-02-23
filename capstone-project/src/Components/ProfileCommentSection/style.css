@@ -111,7 +111,7 @@
     transform: scale(0.9);
 }
 
-.profileComment {
+.profileCommentText {
     pointer-events: all;
     width: 98%;
     background-color: transparent;
@@ -122,8 +122,10 @@
     color: #ffffff;
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
-    line-height: 25px;
+    line-height: 30px;
     padding-right: 10px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     transition: all 0.5s ease;
 }
 
@@ -168,4 +170,36 @@
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 3px;
+}
+
+@media screen and (max-width: 430px) {
+    .profileComment {
+        display: block;
+    }
+    .profileCommentAvatar {
+        width: 30%;
+        margin-left: 20px;
+        margin-bottom: 30px;
+    }
+    .profileCommentBody {
+        width: 90%;
+    }
+    .profileCommentBody::before {
+        top: -35px;
+        left: 20px;
+        border-color: transparent transparent var(--main-red-hover) transparent;
+    }
+    .profileCommentBody h1 {
+        width: 70%;
+    }
+    .profileCommentText {
+        margin-top: 50px;
+    }
+    .profileCommentIcons {
+        flex-direction: column-reverse;
+        top: 20px;
+    }
+    .profileCommentIcon {
+        margin-bottom: 10px;
+    }
 }
