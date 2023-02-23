@@ -24,7 +24,7 @@ export default function ProfileInfoSection() {
     });
     const [errors, setErrors] = useState(
         {
-            firstNameErrror: "",
+            firstNameError: "",
             lastNameError: "",
             passwordError: "",
             emailError: "",
@@ -76,12 +76,12 @@ export default function ProfileInfoSection() {
         setUploadedAvatar(false);
         const file = e.target.files[0];
         let error = {
-            firstNameError: "",
-            lastNameError: "",
-            passwordError: "",
-            emailError: "",
+            firstNameError: errors.firstNameErrror,
+            lastNameError: errors.lastNameError,
+            passwordError: errors.passwordError,
+            emailError: errors.emailError,
             avatarError: "",
-            favoriteGenresError: ""
+            favoriteGenresError: errors.favoriteGenresError
         }
         if(file.size > 1000000) {
             error.avatarError = "File size exceeds 1MB"
