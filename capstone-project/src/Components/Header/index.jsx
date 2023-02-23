@@ -96,7 +96,6 @@ export default function Header() {
 
     const logOut = () => {
         localStorage.clear();
-        window.location.reload();
     }
 
     return (
