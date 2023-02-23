@@ -75,11 +75,12 @@ export default function HorizontalSlider({movies}) {
                 {movies.map((elem, index) => {
                     const date = new Date(elem.releaseDate);
                     const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
+                    const shortName = elem.name.length > 35 ? elem.name.slice(0, elem.name.lastIndexOf(" ", 35)) + "..." : elem.name;
                     return (
                         <div className="movieBlock" key={index}>
                             {elem.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + elem.mainBackdropPath} alt={elem.mainBackdropPath} />: <img src={DefaultBackdrop} alt={DefaultBackdrop} />}
                             <div className="movieBlockDescription">
-                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{elem.name}</NavLink></h6>
+                                <h6><NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>{shortName}</NavLink></h6>
                                 <span>{dateString}</span>
                                 <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end><button className="btn"><img src={VideoIcon} alt="btnIcon" className="btnIcon"/> READ MORE</button></NavLink>
                             </div>
