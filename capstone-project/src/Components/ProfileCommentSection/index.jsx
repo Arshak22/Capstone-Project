@@ -70,7 +70,7 @@ export default function ProfileCommentSection() {
                             <div className="profileCommentBody">
                                 <h1>{e.name}</h1>
                                 <h4>{e.date}</h4>
-                                <textarea name="profileComment" className="profileCommentText" id={i} rows="6" readOnly>{e.comment}</textarea>
+                                <textarea name="profileComment" className="profileCommentText" id={i} rows="4" readOnly>{e.comment}</textarea>
                                 <div className="profileCommentIcons">
                                     <FaArrowRight className="profileCommentIcon"/>
                                     <AiFillEdit onClick={() => handleCommentEdit(i)} className="profileCommentIcon"/>
