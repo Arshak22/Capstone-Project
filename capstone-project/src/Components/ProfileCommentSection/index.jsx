@@ -33,7 +33,7 @@ export default function ProfileCommentSection() {
             },
             {
                 name: "Name",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
+                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates."
             }
         ]);
         setPageCount(Math.ceil(total / itemsPerPage));
@@ -43,6 +43,18 @@ export default function ProfileCommentSection() {
         const newOffset = event.selected;
         setItemOffset(newOffset);
     };
+
+    const handleCommentEdit = (i) => {
+        const comment = document.getElementById(`${i}`);
+        const postBtn = document.getElementById(`commentBtn${i}`);
+        comment.classList.toggle("editableComment");
+        postBtn.classList.toggle("commentBtnVisible");
+        if ((comment.getAttribute("readOnly") === "") || comment.getAttribute("readOnly")) {
+            comment.removeAttribute("readOnly");
+        } else {
+            comment.setAttribute("readOnly", true);
+        }
+    }
 
     return (
         <>
@@ -54,12 +66,13 @@ export default function ProfileCommentSection() {
                             </div>
                             <div className="profileCommentBody">
                                 <h1>{e.name}</h1>
-                                <p>{e.comment}</p>
+                                <textarea name="profileComment" className="profileComment" id={i} rows="6" readOnly>{e.comment}</textarea>
                                 <div className="profileCommentIcons">
                                     <FaArrowRight className="profileCommentIcon"/>
-                                    <AiFillEdit className="profileCommentIcon"/>
+                                    <AiFillEdit onClick={() => handleCommentEdit(i)} className="profileCommentIcon"/>
                                     <ImCross className="profileCommentIcon"/>
                                 </div>
+                                <button id={`commentBtn${i}`} className="commentBtn" >Post</button>
                             </div>
                         </div>
                     )
