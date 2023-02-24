@@ -10,6 +10,7 @@ import { addProfile } from "../../Platform/Profiles";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import PleaseConfirmEmail from "../../Components/PleaseConfirmEmail";
 
 export default function Login() {
     const {loginUser, setLoginUser, user, setUser, setIsLoading, newUser, setNewUser} = useGlobalContext();
@@ -19,6 +20,7 @@ export default function Login() {
     const [show, setShow] = useState(false);
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
+    const [confirmEmail, setConfirmEmail] = useState(false);
     const [signInErrors, setSignInErrors] = useState(
         {
             mainError: "",
@@ -225,6 +227,7 @@ export default function Login() {
     const SignUpUser = async (user) => {
         try {
           const result = await addProfile(user);
+          setConfirmEmail(true);
         //   localStorage.setItem("token", `${result.headers.access_token}`);
         } catch (e) {
             let error = {
@@ -244,6 +247,8 @@ export default function Login() {
     }
 
     return (
+    <>
+    {!confirmEmail ?
     <>
     {active ? <div className="loginPage">
             <div className="loginBox">
@@ -296,6 +301,7 @@ export default function Login() {
                 : <button onClick={handleSignUp}>Sign Up</button>}
             </div>
         </div>: null}
+        </>: <PleaseConfirmEmail/>}
     </>
     );
 }
