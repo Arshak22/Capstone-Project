@@ -7,6 +7,7 @@ import MovieInfoSection from "../../Components/MovieInfoSection";
 import TopCast from "../../Components/TopCast";
 import MovieBackdropSlider from "../../Components/MovieBackdropSlider";
 import MovieTrailerSection from "../../Components/MovieTrailerSection";
+import MovieCommentSection from "../../Components/MovieCommentSection";
 
 export default function DefaultMoviePage() {
     const {id} = useParams();
@@ -45,6 +46,7 @@ export default function DefaultMoviePage() {
                     <TopCast movie={movieData.id}/>
                     <MovieBackdropSlider movie={movieData}/>
                     <MovieTrailerSection movie={movieData}/>
+                    <MovieCommentSection/>
                 </>
             : null}
         </div>
