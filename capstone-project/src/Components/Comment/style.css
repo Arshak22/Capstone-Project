@@ -19,6 +19,7 @@
 
 .movieCommentBody {
     width: 80%;
+    height: auto;
     margin-left: 20px;
     background: var(--bg);
     color: #ffffff;
@@ -27,7 +28,6 @@
     position: relative;
     padding: 20px;
     padding-top: 10px;
-    padding-bottom: 50px;
 }
 
 .movieCommentBody::before {
@@ -121,7 +121,7 @@
     line-height: 30px;
     padding-right: 10px;
     margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     transition: all 0.5s ease;
 }
 
@@ -131,15 +131,19 @@
     border-radius: 15px;
 }
 
-.commentBtn {
-    opacity: 0;
-    position: absolute;
-    right: 30px;
-    bottom: 20px;
+.commentBtnBox { 
+    display: flex;
+    justify-content: flex-end;
+}
+
+.movieCommentBtn {
+    display: none;
     font-size: 15px;
+    text-align: right;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
+    margin-right: 10px;
     padding: 7px;
     padding-left: 13px;
     padding-right: 13px;
@@ -150,16 +154,30 @@
     transition: all 0.5s ease;
 }
 
-.commentBtnVisible {
-    opacity: 1;
+.movieCommentBtnVisible {
+    display: block;
 }
 
-.commentBtn:hover {
+.movieCommentBtn:hover {
     background-color: var(--bg);
+    transform: scale(0.9);
+}
+
+@media screen and (max-width: 1445px) {
+    .movieComment {
+        width: 650px;
+    }
+}
+
+@media screen and (max-width: 1375px) {
+    .movieComment {
+        width: 600px;
+    }
 }
 
 @media screen and (max-width: 430px) {
     .movieComment {
+        width: 350px;
         display: block;
     }
     .movieCommentAvatar {
@@ -187,5 +205,11 @@
     }
     .movieCommentIcon {
         margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    .movieComment {
+        width: 300px;
     }
 }

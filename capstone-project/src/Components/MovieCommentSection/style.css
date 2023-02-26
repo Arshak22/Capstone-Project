@@ -100,3 +100,22 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width: 430px) {
+    .CommentSectionTitle {
+        font-size: 30px;
+    }
+    .mainCommentPost {
+        display: block;
+    }
+    .movieCommentMain {
+        margin-left: 0;
+        width: 100%;
+    }
+    .mainCommentPostBtn {
+        margin-left: 0;
+    }
+    .commentError {
+        margin-left: 0;
+    }
+}
