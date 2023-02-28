@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import "./style.css";
 import { NavLink } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
