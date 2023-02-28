@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from "react";
 import "./style.css";
+import jwt_decode from 'jwt-decode';
 import Tilt from 'react-parallax-tilt';
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
@@ -17,6 +18,7 @@ import { FaPinterestP } from "react-icons/fa";
 
 export default function MovieInfoSection({movie}) {
     const {setCastPopUpOpen} = useGlobalContext();
+    const [logedIn, setLogedIn] = useState(false);
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
     const [date, setDate] = useState("");
@@ -31,6 +33,17 @@ export default function MovieInfoSection({movie}) {
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(!token) {
+            setLogedIn(false);
+        } else {
+            const decodedToken = jwt_decode(token);
+            if(!decodedToken.sub) {
+                setLogedIn(false);
+            } else {
+                setLogedIn(true);
+            }
+        }
         convertToHoursAndMinutes(movie.duration);
         formatDate(movie.releaseDate);
         if(movie.mainBackdrop) {
@@ -141,7 +154,7 @@ export default function MovieInfoSection({movie}) {
                             <div className="iconBox">
                                 <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
                                 <div className="moviePageShareIcons">
-                                    <Popup trigger={<FaFacebookF className="moviePageShareIcon"/>} 
+                                    {!logedIn ? <Popup trigger={<FaFacebookF className="moviePageShareIcon"/>} 
                                     position="center"
                                     open={shareFacebookPopupState}
                                     onOpen={() => handleOpen("facebook")}
@@ -154,8 +167,8 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>
-                                    <Popup trigger={<FaTwitter className="moviePageShareIcon"/>} 
+                                    </Popup>: <FaFacebookF className="moviePageShareIcon"/>}
+                                    {!logedIn ? <Popup trigger={<FaTwitter className="moviePageShareIcon"/>} 
                                     position="center"
                                     open={shareTwitterPopupState}
                                     onOpen={() => handleOpen("twitter")}
@@ -168,8 +181,8 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>
-                                    <Popup trigger={<FaPinterestP className="moviePageShareIcon"/>} 
+                                    </Popup>: <FaTwitter className="moviePageShareIcon"/>}
+                                    {!logedIn ? <Popup trigger={<FaPinterestP className="moviePageShareIcon"/>} 
                                     position="center"
                                     open={sharePinterestPopupState}
                                     onOpen={() => handleOpen("pinterest")}
@@ -182,11 +195,11 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>
+                                    </Popup>: <FaPinterestP className="moviePageShareIcon"/>}
                                 </div>
                             </div>
                             <div className="iconBox">
-                                <Popup trigger={<button className="moviePageIcon"><FaHeart/></button>} 
+                                {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaHeart/></button>} 
                                 position="center"
                                 open={favouritePopupState}
                                 onOpen={() => handleOpen("favourite")}
@@ -199,10 +212,10 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your favourites.</h3>
                                     </div>
                                 )}
-                                </Popup>
+                                </Popup>: <button className="moviePageIcon"><FaHeart/></button>}
                             </div>
                             <div className="iconBox">
-                                <Popup trigger={<button className="moviePageIcon"><FaPlus/></button>} 
+                                {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaPlus/></button>} 
                                 position="center"
                                 open={watchlistPopupState}
                                 onOpen={() => handleOpen("watchlist")}
@@ -215,10 +228,10 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your watchlist.</h3>
                                     </div>
                                 )}
-                                </Popup>
+                                </Popup>: <button className="moviePageIcon"><FaPlus/></button>}
                             </div>
                             <div className="iconBox">
-                                <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 
+                                {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 
                                 position="center"
                                 open={ratePopupState}
                                 onOpen={() => handleOpen("rate")}
@@ -231,7 +244,7 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to rate a movie.</h3>
                                     </div>
                                 )}
-                                </Popup>
+                                </Popup>: <button className="moviePageIcon"><FaStar/></button>}
                             </div>
                         </div>
                     </div>

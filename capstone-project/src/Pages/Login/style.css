@@ -161,6 +161,10 @@
     filter: drop-shadow(0 0 0.2rem #ffffff5c);
 }
 
+.signIn h3 span {
+    pointer-events: all;
+}
+
 .passwordInputContainer {
     position: relative;
 }

@@ -271,7 +271,7 @@ export default function Login() {
                                 </div>
                             </div>
                             {signInErrors.mainError ? <span className="loginErrors">{signInErrors.mainError}</span>: null}
-                            <h3>Forgot Password?</h3>
+                            <h3>Need an Account? <span onClick={handleSignInorSignUp}>SIGN UP</span></h3>
                         </div>
                     : <div className="signUp">
                         <div>
