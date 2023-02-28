@@ -1,9 +1,12 @@
-import {React} from "react";
+import {React, useState, useEffect} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import jwt_decode from 'jwt-decode';
 import "./style.css";
 import { NavLink } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import { useGlobalContext } from "../../Context/Context";
 import { ROUTE_NAMES } from "../../Routes";
 
 //icons
@@ -18,6 +21,13 @@ import VideoIcon from "../../assets/images/Icons/video.png";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
 export default function HorizontalSlider({movies}) {
+    const {setCastPopUpOpen} = useGlobalContext();
+    const [logedIn, setLogedIn] = useState(false);
+    const [favouritePopupState, setFavouritePopupState] = useState(false);
+    const [watchlistPopupState, setWatchlistPopupState] = useState(false);
+    const [shareFacebookPopupState, setShareFacebookPopupState] = useState(false);
+    const [shareTwitterPopupState, setShareTwitterPopupState] = useState(false);
+    const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
     const settings = {
         dots: false,
         infinite: true,
@@ -57,6 +67,54 @@ export default function HorizontalSlider({movies}) {
         ]
     };
 
+    const handleOpen = (type) => {
+        if(type === "favourite") {
+            setFavouritePopupState(true);
+        } else if(type === "watchlist") {
+            setWatchlistPopupState(true);
+        } else if(type === "facebook") {
+            setShareFacebookPopupState(true);
+        } else if(type === "twitter") {
+            setShareTwitterPopupState(true);
+        } else if(type === "pinterest") {
+            setSharePinterestPopupState(true);
+        } 
+        console.log(type);
+        document.body.classList.add('hiddenScroll');
+        setCastPopUpOpen(true);
+    };
+
+    const handleClose = (type) => {
+        if(type === "favourite") {
+            setFavouritePopupState(false);
+        } else if(type === "watchlist") {
+            setWatchlistPopupState(false);
+        } else if(type === "facebook") {
+            setShareFacebookPopupState(false);
+        } else if(type === "twitter") {
+            setShareTwitterPopupState(false);
+        } else if(type === "pinterest") {
+            setSharePinterestPopupState(false);
+        } 
+        console.log(type);
+        document.body.classList.remove('hiddenScroll');
+        setCastPopUpOpen(false);
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(!token) {
+            setLogedIn(false);
+        } else {
+            const decodedToken = jwt_decode(token);
+            if(!decodedToken.sub) {
+                setLogedIn(false);
+            } else {
+                setLogedIn(true);
+            }
+        }
+    }, []);
+
     // const getFacebookShareLink = (url) => {
     //     return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
     // }
@@ -90,9 +148,48 @@ export default function HorizontalSlider({movies}) {
                                         <span><FaShareAlt className="iconInside"/></span>
                                         <div className="shareBox">
                                             <div>
-                                                <FaFacebookF className="shareIcons"/>
-                                                <FaTwitter className="shareIcons"/>
-                                                <FaPinterestP className="shareIcons"/>
+                                            {!logedIn ? <Popup trigger={<FaFacebookF className="shareIcons"/>} 
+                                            position="center"
+                                            open={shareFacebookPopupState}
+                                            onOpen={() => handleOpen("facebook")}
+                                            onClose={() => handleClose("facebook")}>
+                                            {close => (
+                                                <div className="iconPopUp">
+                                                    <button className="closePopUp" onClick={close}>
+                                                    x
+                                                    </button>
+                                                    <h3>Please register to share a movie.</h3>
+                                                </div>
+                                            )}
+                                            </Popup>: <FaFacebookF className="shareIcons"/>}
+                                            {!logedIn ? <Popup trigger={<FaTwitter className="shareIcons"/>} 
+                                            position="center"
+                                            open={shareTwitterPopupState}
+                                            onOpen={() => handleOpen("twitter")}
+                                            onClose={() => handleClose("twitter")}>
+                                            {close => (
+                                                <div className="iconPopUp">
+                                                    <button className="closePopUp" onClick={close}>
+                                                    x
+                                                    </button>
+                                                    <h3>Please register to share a movie.</h3>
+                                                </div>
+                                            )}
+                                            </Popup>: <FaTwitter className="shareIcons"/>}
+                                            {!logedIn ? <Popup trigger={<FaPinterestP className="shareIcons"/>} 
+                                            position="center"
+                                            open={sharePinterestPopupState}
+                                            onOpen={() => handleOpen("pinterest")}
+                                            onClose={() => handleClose("pinterest")}>
+                                            {close => (
+                                                <div className="iconPopUp">
+                                                    <button className="closePopUp" onClick={close}>
+                                                    x
+                                                    </button>
+                                                    <h3>Please register to share a movie.</h3>
+                                                </div>
+                                            )}
+                                            </Popup>: <FaPinterestP className="shareIcons"/>}
                                             </div>
                                         </div>
                                     </li>

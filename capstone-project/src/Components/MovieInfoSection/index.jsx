@@ -111,11 +111,11 @@ export default function MovieInfoSection({movie}) {
         } else if(type === "rate") {
             setRatePopupState(false);
         } else if(type === "facebook") {
-            setShareFacebookPopupState(true);
+            setShareFacebookPopupState(false);
         } else if(type === "twitter") {
-            setShareTwitterPopupState(true);
+            setShareTwitterPopupState(false);
         } else if(type === "pinterest") {
-            setSharePinterestPopupState(true);
+            setSharePinterestPopupState(false);
         } 
         document.body.classList.remove('hiddenScroll');
         setCastPopUpOpen(false);

@@ -11,10 +11,9 @@ import MovieCommentSection from "../../Components/MovieCommentSection";
 
 export default function DefaultMoviePage() {
     const {id} = useParams();
-    const {setIsLoading} = useGlobalContext();
+    const {setIsLoading, castPopUpOpen} = useGlobalContext();
     const navigate = useNavigate();
     const [movieData, setMovieData] = useState();
-    const {castPopUpOpen} = useGlobalContext();
     useEffect(() => {
         getMovie(id);
     }, [])

@@ -11,7 +11,7 @@ import AboutUsSection from "../../Components/AboutUsSection";
 import WebScreenMockup from "../../Components/WebScreenMockup";
 
 export default function Home() {
-    const {setIsLoading} = useGlobalContext();
+    const {setIsLoading, castPopUpOpen} = useGlobalContext();
     const [latestMovies, setLatestMovie] = useState([]);
     const [upComingMovies, setUpComingMovies] = useState([]);
     const [popularMovies, setPopularMovies] = useState([]);
@@ -54,7 +54,7 @@ export default function Home() {
     }
     
     return (
-        <div className="main">
+        <div className={`main ${castPopUpOpen ? 'popup-open' : ''}`}>
             <MainPicture img={MainPic} headline="Welcome to the world of cinema"/>
             <SliderHeader header="Latest Movies" link="/movies/latest" btnName="View All"/>
             <HorizontalSlider movies={latestMovies}/>
