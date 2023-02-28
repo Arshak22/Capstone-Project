@@ -19,7 +19,6 @@ export default function ProfileInfoSection() {
         firstName: null,
         lastName: null,
         avatar: null,
-        email: null,
         password: null,
         newPassword: null,
         favoriteGenres: []
@@ -29,7 +28,6 @@ export default function ProfileInfoSection() {
             firstNameError: "",
             lastNameError: "",
             passwordError: "",
-            emailError: "",
             avatarError: "",
             favoriteGenresError: ""
         }
@@ -64,15 +62,6 @@ export default function ProfileInfoSection() {
 
     const handleLastName = (e) => {
         tempUser.lastName = e.target.value;
-    };
-
-    const validateEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    };
-
-    const handleEmail = (e) => {
-        tempUser.email = e.target.value;
     };
 
     const handlePassword = (e) => {
@@ -123,7 +112,6 @@ export default function ProfileInfoSection() {
             firstNameError: "",
             lastNameError: "",
             passwordError: "",
-            emailError: "",
             avatarError: "",
             favoriteGenresError: ""
         }
@@ -137,10 +125,6 @@ export default function ProfileInfoSection() {
         }
         if (!tempUser.password) {
             error.passwordError = "Please enter your current password";
-            v = false;
-        }
-        if (tempUser.email && !(validateEmail(tempUser.email))) {
-            error.emailError = "Please enter your new valid email";
             v = false;
         }
         if (tempUser.favoriteGenres.length < 3) {
@@ -210,11 +194,13 @@ export default function ProfileInfoSection() {
                     <div className="editProfile">
                         <div className="smallInputs">
                             <div className="inputBox">
-                                <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required/>
+                                {profile ? <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required defaultValue={profile.firstName}/>:
+                                <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required/>}
                                 <span className="profileInputError">{errors.firstNameError}</span>
                             </div>
                             <div className="inputBox">
-                                <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required/>
+                                {profile ? <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required defaultValue={profile.lastName}/>:
+                                <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required/>}
                                 <span className="profileInputError">{errors.lastNameError}</span>
                             </div>
                         </div>
@@ -226,12 +212,6 @@ export default function ProfileInfoSection() {
                             <div className="inputBox">
                                 <input onChange={handleNewPassword} className="editInput" type="password" name="newPassword" placeholder="New Password (Opt.)"/>
                                 <span className="profileInputError"></span>
-                            </div>
-                        </div>
-                        <div className="smallInputs">
-                            <div className="inputBox">
-                                <input onChange={handleEmail} className="editInput Email" type="email" name="email" placeholder="New Email Address (Opt.)" required/>
-                                <span className="profileInputError">{errors.emailError}</span>
                             </div>
                         </div>
                         <h4 className="myLable">Pick At Least 3 Favorite Genres</h4>
