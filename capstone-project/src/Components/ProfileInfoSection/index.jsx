@@ -56,7 +56,7 @@ export default function ProfileInfoSection() {
                }
             }
         }
-    }, [profile]);
+    }, [profile, tempUser]);
 
 
     const getProfile = async (email, jwt) => {
@@ -66,7 +66,7 @@ export default function ProfileInfoSection() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const handleClick = (name) => {
         setActive(name);
@@ -156,13 +156,18 @@ export default function ProfileInfoSection() {
         } 
         setErrors(error);
         return v;
-    }
+    };
 
     const handleEdit = () => {
         if(validate()) {
             const token = localStorage.getItem("token");
+            try {
+                getAvatar(profile.id, token);
+                updateAvatar(profile.id, tempUser.avatar, token);
+            } catch(e) {
+                uploadAvatar(profile.id, tempUser.avatar, token);
+            }
             setUser(tempUser);
-            uploadAvatar(profile.id, tempUser.avatar, token);
             const inputs = document.querySelectorAll('.editInput');
             for (let input of inputs) {
                 input.value = "";
@@ -197,6 +202,14 @@ export default function ProfileInfoSection() {
         try {
             const result = await getProfileImage(profileID, jwt);
             setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const updateAvatar = async (profileID, image, jwt) => {
+        try {
+            await updateProfileImage(profileID, image, jwt);
         } catch (error) {
             console.log(error);
         }
