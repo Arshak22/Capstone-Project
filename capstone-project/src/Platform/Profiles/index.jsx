@@ -7,12 +7,16 @@ const options = {
     headers: {'Content-Type': 'application/json'}
 }; 
 
-export const getAllProfiles = () => {
-    return axios.get(`${API}${profiles}`);
+export const getAllProfiles = (jwt) => {
+    return axios.get(`${API}${profiles}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
-export const getProfile = (id) => {
-    return axios.get(`${API}${profiles}/${id}`);
+export const getProfile = (id, jwt) => {
+    return axios.get(`${API}${profiles}/${id}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
 export const getProfileByEmail = (email, jwt) => {
@@ -25,10 +29,14 @@ export const addProfile = (profile) => {
     return axios.post(`${API}${profiles}`, profile, options);
 }
 
-export const updateProfile = (id, profile) => {
-    return axios.put(`${API}${profiles}/${id}`, profile);
+export const updateProfile = (id, profile, jwt) => {
+    return axios.put(`${API}${profiles}/${id}`, profile, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
-export const deleteProfile = (id) => {
-    return axios.delete(`${API}${profiles}/${id}`);
+export const deleteProfile = (id, jwt) => {
+    return axios.delete(`${API}${profiles}/${id}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }

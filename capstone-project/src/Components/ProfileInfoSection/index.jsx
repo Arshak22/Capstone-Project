@@ -9,12 +9,15 @@ import {FaUserEdit} from "react-icons/fa";
 import {IoPersonRemove} from "react-icons/io5";
 import ProfileCommentSection from "../ProfileCommentSection";
 import { getProfileByEmail } from "../../Platform/Profiles";
+import { uploadProfileImage, getProfileImage, updateProfileImage } from "../../Platform/ProfileImage";
 
 export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
+    const [showCaseAvatar, setShowcaseAvatar] = useState(); 
+    const [userAvatar, setUserAvatar] = useState();
     const [tempUser, setTempUser] = useState({
         firstName: null,
         lastName: null,
@@ -42,6 +45,19 @@ export default function ProfileInfoSection() {
             }
         }
     }, [])
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+               if(profile) {
+                    getAvatar(profile.id, token);
+               }
+            }
+        }
+    }, [profile]);
+
 
     const getProfile = async (email, jwt) => {
         try {
@@ -85,6 +101,9 @@ export default function ProfileInfoSection() {
     const handleAvatar = (e) => {
         setUploadedAvatar(false);
         const file = e.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+        tempUser.avatar = formData;
         let error = {
             firstNameError: errors.firstNameErrror,
             lastNameError: errors.lastNameError,
@@ -101,7 +120,7 @@ export default function ProfileInfoSection() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            tempUser.avatar = reader.result;
+            setShowcaseAvatar(reader.result);
             setUploadedAvatar(true);
         }
     };
@@ -141,7 +160,9 @@ export default function ProfileInfoSection() {
 
     const handleEdit = () => {
         if(validate()) {
+            const token = localStorage.getItem("token");
             setUser(tempUser);
+            uploadAvatar(profile.id, tempUser.avatar, token);
             const inputs = document.querySelectorAll('.editInput');
             for (let input of inputs) {
                 input.value = "";
@@ -164,11 +185,28 @@ export default function ProfileInfoSection() {
         }
     };
 
+    const uploadAvatar = async (profileID, image, jwt) => {
+        try {
+            await uploadProfileImage(profileID, image, jwt);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getAvatar = async (profileID, jwt) => {
+        try {
+            const result = await getProfileImage(profileID, jwt);
+            setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="ProfileInfoSection">
             <div className="profileInfoL">
                 <div className="bluryProfileBox">
-                    {user.avatar ? <div className="avatar" style={{backgroundImage: `url(${user.avatar})`}}>
+                    {userAvatar ? <div className="avatar" style={{backgroundImage: `url(${userAvatar})`}}>
                     </div>: <div className="avatar" style={{backgroundImage: `url(${DefaultUser})`}}>
                     </div>}
                     <div className="profileInfoSmall">
@@ -234,7 +272,7 @@ export default function ProfileInfoSection() {
                         <div className="smallInputs">
                             <input onChange={handleAvatar} required type="file" id="avatarFile" name="picture" accept="image/*"/>
                             <label className="avatarUpload" htmlFor="avatarFile"><FaFileUpload className="uploadIcon"/>Select File</label>
-                            {uploadedAvatar ? <div className="avatarPreview" style={{backgroundImage: `url(${tempUser.avatar})`}}>
+                            {uploadedAvatar ? <div className="avatarPreview" style={{backgroundImage: `url(${showCaseAvatar})`}}>
                             </div>: null}
                         </div>
                         <div className="inputBox">

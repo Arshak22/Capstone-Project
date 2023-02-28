@@ -3,14 +3,22 @@ import axios from "axios";
 import {API} from "../api";
 const images = "/images";
 
-export const getProfileImage = (id) => {
-    return axios.get(`${API}${images}/${id}`);
+export const getProfileImage = (id, jwt) => {
+    return axios.get(`${API}${images}/${id}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
-export const updateProfileImage = (id, image) => {
-    return axios.put(`${API}${images}/${id}`, image);
+export const updateProfileImage = (id, image, jwt) => {
+    return axios.put(`${API}${images}/${id}`, image, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
-export const uploadProfileImage = (profilID, image) => {
-    return axios.post(`${API}${images}/${profilID}`, image);
+export const uploadProfileImage = (profileID, image, jwt) => {
+    return axios.post(`${API}${images}/${profileID}`, image, {
+        headers: { 'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${jwt}`
+        }
+    });
 }
