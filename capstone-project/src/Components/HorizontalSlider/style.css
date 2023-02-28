@@ -145,6 +145,7 @@
 }
 
 .movieBlockIcon span {
+    pointer-events: all;
     position: relative;
     width: 2em;
     height: 2em;
