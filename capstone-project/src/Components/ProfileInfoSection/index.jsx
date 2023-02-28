@@ -1,18 +1,20 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import "./style.css";
 import {useGlobalContext} from "../../Context/Context";
-
+import jwt_decode from 'jwt-decode';
 import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
 import {FaFileUpload} from "react-icons/fa";
 import {GiTicket} from "react-icons/gi";
 import {FaUserEdit} from "react-icons/fa";
 import {IoPersonRemove} from "react-icons/io5";
 import ProfileCommentSection from "../ProfileCommentSection";
+import { getProfileByEmail } from "../../Platform/Profiles";
 
 export default function ProfileInfoSection() {
     const {user, setUser} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
+    const [profile, setProfile] = useState();
     const [tempUser, setTempUser] = useState({
         firstName: null,
         lastName: null,
@@ -32,6 +34,25 @@ export default function ProfileInfoSection() {
             favoriteGenresError: ""
         }
     );
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+               getProfile(decodedToken.sub, token);
+            }
+        }
+    }, [])
+
+    const getProfile = async (email, jwt) => {
+        try {
+            const result = await getProfileByEmail(email, jwt);
+            setProfile(result.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleClick = (name) => {
         setActive(name);
@@ -167,8 +188,8 @@ export default function ProfileInfoSection() {
                     </div>: <div className="avatar" style={{backgroundImage: `url(${DefaultUser})`}}>
                     </div>}
                     <div className="profileInfoSmall">
-                        <h2>{user.firstName} {user.lastName}</h2>
-                        <h4>{user.email}</h4>
+                        {profile ? <><h2>{profile.firstName} {profile.lastName}</h2>
+                        <h4>{profile.email}</h4></>: null}
                     </div>
                    <div className="favoriteGenres">
                     {user.favoriteGenres.map((elem, index) => {

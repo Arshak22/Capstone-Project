@@ -23,8 +23,7 @@
 }
 
 .profileCommentBody {
-    width: 70%;
-    margin-left: 20px;
+    width: 80%;
     background: var(--bg);
     border: 3px solid var(--main-red-hover);
     border-radius: 10px;
@@ -32,18 +31,6 @@
     padding: 20px;
     padding-top: 10px;
     padding-bottom: 50px;
-}
-
-.profileCommentBody::before {
-    content:"";
-    position: absolute;
-    height: 0px;
-    width: 0px;
-    top: 20px;
-    left: -35px;
-    border-width: 17px;
-    border-color: transparent var(--main-red-hover) transparent transparent;
-    border-style: solid;
 }
 
 .profileCommentBody h1 {

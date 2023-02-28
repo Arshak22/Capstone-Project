@@ -15,6 +15,12 @@ export const getProfile = (id) => {
     return axios.get(`${API}${profiles}/${id}`);
 }
 
+export const getProfileByEmail = (email, jwt) => {
+    return axios.get(`${API}${profiles}/profile?email=${email}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    })
+}
+
 export const addProfile = (profile) => {
     return axios.post(`${API}${profiles}`, profile, options);
 }

@@ -65,8 +65,6 @@ export default function ProfileCommentSection() {
                 currentItems.map((e, i) => {
                     return (
                         <div key={i} className="profileComment">
-                            <div className="profileCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
-                            </div>
                             <div className="profileCommentBody">
                                 <h1>{e.name}</h1>
                                 <h4>{e.date}</h4>

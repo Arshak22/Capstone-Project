@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
+import { getProfileByEmail } from "../../Platform/Profiles";
 import jwt_decode from 'jwt-decode';
 
 import ProfileMoviePagination from "../../Components/ProfileMoviePagination";
@@ -14,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
     const {setIsLoading, user} = useGlobalContext();
+    const [profile, setProfile] = useState();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
     const navigate = useNavigate();
@@ -26,6 +28,8 @@ export default function Profile() {
             const decodedToken = jwt_decode(token);
             if(!decodedToken.sub) {
                 navigate("/error-page");
+            } else {
+                getProfile(decodedToken.sub, token);
             }
         }
         document.title = "Movie Mavericks: Profile Page";
@@ -33,6 +37,15 @@ export default function Profile() {
             setIsLoading(false);
         }, 1000)
     }, [])
+
+    const getProfile = async (email, jwt) => {
+        try {
+            const result = await getProfileByEmail(email, jwt);
+            setProfile(result.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const handleClick = (name) => {
         setActive(name);
@@ -63,8 +76,8 @@ export default function Profile() {
                         </div>: <div className="userAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
                         </div>}
                         <div className="profileInfo">
-                            <h1>{user.firstName} {user.lastName}</h1>
-                            <h3>{user.email}</h3>
+                            {profile ? <><h1>{profile.firstName} {profile.lastName}</h1>
+                            <h3>{profile.email}</h3></>: null}
                         </div>
                         <div className="profileMenu">
                         {activeBar ? <FaBars className="bars" onClick={handleBar}/>: <FaTimes className="close" onClick={handleBar}/>}
