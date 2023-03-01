@@ -128,19 +128,9 @@ export default function ProfileInfoSection() {
     const validate = () => {
         let v = true;
         let error = {
-            firstNameError: "",
-            lastNameError: "",
             passwordError: "",
             avatarError: "",
             favoriteGenresError: ""
-        }
-        if(!tempUser.firstName) {
-            error.firstNameError = "Please enter your first name";
-            v = false;
-        }
-        if(!tempUser.lastName) {
-            error.lastNameError = "Please enter your last name";
-            v = false;
         }
         if (!tempUser.password) {
             error.passwordError = "Please enter your current password";
@@ -231,12 +221,12 @@ export default function ProfileInfoSection() {
                             <div className="inputBox">
                                 {profile ? <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required defaultValue={profile.firstName}/>:
                                 <input onChange={handleFirstName} className="editInput" type="text" name="firstName" placeholder="First Name" required/>}
-                                <span className="profileInputError">{errors.firstNameError}</span>
+                                
                             </div>
                             <div className="inputBox">
                                 {profile ? <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required defaultValue={profile.lastName}/>:
                                 <input onChange={handleLastName} className="editInput" type="text" name="lastName" placeholder="Last Name" required/>}
-                                <span className="profileInputError">{errors.lastNameError}</span>
+                                
                             </div>
                         </div>
                         <div className="smallInputs">

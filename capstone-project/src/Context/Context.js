@@ -1,4 +1,4 @@
-import { React, createContext, useContext, useState, useEffect } from "react";
+import { React, createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
@@ -30,6 +30,8 @@ const AppProvider = ({ children }) => {
     }
   );
 
+  const [avatar, setAvatar] = useState("");
+
   const [castPopUpOpen, setCastPopUpOpen] = useState(false);
 
   return (
@@ -44,7 +46,9 @@ const AppProvider = ({ children }) => {
         isLoading,
         setIsLoading,
         loginUser,
-        setLoginUser
+        setLoginUser,
+        avatar,
+        setAvatar
       }}
     >
       {children}

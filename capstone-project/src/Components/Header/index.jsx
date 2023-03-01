@@ -18,6 +18,7 @@ import { getProfileByEmail } from "../../Platform/Profiles";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
 export default function Header() {
+    const {avatar, setAvatar} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
     const [searchShowcase, setSearchShowcase] = useState([]);
@@ -78,6 +79,7 @@ export default function Header() {
         try {
             const result = await getProfileImage(profileID, jwt);
             setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+            setAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
             console.log(error);
         }
@@ -205,7 +207,7 @@ export default function Header() {
                                     const date = new Date(elem.releaseDate);
                                     const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                                     return (
-                                        <div onClick={() => handleShowcaseItemNav(elem.id)} className="searchShowcaseItem">
+                                        <div onClick={() => handleShowcaseItemNav(elem.id)} className="searchShowcaseItem" key={index}>
                                                 {elem.mainBackdropPath ? 
                                                 <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(https://www.themoviedb.org/t/p/original/${elem.mainBackdropPath})`}}>
                                                 </div>: <div className="searchShowcaseItemBackdrop" style={{backgroundImage: `url(${DefaultBackdrop})`}}>
@@ -221,7 +223,7 @@ export default function Header() {
                         </div>
                         <div className="userMainBox">
                             <div className="userBox">
-                                {userAvatar ? <img src={userAvatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}
+                                {avatar ? <img src={avatar} alt="userPic" className="user"/>: userAvatar ? <img src={userAvatar} alt="userPic" className="user"/> : <img src={User} alt="userPic" className="user"/>}
                                 <div id="dropdownMenu2">
                                     <ul>
                                         {showProfile ?

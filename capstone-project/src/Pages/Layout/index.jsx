@@ -14,6 +14,7 @@ export default function Layout() {
         setIsLoading(true);
     }, [location.pathname])
 
+
     return (
         <>
         <Cursor/>
