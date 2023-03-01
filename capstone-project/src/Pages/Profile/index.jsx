@@ -57,7 +57,7 @@ export default function Profile() {
             const result = await getProfileByEmail(email, jwt);
             setProfile(result.data);
         } catch (error) {
-            console.log(error);
+            navigate("/error-page");
         }
     };
 
@@ -66,7 +66,7 @@ export default function Profile() {
             const result = await getProfileImage(profileID, jwt);
             setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
-            console.log(error);
+            navigate("/error-page");
         }
     };
 
