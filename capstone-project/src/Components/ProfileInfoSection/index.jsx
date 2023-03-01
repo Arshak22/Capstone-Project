@@ -19,11 +19,11 @@ export default function ProfileInfoSection() {
     const [showCaseAvatar, setShowcaseAvatar] = useState(); 
     const [userAvatar, setUserAvatar] = useState();
     const [tempUser, setTempUser] = useState({
-        firstName: null,
-        lastName: null,
-        avatar: null,
-        password: null,
-        newPassword: null,
+        firstName: "",
+        lastName: "",
+        avatar: "",
+        password: "",
+        newPassword: "",
         favoriteGenres: []
     });
     const [errors, setErrors] = useState(
@@ -63,6 +63,8 @@ export default function ProfileInfoSection() {
         try {
             const result = await getProfileByEmail(email, jwt);
             setProfile(result.data);
+            tempUser.firstName = result.data.firstName;
+            tempUser.lastName = result.data.lastName;
         } catch (error) {
             console.log(error);
         }
@@ -73,11 +75,19 @@ export default function ProfileInfoSection() {
     };
 
     const handleFirstName = (e) => {
-        tempUser.firstName = e.target.value;
+        if (e.target.value === "") {
+            tempUser.firstName = profile.firstName;
+        } else {
+            tempUser.firstName = e.target.value;
+        }
     };
 
     const handleLastName = (e) => {
-        tempUser.lastName = e.target.value;
+        if (e.target.value === "") {
+            tempUser.lastName = profile.lastName;
+        } else {
+            tempUser.lastName = e.target.value;
+        }
     };
 
     const handlePassword = (e) => {
