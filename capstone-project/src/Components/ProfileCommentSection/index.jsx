@@ -74,7 +74,9 @@ export default function ProfileCommentSection() {
                                     <AiFillEdit onClick={() => handleCommentEdit(i)} className="profileCommentIcon"/>
                                     <ImCross className="profileCommentIcon"/>
                                 </div>
-                                <button id={`commentBtn${i}`} className="commentBtn">Edit</button>
+                                <div className="profileCommentBtnBox">
+                                    <button id={`commentBtn${i}`} className="commentBtn">Edit</button>
+                                </div>
                             </div>
                         </div>
                     )
