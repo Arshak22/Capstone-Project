@@ -12,6 +12,8 @@ import { FaTimes } from "react-icons/fa";
 import { ROUTE_NAMES } from "../../Routes";
 
 import { searchWatchable } from "../../Platform/Search";
+import { getProfileImage } from "../../Platform/ProfileImage";
+import { getProfileByEmail } from "../../Platform/Profiles";
 
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
@@ -21,6 +23,8 @@ export default function Header() {
     const [hideNav, setHideNav] = useState(false);
     const [searchShowcase, setSearchShowcase] = useState([]);
     const [showProfile, setShowProfile] = useState(false);
+    const [profile, setProfile] = useState();
+    const [userAvatar, setUserAvatar] = useState();
     const navigate = useNavigate();
     const prevScrollPos = useRef(0);
   
@@ -31,6 +35,7 @@ export default function Header() {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
                 setShowProfile(true);
+                getProfile(decodedToken.sub, token);
             }
         }
         function handleScroll() {
@@ -47,6 +52,37 @@ export default function Header() {
           window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+               if(profile) {
+                    getAvatar(profile.id, token);
+               }
+            }
+        }
+    }, [profile]);
+
+
+    const getProfile = async (email, jwt) => {
+        try {
+            const result = await getProfileByEmail(email, jwt);
+            setProfile(result.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getAvatar = async (profileID, jwt) => {
+        try {
+            const result = await getProfileImage(profileID, jwt);
+            setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
 
     const handleBar = () => {
@@ -186,7 +222,7 @@ export default function Header() {
                         </div>
                         <div className="userMainBox">
                             <div className="userBox">
-                                {user.avatar ? <img src={user.avatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}
+                                {userAvatar ? <img src={userAvatar} alt="userPic" className="user"/>: <img src={User} alt="userPic" className="user"/>}
                                 <div id="dropdownMenu2">
                                     <ul>
                                         {showProfile ?

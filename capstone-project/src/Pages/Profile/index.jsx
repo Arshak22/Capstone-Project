@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
 import { getProfileByEmail } from "../../Platform/Profiles";
+import ProfileInfoSection from "../../Components/ProfileInfoSection";
+import { getProfileImage } from "../../Platform/ProfileImage";
 import jwt_decode from 'jwt-decode';
 
 import ProfileMoviePagination from "../../Components/ProfileMoviePagination";
 
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import ProfileInfoSection from "../../Components/ProfileInfoSection";
 
 import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ export default function Profile() {
     const [profile, setProfile] = useState();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
+    const [userAvatar, setUserAvatar] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,6 +40,18 @@ export default function Profile() {
         }, 1000)
     }, [])
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+               if(profile) {
+                    getAvatar(profile.id, token);
+               }
+            }
+        }
+    }, [profile]);
+
     const getProfile = async (email, jwt) => {
         try {
             const result = await getProfileByEmail(email, jwt);
@@ -45,7 +59,16 @@ export default function Profile() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
+    const getAvatar = async (profileID, jwt) => {
+        try {
+            const result = await getProfileImage(profileID, jwt);
+            setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleClick = (name) => {
         setActive(name);
@@ -72,7 +95,7 @@ export default function Profile() {
             </div>
             <div className="profileRCol">
                 <div className="profileHeader">
-                        {user.avatar ? <div className="userAvatar" style={{backgroundImage: `url(${user.avatar})`}}>
+                        {userAvatar ? <div className="userAvatar" style={{backgroundImage: `url(${userAvatar})`}}>
                         </div>: <div className="userAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
                         </div>}
                         <div className="profileInfo">
