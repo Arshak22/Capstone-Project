@@ -15,7 +15,7 @@ import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-    const {setIsLoading, user} = useGlobalContext();
+    const {setIsLoading} = useGlobalContext();
     const [profile, setProfile] = useState();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);

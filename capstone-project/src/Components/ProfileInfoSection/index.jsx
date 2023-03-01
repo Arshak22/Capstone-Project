@@ -161,38 +161,21 @@ export default function ProfileInfoSection() {
     const handleEdit = () => {
         if(validate()) {
             const token = localStorage.getItem("token");
+            setUser(tempUser);
+            setUploadedAvatar(false);
             try {
                 getAvatar(profile.id, token);
                 updateAvatar(profile.id, tempUser.avatar, token);
             } catch(e) {
                 uploadAvatar(profile.id, tempUser.avatar, token);
             }
-            setUser(tempUser);
-            const inputs = document.querySelectorAll('.editInput');
-            for (let input of inputs) {
-                input.value = "";
-            }
-            setUploadedAvatar(false);
-            const genres = document.querySelectorAll('.pickFavoriteGenres>h4');
-            for (let genre of genres) {
-                genre.classList.remove("activeGenre");
-            }
-            const reset = {
-                firstName: null,
-                lastName: null,
-                avatar: null,
-                email: null,
-                password: null,
-                newPassword: null,
-                favoriteGenres: []
-            }
-            setTempUser(reset);
         }
     };
 
     const uploadAvatar = async (profileID, image, jwt) => {
         try {
             await uploadProfileImage(profileID, image, jwt);
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -210,6 +193,7 @@ export default function ProfileInfoSection() {
     const updateAvatar = async (profileID, image, jwt) => {
         try {
             await updateProfileImage(profileID, image, jwt);
+            window.location.reload();
         } catch (error) {
             console.log(error);
         }

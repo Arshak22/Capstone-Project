@@ -18,7 +18,6 @@ import { getProfileByEmail } from "../../Platform/Profiles";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
 export default function Header() {
-    const {user} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
     const [searchShowcase, setSearchShowcase] = useState([]);
