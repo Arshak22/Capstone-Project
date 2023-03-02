@@ -133,6 +133,12 @@ export default function Header() {
 
     const logOut = () => {
         localStorage.clear();
+        setAvatar("");
+        if (window.location.pathname === "/profile") {
+            navigate("/");
+        } else {
+            window.location.reload();
+        }
     }
 
     return (
