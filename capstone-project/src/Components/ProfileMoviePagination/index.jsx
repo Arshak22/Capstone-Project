@@ -1,7 +1,9 @@
 import {React, useEffect, useState} from "react";
 import "./style.css";
-import { getAllMovies, getAllSeries } from "../../Platform/Watchables";
-
+import { getProfileWatchlist } from "../../Platform/Watchlist";
+import { getProfileFavorites } from "../../Platform/Favorites";
+import { getProfileByEmail } from "../../Platform/Profiles";
+import jwt_decode from 'jwt-decode';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -22,6 +24,7 @@ import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdro
 import Star from "../../assets/images/Icons/star.png"
 
 export default function ProfileMoviePagination(props) {
+    const [profile, setProfile] = useState();
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffsetWatchlist, setItemOffsetWatchlist] = useState(0);
@@ -31,16 +34,36 @@ export default function ProfileMoviePagination(props) {
     const itemsPerPage = 9;
 
     useEffect(() => {
-        if(props.page === "Watchlist") {
-            // setCurrentItems([]);
-            getWatchlist(itemOffsetWatchlist, itemsPerPage);
-            setPageCount(Math.ceil(totalWatchlist / itemsPerPage));
-        } else if(props.page === "Favourites") {
-            setCurrentItems([]);
-            // getFavourites(itemOffsetFavorite, itemsPerPage);
-            // setPageCount(Math.ceil(totalFavorite / itemsPerPage));
+        const token = localStorage.getItem("token");
+        if(token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+                getProfile(decodedToken.sub, token);
+            }
         }
-    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props]);
+    }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(profile) {
+            if(props.page === "Watchlist") {
+                getWatchlist(itemOffsetWatchlist, itemsPerPage, profile.id, token);
+                setPageCount(Math.ceil(totalWatchlist / itemsPerPage));
+            } else if(props.page === "Favourites") {
+                getFavourites(itemOffsetFavorite, itemsPerPage, profile.id, token);
+                setPageCount(Math.ceil(totalFavorite / itemsPerPage));
+            }
+        }
+    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props, profile]);
+
+    const getProfile = async (email, jwt) => {
+        try {
+            const result = await getProfileByEmail(email, jwt);
+            setProfile(result.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handlePageClickWatchlist = (event) => {
         const newOffset = event.selected;
@@ -52,9 +75,9 @@ export default function ProfileMoviePagination(props) {
         setItemOffsetFavorite(newOffset);
     };
 
-    const getWatchlist = async (pageNumber, pageSize) => {
+    const getWatchlist = async (pageNumber, pageSize, id, token) => {
         try {
-            const result = await getAllMovies(pageNumber, pageSize);
+            const result = await getProfileWatchlist(pageNumber, pageSize, id, token);
             setTotalWatchlist(result.data.totalElements);
             setCurrentItems(result.data.content);
         } catch (e) {
@@ -62,9 +85,9 @@ export default function ProfileMoviePagination(props) {
         }
     };
 
-    const getFavourites = async (pageNumber, pageSize) => {
+    const getFavourites = async (pageNumber, pageSize, id, token) => {
         try {
-            const result = await getAllSeries(pageNumber, pageSize);
+            const result = await getProfileFavorites( pageNumber, pageSize,id, token);
             setTotalFavorite(result.data.totalElements);
             setCurrentItems(result.data.content);
         } catch (e) {
@@ -104,7 +127,7 @@ export default function ProfileMoviePagination(props) {
                             </div>
                             <div className="listItemRating">
                                 <img src={Star} alt="star"/>
-                                <p>{Math.floor(elem.rating * 10) / 10}</p>
+                                {elem.rating !== 0 ? <p>{Math.floor(elem.rating * 10) / 10}</p>: <p>NR</p>}
                             </div>
                         </div>
                         </NavLink>
@@ -131,6 +154,7 @@ export default function ProfileMoviePagination(props) {
         breakClassName="page-item"
         breakLinkClassName="page-link"
         containerClassName="pagination"
+        activeClassName="active"
         renderOnZeroPageCount={null}
       />: null:
       pageCount > 1 ?
@@ -151,6 +175,7 @@ export default function ProfileMoviePagination(props) {
         breakClassName="page-item"
         breakLinkClassName="page-link"
         containerClassName="pagination"
+        activeClassName="active"
         renderOnZeroPageCount={null}
       />: null
     }

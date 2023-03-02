@@ -3,14 +3,20 @@ import axios from "axios";
 import {API} from "../api";
 const watchlist = "/watchlist";
 
-export const getProfileWatchlist = (id) => {
-    return axios.get(`${API}${watchlist}/${id}`);
+export const getProfileWatchlist = (pageNumber, pageSize, id, jwt) => {
+    return axios.get(`${API}${watchlist}/${id}?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
-export const addToWatchlist = (profileID, movieID) => {
-    return axios.post(`${API}${watchlist}/${profileID}/${movieID}`);
+export const addToWatchlist = (profileID, movieID, jwt) => {
+    return axios.post(`${API}${watchlist}/${profileID}/${movieID}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
 
-export const deleteFromWatchlist = (profileID, movieID) => {
-    return axios.delete(`${API}${watchlist}/${profileID}/${movieID}`);
+export const deleteFromWatchlist = (profileID, movieID, jwt) => {
+    return axios.delete(`${API}${watchlist}/${profileID}/${movieID}`, {
+        headers: {'Authorization': `Bearer ${jwt}`}
+    });
 }
