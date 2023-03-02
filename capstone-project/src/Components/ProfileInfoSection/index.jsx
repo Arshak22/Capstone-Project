@@ -255,12 +255,14 @@ export default function ProfileInfoSection() {
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Comedy</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Drama</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Thriller</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Sci-fi</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Science Fiction</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Horror</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Fantasy</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Adventure</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Mystery</h4>
                             <h4 onClick={handleGenres}><GiTicket className="ticket"/>Romance</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Animation</h4>
+                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Crime</h4>
                         </div>
                         <div className="inputBox">
                             <span className="profileInputError genreError">{errors.favoriteGenresError}</span>
