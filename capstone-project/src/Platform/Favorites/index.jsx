@@ -9,8 +9,8 @@ export const getProfileFavorites = (pageNumber, pageSize, profileID, jwt) => {
     });
 }
 
-export const addFavorite = (profileID, movieID, jwt) => {
-    return axios.post(`${API}${favorites}/${profileID}/${movieID}`, {
+export const addToFavorite = (profileID, movieID, jwt) => {
+    return axios.post(`${API}${favorites}/${profileID}/${movieID}`, {}, {
         headers: {'Authorization': `Bearer ${jwt}`}
     });
 }

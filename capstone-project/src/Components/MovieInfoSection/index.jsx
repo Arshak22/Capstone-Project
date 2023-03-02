@@ -4,6 +4,9 @@ import jwt_decode from 'jwt-decode';
 import Tilt from 'react-parallax-tilt';
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
+import { addToWatchlist } from "../../Platform/Watchlist";
+import { addToFavorite } from "../../Platform/Favorites";
+import { getProfileByEmail } from "../../Platform/Profiles";
 
 import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
@@ -18,6 +21,7 @@ import { FaPinterestP } from "react-icons/fa";
 
 export default function MovieInfoSection({movie}) {
     const {setCastPopUpOpen} = useGlobalContext();
+    const [profile, setProfile] = useState();
     const [logedIn, setLogedIn] = useState(false);
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
@@ -62,6 +66,25 @@ export default function MovieInfoSection({movie}) {
         }
         return () => clearInterval(intervalId);
     }, [rating, movie.duration, movie.rating, movie.releaseDate]);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if(token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.sub) {
+                getProfile(decodedToken.sub, token);
+            }
+        }
+    }, [])
+
+    const getProfile = async (email, jwt) => {
+        try {
+            const result = await getProfileByEmail(email, jwt);
+            setProfile(result.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const convertToHoursAndMinutes = (minutes) => {
         const hours = Math.floor(minutes / 60);
@@ -120,6 +143,25 @@ export default function MovieInfoSection({movie}) {
         document.body.classList.remove('hiddenScroll');
         setCastPopUpOpen(false);
     };
+
+    const handleWatchlistAdd = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            await addToWatchlist(profile.id, movie.id, token);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleFavoriteAdd = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            await addToFavorite(profile.id, movie.id, token);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <div className="movieInfoSection" style={{backgroundImage: `url(${backdrop})`}}>
@@ -212,7 +254,7 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your favourites.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button className="moviePageIcon"><FaHeart/></button>}
+                                </Popup>: <button onClick={handleFavoriteAdd} className="moviePageIcon"><FaHeart/></button>}
                             </div>
                             <div className="iconBox">
                                 {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaPlus/></button>} 
@@ -228,7 +270,7 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your watchlist.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button className="moviePageIcon"><FaPlus/></button>}
+                                </Popup>: <button onClick={handleWatchlistAdd} className="moviePageIcon"><FaPlus/></button>}
                             </div>
                             <div className="iconBox">
                                 {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 

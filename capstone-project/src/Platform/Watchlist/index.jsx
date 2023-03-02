@@ -10,7 +10,7 @@ export const getProfileWatchlist = (pageNumber, pageSize, id, jwt) => {
 }
 
 export const addToWatchlist = (profileID, movieID, jwt) => {
-    return axios.post(`${API}${watchlist}/${profileID}/${movieID}`, {
+    return axios.post(`${API}${watchlist}/${profileID}/${movieID}`, {}, {
         headers: {'Authorization': `Bearer ${jwt}`}
     });
 }
