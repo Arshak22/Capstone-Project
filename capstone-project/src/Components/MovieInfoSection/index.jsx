@@ -35,6 +35,8 @@ export default function MovieInfoSection({movie}) {
     const [shareFacebookPopupState, setShareFacebookPopupState] = useState(false);
     const [shareTwitterPopupState, setShareTwitterPopupState] = useState(false);
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
+    const [successedFavorite, setSuccessedFavorite] = useState(false);
+    const [successedWatchlist, setSuccessedWatchlist] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -148,6 +150,7 @@ export default function MovieInfoSection({movie}) {
         try {
             const token = localStorage.getItem("token");
             await addToWatchlist(profile.id, movie.id, token);
+            setSuccessedWatchlist(true);
         } catch (error) {
             console.log(error);
         }
@@ -157,6 +160,7 @@ export default function MovieInfoSection({movie}) {
         try {
             const token = localStorage.getItem("token");
             await addToFavorite(profile.id, movie.id, token);
+            setSuccessedFavorite(true);
         } catch (error) {
             console.log(error);
         }
@@ -254,7 +258,7 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your favourites.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button onClick={handleFavoriteAdd} className="moviePageIcon"><FaHeart/></button>}
+                                </Popup>: <button onClick={handleFavoriteAdd} className={`moviePageIcon${successedFavorite ? " activeIcon": ""}`}><FaHeart/></button>}
                             </div>
                             <div className="iconBox">
                                 {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaPlus/></button>} 
@@ -270,7 +274,7 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your watchlist.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button onClick={handleWatchlistAdd} className="moviePageIcon"><FaPlus/></button>}
+                                </Popup>: <button onClick={handleWatchlistAdd} className={`moviePageIcon${successedWatchlist ? " activeIcon": ""}`}><FaPlus/></button>}
                             </div>
                             <div className="iconBox">
                                 {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 

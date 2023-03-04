@@ -19,7 +19,7 @@ export default function TopCast(id) {
   const getCast = async () => {
         try {
             const response = await getMovieCast(id.movie);
-            setCast(response.data);
+            setCast(response.data.slice(0, 10));
             setPopupState(Array(cast.length).fill(false));
         } catch (e) {
             console.log(e);

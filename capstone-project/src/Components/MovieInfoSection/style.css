@@ -122,7 +122,7 @@
     transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease;
 }
 
-.moviePageIcon:hover {
+.moviePageIcon:hover, .activeIcon {
     color: #ffffff;
     background-color: var(--main-red-hover);
     border: 8px solid #ffffff;
