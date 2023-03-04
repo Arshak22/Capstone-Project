@@ -332,6 +332,13 @@ nav {
     }
 }
 
+@media screen and (max-width: 1000px) and (min-width: 425px) {
+    #mainLogo {
+        width: 200px;
+        padding-right: 20px;
+    }
+}
+
 
 @media screen and (max-width: 1000px) {
     nav {
@@ -340,11 +347,6 @@ nav {
 
     #mobile {
         display: block;
-    }
-
-    #mainLogo {
-        width: 300px;
-        padding-right: 20px;
     }
 
     #navbar, #searchAndUser {
@@ -392,5 +394,12 @@ nav {
     }
     .searcShowcase {
         display: none;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #mainLogo {
+        width: 300px;
+        padding-right: 20px;
     }
 }
