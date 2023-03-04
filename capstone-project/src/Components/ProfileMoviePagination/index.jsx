@@ -34,6 +34,7 @@ export default function ProfileMoviePagination(props) {
     const [totalWatchlist, setTotalWatchlist] = useState(0);
     const [totalFavorite, setTotalFavorite] = useState(0);
     const itemsPerPage = 9;
+    const [renderOnDelete, setRenderOnDelete] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -55,8 +56,9 @@ export default function ProfileMoviePagination(props) {
                 getFavourites(itemOffsetFavorite, itemsPerPage, profile.id, token);
                 setPageCount(Math.ceil(totalFavorite / itemsPerPage));
             }
+            setRenderOnDelete(false);
         }
-    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props, profile]);
+    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props, profile, renderOnDelete]);
 
     const getProfile = async (email, jwt) => {
         try {
@@ -69,11 +71,13 @@ export default function ProfileMoviePagination(props) {
 
     const handlePageClickWatchlist = (event) => {
         const newOffset = event.selected;
+        setItemOffsetFavorite(0);
         setItemOffsetWatchlist(newOffset);
     };
 
     const handlePageClickFavorite = (event) => {
         const newOffset = event.selected;
+        setItemOffsetWatchlist(0);
         setItemOffsetFavorite(newOffset);
     };
 
@@ -119,6 +123,7 @@ export default function ProfileMoviePagination(props) {
         try {
             const token = localStorage.getItem("token");
             await deleteFromWatchlist(profile.id, movieID, token);
+            setRenderOnDelete(true);
         } catch (error) {
             console.log(error);
         }
@@ -128,6 +133,7 @@ export default function ProfileMoviePagination(props) {
         try {
             const token = localStorage.getItem("token");
             await deleteFavorite(profile.id, movieID, token);
+            setRenderOnDelete(true);
         } catch (error) {
             console.log(error);
         }
@@ -191,7 +197,7 @@ export default function ProfileMoviePagination(props) {
         breakClassName="page-item"
         breakLinkClassName="page-link"
         containerClassName="pagination"
-        activeClassName="active"
+        activeClassName="activeWatchlist"
         renderOnZeroPageCount={null}
       />: null:
       pageCount > 1 ?
@@ -212,7 +218,7 @@ export default function ProfileMoviePagination(props) {
         breakClassName="page-item"
         breakLinkClassName="page-link"
         containerClassName="pagination"
-        activeClassName="active"
+        activeClassName="activeFavorite"
         renderOnZeroPageCount={null}
       />: null
     }

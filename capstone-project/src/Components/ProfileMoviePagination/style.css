@@ -27,6 +27,10 @@
     overflow: hidden;
 }
 
+.page-item.activeWatchlist .page-link, .page-item.activeFavorite .page-link {
+    background-color: var(--bg);
+}
+
 .listItem:hover {
     transform: scale(0.95);
 }
