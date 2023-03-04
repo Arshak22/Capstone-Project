@@ -163,13 +163,13 @@
     font-size: 0.7em;
 }
 
-.movieBlockIcon:hover {
+.movieBlockIcon:hover, .activeBlockIcon {
     color: #ffffff;
     background: #ffffff;
 }
 
-.movieBlockIcon:hover>span {
-    background: var(--main-red-hover);
+.movieBlockIcon:hover>span, .activeSmallIcon {
+    background: var(--main-red-hover) !important;
 }
 
 .shareBox {

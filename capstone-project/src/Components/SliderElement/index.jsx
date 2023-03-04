@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 import { ROUTE_NAMES } from "../../Routes";
+import { addToWatchlist } from "../../Platform/Watchlist";
+import { addToFavorite } from "../../Platform/Favorites";
+import { getProfileByEmail } from "../../Platform/Profiles";
 
 //icons
 import { FaShareAlt } from "react-icons/fa";
@@ -22,6 +25,8 @@ export default function SliderElement(props) {
     const [shareFacebookPopupState, setShareFacebookPopupState] = useState(false);
     const [shareTwitterPopupState, setShareTwitterPopupState] = useState(false);
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
+    const [successedFavorite, setSuccessedFavorite] = useState(false);
+    const [successedWatchlist, setSuccessedWatchlist] = useState(false);
 
     // const getFacebookShareLink = (url) => {
     //     return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
@@ -68,6 +73,27 @@ export default function SliderElement(props) {
         document.body.classList.remove('hiddenScroll');
         setCastPopUpOpen(false);
     };
+
+    const handleWatchlistAdd = async (id) => {
+        try {
+            const token = localStorage.getItem("token");
+            await addToWatchlist(props.profile.id, id, token);
+            setSuccessedWatchlist(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleFavoriteAdd = async (id) => {
+        try {
+            const token = localStorage.getItem("token");
+            await addToFavorite(props.profile.id, id, token);
+            setSuccessedFavorite(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className="movieBlock" key={props.key}>
                             {props.mainBackdropPath ? <img src={"https://www.themoviedb.org/t/p/original/" + props.mainBackdropPath} alt={props.mainBackdropPath} />: <img src={DefaultBackdrop} alt={DefaultBackdrop} />}
@@ -127,7 +153,7 @@ export default function SliderElement(props) {
                                             </div>
                                         </div>
                                     </li>
-                                    <li className="movieBlockIcon">
+                                    <li className={`movieBlockIcon${successedFavorite ? " activeBlockIcon": ""}`}>
                                             {!props.logedIn ? <Popup trigger={<span><FaHeart className="iconInside"/></span>} 
                                             position="center"
                                             open={favouritePopupState}
@@ -141,9 +167,9 @@ export default function SliderElement(props) {
                                                     <h3>Please register to add a movie to your favourites.</h3>
                                                 </div>
                                             )}
-                                            </Popup>: <span><FaHeart className="iconInside"/></span>}
+                                            </Popup>: <span onClick={()=>handleFavoriteAdd(props.id)} className={`${successedFavorite ? " activeSmallIcon": ""}`}><FaHeart className="iconInside"/></span>}
                                     </li>
-                                    <li className="movieBlockIcon">
+                                    <li className={`movieBlockIcon${successedWatchlist ? " activeBlockIcon": ""}`}>
                                             {!props.logedIn ? <Popup trigger={<span><FaPlus className="iconInside"/></span>} 
                                             position="center"
                                             open={watchlistPopupState}
@@ -157,7 +183,7 @@ export default function SliderElement(props) {
                                                     <h3>Please register to add a movie to your watchlist.</h3>
                                                 </div>
                                             )}
-                                            </Popup>: <span><FaPlus className="iconInside"/></span>}
+                                            </Popup>: <span onClick={()=>handleWatchlistAdd(props.id)} className={`${successedWatchlist ? " activeSmallIcon": ""}`}><FaPlus className="iconInside"/></span>}
                                     </li>
                                 </ul>
                             </div>

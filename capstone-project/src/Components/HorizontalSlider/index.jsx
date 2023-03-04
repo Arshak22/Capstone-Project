@@ -5,9 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import jwt_decode from 'jwt-decode';
 import "./style.css";
 import SliderElement from "../SliderElement";
+import { getProfileByEmail } from "../../Platform/Profiles";
 
 export default function HorizontalSlider({movies}) {
     const [logedIn, setLogedIn] = useState(false);
+    const [profile, setProfile] = useState("");
     const settings = {
         dots: false,
         infinite: true,
@@ -58,9 +60,19 @@ export default function HorizontalSlider({movies}) {
                 setLogedIn(false);
             } else {
                 setLogedIn(true);
+                getProfile(decodedToken.sub, token);
             }
         }
     }, []);
+
+  const getProfile = async (email, jwt) => {
+      try {
+          const result = await getProfileByEmail(email, jwt);
+          setProfile(result.data);
+      } catch (error) {
+          console.log(error);
+      }
+  };
 
     return (
         <div className="sliderSection">
@@ -70,7 +82,7 @@ export default function HorizontalSlider({movies}) {
                     const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                     const shortName = elem.name.length > 35 ? elem.name.slice(0, elem.name.lastIndexOf(" ", 35)) + "..." : elem.name;
                     return (
-                        <SliderElement key={index} mainBackdropPath={elem.mainBackdropPath} id={elem.id} shortName={shortName} dateString={dateString} logedIn={logedIn} />
+                        <SliderElement key={index} mainBackdropPath={elem.mainBackdropPath} id={elem.id} shortName={shortName} dateString={dateString} logedIn={logedIn} profile={profile}/>
                     )
                 })}
             </Slider>
