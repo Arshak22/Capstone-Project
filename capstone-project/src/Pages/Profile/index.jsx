@@ -55,6 +55,7 @@ export default function Profile() {
     const getProfile = async (email, jwt) => {
         try {
             const result = await getProfileByEmail(email, jwt);
+            console.log(result.data);
             setProfile(result.data);
         } catch (error) {
             navigate("/error-page");

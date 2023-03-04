@@ -304,6 +304,7 @@
 @media screen and (max-width: 425px) {
     .avatar {
         margin-left: 20px;
+        height: 400px;
         width: 90%;
     }
     .smallInputs {

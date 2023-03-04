@@ -13,7 +13,7 @@ import { getFavoriteGenres, addFavoriteGenre, deleteFavoriteGenre } from "../../
 import { uploadProfileImage, getProfileImage } from "../../Platform/ProfileImage";
 
 export default function ProfileInfoSection() {
-    const {setUser} = useGlobalContext();
+    const {setUser, userFavGenres, setUserFavGenres} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
@@ -26,7 +26,7 @@ export default function ProfileInfoSection() {
         password: "",
         newPassword: ""
     });
-    const [userFavGenres, setUserFavGenres] = useState([]);
+    
     const [errors, setErrors] = useState(
         {
             firstNameError: "",
@@ -164,19 +164,23 @@ export default function ProfileInfoSection() {
         return v;
     };
 
-    const handleEdit = () => {
+    const handleEdit = async () => {
         if(validate()) {
             const token = localStorage.getItem("token");
             const updatedUser = {
                 firstName: tempUser.firstName,
                 lastName: tempUser.lastName,
-                password: tempUser.newPassword ? tempUser.newPassword: tempUser.password
+                email: profile.email,
+                password: tempUser.newPassword ? tempUser.newPassword: tempUser.password,
+                enabled: true
             }
+            const favG = userFavGenres;
             setUser(tempUser);
             setUploadedAvatar(false);
-            updateMyProfile(profile.id, updatedUser, token);
-            changeFavoriteGenres(profile.id, userFavGenres, token);
-            uploadAvatar(profile.id, tempUser.avatar, token);
+            await updateMyProfile(profile.id, updatedUser, token);
+            await changeFavoriteGenres(profile.id, favG, token);
+            await uploadAvatar(profile.id, tempUser.avatar, token);
+            window.location.reload();
         }
     };
 
@@ -210,7 +214,6 @@ export default function ProfileInfoSection() {
     const uploadAvatar = async (profileID, image, jwt) => {
         try {
             await uploadProfileImage(profileID, image, jwt);
-            // window.location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -226,7 +229,6 @@ export default function ProfileInfoSection() {
     }
 
     const updateMyProfile = async(id, profile, token) => {
-        console.log(id, profile);
         try {
             await updateProfile(id, profile, token);
         } catch (error) {

@@ -29,6 +29,8 @@ const AppProvider = ({ children }) => {
     }
   );
 
+  const [userFavGenres, setUserFavGenres] = useState([]);
+
   const [avatar, setAvatar] = useState("");
 
   const [castPopUpOpen, setCastPopUpOpen] = useState(false);
@@ -47,7 +49,9 @@ const AppProvider = ({ children }) => {
         loginUser,
         setLoginUser,
         avatar,
-        setAvatar
+        setAvatar,
+        userFavGenres,
+        setUserFavGenres
       }}
     >
       {children}

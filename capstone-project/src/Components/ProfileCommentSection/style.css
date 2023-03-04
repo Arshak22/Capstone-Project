@@ -173,6 +173,7 @@
         margin-bottom: 30px;
     }
     .profileCommentBody {
+        margin-left: 15px;
         width: 90%;
     }
     .profileCommentBody::before {
