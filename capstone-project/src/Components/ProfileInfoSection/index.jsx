@@ -13,12 +13,11 @@ import { getFavoriteGenres, addFavoriteGenre, deleteFavoriteGenre } from "../../
 import { uploadProfileImage, getProfileImage } from "../../Platform/ProfileImage";
 
 export default function ProfileInfoSection() {
-    const {setUser, userFavGenres, setUserFavGenres} = useGlobalContext();
+    const {setUser, userFavGenres, setUserFavGenres, avatar, setAvatar} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
-    const [showCaseAvatar, setShowcaseAvatar] = useState(); 
-    const [userAvatar, setUserAvatar] = useState();
+    const [showCaseAvatar, setShowcaseAvatar] = useState();
     const [tempUser] = useState({
         firstName: "",
         lastName: "",
@@ -222,7 +221,7 @@ export default function ProfileInfoSection() {
     const getAvatar = async (profileID, jwt) => {
         try {
             const result = await getProfileImage(profileID, jwt);
-            setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+            setAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
             console.log(error);
         }
@@ -240,7 +239,7 @@ export default function ProfileInfoSection() {
         <div className="ProfileInfoSection">
             <div className="profileInfoL">
                 <div className="bluryProfileBox">
-                    {userAvatar ? <div className="avatar" style={{backgroundImage: `url(${userAvatar})`}}>
+                    {avatar ? <div className="avatar" style={{backgroundImage: `url(${avatar})`}}>
                     </div>: <div className="avatar" style={{backgroundImage: `url(${DefaultUser})`}}>
                     </div>}
                     <div className="profileInfoSmall">

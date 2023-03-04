@@ -15,7 +15,7 @@ import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-    const {setIsLoading, setAvatar} = useGlobalContext();
+    const {setIsLoading, setAvatar, setShowProfile} = useGlobalContext();
     const [profile, setProfile] = useState();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
@@ -55,7 +55,12 @@ export default function Profile() {
     const getProfile = async (email, jwt) => {
         try {
             const result = await getProfileByEmail(email, jwt);
-            console.log(result.data);
+            if(!result.data.enabled) {
+                setShowProfile(false);
+                localStorage.clear();
+                navigate("/error-page");
+                return;
+            }
             setProfile(result.data);
         } catch (error) {
             navigate("/error-page");
@@ -81,6 +86,7 @@ export default function Profile() {
     const logOut = () => {
         localStorage.clear();
         setAvatar("");
+        setShowProfile(false);
         navigate("/");
     }
 

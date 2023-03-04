@@ -33,6 +33,8 @@ const AppProvider = ({ children }) => {
 
   const [avatar, setAvatar] = useState("");
 
+  const [showProfile, setShowProfile] = useState(false);
+
   const [castPopUpOpen, setCastPopUpOpen] = useState(false);
 
   return (
@@ -51,7 +53,9 @@ const AppProvider = ({ children }) => {
         avatar,
         setAvatar,
         userFavGenres,
-        setUserFavGenres
+        setUserFavGenres,
+        showProfile,
+        setShowProfile
       }}
     >
       {children}

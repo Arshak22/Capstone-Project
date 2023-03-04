@@ -18,11 +18,11 @@ import { getProfileByEmail } from "../../Platform/Profiles";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
 export default function Header() {
-    const {avatar, setAvatar} = useGlobalContext();
+    const {avatar, setAvatar, showProfile, setShowProfile} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
     const [searchShowcase, setSearchShowcase] = useState([]);
-    const [showProfile, setShowProfile] = useState(false);
+    
     const [profile, setProfile] = useState();
     const [userAvatar, setUserAvatar] = useState();
     const navigate = useNavigate();
@@ -36,6 +36,8 @@ export default function Header() {
             if(decodedToken.sub) {
                 setShowProfile(true);
                 getProfile(decodedToken.sub, token);
+            } else {
+                setShowProfile(false);
             }
         }
         function handleScroll() {
