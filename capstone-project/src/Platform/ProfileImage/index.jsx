@@ -9,12 +9,6 @@ export const getProfileImage = (id, jwt) => {
     });
 }
 
-export const updateProfileImage = (id, image, jwt) => {
-    return axios.put(`${API}${images}/${id}`, image, {
-        headers: {'Authorization': `Bearer ${jwt}`}
-    });
-}
-
 export const uploadProfileImage = (profileID, image, jwt) => {
     return axios.post(`${API}${images}/${profileID}`, image, {
         headers: { 'Content-Type': 'multipart/form-data',

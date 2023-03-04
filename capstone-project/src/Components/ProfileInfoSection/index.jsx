@@ -8,24 +8,25 @@ import {GiTicket} from "react-icons/gi";
 import {FaUserEdit} from "react-icons/fa";
 import {IoPersonRemove} from "react-icons/io5";
 import ProfileCommentSection from "../ProfileCommentSection";
-import { getProfileByEmail } from "../../Platform/Profiles";
-import { uploadProfileImage, getProfileImage, updateProfileImage } from "../../Platform/ProfileImage";
+import { getProfileByEmail, updateProfile, deleteProfile } from "../../Platform/Profiles";
+import { getFavoriteGenres, addFavoriteGenre, deleteFavoriteGenre } from "../../Platform/FavoriteGenres";
+import { uploadProfileImage, getProfileImage } from "../../Platform/ProfileImage";
 
 export default function ProfileInfoSection() {
-    const {user, setUser} = useGlobalContext();
+    const {setUser} = useGlobalContext();
     const [active, setActive] = useState("Comments");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
     const [showCaseAvatar, setShowcaseAvatar] = useState(); 
     const [userAvatar, setUserAvatar] = useState();
-    const [tempUser, setTempUser] = useState({
+    const [tempUser] = useState({
         firstName: "",
         lastName: "",
         avatar: "",
         password: "",
-        newPassword: "",
-        favoriteGenres: []
+        newPassword: ""
     });
+    const [userFavGenres, setUserFavGenres] = useState([]);
     const [errors, setErrors] = useState(
         {
             firstNameError: "",
@@ -52,6 +53,7 @@ export default function ProfileInfoSection() {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
                if(profile) {
+                    getFavoriteGenresList(profile.id, token);
                     getAvatar(profile.id, token);
                }
             }
@@ -100,11 +102,15 @@ export default function ProfileInfoSection() {
 
     const handleGenres = (e) => {
         e.target.classList.toggle("activeGenre");
-        const text = e.target.textContent.trim();
-        if(!tempUser.favoriteGenres.includes(text)) {
-            tempUser.favoriteGenres.push(text);
+        const text = e.target.textContent.trim().toUpperCase();
+        if(!userFavGenres.includes(text)) {
+            if(text === "SCIENCE FICTION") {
+                userFavGenres.push("SCIENCE_FICTION");
+            } else {
+                userFavGenres.push(text);
+            }
         } else {
-            tempUser.favoriteGenres.splice(tempUser.favoriteGenres.indexOf(text), 1)
+            userFavGenres.splice(userFavGenres.indexOf(text), 1)
         }
     };
 
@@ -146,7 +152,7 @@ export default function ProfileInfoSection() {
             error.passwordError = "Please enter your current password";
             v = false;
         }
-        if (tempUser.favoriteGenres.length < 3) {
+        if (userFavGenres.length < 3) {
             error.favoriteGenresError = "Please pick at least three favorite genres";
             v = false;
         }
@@ -161,21 +167,50 @@ export default function ProfileInfoSection() {
     const handleEdit = () => {
         if(validate()) {
             const token = localStorage.getItem("token");
+            const updatedUser = {
+                firstName: tempUser.firstName,
+                lastName: tempUser.lastName,
+                password: tempUser.newPassword ? tempUser.newPassword: tempUser.password
+            }
             setUser(tempUser);
             setUploadedAvatar(false);
-            try {
-                getAvatar(profile.id, token);
-                updateAvatar(profile.id, tempUser.avatar, token);
-            } catch(e) {
-                uploadAvatar(profile.id, tempUser.avatar, token);
-            }
+            updateMyProfile(profile.id, updatedUser, token);
+            changeFavoriteGenres(profile.id, userFavGenres, token);
+            uploadAvatar(profile.id, tempUser.avatar, token);
         }
     };
+
+    const getFavoriteGenresList = async (id, token) => {
+        try {
+            const result = await getFavoriteGenres(id, token);
+            setUserFavGenres(result.data);
+            setUploadedAvatar(false);
+        } catch (error) {
+        }
+    }
+
+    const changeFavoriteGenres = async (id, genres, token) => {
+        try {
+            await addFavoriteGenre(id, genres, token);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const deleteGenre = async (genre) => {
+        const genres = [genre];
+        const token = localStorage.getItem("token");
+        try {
+            await deleteFavoriteGenre(profile.id, genres, token);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const uploadAvatar = async (profileID, image, jwt) => {
         try {
             await uploadProfileImage(profileID, image, jwt);
-            window.location.reload();
+            // window.location.reload();
         } catch (error) {
             console.log(error);
         }
@@ -190,10 +225,10 @@ export default function ProfileInfoSection() {
         }
     }
 
-    const updateAvatar = async (profileID, image, jwt) => {
+    const updateMyProfile = async(id, profile, token) => {
+        console.log(id, profile);
         try {
-            await updateProfileImage(profileID, image, jwt);
-            window.location.reload();
+            await updateProfile(id, profile, token);
         } catch (error) {
             console.log(error);
         }
@@ -211,9 +246,9 @@ export default function ProfileInfoSection() {
                         <h4>{profile.email}</h4></>: null}
                     </div>
                    <div className="favoriteGenres">
-                    {user.favoriteGenres.map((elem, index) => {
+                    {userFavGenres.map((elem, index) => {
                         return (
-                            <h4 key={index}><GiTicket className="ticket"/>{elem}</h4>
+                            elem === "SCIENCE_FICTION" ? <h4 onClick={()=>deleteGenre("SCIENCE_FICTION")} key={index}><GiTicket className="ticket"/>SCIENCE FICTION</h4>: <h4 onClick={()=>deleteGenre(elem)} key={index}><GiTicket className="ticket"/>{elem}</h4>
                         );
                     })}
                    </div>

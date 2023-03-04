@@ -66,7 +66,6 @@ export default function Profile() {
             const result = await getProfileImage(profileID, jwt);
             setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
-            navigate("/error-page");
         }
     };
 

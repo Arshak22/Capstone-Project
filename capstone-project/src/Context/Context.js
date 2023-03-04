@@ -16,8 +16,7 @@ const AppProvider = ({ children }) => {
         lastName: "Last Name",
         avatar: null,
         email: "-",
-        password: null,
-        favoriteGenres: []
+        password: null
     }
   );
 

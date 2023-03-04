@@ -192,8 +192,9 @@
     transition: all 0.5s ease;
 }
 
-.pickFavoriteGenres h4:hover, .pickFavoriteGenres .activeGenre {
+.pickFavoriteGenres h4:hover, .favoriteGenres h4:hover, .pickFavoriteGenres .activeGenre {
     background-color: var(--bg);
+    transform: scale(0.9);
 }
 
 .ticket {

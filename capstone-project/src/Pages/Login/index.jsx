@@ -228,7 +228,6 @@ export default function Login() {
         try {
           const result = await addProfile(user);
           setConfirmEmail(true);
-        //   localStorage.setItem("token", `${result.headers.access_token}`);
         } catch (e) {
             let error = {
                 fullNameError: "",
