@@ -40,6 +40,16 @@ export default function MovieInfoSection({movie}) {
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
     const [successedFavorite, setSuccessedFavorite] = useState(false);
     const [successedWatchlist, setSuccessedWatchlist] = useState(false);
+    const starRatings = {
+        enjoy: 0,
+        story: 0,
+        actors: 0
+    };
+    const [ratingErrors, setRatingErrors] = useState({
+        enjoyError: "",
+        storyError: "",
+        actorsError: ""
+    });
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -166,6 +176,45 @@ export default function MovieInfoSection({movie}) {
             setSuccessedFavorite(true);
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const handleEnjoyStarRating = (value) => {
+        starRatings.enjoy = value;
+    }
+
+    const handleStoryStarRating = (value) => {
+        starRatings.story = value
+    }
+
+    const handleActorsStarRating = (value) => {
+        starRatings.actors = value;
+    }
+
+    const handleRate = () => {
+        let error = {
+            enjoyError: "",
+            storyError: "",
+            actorsError: ""
+        }
+        let f = true;
+        if(!starRatings.enjoy) {
+            error.enjoyError = "Please rate your enjoyment.";
+            f = false;
+        }
+        if(!starRatings.story) {
+            error.storyError = "Please rate the plot.";
+            f = false;
+        }
+        if(!starRatings.actors) {
+            error.actorsError = "Please rate the actors performance.";
+            f = false;
+        }
+        if(!f) {
+            setRatingErrors(error);
+        } else {
+            handleClose("rate")
+            console.log(starRatings);
         }
     }
 
@@ -307,28 +356,31 @@ export default function MovieInfoSection({movie}) {
                                         <h2>Rate the Movie: Let us know your thoughts!</h2>
                                         <div className="ratingPopUpBox">
                                             <div className="ratingAtribute">
-                                                <h5>Rate the Genre: How much did you enjoy it?</h5>
+                                                <h5>How much did you enjoy it?</h5>
                                                 <Rating className="ratingStars" emptySymbol={<BsStar/>}
                                                 fullSymbol={<BsStarFill/>}
-                                                fractions={2}/>
+                                                fractions={2} onClick={handleEnjoyStarRating}/>
+                                                <span className="ratingError">{ratingErrors.enjoyError}</span>
                                             </div>
                                             <div className="ratingAtribute">
-                                                <h5>Rate the Plot: How engaging was the story?</h5>
+                                                <h5>How engaging was the story?</h5>
                                                 <Rating className="ratingStars" emptySymbol={<BsStar/>}
                                                 fullSymbol={<BsStarFill/>}
-                                                fractions={2}/>
+                                                fractions={2} onClick={handleStoryStarRating}/>
+                                                <span className="ratingError">{ratingErrors.storyError}</span>
                                             </div>
                                         </div>
                                         <div className="ratingPopUpBox">
                                             <div className="ratingAtribute">
-                                                <h5>Rate the Actors: How well did they perform?</h5>
+                                                <h5>How well did actors perform?</h5>
                                                 <Rating className="ratingStars" emptySymbol={<BsStar/>}
                                                 fullSymbol={<BsStarFill/>}
-                                                fractions={2}/>
+                                                fractions={2} onClick={handleActorsStarRating}/>
+                                                <span className="ratingError">{ratingErrors.actorsError}</span>
                                             </div>
                                         </div>
-                                        <div className="ratingPopUpBox">
-                                            <button className="btn btn2 btn3">Rate Now</button>
+                                        <div className="ratingPopUpBox ratingPopUpBoxBtn">
+                                            <button className="btn btn2 btn3" onClick={handleRate}>Rate Now</button>
                                         </div>
                                     </div>
                                 )}

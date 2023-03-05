@@ -239,6 +239,12 @@
     display: block;
     margin-top: -30px;
     height: 480px;
+    width: 700px;
+}
+
+.ratingPopUp::before {
+    background-image: url(../../assets/images/BackgroundImages/PopCorn.png);
+    filter: brightness(12%);
 }
 
 .ratingPopUp h2 {
@@ -252,15 +258,16 @@
     letter-spacing: 3px;
 }
 
-.ratingPopUpBox {
+.ratingPopUpBox, .ratingPopUpBoxBtn {
     display: flex;
     justify-content: center;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .ratingAtribute {
-    margin-bottom: 20px;
+    display: grid;
+    margin-bottom: 10px;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -272,14 +279,21 @@
 }
 
 .ratingStars {
-    color: red;
+    color: var(--main-red);
     font-size: 30px;
     margin-top: 10px;
     display: flex !important;
     justify-content: center;
 }
 
+.ratingError {
+    text-align: center;
+    color: red;
+    font-size: 14px;
+}
+
 .btn3 {
+    text-align: center;
     padding: 10px;
     font-size: 13px;
 }
@@ -302,6 +316,10 @@
     }
     .titleGenre p {
         font-size: 15px;
+    }
+    .ratingPopUp {
+        height: 470px;
+        width: 600px;
     }
 }
 
@@ -328,6 +346,20 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .ratingPopUpBox {
+        display: block;
+    }
+    .ratingPopUpBoxBtn {
+        display: flex;
+    }
+    .ratingPopUp {
+        width: 400px;
+        height: 670px;
+        right: -19em;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .moviePageIcons {
         display: block;
@@ -337,5 +369,27 @@
     }
     .iconBoxes {
         padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .ratingPopUp h2 {
+        font-size: 20px;
+        padding: 10px;
+        padding-top: 75px;
+        padding-bottom: 35px;
+    }
+    .ratingPopUp {
+        width: 300px;
+        height: 880px;
+        right: -17.5em;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    .ratingPopUp {
+        width: 270px;
+        height: 750px;
+        right: -15em;
     }
 }
