@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from "react";
 import "./style.css";
+import Rating from "react-rating";
 import jwt_decode from 'jwt-decode';
 import Tilt from 'react-parallax-tilt';
 import Popup from 'reactjs-popup';
@@ -18,6 +19,8 @@ import { FaStar } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
+import { BsStar } from "react-icons/bs";
+import { BsStarFill } from "react-icons/bs";
 
 export default function MovieInfoSection({movie}) {
     const {setCastPopUpOpen} = useGlobalContext();
@@ -290,7 +293,46 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to rate a movie.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button className="moviePageIcon"><FaStar/></button>}
+                                </Popup>: 
+                                <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 
+                                position="center"
+                                open={ratePopupState}
+                                onOpen={() => handleOpen("rate")}
+                                onClose={() => handleClose("rate")}>
+                                {close => (
+                                    <div className="iconPopUp ratingPopUp">
+                                        <button className="closePopUp" onClick={close}>
+                                        x
+                                        </button>
+                                        <h2>Rate the Movie: Let us know your thoughts!</h2>
+                                        <div className="ratingPopUpBox">
+                                            <div className="ratingAtribute">
+                                                <h5>Rate the Genre: How much did you enjoy it?</h5>
+                                                <Rating className="ratingStars" emptySymbol={<BsStar/>}
+                                                fullSymbol={<BsStarFill/>}
+                                                fractions={2}/>
+                                            </div>
+                                            <div className="ratingAtribute">
+                                                <h5>Rate the Plot: How engaging was the story?</h5>
+                                                <Rating className="ratingStars" emptySymbol={<BsStar/>}
+                                                fullSymbol={<BsStarFill/>}
+                                                fractions={2}/>
+                                            </div>
+                                        </div>
+                                        <div className="ratingPopUpBox">
+                                            <div className="ratingAtribute">
+                                                <h5>Rate the Actors: How well did they perform?</h5>
+                                                <Rating className="ratingStars" emptySymbol={<BsStar/>}
+                                                fullSymbol={<BsStarFill/>}
+                                                fractions={2}/>
+                                            </div>
+                                        </div>
+                                        <div className="ratingPopUpBox">
+                                            <button className="btn btn2 btn3">Rate Now</button>
+                                        </div>
+                                    </div>
+                                )}
+                                </Popup>}
                             </div>
                         </div>
                     </div>

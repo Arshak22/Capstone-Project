@@ -235,6 +235,55 @@
     font-weight: 900;
 }
 
+.ratingPopUp {
+    display: block;
+    margin-top: -30px;
+    height: 480px;
+}
+
+.ratingPopUp h2 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 28px;
+    padding: 70px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.ratingPopUpBox {
+    display: flex;
+    justify-content: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.ratingAtribute {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.ratingAtribute h5 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 17px;
+}
+
+.ratingStars {
+    color: red;
+    font-size: 30px;
+    margin-top: 10px;
+    display: flex !important;
+    justify-content: center;
+}
+
+.btn3 {
+    padding: 10px;
+    font-size: 13px;
+}
+
 @media screen and (max-width: 1300px) {
     .titleGenre h1 {
         font-size: 30px;

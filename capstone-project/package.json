@@ -26,6 +26,7 @@
         "react-mailto": "^0.4.0",
         "react-paginate": "^8.1.4",
         "react-parallax-tilt": "^1.7.85",
+        "react-rating": "^2.0.5",
         "react-router-dom": "^6.6.1",
         "react-scripts": "^5.0.1",
         "react-slick": "^0.29.0",
