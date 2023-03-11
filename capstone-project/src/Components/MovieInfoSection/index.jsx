@@ -234,7 +234,7 @@ export default function MovieInfoSection({movie}) {
                 <div className="titleGenre">
                     <h1>{movie.name}</h1>
                     {duration && movie.duration !== 0 ? <h4>Duration:{duration}</h4>: null}
-                    <h4>Realease Date: {date}</h4>
+                    {date ? <h4>Realease Date: {date}</h4>: null}
                     {movie.genres.length !== 0 ? 
                     <h4>Genres: {movie.genres.map((elem, index) => {
                         return (
@@ -388,7 +388,7 @@ export default function MovieInfoSection({movie}) {
                             </div>
                         </div>
                     </div>
-                    <h2>Overview</h2>
+                    {description ? <h2>Overview</h2>: null}
                     <p>{description}</p>
                 </div>
             </div>

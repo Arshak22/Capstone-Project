@@ -7,6 +7,10 @@ export const searchWatchable = (pageNumber, pageSize, query) => {
     return axios.get(`${API}${search}?pageNumber=${pageNumber}&pageSize=${pageSize}&query=${query}&sort=rating`);
 }
 
+export const userSearchWatchable = (email, pageNumber, pageSize, query) => {
+    return axios.get(`${API}${search}/userSearch?email=${email}&pageNumber=${pageNumber}&pageSize=${pageSize}&query=${query}&sort=rating`);
+}
+
 export const searchWatchableByGenre = (pageNumber, pageSize, genre) => {
     return axios.get(`${API}${search}/genre?genre=${genre}&pageNumber=${pageNumber}&pageSize=${pageSize}&sort=rating`);
 }

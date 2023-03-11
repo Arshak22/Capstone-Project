@@ -9,7 +9,7 @@ import { useGlobalContext } from "../../Context/Context";
 
 import ReactPaginate from "react-paginate";
 import { getAllMovies, getAllSeries, getLatestWatchables, getLatestMovies, getLatestSeries, getPopularWatchables, getPopularMovies, getPopularSeries, getUpcomingMovies, getUpcomingSeries } from "../../Platform/Watchables";
-import { searchWatchable, searchMovieByGenre, searchSeriesByGenre, searchMovieByReleaseYear, searchSeriesByReleaseYear } from "../../Platform/Search";
+import { searchWatchable, userSearchWatchable, searchMovieByGenre, searchSeriesByGenre, searchMovieByReleaseYear, searchSeriesByReleaseYear } from "../../Platform/Search";
 
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
@@ -30,6 +30,17 @@ export default function MoviePaginationList() {
   const [loaded, setLoaded] = useState(false);
   const itemsPerPage = 30;
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if(type.startsWith("searchItem:")) {
+      const searchItem = type.split("searchItem:")[1].split("/")[0];
+      if(localStorage.getItem("email")) {
+          handleUserSearchWatchable(localStorage.getItem("email"), itemOffset, itemsPerPage, searchItem);
+      }
+    }
+  }, [])
+
 
   useEffect(() => {
     setLoaded(false);
@@ -53,9 +64,6 @@ export default function MoviePaginationList() {
       getUpcomingMovieList(itemOffset, itemsPerPage);
     } else if(type === "series-upcoming") {
       getUpcomingSeriesList(itemOffset, itemsPerPage);
-    } else if(type.startsWith("searchItem:")) {
-      const searchItem = type.split("searchItem:")[1].split("/")[0];
-      handleSearchWatchable(itemOffset, itemsPerPage, searchItem);
     } else if(type.startsWith("filmGenre:")) {
       const filmGenre = type.split("filmGenre:")[1].split("/")[0];
       handleSearchMovieGenre(itemOffset, itemsPerPage, filmGenre);
@@ -68,8 +76,9 @@ export default function MoviePaginationList() {
     } else if(type.startsWith("seriesReleaseYear:")) {
       const seriesReleaseYear = type.split("seriesReleaseYear:")[1].split("/")[0];
       handleSearchSeriesYear(itemOffset, itemsPerPage, seriesReleaseYear);
-    } else {
-      navigate("/error-page");
+    } else if(type.startsWith("searchItem:")) {
+      const searchItem = type.split("searchItem:")[1].split("/")[0];
+      handleSearchWatchable(itemOffset, itemsPerPage, searchItem);
     }
     setPageCount(Math.ceil(total / itemsPerPage));
   }, [itemOffset, total]);
@@ -252,6 +261,23 @@ export default function MoviePaginationList() {
       }, 1500)
     } catch (e) {
         navigate("/error-page");
+    }
+  };
+
+  const handleUserSearchWatchable = async (email, pageNumber, pageSize, query) => {
+    try {
+        const result = await userSearchWatchable(email, pageNumber, pageSize, query);
+        setTotal(result.data.totalElements);
+        setCurrentItems(result.data.content);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500)
+    } catch (e) {
+      console.log("no");
+        // navigate("/error-page");
     }
   };
 

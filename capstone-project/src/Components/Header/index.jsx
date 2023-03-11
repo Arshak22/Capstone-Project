@@ -96,9 +96,10 @@ export default function Header() {
         const searchValue = document.getElementById("searchMovie").value;
         if (searchValue) {
             navigate("/");
+            setSearchShowcase([]);
             setTimeout(() => {
                 navigate("/movies/searchItem:" + searchValue);
-            }, 300)
+            }, 300);
         }
     }
 

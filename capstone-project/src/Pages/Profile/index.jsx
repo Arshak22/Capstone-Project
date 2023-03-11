@@ -62,6 +62,7 @@ export default function Profile() {
                 return;
             }
             setProfile(result.data);
+            localStorage.setItem("email", result.data.email);
         } catch (error) {
             navigate("/error-page");
         }

@@ -24,17 +24,14 @@ export default function ProfileCommentSection() {
     useEffect(() => {
         setCurrentItems([
             {
-                name: "Name",
                 date: "Jan 20, 2023",
                 comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
             },
             {
-                name: "Name",
                 date: "Jan 20, 2023",
                 comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
             },
             {
-                name: "Name",
                 date: "Jan 20, 2023",
                 comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates."
             }
@@ -66,8 +63,7 @@ export default function ProfileCommentSection() {
                     return (
                         <div key={i} className="profileComment">
                             <div className="profileCommentBody">
-                                <h1>{e.name}</h1>
-                                <h4>{e.date}</h4>
+                                <h1>{e.date}</h1>
                                 <textarea name="profileComment" className="profileCommentText" id={i} rows="4" readOnly>{e.comment}</textarea>
                                 <div className="profileCommentIcons">
                                     <FaArrowRight className="profileCommentIcon"/>
