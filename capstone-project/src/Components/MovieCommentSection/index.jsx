@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 import ReactPaginate from "react-paginate";
+import Comment from "../Comment";
+
+import { addComment, updateComment, deleteComment, getAlllMovieComments } from "../../Platform/Comment";
 
 //icons
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-import Comment from "../Comment";
 
-export default function MovieCommentSection() {
+
+export default function MovieCommentSection(props) {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
+    const [tempComment, setTempComment] = useState();
+    const [commentPostError, setCommentPostError] = useState();
     const [total, setTotal] = useState(0);
     const itemsPerPage = 30;
 
@@ -54,15 +59,36 @@ export default function MovieCommentSection() {
         const newOffset = event.selected;
         setItemOffset(newOffset);
     };
+
+    const handleNewComment = (e) => {
+        setTempComment(e.target.value);
+    };
+
+    const handleNewCommentPost = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const id = localStorage.getItem("id");
+            const postCommentBody = {
+                "commenterId": id,
+                "text": tempComment,
+                "watchableId": props.movieID
+            }
+            console.log(postCommentBody);
+            await addComment(postCommentBody, token);
+        } catch (error) {
+            setCommentPostError("You need to be loged in!");
+        }
+    };
+
     return (
     <>
         <div className="MovieCommentSection">
             <h2 className="CommentSectionTitle">Comment Section</h2>
             <div className="mainCommentPost">
-                <textarea name="movieCommentMain" className="movieCommentMain" rows="3" placeholder="Write a Comment"></textarea>
+                <textarea onChange={handleNewComment} name="movieCommentMain" className="movieCommentMain" rows="3" placeholder="Write a Comment"></textarea>
                 <div>
-                    <button className="mainCommentPostBtn">Post</button>
-                    <h4 className="commentError">You need to be loged in</h4>
+                    <button onClick={handleNewCommentPost} className="mainCommentPostBtn">Post</button>
+                    {commentPostError ? <h4 className="commentError">{commentPostError}</h4>: null}
                 </div>
             </div>
             <div className="Comments">

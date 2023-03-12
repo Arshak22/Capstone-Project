@@ -4,8 +4,6 @@ import ReactPaginate from "react-paginate";
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
 
-import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
-
 //icons
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";

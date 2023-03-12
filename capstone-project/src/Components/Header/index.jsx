@@ -57,15 +57,13 @@ export default function Header() {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        const id = localStorage.getItem("id");
         if (token) {
-            const decodedToken = jwt_decode(token);
-            if(decodedToken.sub) {
-               if(profile) {
-                    getAvatar(profile.id, token);
-               }
+            if(profile) {
+                getAvatar(id, token);
             }
         }
-    }, [profile]);
+    }, [profile, showProfile]);
 
 
     const getProfile = async (email, jwt) => {
@@ -136,6 +134,7 @@ export default function Header() {
 
     const logOut = () => {
         localStorage.clear();
+        setShowProfile(false);
         setAvatar("");
         if (window.location.pathname === "/profile") {
             navigate("/");

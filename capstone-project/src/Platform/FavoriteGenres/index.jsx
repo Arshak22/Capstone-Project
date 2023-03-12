@@ -15,8 +15,8 @@ export const addFavoriteGenre = (profileID, favoriteGenres, jwt) => {
     });
 }
 
-export const deleteFavoriteGenre = (profileID, favoriteGenres, jwt) => {
-    return axios.delete(`${API}${genres}/${profileID}`, favoriteGenres, {
+export const deleteFavoriteGenre = (profileID, favoriteGenre, jwt) => {
+    return axios.delete(`${API}${genres}/${profileID}?genre=${favoriteGenre}`, {
         headers: {'Authorization': `Bearer ${jwt}`}
     });
 }

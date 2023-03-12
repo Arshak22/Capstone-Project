@@ -21,7 +21,6 @@ export default function ProfileInfoSection() {
     const [tempUser] = useState({
         firstName: "",
         lastName: "",
-        avatar: "",
         password: "",
         newPassword: ""
     });
@@ -155,10 +154,6 @@ export default function ProfileInfoSection() {
             error.favoriteGenresError = "Please pick at least three favorite genres";
             v = false;
         }
-        if (!tempUser.avatar) {
-            error.avatarError = "Please submit your new profile picture";
-            v = false;
-        } 
         setErrors(error);
         return v;
     };
@@ -170,8 +165,7 @@ export default function ProfileInfoSection() {
                 firstName: tempUser.firstName,
                 lastName: tempUser.lastName,
                 email: profile.email,
-                password: tempUser.newPassword ? tempUser.newPassword: tempUser.password,
-                enabled: true
+                password: tempUser.newPassword ? tempUser.newPassword: tempUser.password
             }
             const favG = userFavGenres;
             setUser(tempUser);
@@ -201,10 +195,11 @@ export default function ProfileInfoSection() {
     }
 
     const deleteGenre = async (genre) => {
-        const genres = [genre];
         const token = localStorage.getItem("token");
         try {
-            await deleteFavoriteGenre(profile.id, genres, token);
+            await deleteFavoriteGenre(profile.id, genre, token);
+            const result = await getFavoriteGenres(profile.id, token);
+            setUserFavGenres(result.data);
         } catch (error) {
             console.log(error);
         }

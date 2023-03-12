@@ -9,7 +9,9 @@ import { getProfileByEmail } from "../../Platform/Profiles";
 
 export default function HorizontalSlider({movies}) {
     const [logedIn, setLogedIn] = useState(false);
-    const [profile, setProfile] = useState("");
+    // const [profile, setProfile] = useState("");
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
     const settings = {
         dots: false,
         infinite: true,
@@ -49,9 +51,7 @@ export default function HorizontalSlider({movies}) {
         ]
     };
 
-
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if(!token) {
             setLogedIn(false);
         } else {
@@ -60,19 +60,9 @@ export default function HorizontalSlider({movies}) {
                 setLogedIn(false);
             } else {
                 setLogedIn(true);
-                getProfile(decodedToken.sub, token);
             }
         }
     }, []);
-
-  const getProfile = async (email, jwt) => {
-      try {
-          const result = await getProfileByEmail(email, jwt);
-          setProfile(result.data);
-      } catch (error) {
-          console.log(error);
-      }
-  };
 
     return (
         <div className="sliderSection">
@@ -82,7 +72,7 @@ export default function HorizontalSlider({movies}) {
                     const dateString = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'});
                     const shortName = elem.name.length > 35 ? elem.name.slice(0, elem.name.lastIndexOf(" ", 35)) + "..." : elem.name;
                     return (
-                        <SliderElement key={index} mainBackdropPath={elem.mainBackdropPath} id={elem.id} shortName={shortName} dateString={dateString} logedIn={logedIn} profile={profile}/>
+                        <SliderElement key={index} mainBackdropPath={elem.mainBackdropPath} id={elem.id} shortName={shortName} dateString={dateString} logedIn={logedIn} profileID={id} token={token}/>
                     )
                 })}
             </Slider>

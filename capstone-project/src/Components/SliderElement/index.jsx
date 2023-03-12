@@ -76,8 +76,7 @@ export default function SliderElement(props) {
 
     const handleWatchlistAdd = async (id) => {
         try {
-            const token = localStorage.getItem("token");
-            await addToWatchlist(props.profile.id, id, token);
+            await addToWatchlist(props.profileID, id, props.token);
             setSuccessedWatchlist(true);
         } catch (error) {
             console.log(error);
@@ -86,8 +85,7 @@ export default function SliderElement(props) {
 
     const handleFavoriteAdd = async (id) => {
         try {
-            const token = localStorage.getItem("token");
-            await addToFavorite(props.profile.id, id, token);
+            await addToFavorite(props.profileID, id, props.token);
             setSuccessedFavorite(true);
         } catch (error) {
             console.log(error);

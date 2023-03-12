@@ -7,7 +7,6 @@ import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 import { addToWatchlist } from "../../Platform/Watchlist";
 import { addToFavorite } from "../../Platform/Favorites";
-import { getProfileByEmail } from "../../Platform/Profiles";
 
 import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
@@ -24,7 +23,6 @@ import { BsStarFill } from "react-icons/bs";
 
 export default function MovieInfoSection({movie}) {
     const {setCastPopUpOpen} = useGlobalContext();
-    const [profile, setProfile] = useState();
     const [logedIn, setLogedIn] = useState(false);
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
@@ -40,6 +38,8 @@ export default function MovieInfoSection({movie}) {
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
     const [successedFavorite, setSuccessedFavorite] = useState(false);
     const [successedWatchlist, setSuccessedWatchlist] = useState(false);
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
     const starRatings = {
         enjoy: 0,
         story: 0,
@@ -52,7 +52,6 @@ export default function MovieInfoSection({movie}) {
     });
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if(!token) {
             setLogedIn(false);
         } else {
@@ -81,25 +80,6 @@ export default function MovieInfoSection({movie}) {
         }
         return () => clearInterval(intervalId);
     }, [rating, movie.duration, movie.rating, movie.releaseDate]);
-
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if(token) {
-            const decodedToken = jwt_decode(token);
-            if(decodedToken.sub) {
-                getProfile(decodedToken.sub, token);
-            }
-        }
-    }, [])
-
-    const getProfile = async (email, jwt) => {
-        try {
-            const result = await getProfileByEmail(email, jwt);
-            setProfile(result.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const convertToHoursAndMinutes = (minutes) => {
         const hours = Math.floor(minutes / 60);
@@ -161,8 +141,7 @@ export default function MovieInfoSection({movie}) {
 
     const handleWatchlistAdd = async () => {
         try {
-            const token = localStorage.getItem("token");
-            await addToWatchlist(profile.id, movie.id, token);
+            await addToWatchlist(id, movie.id, token);
             setSuccessedWatchlist(true);
         } catch (error) {
             console.log(error);
@@ -171,8 +150,7 @@ export default function MovieInfoSection({movie}) {
 
     const handleFavoriteAdd = async () => {
         try {
-            const token = localStorage.getItem("token");
-            await addToFavorite(profile.id, movie.id, token);
+            await addToFavorite(id, movie.id, token);
             setSuccessedFavorite(true);
         } catch (error) {
             console.log(error);
