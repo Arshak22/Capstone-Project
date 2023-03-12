@@ -276,8 +276,7 @@ export default function MoviePaginationList() {
         setLoaded(true);
       }, 1500)
     } catch (e) {
-      console.log("no");
-        // navigate("/error-page");
+        navigate("/error-page");
     }
   };
 

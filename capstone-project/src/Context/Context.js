@@ -37,6 +37,8 @@ const AppProvider = ({ children }) => {
 
   const [castPopUpOpen, setCastPopUpOpen] = useState(false);
 
+  const [renderOnCommentChange, setRenderOnCommentChange] = useState(false);
+
   return (
     <AppContext.Provider
       value={{
@@ -55,7 +57,9 @@ const AppProvider = ({ children }) => {
         userFavGenres,
         setUserFavGenres,
         showProfile,
-        setShowProfile
+        setShowProfile,
+        renderOnCommentChange,
+        setRenderOnCommentChange
       }}
     >
       {children}

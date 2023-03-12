@@ -2,10 +2,8 @@ import {React, useEffect, useState} from "react";
 import "./style.css";
 import { getProfileWatchlist } from "../../Platform/Watchlist";
 import { getProfileFavorites } from "../../Platform/Favorites";
-import { getProfileByEmail } from "../../Platform/Profiles";
 import { addToWatchlist, deleteFromWatchlist } from "../../Platform/Watchlist";
 import { addToFavorite, deleteFavorite } from "../../Platform/Favorites";
-import jwt_decode from 'jwt-decode';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -26,7 +24,6 @@ import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdro
 import Star from "../../assets/images/Icons/star.png"
 
 export default function ProfileMoviePagination(props) {
-    const [profile, setProfile] = useState();
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffsetWatchlist, setItemOffsetWatchlist] = useState(0);
@@ -35,39 +32,19 @@ export default function ProfileMoviePagination(props) {
     const [totalFavorite, setTotalFavorite] = useState(0);
     const itemsPerPage = 9;
     const [renderOnDelete, setRenderOnDelete] = useState(false);
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if(token) {
-            const decodedToken = jwt_decode(token);
-            if(decodedToken.sub) {
-                getProfile(decodedToken.sub, token);
-            }
-        }
-    }, []);
-
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if(profile) {
             if(props.page === "Watchlist") {
-                getWatchlist(itemOffsetWatchlist, itemsPerPage, profile.id, token);
+                getWatchlist(itemOffsetWatchlist, itemsPerPage, id, token);
                 setPageCount(Math.ceil(totalWatchlist / itemsPerPage));
             } else if(props.page === "Favourites") {
-                getFavourites(itemOffsetFavorite, itemsPerPage, profile.id, token);
+                getFavourites(itemOffsetFavorite, itemsPerPage, id, token);
                 setPageCount(Math.ceil(totalFavorite / itemsPerPage));
             }
             setRenderOnDelete(false);
-        }
-    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props, profile, renderOnDelete]);
-
-    const getProfile = async (email, jwt) => {
-        try {
-            const result = await getProfileByEmail(email, jwt);
-            setProfile(result.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    }, [itemOffsetWatchlist, itemOffsetFavorite, totalWatchlist, totalFavorite, props, renderOnDelete]);
 
     const handlePageClickWatchlist = (event) => {
         const newOffset = event.selected;
@@ -103,8 +80,7 @@ export default function ProfileMoviePagination(props) {
 
     const handleWatchlistAdd = async (movieID) => {
         try {
-            const token = localStorage.getItem("token");
-            await addToWatchlist(profile.id, movieID, token);
+            await addToWatchlist(id, movieID, token);
         } catch (error) {
             console.log(error);
         }
@@ -112,8 +88,7 @@ export default function ProfileMoviePagination(props) {
 
     const handleFavoriteAdd = async (movieID) => {
         try {
-            const token = localStorage.getItem("token");
-            await addToFavorite(profile.id, movieID, token);
+            await addToFavorite(id, movieID, token);
         } catch (error) {
             console.log(error);
         }
@@ -121,8 +96,7 @@ export default function ProfileMoviePagination(props) {
 
     const handleDeleteWatchlistItem = async (movieID) => {
         try {
-            const token = localStorage.getItem("token");
-            await deleteFromWatchlist(profile.id, movieID, token);
+            await deleteFromWatchlist(id, movieID, token);
             setRenderOnDelete(true);
         } catch (error) {
             console.log(error);
@@ -131,8 +105,7 @@ export default function ProfileMoviePagination(props) {
 
     const handleDeleteFavoriteItem = async (movieID) => {
         try {
-            const token = localStorage.getItem("token");
-            await deleteFavorite(profile.id, movieID, token);
+            await deleteFavorite(id, movieID, token);
             setRenderOnDelete(true);
         } catch (error) {
             console.log(error);

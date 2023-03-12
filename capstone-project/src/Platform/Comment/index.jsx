@@ -25,8 +25,8 @@ export const getProfileMovieComments = (profileID, movieID) => {
     return axios.get(`${API}${comments}/${profileID}/${movieID}`);
 }
 
-export const getAlllMovieComments = (movieID) => {
-    return axios.get(`${API}${comments}/${movieID}`);
+export const getAllMovieComments = (movieID, pageNumber, pageSize) => {
+    return axios.get(`${API}${comments}/watchable-${movieID}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
 export const getComment = (id) => {

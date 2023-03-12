@@ -3,7 +3,8 @@ import "./style.css";
 import ReactPaginate from "react-paginate";
 import Comment from "../Comment";
 
-import { addComment, updateComment, deleteComment, getAlllMovieComments } from "../../Platform/Comment";
+import { addComment, updateComment, deleteComment, getAllMovieComments } from "../../Platform/Comment";
+import { useGlobalContext } from "../../Context/Context";
 
 //icons
 import { IoIosArrowDropleftCircle } from "react-icons/io";
@@ -11,49 +12,22 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 
 
 export default function MovieCommentSection(props) {
+    const MemoizedComment = React.memo(Comment);
+    const {renderOnCommentChange, setRenderOnCommentChange} = useGlobalContext();
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
-    const [tempComment, setTempComment] = useState();
+    const [tempComment, setTempComment] = useState("");
     const [commentPostError, setCommentPostError] = useState();
     const [total, setTotal] = useState(0);
-    const itemsPerPage = 30;
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    const itemsPerPage = 4;
 
     useEffect(() => {
-        setCurrentItems([
-            {
-                id: 1,
-                name: "Name",
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
-            },
-            {
-                id: 2,
-                name: "Name",
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
-            },
-            {
-                id: 3,
-                name: "Name",
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates."
-            },
-            {
-                id: 4,
-                name: "Name",
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
-            },
-            {
-                id: 5,
-                name: "Name",
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
-            },
-        ]);
+        handleAllComments(props.movieID, itemOffset, itemsPerPage);
         setPageCount(Math.ceil(total / itemsPerPage));
-    }, [itemOffset, total])
+    }, [itemOffset, total, renderOnCommentChange])
 
     const handlePageClick = (event) => {
         const newOffset = event.selected;
@@ -64,28 +38,39 @@ export default function MovieCommentSection(props) {
         setTempComment(e.target.value);
     };
 
+    const handleAllComments = async (movieID, pageNumber, pageSize) => {
+        try {
+            const result = await getAllMovieComments(movieID, pageNumber, pageSize);
+            setTotal(result.data.totalElements);
+            setCurrentItems(result.data.content);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     const handleNewCommentPost = async () => {
         try {
-            const token = localStorage.getItem("token");
-            const id = localStorage.getItem("id");
-            const postCommentBody = {
-                "commenterId": id,
-                "text": tempComment,
-                "watchableId": props.movieID
+            if (tempComment) {
+                const postCommentBody = {
+                    "commenterId": id,
+                    "text": tempComment,
+                    "watchableId": props.movieID
+                }
+                await addComment(postCommentBody, token);
+                setItemOffset(0);
+                setTempComment("");
+                setRenderOnCommentChange(!renderOnCommentChange);
             }
-            console.log(postCommentBody);
-            await addComment(postCommentBody, token);
         } catch (error) {
             setCommentPostError("You need to be loged in!");
         }
     };
 
     return (
-    <>
         <div className="MovieCommentSection">
             <h2 className="CommentSectionTitle">Comment Section</h2>
             <div className="mainCommentPost">
-                <textarea onChange={handleNewComment} name="movieCommentMain" className="movieCommentMain" rows="3" placeholder="Write a Comment"></textarea>
+                <textarea onChange={handleNewComment} name="movieCommentMain" value={tempComment} className="movieCommentMain" rows="3" placeholder="Write a Comment"></textarea>
                 <div>
                     <button onClick={handleNewCommentPost} className="mainCommentPostBtn">Post</button>
                     {commentPostError ? <h4 className="commentError">{commentPostError}</h4>: null}
@@ -96,14 +81,13 @@ export default function MovieCommentSection(props) {
                     currentItems.map((elem, index) => {
                         return (
                             <div key={index}>
-                                <Comment name={elem.name} date={elem.date} comment={elem.comment} id={elem.id} />
+                                <MemoizedComment commenterID={elem.commenterId} createdAt={elem.createdAt} comment={elem.text} token={token} id={id} commentID={elem.id} watchableID={elem.watchableId} renderOnCommentChange={renderOnCommentChange}/>
                             </div>
                         );
                     })
                 : <div className="firstToComment"><h2>Be first to comment</h2></div>}
             </div>
-        </div>
-        {pageCount <= 1 ?
+            {pageCount <= 1 ?
             null:
             <ReactPaginate
             nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
@@ -126,6 +110,6 @@ export default function MovieCommentSection(props) {
             renderOnZeroPageCount={null}
             />        
         }
-        </>
+        </div>
     );
 }
