@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import "./style.css";
 import ReactPaginate from "react-paginate";
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
+import { getProfileMovieComments } from "../../Platform/Comment";
 
 //icons
 import { IoIosArrowDropleftCircle } from "react-icons/io";
@@ -12,34 +13,36 @@ import {FaArrowRight} from "react-icons/fa";
 import {AiFillEdit} from "react-icons/ai";
 import {ImCross} from "react-icons/im";
 
-export default function ProfileCommentSection() {
+export default function ProfileCommentSection(props) {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [total, setTotal] = useState(0);
+    const [renderOnDelete, setRenderOnDelete] = useState(false);
     const itemsPerPage = 3;
 
     useEffect(() => {
-        setCurrentItems([
-            {
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
-            },
-            {
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas provident voluptates repudiandae, tempore rerum ex possimus corporis ab maiores. Nihil reprehenderit, blanditiis culpa distinctio ipsum maxime mollitia dolore iste accusamus?"
-            },
-            {
-                date: "Jan 20, 2023",
-                comment: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias veniam vero, excepturi aut tempore assumenda officia corporis totam id quod error quam commodi mollitia quo sapiente eius labore temporibus voluptates."
-            }
-        ]);
-        setPageCount(Math.ceil(total / itemsPerPage));
-    }, [itemOffset, total])
+        const fetchData = async () => {
+            await handleAllComments(itemOffset, itemsPerPage, props.id);
+            setPageCount(Math.ceil(total / itemsPerPage));
+            console.log(currentItems);
+          };
+          fetchData();
+    }, [itemOffset, total, renderOnDelete, props]) 
 
     const handlePageClick = (event) => {
         const newOffset = event.selected;
         setItemOffset(newOffset);
+    };
+
+    const handleAllComments = async (pageNumber, pageSize, profileID) => {
+        try {
+            const result = await getProfileMovieComments(profileID, pageNumber, pageSize);
+            setTotal(result.data.totalElements);
+            setCurrentItems(result.data.content);
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const handleCommentEdit = (i) => {
@@ -52,17 +55,45 @@ export default function ProfileCommentSection() {
         } else {
             comment.setAttribute("readOnly", true);
         }
-    }
+    };
+
+    const handleEditedAt = (timestamp) => {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diff = now.getTime() - date.getTime();
+
+        const minutes = Math.floor(diff / (1000 * 60));
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+
+        if (years > 0) {
+            return (`${years}y ago`);
+        } else if (months > 0) {
+            return (`${months}m ago`);
+        } else if (days > 0) {
+            return (`${days}d ago`);
+        } else if (hours > 0) {
+            return (`${hours}h ago`);
+        } else if (minutes > 0) {
+            return (`${minutes}m ago`);
+        } else {
+            return (`Just now`);
+        }
+    };
 
     return (
         <>
-            {currentItems.length !== 0 ? 
+            {currentItems.length === 0 ? 
+            <div className="noCommentsYetProfile"><h2>You dont have comments yet</h2></div>:
                 currentItems.map((e, i) => {
+                    let editedAt = handleEditedAt(e.createdAt);
                     return (
                         <div key={i} className="profileComment">
                             <div className="profileCommentBody">
-                                <h1>{e.date}</h1>
-                                <textarea name="profileComment" className="profileCommentText" id={i} rows="4" readOnly>{e.comment}</textarea>
+                                <h1>{editedAt}</h1>
+                                <textarea name="profileComment" className="profileCommentText" id={i} rows="4" readOnly>{e.text}</textarea>
                                 <div className="profileCommentIcons">
                                     <FaArrowRight className="profileCommentIcon"/>
                                     <AiFillEdit onClick={() => handleCommentEdit(i)} className="profileCommentIcon"/>
@@ -75,9 +106,8 @@ export default function ProfileCommentSection() {
                         </div>
                     )
                 })
-            : <div className="noCommentsYetProfile"><h2>You dont have comments yet</h2></div>}
-            {pageCount <= 1 ?
-            null:
+            }
+            {pageCount > 1 ?
             <ReactPaginate
             nextLabel={<IoIosArrowDroprightCircle className="paginationArrows"/>}
             onPageChange={handlePageClick}
@@ -97,8 +127,7 @@ export default function ProfileCommentSection() {
             containerClassName="pagination"
             activeClassName="active"
             renderOnZeroPageCount={null}
-            />        
-            }
+            />: null}
         </>
     );
 }

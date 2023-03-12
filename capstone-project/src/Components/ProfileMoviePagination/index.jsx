@@ -70,7 +70,7 @@ export default function ProfileMoviePagination(props) {
 
     const getFavourites = async (pageNumber, pageSize, id, token) => {
         try {
-            const result = await getProfileFavorites( pageNumber, pageSize,id, token);
+            const result = await getProfileFavorites(pageNumber, pageSize, id, token);
             setTotalFavorite(result.data.totalElements);
             setCurrentItems(result.data.content);
         } catch (e) {

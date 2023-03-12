@@ -21,8 +21,8 @@ export const deleteComment = (id, jwt) => {
     });
 }
 
-export const getProfileMovieComments = (profileID, movieID) => {
-    return axios.get(`${API}${comments}/${profileID}/${movieID}`);
+export const getProfileMovieComments = (profileID, pageNumber, pageSize) => {
+    return axios.get(`${API}${comments}/profile-${profileID}?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
 export const getAllMovieComments = (movieID, pageNumber, pageSize) => {

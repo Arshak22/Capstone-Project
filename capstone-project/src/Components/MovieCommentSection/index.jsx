@@ -77,7 +77,7 @@ export default function MovieCommentSection(props) {
                 </div>
             </div>
             <div className="Comments">
-                {currentItems.length !== 0 ? 
+                {currentItems.length > 0 ? 
                     currentItems.map((elem, index) => {
                         return (
                             <div key={index}>

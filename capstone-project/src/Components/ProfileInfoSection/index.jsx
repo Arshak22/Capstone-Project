@@ -18,6 +18,7 @@ export default function ProfileInfoSection() {
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
     const [showCaseAvatar, setShowcaseAvatar] = useState();
+    const id = localStorage.getItem("id");
     const [tempUser] = useState({
         firstName: "",
         lastName: "",
@@ -310,7 +311,7 @@ export default function ProfileInfoSection() {
                         </div>
                         <button onClick={handleEdit} className="btn btn2">Edit Profile<FaUserEdit className="userBtnIcon"/></button>
                         <button className="btn btn2">Delete Profile<IoPersonRemove className="userBtnIcon"/></button>
-                    </div>: <ProfileCommentSection/>}
+                    </div>: <ProfileCommentSection id={id}/>}
                 </div>
             </div>
         </div>
