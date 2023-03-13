@@ -230,7 +230,7 @@ export default function MovieInfoSection({movie}) {
                             <div className="iconBox">
                                 <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
                                 <div className="moviePageShareIcons">
-                                    {!logedIn ? <Popup trigger={<FaFacebookF className="moviePageShareIcon"/>} 
+                                    {!logedIn ? <Popup trigger={<button><FaFacebookF className="moviePageShareIcon"/></button>} 
                                     position="center"
                                     open={shareFacebookPopupState}
                                     onOpen={() => handleOpen("facebook")}
@@ -244,7 +244,7 @@ export default function MovieInfoSection({movie}) {
                                         </div>
                                     )}
                                     </Popup>: <FaFacebookF className="moviePageShareIcon"/>}
-                                    {!logedIn ? <Popup trigger={<FaTwitter className="moviePageShareIcon"/>} 
+                                    {!logedIn ? <Popup trigger={<button><FaTwitter className="moviePageShareIcon"/></button>} 
                                     position="center"
                                     open={shareTwitterPopupState}
                                     onOpen={() => handleOpen("twitter")}
@@ -258,7 +258,7 @@ export default function MovieInfoSection({movie}) {
                                         </div>
                                     )}
                                     </Popup>: <FaTwitter className="moviePageShareIcon"/>}
-                                    {!logedIn ? <Popup trigger={<FaPinterestP className="moviePageShareIcon"/>} 
+                                    {!logedIn ? <Popup trigger={<button><FaPinterestP className="moviePageShareIcon"/></button>} 
                                     position="center"
                                     open={sharePinterestPopupState}
                                     onOpen={() => handleOpen("pinterest")}
