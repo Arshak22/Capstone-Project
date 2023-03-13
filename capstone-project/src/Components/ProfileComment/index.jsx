@@ -1,21 +1,32 @@
 import React, {useState, useEffect} from "react";
-import "./style.css";
-
-import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
-import { updateComment, deleteComment } from "../../Platform/Comment";
+import { NavLink } from "react-router-dom";
+import { ROUTE_NAMES } from "../../Routes";
 import { useGlobalContext } from "../../Context/Context";
+import { updateComment, deleteComment } from "../../Platform/Comment";
 
+import {FaArrowRight} from "react-icons/fa";
 import {AiFillEdit} from "react-icons/ai";
 import {ImCross} from "react-icons/im";
 
-export default function Comment(props) {
+export default function ProfileComment(props) {
     const {renderOnCommentChange, setRenderOnCommentChange} = useGlobalContext();
     const [tempComment, setTempComment] = useState();
     const [editedAt, setEditedAt] = useState("");
-
     useEffect(() => {
-        handleEditedAt(props.createdAt);
+        handleEditedAt(props.commentInfo.createdAt);
     }, [props]);
+
+    const handleCommentEdit = (i) => {
+        const comment = document.getElementById(`${i}`);
+        const postBtn = document.getElementById(`commentBtn${i}`);
+        comment.classList.toggle("editableComment");
+        postBtn.classList.toggle("commentBtnVisible");
+        if ((comment.getAttribute("readOnly") === "") || comment.getAttribute("readOnly")) {
+            comment.removeAttribute("readOnly");
+        } else {
+            comment.setAttribute("readOnly", true);
+        }
+    };
 
     const handleEditedAt = (timestamp) => {
         const date = new Date(timestamp);
@@ -43,18 +54,6 @@ export default function Comment(props) {
         }
     };
 
-    const handleCommentEdit = (i) => {
-        const comment = document.getElementById(`${i}`);
-        const postBtn = document.getElementById(`movieCommentBtn${i}`);
-        comment.classList.toggle("editableComment");
-        postBtn.classList.toggle("movieCommentBtnVisible");
-        if ((comment.getAttribute("readOnly") === "") || comment.getAttribute("readOnly")) {
-            comment.removeAttribute("readOnly");
-        } else {
-            comment.setAttribute("readOnly", true);
-        }
-    };
-
     const handleUpdatedComment = (e) => {
         setTempComment(e.target.value);
     };
@@ -63,15 +62,15 @@ export default function Comment(props) {
         try {
             if (tempComment) {
                 const postCommentBody = {
-                    "commenterId": props.commenterID,
+                    "commenterId": props.commentInfo.commenterId,
                     "text": tempComment,
-                    "watchableId": props.watchableID
+                    "watchableId": props.commentInfo.watchableId
                 }
                 await updateComment(id, postCommentBody, props.token);
                 setRenderOnCommentChange(!renderOnCommentChange);
                 const comment = document.getElementById(`${id}`);
-                const postBtn = document.getElementById(`movieCommentBtn${id}`);
-                postBtn.classList.remove("movieCommentBtnVisible");
+                const postBtn = document.getElementById(`commentBtn${id}`);
+                postBtn.classList.remove("commentBtnVisible");
                 comment.classList.remove("editableComment");
                 comment.setAttribute("readOnly", true);
 
@@ -91,22 +90,17 @@ export default function Comment(props) {
     };
 
     return (
-        <div className="movieComment">
-            <div className="movieCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
+        <div className="profileCommentBody">
+            <h1>{editedAt}</h1>
+            <textarea onChange={handleUpdatedComment} name="profileComment" className="profileCommentText" id={props.commentInfo.id} rows="3" defaultValue={props.commentInfo.text} readOnly></textarea>
+            <div className="profileCommentIcons">
+                <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + props.commentInfo.watchableId} end><FaArrowRight className="profileCommentIcon"/></NavLink>
+                <AiFillEdit onClick={() => handleCommentEdit(props.commentInfo.id)} className="profileCommentIcon"/>
+                <ImCross onClick={() => handleDeleteComment(props.commentInfo.id)} className="profileCommentIcon"/>
             </div>
-            <div className="movieCommentBody">
-                <h1>{props.name}</h1>
-                <h4>{editedAt}</h4>
-                {props.comment ? <textarea onChange={handleUpdatedComment} name="movieComment" className="movieCommentText" id={props.commentID} rows="4" defaultValue={props.comment} readOnly></textarea>: null}
-                {props.id == props.commenterID ?
-                <div className="movieCommentIcons">
-                    <AiFillEdit onClick={() => handleCommentEdit(props.commentID)} className="movieCommentIcon"/>
-                    <ImCross className="movieCommentIcon" onClick={() => handleDeleteComment(props.commentID)}/>
-                </div>: null}
-                <div className="commentBtnBox">
-                    <button id={`movieCommentBtn${props.commentID}`} className="movieCommentBtn" onClick={() => handleUpdateCommentPost(props.commentID)}>Edit</button>
-                </div>
+            <div className="profileCommentBtnBox">
+                <button onClick={() => handleUpdateCommentPost(props.commentInfo.id)} id={`commentBtn${props.commentInfo.id}`} className="commentBtn">Edit</button>
             </div>
         </div>
-    );
+    )
 }

@@ -3,7 +3,7 @@ import "./style.css";
 import ReactPaginate from "react-paginate";
 import Comment from "../Comment";
 
-import { addComment, updateComment, deleteComment, getAllMovieComments } from "../../Platform/Comment";
+import { addComment, getAllMovieComments } from "../../Platform/Comment";
 import { useGlobalContext } from "../../Context/Context";
 
 //icons
