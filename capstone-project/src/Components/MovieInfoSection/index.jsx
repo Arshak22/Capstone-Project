@@ -7,6 +7,7 @@ import Popup from 'reactjs-popup';
 import { useGlobalContext } from "../../Context/Context";
 import { addToWatchlist } from "../../Platform/Watchlist";
 import { addToFavorite } from "../../Platform/Favorites";
+import { addRating } from "../../Platform/Rate";
 
 import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
@@ -38,6 +39,7 @@ export default function MovieInfoSection({movie}) {
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
     const [successedFavorite, setSuccessedFavorite] = useState(false);
     const [successedWatchlist, setSuccessedWatchlist] = useState(false);
+    const [successedRating, setSuccessedRating] = useState(false);
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     const starRatings = {
@@ -191,10 +193,35 @@ export default function MovieInfoSection({movie}) {
         if(!f) {
             setRatingErrors(error);
         } else {
-            handleClose("rate")
-            console.log(starRatings);
+            let rating = {
+                "profileId": id*1,
+                "questionOneValue": starRatings.enjoy,
+                "questionThreeValue": starRatings.story,
+                "questionTwoValue": starRatings.actors,
+                "watchableId": movie.id
+            }
+            rateTheMovie(rating, token);
         }
     }
+
+    const rateTheMovie = async (rating, token) => {
+        try {
+            const result = await addRating(rating, token);
+            if(result.request.response) {
+                setSuccessedRating(true);
+                handleClose("rate");
+            } else {
+                let error = {
+                    enjoyError: "",
+                    storyError: "",
+                    actorsError: "You already rated this movie!"
+                }
+                setRatingErrors(error);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
 
     return (
@@ -321,7 +348,7 @@ export default function MovieInfoSection({movie}) {
                                     </div>
                                 )}
                                 </Popup>: 
-                                <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 
+                                <Popup trigger={<button className={`moviePageIcon${successedRating ? " activeIcon": ""}`}><FaStar/></button>} 
                                 position="center"
                                 open={ratePopupState}
                                 onOpen={() => handleOpen("rate")}
