@@ -21,9 +21,9 @@ export default function Profile() {
     const [activeBar, setActiveBar] = useState(true);
     const [userAvatar, setUserAvatar] = useState();
     const navigate = useNavigate();
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if(!token) {
             navigate("/error-page");
         } else {
@@ -41,12 +41,11 @@ export default function Profile() {
     }, [])
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if (token) {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
                if(profile) {
-                    getAvatar(profile.id, token);
+                    getAvatar(profile.id);
                }
             }
         }
@@ -69,11 +68,12 @@ export default function Profile() {
         }
     };
 
-    const getAvatar = async (profileID, jwt) => {
+    const getAvatar = async (profileID) => {
         try {
-            const result = await getProfileImage(profileID, jwt);
+            const result = await getProfileImage(profileID);
             setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
+            console.log("No avatar yet");
         }
     };
 

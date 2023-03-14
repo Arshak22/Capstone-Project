@@ -3,19 +3,32 @@ import "./style.css";
 
 import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
 import { updateComment, deleteComment } from "../../Platform/Comment";
+import { getProfileImage } from "../../Platform/ProfileImage";
 import { useGlobalContext } from "../../Context/Context";
 
+//icons
 import {AiFillEdit} from "react-icons/ai";
 import {ImCross} from "react-icons/im";
 
 export default function Comment(props) {
     const {renderOnCommentChange, setRenderOnCommentChange} = useGlobalContext();
     const [tempComment, setTempComment] = useState();
+    const [commentAvatar, setCommentAvatar] = useState();
     const [editedAt, setEditedAt] = useState("");
 
     useEffect(() => {
+        getAvatar(props.commenterID);
         handleEditedAt(props.createdAt);
     }, [props]);
+
+    const getAvatar = async (profileID) => {
+        try {
+            const result = await getProfileImage(profileID);
+            setCommentAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
+        } catch (error) {
+            console.log("No avatar yet");
+        }
+    };
 
     const handleEditedAt = (timestamp) => {
         const date = new Date(timestamp);
@@ -92,10 +105,11 @@ export default function Comment(props) {
 
     return (
         <div className="movieComment">
-            <div className="movieCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
-            </div>
+            {commentAvatar ? <div className="movieCommentAvatar" style={{backgroundImage: `url(${commentAvatar})`}}>
+            </div> : <div className="movieCommentAvatar" style={{backgroundImage: `url(${DefaultUser})`}}>
+            </div>}
             <div className="movieCommentBody">
-                <h1>{props.name}</h1>
+                <h1>{props.commenterFullName}</h1>
                 <h4>{editedAt}</h4>
                 {props.comment ? <textarea onChange={handleUpdatedComment} name="movieComment" className="movieCommentText" id={props.commentID} rows="4" defaultValue={props.comment} readOnly></textarea>: null}
                 {props.id == props.commenterID ?

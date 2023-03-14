@@ -18,6 +18,7 @@ export default function ProfileInfoSection() {
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
     const [showCaseAvatar, setShowcaseAvatar] = useState();
+    const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     const [tempUser] = useState({
         firstName: "",
@@ -37,7 +38,6 @@ export default function ProfileInfoSection() {
     );
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if (token) {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
@@ -47,13 +47,12 @@ export default function ProfileInfoSection() {
     }, [])
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
         if (token) {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
                if(profile) {
                     getFavoriteGenresList(profile.id, token);
-                    getAvatar(profile.id, token);
+                    getAvatar(profile.id);
                }
             }
         }
@@ -219,7 +218,7 @@ export default function ProfileInfoSection() {
             const result = await getProfileImage(profileID, jwt);
             setAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
-            console.log(error);
+            console.log("No avatar yet");
         }
     }
 

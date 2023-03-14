@@ -81,7 +81,7 @@ export default function MovieCommentSection(props) {
                     currentItems.map((elem, index) => {
                         return (
                             <div key={index}>
-                                <MemoizedComment commenterID={elem.commenterId} createdAt={elem.createdAt} comment={elem.text} token={token} id={id} commentID={elem.id} watchableID={elem.watchableId} renderOnCommentChange={renderOnCommentChange}/>
+                                <MemoizedComment commenterID={elem.commenterId} commenterFullName={elem.commenterFullName} createdAt={elem.createdAt} comment={elem.text} token={token} id={id} commentID={elem.id} watchableID={elem.watchableId} renderOnCommentChange={renderOnCommentChange}/>
                             </div>
                         );
                     })

@@ -2,10 +2,8 @@ import axios from "axios";
 import {API} from "../api";
 const images = "/images";
 
-export const getProfileImage = (id, jwt) => {
-    return axios.get(`${API}${images}/${id}`, {
-        headers: {'Authorization': `Bearer ${jwt}`}
-    });
+export const getProfileImage = (id) => {
+    return axios.get(`${API}${images}/${id}`);
 }
 
 export const uploadProfileImage = (profileID, image, jwt) => {

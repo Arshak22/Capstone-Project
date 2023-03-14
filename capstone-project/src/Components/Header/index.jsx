@@ -27,10 +27,11 @@ export default function Header() {
     const [userAvatar, setUserAvatar] = useState();
     const navigate = useNavigate();
     const prevScrollPos = useRef(0);
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
   
     useEffect(() => {
         document.body.classList.remove('hiddenScroll');
-        const token = localStorage.getItem("token");
         if(token) {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
@@ -56,11 +57,9 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        const id = localStorage.getItem("id");
         if (token) {
             if(profile) {
-                getAvatar(id, token);
+                getAvatar(id);
             }
         }
     }, [profile, showProfile]);
@@ -75,20 +74,20 @@ export default function Header() {
         }
     };
 
-    const getAvatar = async (profileID, jwt) => {
+    const getAvatar = async (profileID) => {
         try {
-            const result = await getProfileImage(profileID, jwt);
+            const result = await getProfileImage(profileID);
             setUserAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
             setAvatar(`data:${result.data.type};base64,${result.data.imageData}`);
         } catch (error) {
-            console.log(error);
+            console.log("No avatar yet");
         }
     };
 
 
     const handleBar = () => {
         setActiveBar(!activeBar);
-    }
+    };
 
     const handleSearch = () => {
         const searchValue = document.getElementById("searchMovie").value;
@@ -99,7 +98,7 @@ export default function Header() {
                 navigate("/movies/searchItem:" + searchValue);
             }, 300);
         }
-    }
+    };
 
     const handleSearchShowcase = () => {
         const searchValue = document.getElementById("searchMovie").value;
@@ -108,7 +107,7 @@ export default function Header() {
         } else {
             setSearchShowcase([]);
         }
-    }
+    };
 
     const showcaseSearchList = async (query) => {
         try {
@@ -117,20 +116,20 @@ export default function Header() {
         } catch (e) {
             console.log(e);
         }
-      };
+    };
 
     const handleSearchWithEnter = (e) => {
         if (e.key === "Enter") {
             handleSearch();
         }
-    }
+    };
 
     const handleShowcaseItemNav = (id) => {
         navigate("/");
         setTimeout(() => {
             navigate(ROUTE_NAMES.DEFAULT_PAGE + id);
         }, 50)
-    }
+    };
 
     const logOut = () => {
         localStorage.clear();
@@ -141,7 +140,7 @@ export default function Header() {
         } else {
             window.location.reload();
         }
-    }
+    };
 
     return (
         <>
