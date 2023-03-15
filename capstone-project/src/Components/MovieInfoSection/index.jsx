@@ -18,7 +18,7 @@ import { FaPlus } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import { FaPinterestP } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import { BsStar } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
 
@@ -42,6 +42,7 @@ export default function MovieInfoSection({movie}) {
     const [successedRating, setSuccessedRating] = useState(false);
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
+    const url = (`http://localhost:3000/film/${movie.id}`);
     const starRatings = {
         enjoy: 0,
         story: 0,
@@ -223,6 +224,18 @@ export default function MovieInfoSection({movie}) {
         }
     };
 
+    const shareWithFacebook = () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    }
+
+    const shareWithTwitter = () => {
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
+    }
+
+    const shareWithTelegram = () => {
+        window.open(`https://t.me/share/url?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
+    }
+
 
     return (
         <div className="movieInfoSection" style={{backgroundImage: `url(${backdrop})`}}>
@@ -270,7 +283,7 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>: <FaFacebookF className="moviePageShareIcon"/>}
+                                    </Popup>: <FaFacebookF onClick={shareWithFacebook} className="moviePageShareIcon"/>}
                                     {!logedIn ? <Popup trigger={<button><FaTwitter className="moviePageShareIcon"/></button>} 
                                     position="center"
                                     open={shareTwitterPopupState}
@@ -284,8 +297,8 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>: <FaTwitter className="moviePageShareIcon"/>}
-                                    {!logedIn ? <Popup trigger={<button><FaPinterestP className="moviePageShareIcon"/></button>} 
+                                    </Popup>: <FaTwitter onClick={shareWithTwitter} className="moviePageShareIcon"/>}
+                                    {!logedIn ? <Popup trigger={<button><FaTelegramPlane className="moviePageShareIcon"/></button>} 
                                     position="center"
                                     open={sharePinterestPopupState}
                                     onOpen={() => handleOpen("pinterest")}
@@ -298,7 +311,7 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>: <FaPinterestP className="moviePageShareIcon"/>}
+                                    </Popup>: <FaTelegramPlane onClick={shareWithTelegram} className="moviePageShareIcon"/>}
                                 </div>
                             </div>
                             <div className="iconBox">

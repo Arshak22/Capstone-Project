@@ -9,7 +9,6 @@ import { getProfileByEmail } from "../../Platform/Profiles";
 
 export default function HorizontalSlider({movies}) {
     const [logedIn, setLogedIn] = useState(false);
-    // const [profile, setProfile] = useState("");
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     const settings = {

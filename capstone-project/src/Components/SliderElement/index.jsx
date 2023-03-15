@@ -5,7 +5,6 @@ import { useGlobalContext } from "../../Context/Context";
 import { ROUTE_NAMES } from "../../Routes";
 import { addToWatchlist } from "../../Platform/Watchlist";
 import { addToFavorite } from "../../Platform/Favorites";
-import { getProfileByEmail } from "../../Platform/Profiles";
 
 //icons
 import { FaShareAlt } from "react-icons/fa";
@@ -13,7 +12,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-import { FaPinterestP } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 import VideoIcon from "../../assets/images/Icons/video.png";
 
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
@@ -27,18 +26,19 @@ export default function SliderElement(props) {
     const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
     const [successedFavorite, setSuccessedFavorite] = useState(false);
     const [successedWatchlist, setSuccessedWatchlist] = useState(false);
+    const url = (`http://localhost:3000/film/${props.id}`);
 
-    // const getFacebookShareLink = (url) => {
-    //     return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    // }
+    const shareWithFacebook = () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    }
 
-    // const getTwitterShareLink = (url, text="Check Out This Movie") => {
-    //     return `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    // }
+    const shareWithTwitter = () => {
+        window.open(`https://twitter.com/intent/tweet?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
+    }
 
-    // const getPinterestShareLink = (url, media, description="Check Out This Movie") => {
-    //     return `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(media)}&description=${encodeURIComponent(description)}`;
-    // }
+    const shareWithTelegram = () => {
+        window.open(`https://t.me/share/url?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
+    }
 
     const handleOpen = (type) => {
         if(type === "favourite") {
@@ -119,7 +119,7 @@ export default function SliderElement(props) {
                                                     <h3>Please register to share a movie.</h3>
                                                 </div>
                                             )}
-                                            </Popup>: <FaFacebookF className="shareIcons"/>}
+                                            </Popup>: <FaFacebookF onClick={shareWithFacebook} className="shareIcons"/>}
                                             {!props.logedIn ? <Popup trigger={<FaTwitter className="shareIcons"/>} 
                                             position="center"
                                             open={shareTwitterPopupState}
@@ -133,8 +133,8 @@ export default function SliderElement(props) {
                                                     <h3>Please register to share a movie.</h3>
                                                 </div>
                                             )}
-                                            </Popup>: <FaTwitter className="shareIcons"/>}
-                                            {!props.logedIn ? <Popup trigger={<FaPinterestP className="shareIcons"/>} 
+                                            </Popup>: <FaTwitter onClick={shareWithTwitter} className="shareIcons"/>}
+                                            {!props.logedIn ? <Popup trigger={<FaTelegramPlane className="shareIcons"/>} 
                                             position="center"
                                             open={sharePinterestPopupState}
                                             onOpen={() => handleOpen("pinterest")}
@@ -147,7 +147,7 @@ export default function SliderElement(props) {
                                                     <h3>Please register to share a movie.</h3>
                                                 </div>
                                             )}
-                                            </Popup>: <FaPinterestP className="shareIcons"/>}
+                                            </Popup>: <FaTelegramPlane onClick={shareWithTelegram} className="shareIcons"/>}
                                             </div>
                                         </div>
                                     </li>
