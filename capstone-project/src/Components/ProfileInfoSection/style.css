@@ -263,6 +263,28 @@
     margin-left: 10px;
 }
 
+.deleteProfilePopUp {
+    display: table;
+    text-align: center;
+    color: #ffffff;
+}
+
+.deleteProfilePopUp h3 {
+    font-size: 30px;
+    padding: 50px;
+    padding-bottom: 30px;
+}
+
+.deleteProfileBtns {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.deleteProfileBtns button {
+    padding: 10px !important;
+}
+
 @media screen and (max-width: 1024px) {
     .profileInfoSmall h4 {
         letter-spacing: 0;

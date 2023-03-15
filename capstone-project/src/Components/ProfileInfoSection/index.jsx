@@ -11,15 +11,19 @@ import ProfileCommentSection from "../ProfileCommentSection";
 import { getProfileByEmail, updateProfile, deleteProfile } from "../../Platform/Profiles";
 import { getFavoriteGenres, addFavoriteGenre, deleteFavoriteGenre } from "../../Platform/FavoriteGenres";
 import { uploadProfileImage, getProfileImage } from "../../Platform/ProfileImage";
+import Popup from 'reactjs-popup';
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileInfoSection() {
-    const {setUser, userFavGenres, setUserFavGenres, avatar, setAvatar} = useGlobalContext();
-    const [active, setActive] = useState("Comments");
+    const {setUser, userFavGenres, setUserFavGenres, avatar, setAvatar, setShowProfile, setCastPopUpOpen} = useGlobalContext();
+    const [active, setActive] = useState("Edit");
     const [uploadedAvatar, setUploadedAvatar] = useState(false);
     const [profile, setProfile] = useState();
     const [showCaseAvatar, setShowcaseAvatar] = useState();
+    const [popUpState, setPopUpState] = useState(false);
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
+    const navigate = useNavigate();
     const [tempUser] = useState({
         firstName: "",
         lastName: "",
@@ -47,6 +51,7 @@ export default function ProfileInfoSection() {
     }, [])
 
     useEffect(() => {
+        setCastPopUpOpen(false);
         if (token) {
             const decodedToken = jwt_decode(token);
             if(decodedToken.sub) {
@@ -57,6 +62,18 @@ export default function ProfileInfoSection() {
             }
         }
     }, [profile, tempUser]);
+
+    const handleOpen = () => {
+        setPopUpState(true);
+        document.body.classList.add('hiddenScroll');
+        setCastPopUpOpen(true);
+    };
+
+    const handleClose = () => {
+        setPopUpState(false);
+        document.body.classList.remove('hiddenScroll');
+        setCastPopUpOpen(false);
+    };
 
 
     const getProfile = async (email, jwt) => {
@@ -184,7 +201,7 @@ export default function ProfileInfoSection() {
             setUploadedAvatar(false);
         } catch (error) {
         }
-    }
+    };
 
     const changeFavoriteGenres = async (id, genres, token) => {
         try {
@@ -192,7 +209,7 @@ export default function ProfileInfoSection() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const deleteGenre = async (genre) => {
         const token = localStorage.getItem("token");
@@ -203,7 +220,7 @@ export default function ProfileInfoSection() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const uploadAvatar = async (profileID, image, jwt) => {
         try {
@@ -211,7 +228,7 @@ export default function ProfileInfoSection() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const getAvatar = async (profileID, jwt) => {
         try {
@@ -220,7 +237,7 @@ export default function ProfileInfoSection() {
         } catch (error) {
             console.log("No avatar yet");
         }
-    }
+    };
 
     const updateMyProfile = async(id, profile, token) => {
         try {
@@ -228,7 +245,19 @@ export default function ProfileInfoSection() {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
+    const handleDeleteProfle = async () => {
+        try {
+            await deleteProfile(id, token);
+            localStorage.clear();
+            setAvatar("");
+            setShowProfile(false);
+            navigate("/");
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     return (
         <div className="ProfileInfoSection">
@@ -253,8 +282,8 @@ export default function ProfileInfoSection() {
             <div className="profileInfoR">
                 <div className="bluryProfileBox">
                     <div className="smallBar">
-                        <h2 className={active === "Comments" ? "activeSmallBar" : ""} onClick={() => handleClick("Comments")}>My Comments</h2>
                         <h2 className={active === "Edit" ? "activeSmallBar" : ""} onClick={() => handleClick("Edit")}>Edit Profile</h2>
+                        <h2 className={active === "Comments" ? "activeSmallBar" : ""} onClick={() => handleClick("Comments")}>My Comments</h2>
                     </div>
                     {active === "Edit" ? 
                     <div className="editProfile">
@@ -309,7 +338,25 @@ export default function ProfileInfoSection() {
                             <span className="profileInputError genreError">{errors.avatarError}</span>
                         </div>
                         <button onClick={handleEdit} className="btn btn2">Edit Profile<FaUserEdit className="userBtnIcon"/></button>
-                        <button className="btn btn2">Delete Profile<IoPersonRemove className="userBtnIcon"/></button>
+                        <Popup trigger={<button className="btn btn2">Delete Profile<IoPersonRemove className="userBtnIcon"/></button>} 
+                            position="center"
+                            open={popUpState}
+                            onOpen={handleOpen}
+                            onClose={handleClose}>
+                            {close => (
+                                <div className="iconPopUp deleteProfilePopUp">
+                                    <button className="closePopUp" onClick={close}>
+                                    x
+                                    </button>
+                                    <h3>Are You Sure?</h3>
+                                    <p>This action will permanently delete the profile data.</p>
+                                    <div className="deleteProfileBtns">
+                                        <button onClick={close} className="btn btn2">Cancel</button>
+                                        <button onClick={handleDeleteProfle} className="btn btn2">Delete</button>
+                                    </div>
+                                </div>
+                            )}
+                        </Popup>
                     </div>: <ProfileCommentSection id={id}/>}
                 </div>
             </div>

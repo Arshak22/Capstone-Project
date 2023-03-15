@@ -6,8 +6,10 @@ import { FaEnvelopeOpenText } from "react-icons/fa";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import { useEffect } from "react";
 import { ROUTE_NAMES } from "../../Routes";
+import { useGlobalContext } from "../../Context/Context";
 
 export default function Footer() {
+    const {castPopUpOpen} = useGlobalContext();
     const [show, setShow] = useState(false);
     const [currentYear] = useState(new Date().getFullYear());
     const [showButton, setShowButton] = useState("");
@@ -27,10 +29,11 @@ export default function Footer() {
     const handleScrollToTop = () => {
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
+
     return (
     <>
       {!show ? null: 
-        <div className="footer">
+        <div className={`footer ${castPopUpOpen ? 'popup-open' : ''}`}>
             <div className="top">
                 <div> 
                     <NavLink to={ROUTE_NAMES.HOME} end><img src={MainLogo} alt="MainLogog" id="footerLogo" /></NavLink>

@@ -36,7 +36,7 @@ export default function MovieInfoSection({movie}) {
     const [ratePopupState, setRatePopupState] = useState(false);
     const [shareFacebookPopupState, setShareFacebookPopupState] = useState(false);
     const [shareTwitterPopupState, setShareTwitterPopupState] = useState(false);
-    const [sharePinterestPopupState, setSharePinterestPopupState] = useState(false);
+    const [shareTelegramPopupState, setShareTelegramPopupState] = useState(false);
     const [successedFavorite, setSuccessedFavorite] = useState(false);
     const [successedWatchlist, setSuccessedWatchlist] = useState(false);
     const [successedRating, setSuccessedRating] = useState(false);
@@ -55,6 +55,7 @@ export default function MovieInfoSection({movie}) {
     });
 
     useEffect(() => {
+        setCastPopUpOpen(false);
         if(!token) {
             setLogedIn(false);
         } else {
@@ -117,8 +118,8 @@ export default function MovieInfoSection({movie}) {
             setShareFacebookPopupState(true);
         } else if(type === "twitter") {
             setShareTwitterPopupState(true);
-        } else if(type === "pinterest") {
-            setSharePinterestPopupState(true);
+        } else if(type === "telegram") {
+            setShareTelegramPopupState(true);
         } 
         document.body.classList.add('hiddenScroll');
         setCastPopUpOpen(true);
@@ -135,8 +136,8 @@ export default function MovieInfoSection({movie}) {
             setShareFacebookPopupState(false);
         } else if(type === "twitter") {
             setShareTwitterPopupState(false);
-        } else if(type === "pinterest") {
-            setSharePinterestPopupState(false);
+        } else if(type === "telegram") {
+            setShareTelegramPopupState(false);
         } 
         document.body.classList.remove('hiddenScroll');
         setCastPopUpOpen(false);
@@ -270,7 +271,7 @@ export default function MovieInfoSection({movie}) {
                             <div className="iconBox">
                                 <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
                                 <div className="moviePageShareIcons">
-                                    {!logedIn ? <Popup trigger={<button><FaFacebookF className="moviePageShareIcon"/></button>} 
+                                    {!logedIn ? <Popup trigger={<button className="moviePageShareIcon"><FaFacebookF/></button>} 
                                     position="center"
                                     open={shareFacebookPopupState}
                                     onOpen={() => handleOpen("facebook")}
@@ -284,7 +285,7 @@ export default function MovieInfoSection({movie}) {
                                         </div>
                                     )}
                                     </Popup>: <FaFacebookF onClick={shareWithFacebook} className="moviePageShareIcon"/>}
-                                    {!logedIn ? <Popup trigger={<button><FaTwitter className="moviePageShareIcon"/></button>} 
+                                    {!logedIn ? <Popup trigger={<button className="moviePageShareIcon"><FaTwitter/></button>} 
                                     position="center"
                                     open={shareTwitterPopupState}
                                     onOpen={() => handleOpen("twitter")}
@@ -298,11 +299,11 @@ export default function MovieInfoSection({movie}) {
                                         </div>
                                     )}
                                     </Popup>: <FaTwitter onClick={shareWithTwitter} className="moviePageShareIcon"/>}
-                                    {!logedIn ? <Popup trigger={<button><FaTelegramPlane className="moviePageShareIcon"/></button>} 
+                                    {!logedIn ? <Popup trigger={<button className="moviePageShareIcon"><FaTelegramPlane/></button>} 
                                     position="center"
-                                    open={sharePinterestPopupState}
-                                    onOpen={() => handleOpen("pinterest")}
-                                    onClose={() => handleClose("pinterest")}>
+                                    open={shareTelegramPopupState}
+                                    onOpen={() => handleOpen("telegram")}
+                                    onClose={() => handleClose("telegram")}>
                                     {close => (
                                         <div className="iconPopUp">
                                             <button className="closePopUp" onClick={close}>

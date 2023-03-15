@@ -49,10 +49,9 @@ export default function SliderElement(props) {
             setShareFacebookPopupState(true);
         } else if(type === "twitter") {
             setShareTwitterPopupState(true);
-        } else if(type === "pinterest") {
+        } else if(type === "telegram") {
             setSharePinterestPopupState(true);
-        } 
-        console.log(type);
+        }
         document.body.classList.add('hiddenScroll');
         setCastPopUpOpen(true);
     };
@@ -66,7 +65,7 @@ export default function SliderElement(props) {
             setShareFacebookPopupState(false);
         } else if(type === "twitter") {
             setShareTwitterPopupState(false);
-        } else if(type === "pinterest") {
+        } else if(type === "telegram") {
             setSharePinterestPopupState(false);
         } 
         console.log(type);
@@ -137,8 +136,8 @@ export default function SliderElement(props) {
                                             {!props.logedIn ? <Popup trigger={<FaTelegramPlane className="shareIcons"/>} 
                                             position="center"
                                             open={sharePinterestPopupState}
-                                            onOpen={() => handleOpen("pinterest")}
-                                            onClose={() => handleClose("pinterest")}>
+                                            onOpen={() => handleOpen("telegram")}
+                                            onClose={() => handleClose("telegram")}>
                                             {close => (
                                                 <div className="iconPopUp">
                                                     <button className="closePopUp" onClick={close}>

@@ -11,13 +11,14 @@ import AboutUsSection from "../../Components/AboutUsSection";
 import WebScreenMockup from "../../Components/WebScreenMockup";
 
 export default function Home() {
-    const {setIsLoading, castPopUpOpen} = useGlobalContext();
+    const {setIsLoading, castPopUpOpen, setCastPopUpOpen} = useGlobalContext();
     const [latestMovies, setLatestMovie] = useState([]);
     const [upComingMovies, setUpComingMovies] = useState([]);
     const [popularMovies, setPopularMovies] = useState([]);
 
     useEffect(() => {
         document.title = "Movie Mavericks";
+        setCastPopUpOpen(false);
         getLatestMovies();
         getUpcomingMovies();
         getPopularMovies();

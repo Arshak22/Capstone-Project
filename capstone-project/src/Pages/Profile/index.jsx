@@ -15,7 +15,7 @@ import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-    const {setIsLoading, setAvatar, setShowProfile} = useGlobalContext();
+    const {setIsLoading, setAvatar, setShowProfile, castPopUpOpen, setCastPopUpOpen} = useGlobalContext();
     const [profile, setProfile] = useState();
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
@@ -24,6 +24,7 @@ export default function Profile() {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
+        setCastPopUpOpen(false);
         if(!token) {
             navigate("/error-page");
         } else {
@@ -93,7 +94,7 @@ export default function Profile() {
     }
 
     return (
-        <div className="profileContainer">
+        <div className={`profileContainer ${castPopUpOpen ? 'popup-open' : ''}`} >
             <div className="sideBar">
                 <div className="rowspan">
                     <h3 className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</h3>

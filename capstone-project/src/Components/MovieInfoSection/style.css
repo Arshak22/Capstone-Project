@@ -156,6 +156,8 @@
     height: 2em;
     padding: 0.4em 0.5em;
     color: #ffffff;
+    background-color: transparent;
+    border: none;
 }
 
 .moviePageShareIcon:hover {
