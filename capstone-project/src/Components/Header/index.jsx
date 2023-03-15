@@ -89,9 +89,19 @@ export default function Header() {
         setActiveBar(!activeBar);
     };
 
+    function validateSearchInput(input) {
+        const pattern = /^[a-zA-Z0-9\s*]+$/;
+        const dangerousChars = /(<|>|&|"|'|\/|\\|{|}|\(|\)|\||\?|\.|\$|\^|;|:|%|!)/;
+        if (!pattern.test(input) || dangerousChars.test(input)) {
+          return false;
+        } else {
+            return true;
+        }
+    };
+
     const handleSearch = () => {
         const searchValue = document.getElementById("searchMovie").value;
-        if (searchValue) {
+        if (searchValue && validateSearchInput(searchValue)) {
             navigate("/");
             setSearchShowcase([]);
             setTimeout(() => {
@@ -102,7 +112,7 @@ export default function Header() {
 
     const handleSearchShowcase = () => {
         const searchValue = document.getElementById("searchMovie").value;
-        if (searchValue) {
+        if (searchValue && validateSearchInput(searchValue)) {
             showcaseSearchList(searchValue);
         } else {
             setSearchShowcase([]);
