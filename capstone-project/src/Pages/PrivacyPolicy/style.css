@@ -1,0 +1,45 @@
+.privacyHeadline {
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 45px;
+    letter-spacing: 5px;
+}
+
+.privacyText {
+    color: #ffffff;
+    text-align: left;
+    font-size: 20px;
+    padding: 100px;
+    word-wrap: break-word;
+    padding-top: 50px;
+}
+
+.privacySubHeading {
+    font-size: 23px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.privacyMails {
+    pointer-events: all;
+    text-transform: lowercase;
+    font-weight: bold;
+    margin-left: 8px;
+    transition: all 0.5s ease;
+}
+
+.privacyMails:hover {
+    color: var(--main-red);
+}
+
+@media screen and (max-width: 425px) {
+    .privacyHeadline {
+        font-size: 30px;
+    }
+    .privacyText {
+        font-size: 17px;
+        padding: 30px;
+        padding-bottom: 100px;
+    }
+}

@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import jwt_decode from 'jwt-decode';
 import "./style.css";
 import SliderElement from "../SliderElement";
-import { getProfileByEmail } from "../../Platform/Profiles";
 
 export default function HorizontalSlider({movies}) {
     const [logedIn, setLogedIn] = useState(false);
