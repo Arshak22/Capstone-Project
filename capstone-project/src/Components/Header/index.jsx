@@ -1,5 +1,6 @@
 import {React, useState, useEffect, useRef} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { ROUTE_NAMES } from "../../Routes";
 import jwt_decode from 'jwt-decode';
 import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
@@ -9,25 +10,25 @@ import { FaAngleDown } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { ROUTE_NAMES } from "../../Routes";
 
 import { searchWatchable } from "../../Platform/Search";
 import { getProfileImage } from "../../Platform/ProfileImage";
 import { getProfileByEmail } from "../../Platform/Profiles";
+import { refreshToken } from "../../Platform/RefreshToken";
 
 import DefaultBackdrop from "../../assets/images/BackgroundImages/DefaultBackdrop.png";
 
 export default function Header() {
-    const {avatar, setAvatar, showProfile, setShowProfile} = useGlobalContext();
+    const {avatar, setAvatar, showProfile, setShowProfile, isLoading} = useGlobalContext();
     const [activeBar, setActiveBar] = useState(true);
     const [hideNav, setHideNav] = useState(false);
     const [searchShowcase, setSearchShowcase] = useState([]);
-    
     const [profile, setProfile] = useState();
     const [userAvatar, setUserAvatar] = useState();
     const navigate = useNavigate();
     const prevScrollPos = useRef(0);
     const token = localStorage.getItem("token");
+    const refresh_token = localStorage.getItem("refreshToken");
     const id = localStorage.getItem("id");
   
     useEffect(() => {
@@ -54,7 +55,7 @@ export default function Header() {
         return () => {
           window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [isLoading]);
 
     useEffect(() => {
         if (token) {
@@ -69,6 +70,18 @@ export default function Header() {
         try {
             const result = await getProfileByEmail(email, jwt);
             setProfile(result.data);
+        } catch (error) {
+            console.log(error);
+            if(error.response.data.message.startsWith("The Token has expired on")) {
+                getRefreshToken();
+            }
+        }
+    };
+
+    const getRefreshToken = async () => {
+        try {
+            const result = await refreshToken(refresh_token);
+            localStorage.setItem("token", `${result.headers.access_token}`);
         } catch (error) {
             console.log(error);
         }

@@ -147,6 +147,7 @@ export default function Login() {
         try {
           const result = await SignInUser(user);
           localStorage.setItem("token", `${result.headers.access_token}`);
+          localStorage.setItem("refreshToken", `${result.headers.refresh_token}`);
           navigate("/profile");
         } catch (e) {
             let error = {
