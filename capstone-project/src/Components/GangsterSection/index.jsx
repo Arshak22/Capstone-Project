@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
+import { NavLink } from "react-router-dom";
+import { ROUTE_NAMES } from "../../Routes";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
@@ -20,11 +22,11 @@ import Pic5 from "../../assets/images/FanPagePictures/RetroMoviesPics/AmericanHi
 import Pic6 from "../../assets/images/FanPagePictures/RetroMoviesPics/ReservoarDogs.jpg";
 import Pic7 from "../../assets/images/FanPagePictures/RetroMoviesPics/PulpFiction.jpg";
 import Pic8 from "../../assets/images/FanPagePictures/RetroMoviesPics/Revolver.jpg";
-import { useEffect } from "react";
 
 export default function GangsterSection() {
     const backgrounds = [BG1, BG2, BG3, BG4];
     const showcase = [Pic1, Pic2, Pic3, Pic4, Pic5, Pic6, Pic7, Pic8];
+    const links = ["238", "769", "", "", "73", "500", "", ""];
     const settings = {
         className: "center",
         centerMode: true,
@@ -89,7 +91,11 @@ export default function GangsterSection() {
                     {showcase.map((elem, index) => {
                         return (
                             <div key={index} className="Gangster">
-                                <img src={elem} alt={elem} />
+                              {links[index] ? 
+                                <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + links[index]}>
+                                  <img src={elem} alt={elem} />
+                                </NavLink>: <img src={elem} alt={elem} />
+                              }
                             </div>
                         );
                     })}
