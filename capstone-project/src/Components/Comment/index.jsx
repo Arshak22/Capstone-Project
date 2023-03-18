@@ -112,7 +112,7 @@ export default function Comment(props) {
                 <h1>{props.commenterFullName}</h1>
                 <h4>{editedAt}</h4>
                 {props.comment ? <textarea onChange={handleUpdatedComment} name="movieComment" className="movieCommentText" id={props.commentID} rows="4" defaultValue={props.comment} readOnly></textarea>: null}
-                {props.id == props.commenterID ?
+                {props.id == props.commenterID || props.isAdmin ?
                 <div className="movieCommentIcons">
                     <AiFillEdit onClick={() => handleCommentEdit(props.commentID)} className="movieCommentIcon"/>
                     <ImCross className="movieCommentIcon" onClick={() => handleDeleteComment(props.commentID)}/>

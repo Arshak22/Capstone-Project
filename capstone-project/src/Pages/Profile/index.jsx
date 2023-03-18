@@ -3,6 +3,7 @@ import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
 import { getProfileByEmail } from "../../Platform/Profiles";
 import ProfileInfoSection from "../../Components/ProfileInfoSection";
+import AllUsers from "../../Components/AllUsers";
 import { getProfileImage } from "../../Platform/ProfileImage";
 import jwt_decode from 'jwt-decode';
 
@@ -20,6 +21,7 @@ export default function Profile() {
     const [active, setActive] = useState("Profile");
     const [activeBar, setActiveBar] = useState(true);
     const [userAvatar, setUserAvatar] = useState();
+    const [isAdmin, setIsAdmin] = useState(false);
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
@@ -33,13 +35,16 @@ export default function Profile() {
                 navigate("/error-page");
             } else {
                 getProfile(decodedToken.sub, token);
+                if(decodedToken.roles[0] === "ADMIN") {
+                    setIsAdmin(true);
+                }
             }
         }
         document.title = "Movie Mavericks: Profile Page";
         setTimeout(() => {
             setIsLoading(false);
         }, 1000)
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (token) {
@@ -91,13 +96,14 @@ export default function Profile() {
         setAvatar("");
         setShowProfile(false);
         navigate("/");
-    }
+    };
 
     return (
         <div className={`profileContainer ${castPopUpOpen ? 'popup-open' : ''}`} >
             <div className="sideBar">
                 <div className="rowspan">
                     <h3 className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</h3>
+                    {isAdmin ? <h3 className={active === "All Users" ? "activeSideBar" : ""} onClick={() => handleClick("All Users")}>All Users</h3>: null}
                     <h3 className={active === "Favourites" ? "activeSideBar" : ""} onClick={() => handleClick("Favourites")}>Favourites</h3>
                     <h3 className={active === "Watchlist" ? "activeSideBar" : ""} onClick={() => handleClick("Watchlist")}>Watchlist</h3>
                     <h3 onClick={logOut}>Log Out</h3>
@@ -116,6 +122,7 @@ export default function Profile() {
                         {activeBar ? <FaBars className="bars" onClick={handleBar}/>: <FaTimes className="close" onClick={handleBar}/>}
                         {!activeBar ? <ul>
                                 <li className={active === "Profile" ? "activeSideBar" : ""} onClick={() => handleClick("Profile")}>Profile</li>
+                                {isAdmin ? <li className={active === "All Users" ? "activeSideBar" : ""} onClick={() => handleClick("All Users")}>All Users</li>: null}
                                 <li className={active === "Favourites" ? "activeSideBar" : ""} onClick={() => handleClick("Favourites")}>Favourites</li>
                                 <li className={active === "Watchlist" ? "activeSideBar" : ""} onClick={() => handleClick("Watchlist")}>Watchlist</li>
                                 <li onClick={logOut}>Log Out</li>
@@ -123,7 +130,7 @@ export default function Profile() {
                         </div>
                     </div>
                 <div className="profileInfoSection">
-                    {active === "Watchlist" ? <ProfileMoviePagination page="Watchlist"/> : active === "Favourites" ? <ProfileMoviePagination page="Favourites"/>: active === "Profile" ? <ProfileInfoSection/>: null}
+                    {active === "Watchlist" ? <ProfileMoviePagination page="Watchlist"/> : active === "Favourites" ? <ProfileMoviePagination page="Favourites"/>: active === "Profile" ? <ProfileInfoSection/>: isAdmin && active === "All Users" ? <AllUsers/>: null}
                 </div>
             </div>
         </div>

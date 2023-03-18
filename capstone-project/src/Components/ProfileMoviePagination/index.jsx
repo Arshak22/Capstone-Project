@@ -4,9 +4,7 @@ import { getProfileWatchlist } from "../../Platform/Watchlist";
 import { getProfileFavorites } from "../../Platform/Favorites";
 import { addToWatchlist, deleteFromWatchlist } from "../../Platform/Watchlist";
 import { addToFavorite, deleteFavorite } from "../../Platform/Favorites";
-import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import ReactPaginate from "react-paginate";
 
@@ -84,7 +82,7 @@ export default function ProfileMoviePagination(props) {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const handleFavoriteAdd = async (movieID) => {
         try {
@@ -92,7 +90,7 @@ export default function ProfileMoviePagination(props) {
         } catch (error) {
             console.log(error);
         }
-    } 
+    };
 
     const handleDeleteWatchlistItem = async (movieID) => {
         try {
@@ -101,7 +99,7 @@ export default function ProfileMoviePagination(props) {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const handleDeleteFavoriteItem = async (movieID) => {
         try {
@@ -110,7 +108,7 @@ export default function ProfileMoviePagination(props) {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
     <>
@@ -133,7 +131,8 @@ export default function ProfileMoviePagination(props) {
                             <LazyLoadImage src={backdrop} alt={backdrop} effect="blur" className="paginationMovie"/>
                         </NavLink>
                         <div className="listItemIcons">
-                            {props.page === "Watchlist" ? <><FaHeart onClick={() => handleFavoriteAdd(elem.id)} className="listItemIcon"/> <FaTrashAlt onClick={() => handleDeleteWatchlistItem(elem.id)} className="listItemIcon"/></>: <><FaPlus onClick={() => handleWatchlistAdd(elem.id)} className="listItemIcon"/><FaTrashAlt onClick={() => handleDeleteFavoriteItem(elem.id)} className="listItemIcon"/></>}
+                            {props.page === "Watchlist" ? <><FaHeart onClick={() => handleFavoriteAdd(elem.id)} className="listItemIcon"/> <FaTrashAlt onClick={() => handleDeleteWatchlistItem(elem.id)} className="listItemIcon"/></>: <><FaPlus onClick={() => handleWatchlistAdd(elem.id)} className="listItemIcon"/>
+                            <FaTrashAlt onClick={() => handleDeleteFavoriteItem(elem.id)} className="listItemIcon"/></>}
                         </div>
                         <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
                         <div className="listItemInfo" style={{background: `url(${backdrop})`}}>

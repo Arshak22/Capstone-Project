@@ -6,8 +6,8 @@ const options = {
     headers: {'Content-Type': 'application/json'}
 }; 
 
-export const getAllProfiles = (jwt) => {
-    return axios.get(`${API}${profiles}`, {
+export const getAllProfiles = (pageNumber, pageSize, jwt) => {
+    return axios.get(`${API}${profiles}?pageNumber=${pageNumber}&pageSize=${pageSize}`, {
         headers: {'Authorization': `Bearer ${jwt}`}
     });
 }

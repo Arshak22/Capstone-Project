@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from "react";
 import "./style.css";
+import qs from 'qs';
 import {useGlobalContext} from "../../Context/Context";
 import jwt_decode from 'jwt-decode';
 import DefaultUser from "../../assets/images/Icons/DefaultUser.jpg";
@@ -10,6 +11,7 @@ import {IoPersonRemove} from "react-icons/io5";
 import ProfileCommentSection from "../ProfileCommentSection";
 import { getProfileByEmail, updateProfile, deleteProfile } from "../../Platform/Profiles";
 import { getFavoriteGenres, addFavoriteGenre, deleteFavoriteGenre } from "../../Platform/FavoriteGenres";
+import { SignInUser } from "../../Platform/Login";
 import { uploadProfileImage, getProfileImage } from "../../Platform/ProfileImage";
 import Popup from 'reactjs-popup';
 import { useNavigate } from "react-router-dom";
@@ -21,8 +23,10 @@ export default function ProfileInfoSection() {
     const [profile, setProfile] = useState();
     const [showCaseAvatar, setShowcaseAvatar] = useState();
     const [popUpState, setPopUpState] = useState(false);
+    const [validatedUser, setValidatedUser] = useState(false);
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
+    const email = localStorage.getItem("email");
     const navigate = useNavigate();
     const [tempUser] = useState({
         firstName: "",
@@ -40,6 +44,8 @@ export default function ProfileInfoSection() {
             favoriteGenresError: ""
         }
     );
+
+    const genreList = ["ACTION", "COMEDY", "DRAMA", "THRILLER", "SCIENCE FICTION", "HORROR", "FANTASY", "ADVENTURE", "MYSTERY", "ROMANCE", "ANIMATION", "CRIME"];
 
     useEffect(() => {
         if (token) {
@@ -74,7 +80,6 @@ export default function ProfileInfoSection() {
         document.body.classList.remove('hiddenScroll');
         setCastPopUpOpen(false);
     };
-
 
     const getProfile = async (email, jwt) => {
         try {
@@ -116,8 +121,13 @@ export default function ProfileInfoSection() {
     };
 
     const handleGenres = (e) => {
-        e.target.classList.toggle("activeGenre");
         const text = e.target.textContent.trim().toUpperCase();
+        if(e.target.classList.contains("activeGenre")) {
+            e.target.classList.toggle("activeGenre");
+            userFavGenres.splice(userFavGenres.indexOf(text), 1);
+            return;
+        }
+        e.target.classList.toggle("activeGenre");
         if(!userFavGenres.includes(text)) {
             if(text === "SCIENCE FICTION") {
                 userFavGenres.push("SCIENCE_FICTION");
@@ -125,7 +135,7 @@ export default function ProfileInfoSection() {
                 userFavGenres.push(text);
             }
         } else {
-            userFavGenres.splice(userFavGenres.indexOf(text), 1)
+            userFavGenres.splice(userFavGenres.indexOf(text), 1);
         }
     };
 
@@ -163,6 +173,16 @@ export default function ProfileInfoSection() {
             avatarError: "",
             favoriteGenresError: ""
         }
+        let validateUser = {
+            email: email,
+            password: tempUser.password
+        }
+        const data = qs.stringify(validateUser);
+        checkUser(data);
+        if(!validatedUser) {
+            error.passwordError = "Please enter correct password";
+            v = false;
+        }
         if (!tempUser.password) {
             error.passwordError = "Please enter your current password";
             v = false;
@@ -175,9 +195,19 @@ export default function ProfileInfoSection() {
         return v;
     };
 
+    const checkUser = async (validateUser) => {
+        try {
+            await SignInUser(validateUser);
+            setValidatedUser(true);
+        } catch (e) {
+            setValidatedUser(false);
+        }
+    };
+
     const handleEdit = async () => {
-        if(validate()) {
-            const token = localStorage.getItem("token");
+        if(!validate()) {
+            return;
+        }else {
             const updatedUser = {
                 firstName: tempUser.firstName,
                 lastName: tempUser.lastName,
@@ -187,6 +217,8 @@ export default function ProfileInfoSection() {
             const favG = userFavGenres;
             setUser(tempUser);
             setUploadedAvatar(false);
+            tempUser.password = "";
+            tempUser.newPassword = "";
             await updateMyProfile(profile.id, updatedUser, token);
             await changeFavoriteGenres(profile.id, favG, token);
             await uploadAvatar(profile.id, tempUser.avatar, token);
@@ -200,6 +232,7 @@ export default function ProfileInfoSection() {
             setUserFavGenres(result.data);
             setUploadedAvatar(false);
         } catch (error) {
+            console.log(error);
         }
     };
 
@@ -212,7 +245,6 @@ export default function ProfileInfoSection() {
     };
 
     const deleteGenre = async (genre) => {
-        const token = localStorage.getItem("token");
         try {
             await deleteFavoriteGenre(profile.id, genre, token);
             const result = await getFavoriteGenres(profile.id, token);
@@ -311,18 +343,9 @@ export default function ProfileInfoSection() {
                         </div>
                         <h4 className="myLable">Pick At Least 3 Favorite Genres</h4>
                         <div className="pickFavoriteGenres">
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Action</h4>                            
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Comedy</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Drama</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Thriller</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Science Fiction</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Horror</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Fantasy</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Adventure</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Mystery</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Romance</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Animation</h4>
-                            <h4 onClick={handleGenres}><GiTicket className="ticket"/>Crime</h4>
+                            {genreList.map((e, i) => {
+                                return (<h4 key={i} className={userFavGenres.includes(e) || (e === "SCIENCE FICTION" && userFavGenres.includes("SCIENCE_FICTION")) ? "activeGenre": ""} onClick={handleGenres}><GiTicket className="ticket"/>{e}</h4> )
+                            })}
                         </div>
                         <div className="inputBox">
                             <span className="profileInputError genreError">{errors.favoriteGenresError}</span>

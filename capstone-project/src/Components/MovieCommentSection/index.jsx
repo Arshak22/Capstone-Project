@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
+import jwt_decode from 'jwt-decode';
 import ReactPaginate from "react-paginate";
 import Comment from "../Comment";
 
@@ -20,9 +21,19 @@ export default function MovieCommentSection(props) {
     const [tempComment, setTempComment] = useState("");
     const [commentPostError, setCommentPostError] = useState();
     const [total, setTotal] = useState(0);
+    const [isAdmin, setIsAdmin] = useState(false);
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     const itemsPerPage = 4;
+
+    useEffect(() => {
+        if(token) {
+            const decodedToken = jwt_decode(token);
+            if(decodedToken.roles[0] === "ADMIN") {
+                setIsAdmin(true);
+            }
+        }
+    }, []);
 
     useEffect(() => {
         handleAllComments(props.movieID, itemOffset, itemsPerPage);
@@ -81,7 +92,7 @@ export default function MovieCommentSection(props) {
                     currentItems.map((elem, index) => {
                         return (
                             <div key={index}>
-                                <MemoizedComment commenterID={elem.commenterId} commenterFullName={elem.commenterFullName} createdAt={elem.createdAt} comment={elem.text} token={token} id={id} commentID={elem.id} watchableID={elem.watchableId} renderOnCommentChange={renderOnCommentChange}/>
+                                <MemoizedComment commenterID={elem.commenterId} commenterFullName={elem.commenterFullName} createdAt={elem.createdAt} comment={elem.text} token={token} id={id} commentID={elem.id} watchableID={elem.watchableId} renderOnCommentChange={renderOnCommentChange} isAdmin={isAdmin}/>
                             </div>
                         );
                     })
