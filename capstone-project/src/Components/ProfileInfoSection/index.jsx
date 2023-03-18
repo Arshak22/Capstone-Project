@@ -54,7 +54,7 @@ export default function ProfileInfoSection() {
                getProfile(decodedToken.sub, token);
             }
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
         setCastPopUpOpen(false);

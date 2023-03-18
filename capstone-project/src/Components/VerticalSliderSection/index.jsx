@@ -61,7 +61,7 @@ export default function VerticalSliderSection({movies}) {
             setStartingBG(`https://www.themoviedb.org/t/p/original/${movies[0].mainBackdropPath}`);
           }
         }
-    }, [movies])
+    }, [movies]);
 
     return (
       <div>

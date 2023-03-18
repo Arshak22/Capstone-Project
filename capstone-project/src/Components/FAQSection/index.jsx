@@ -4,10 +4,12 @@ import "./style.css";
 
 export default function FAQSection({faqs}) {
     const [open, setOpen] = useState(false);
+    
     const toggleFAQ = (index) => {
         faqs[index].open = !faqs[index].open;
         setOpen(!open);
-    }
+    };
+
     return (
         <div className="FAQ">
             <h1>FAQ</h1>

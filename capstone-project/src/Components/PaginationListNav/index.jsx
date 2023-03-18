@@ -17,63 +17,63 @@ export default function PaginationListNav(props) {
         } else {
             setYear(year);
         }
-    }
+    };
 
     const navigateLatestMovie = () => {
         navigate("/");
         setTimeout(() => {
             navigate("/movies/film-latest");
         }, 300)
-    }
+    };
 
     const navigatePopularMovie = () => {
         navigate("/");
         setTimeout(() => {
             navigate("/movies/film-popular");
         }, 300)
-    }
+    };
 
     const navigatePopularSeries = () => {
         navigate("/");
         setTimeout(() => {
             navigate("/tv-shows/series-popular");
         }, 300)
-    }
+    };
 
     const navigateLatestSeries = () => {
         navigate("/");
         setTimeout(() => {
             navigate("/tv-shows/series-latest");
         }, 300)
-    }
+    };
 
     const navigateUpcomingSeries = () => {
         navigate("/");
         setTimeout(() => {
             navigate("/tv-shows/series-upcoming");
         }, 300)
-    }
+    };
 
     const navigateUpcomingMovie = () => {
         navigate("/");
         setTimeout(() => {
             navigate("/movies/film-upcoming");
         }, 300)
-    }
+    };
 
     const navigateMovieGenre = (genre) => {
         navigate("/");
         setTimeout(() => {
             navigate("/movies/filmGenre:" + genre);
         }, 300)
-    }
+    };
 
     const navigateSeriesGenre = (genre) => {
         navigate("/");
         setTimeout(() => {
             navigate("/tv-shows/seriesGenre:" + genre);
         }, 300)
-    }
+    };
 
     const navigateMovieYear = (e) => {
         const year = document.getElementById("releaseYearFilm").value;
@@ -83,7 +83,7 @@ export default function PaginationListNav(props) {
                 navigate("/movies/filmReleaseYear:" + year);
             }, 300)
         }
-    }
+    };
 
     const navigateSeriesYear = (e) => {
         const year = document.getElementById("releaseYearSeries").value;
@@ -93,7 +93,7 @@ export default function PaginationListNav(props) {
                 navigate("/tv-shows/seriesReleaseYear:" + year);
             }, 300)
         }
-    }
+    };
 
     return (
         <div className="paginationListNav">

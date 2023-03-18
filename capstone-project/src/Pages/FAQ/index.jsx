@@ -6,12 +6,14 @@ import MainPicture from "../../Components/MainPicture";
 
 export default function FAQ() {
     const {setIsLoading} = useGlobalContext();
+    
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
         }, 1000)
         document.title = "Movie Mavericks: FAQ";
-    }, [])
+    }, []);
+
     const [faqs, setFaqs] = useState([
         {
             question: "What types of movies are featured on the website?",

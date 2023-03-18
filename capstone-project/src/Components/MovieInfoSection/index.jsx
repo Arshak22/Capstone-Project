@@ -95,7 +95,7 @@ export default function MovieInfoSection({movie}) {
         if(remainingMinutes === 0) {
             setDuration(` ${hours}h`);
         }
-    }
+    };
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -105,7 +105,7 @@ export default function MovieInfoSection({movie}) {
           year: "numeric"
         };
         setDate(date.toLocaleDateString("en-US", options));
-    }
+    };
 
     const handleOpen = (type) => {
         if(type === "favourite") {
@@ -150,7 +150,7 @@ export default function MovieInfoSection({movie}) {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const handleFavoriteAdd = async () => {
         try {
@@ -159,19 +159,19 @@ export default function MovieInfoSection({movie}) {
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     const handleEnjoyStarRating = (value) => {
         starRatings.enjoy = value;
-    }
+    };
 
     const handleStoryStarRating = (value) => {
         starRatings.story = value
-    }
+    };
 
     const handleActorsStarRating = (value) => {
         starRatings.actors = value;
-    }
+    };
 
     const handleRate = () => {
         let error = {
@@ -204,7 +204,7 @@ export default function MovieInfoSection({movie}) {
             }
             rateTheMovie(rating, token);
         }
-    }
+    };
 
     const rateTheMovie = async (rating, token) => {
         try {
@@ -227,16 +227,15 @@ export default function MovieInfoSection({movie}) {
 
     const shareWithFacebook = () => {
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-    }
+    };
 
     const shareWithTwitter = () => {
         window.open(`https://twitter.com/intent/tweet?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
-    }
+    };
 
     const shareWithTelegram = () => {
         window.open(`https://t.me/share/url?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
-    }
-
+    };
 
     return (
         <div className="movieInfoSection" style={{backgroundImage: `url(${backdrop})`}}>

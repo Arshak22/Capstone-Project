@@ -79,7 +79,8 @@ export default function GangsterSection() {
                 i = 0;
             }
         }, 5000)
-    }, [])
+    }, []);
+    
     return (
         <div className="GangsterSection">
             <h1>Relive the Golden Age of Gangster Films with our Retro Selection</h1>

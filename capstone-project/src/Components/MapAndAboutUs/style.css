@@ -16,7 +16,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: url('../../assets/images/BackgroundImages/bg9.jpg');
+    background-image: url(../../assets/images/BackgroundImages/bg9.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -80,8 +80,6 @@
 .col3 .big {
     font-size: 25px;
 }
-
-
 
 
 @media screen and (max-width: 800px) {

@@ -14,7 +14,7 @@ export default function TopCast(id) {
   useEffect(() => {
     setCastPopUpOpen(false);
     getCast();
-  }, [setCastPopUpOpen])
+  }, [setCastPopUpOpen]);
 
   const getCast = async () => {
         try {
@@ -24,7 +24,7 @@ export default function TopCast(id) {
         } catch (e) {
             console.log(e);
         }
-    }
+  };
 
   const handleOpen = (index) => {
     setPopupState(popupState.map((popup, i) => i === index ? true : false));

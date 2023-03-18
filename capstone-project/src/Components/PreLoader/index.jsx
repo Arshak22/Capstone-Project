@@ -3,7 +3,6 @@ import Lottie from 'react-lottie';
 import * as MovieLoader from "../../assets/lotties/Movie2.json";
 
 export default function PreLoader() {  
-
     useEffect(() => {
       window.scrollTo(0, 0);
       document.body.classList.add('hiddenScroll');
@@ -16,7 +15,7 @@ export default function PreLoader() {
         rendererSettings: {
           preserveAspectRatio: 'xMidYMid slice'
         }
-      };
+    };
     
     return (
       <div className="preLoader">

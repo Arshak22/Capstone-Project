@@ -12,7 +12,8 @@ export default function PrivacyPolicy() {
             setIsLoading(false);
         }, 1000)
         document.title = "Movie Mavericks: Privacy Policy";
-    })
+    }, []);
+    
     return (
         <div className="main">
             <MainPicture img={MainPic} headline="Your privacy, our priority"/>

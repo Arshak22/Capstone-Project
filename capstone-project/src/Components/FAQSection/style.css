@@ -42,7 +42,7 @@
     bottom: 0;
     right: 0;
     border-radius: 5px;
-    background-image: url('../../assets/images/BackgroundImages/bg2.jpg');
+    background-image: url(../../assets/images/BackgroundImages/bg2.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -90,7 +90,7 @@
     transform: translate(-50%);
     width: 40px;
     height: 40px;
-    background: url('../../assets/images/FAQIcons/clapperboard.png');
+    background: url(../../assets/images/FAQIcons/clapperboard.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -108,7 +108,7 @@
 
 .open .faqQuestion:after {
     transform: translate(-50%) rotate(360deg);
-    background: url('../../assets/images/FAQIcons/watching.png');
+    background: url(../../assets/images/FAQIcons/watching.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

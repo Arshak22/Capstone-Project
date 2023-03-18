@@ -7,7 +7,7 @@ import PaginationListNav from "../../Components/PaginationListNav";
 export default function TVShows() {
     useEffect(() => {
         document.title = "Movie Mavericks: TV Shows";
-    })
+    }, []);
     return (
         <div className="main">
             <MainPicture img={MainPic} headline="Discover your new favorite series"/>

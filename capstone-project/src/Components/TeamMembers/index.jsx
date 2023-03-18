@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 import { FaFacebookF } from "react-icons/fa";
-import { RiInstagramFill } from "react-icons/ri";
+import { FaLinkedinIn } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 
 export default function TeamMembers({team}) {
@@ -18,9 +18,9 @@ export default function TeamMembers({team}) {
                             <h3>{elem.name}</h3>
                             <h4>{elem.profession}</h4>
                             <div className="memberSocial">
-                                {elem.FB ? <a href={elem.FB} target="_blank" rel="noreferrer"><FaFacebookF className="memberSocialIcon"/></a> : null}
-                                {elem.IG ? <a href={elem.IG} target="_blank" rel="noreferrer"><RiInstagramFill className="memberSocialIcon secondIcon"/></a> : null}
-                                {elem.TG ? <a href={elem.TG} target="_blank" rel="noreferrer"><FaTelegramPlane className="memberSocialIcon"/></a> : null}
+                                {elem.FB ? <a href={elem.FB} target="_blank" rel="noreferrer"><button className="memberSocialIcon"><FaFacebookF/></button></a> : null}
+                                {elem.LinkedIn ? <a href={elem.LinkedIn} target="_blank" rel="noreferrer"><button className="memberSocialIcon secondIcon"><FaLinkedinIn/></button></a> : null}
+                                {elem.TG ? <a href={elem.TG} target="_blank" rel="noreferrer"><button className="memberSocialIcon"><FaTelegramPlane/></button></a> : null}
                             </div>
                         </div>
                     </div>

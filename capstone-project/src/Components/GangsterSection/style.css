@@ -75,7 +75,7 @@
     height: 250px;
     background-color: #ffffff;
     border: 30px solid transparent;
-    border-image: url("../../assets/images/FanPagePictures/RetroMoviesPics/Strip-1.jpg");
+    border-image: url(../../assets/images/FanPagePictures/RetroMoviesPics/Strip-1.jpg);
     border-image-slice: 200; 
     border-image-repeat: round;
     transition: transform 0.5s ease;

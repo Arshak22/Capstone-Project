@@ -60,7 +60,7 @@ export default function AllUsers() {
                             {elem.admin ? <h2>Role: Admin</h2>: <h2>Role: User</h2>}
                             {elem.enabled ? <h2>Account Verified</h2>: <h2>Account Not Verified</h2>}
                             <div className="userListDelete">
-                                <FaTrashAlt className="listItemIcon" onClick={() => handleDeleteProfle(elem.id)}/>
+                                <button className="listItemIcon" onClick={() => handleDeleteProfle(elem.id)}><FaTrashAlt/></button>
                             </div>
                         </div>
                     )

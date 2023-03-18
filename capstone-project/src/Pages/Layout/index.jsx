@@ -12,8 +12,7 @@ export default function Layout() {
 
     useEffect(() => {
         setIsLoading(true);
-    }, [location.pathname])
-
+    }, [location.pathname]);
 
     return (
         <>

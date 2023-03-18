@@ -7,7 +7,6 @@ import { ROUTE_NAMES } from "../../Routes";
 import HarryPotterCard from "../../assets/images/FanPagePictures/Harry-Potter-Card-Back.png";
 import GOTCard from "../../assets/images/FanPagePictures/GOT-Card-Back.jpg";
 import WitcherCard from "../../assets/images/FanPagePictures/Witcher-Card-Back.png";
-
 import HarryPotter from "../../assets/images/FanPagePictures/Flying-Harry.png";
 import Daenerys from "../../assets/images/FanPagePictures/Daenerys.png";
 import Geralt from "../../assets/images/FanPagePictures/Geralt.png";

@@ -31,7 +31,7 @@ export default function Home() {
         } catch (e) {
             console.log(e);
         }
-    }
+    };
 
     const getUpcomingMovies = async () => {
         try {
@@ -40,7 +40,7 @@ export default function Home() {
         } catch (e) {
             console.log(e);
         }
-    }
+    };
 
     const getPopularMovies = async () => {
         try {
@@ -52,7 +52,7 @@ export default function Home() {
         } catch (e) {
             console.log(e);
         }
-    }
+    };
     
     return (
         <div className={`main ${castPopUpOpen ? 'popup-open' : ''}`}>

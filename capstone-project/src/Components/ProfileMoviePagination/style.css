@@ -60,6 +60,7 @@
 .listItemIcon {
     width: 45px;
     height: 45px;
+    font-size: 16px;
     padding: 10px;
     color: #ffffff;
     border-radius: 50%;

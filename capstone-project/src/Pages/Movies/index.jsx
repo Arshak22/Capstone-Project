@@ -7,7 +7,7 @@ import PaginationListNav from "../../Components/PaginationListNav";
 export default function Movies() {
     useEffect(() => {
         document.title = "Movie Mavericks: Movies";
-    }, [])
+    }, []);
 
     return (
         <div className="main">

@@ -131,8 +131,10 @@ export default function ProfileMoviePagination(props) {
                             <LazyLoadImage src={backdrop} alt={backdrop} effect="blur" className="paginationMovie"/>
                         </NavLink>
                         <div className="listItemIcons">
-                            {props.page === "Watchlist" ? <><FaHeart onClick={() => handleFavoriteAdd(elem.id)} className="listItemIcon"/> <FaTrashAlt onClick={() => handleDeleteWatchlistItem(elem.id)} className="listItemIcon"/></>: <><FaPlus onClick={() => handleWatchlistAdd(elem.id)} className="listItemIcon"/>
-                            <FaTrashAlt onClick={() => handleDeleteFavoriteItem(elem.id)} className="listItemIcon"/></>}
+                            {props.page === "Watchlist" ? <><button onClick={() => handleFavoriteAdd(elem.id)} className="listItemIcon"><FaHeart/></button>
+                            <button onClick={() => handleDeleteWatchlistItem(elem.id)} className="listItemIcon"><FaTrashAlt/></button>
+                            </>:<><button onClick={() => handleWatchlistAdd(elem.id)} className="listItemIcon"><FaPlus/></button>
+                            <button onClick={() => handleDeleteFavoriteItem(elem.id)} className="listItemIcon"><FaTrashAlt/></button></>}
                         </div>
                         <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
                         <div className="listItemInfo" style={{background: `url(${backdrop})`}}>

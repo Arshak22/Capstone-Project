@@ -59,6 +59,7 @@ export default function SciFiSection() {
             poster: FirstManPoster,
         }
     ];
+    
     useEffect(() => {
         const handleScroll = () => {
             const section = document.querySelector(".SciFiSection");

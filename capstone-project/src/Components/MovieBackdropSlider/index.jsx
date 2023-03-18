@@ -6,8 +6,8 @@ import "./style.css";
 import { useGlobalContext } from "../../Context/Context";
 
 export default function MovieBackdropSlider({movie}) {
-  const {castPopUpOpen} = useGlobalContext();
-     const settings = {
+    const {castPopUpOpen} = useGlobalContext();
+    const settings = {
         className: "center",
         centerMode: true,
         dots: false,
@@ -58,6 +58,7 @@ export default function MovieBackdropSlider({movie}) {
           }
         ]
     };
+    
     return (
       <>
         {movie.backdropPaths.length === 0 ? (<div></div>): 

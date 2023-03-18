@@ -14,13 +14,13 @@ import { RiDoubleQuotesR } from "react-icons/ri";
 
 export default function FanPage() {
     const {setIsLoading} = useGlobalContext();
-
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
         }, 1500)
         document.title = "Movie Mavericks: Fan Page";
-    })
+    }, []);
+
     return (
         <div className="main">
             <FanPageMainPicture/>

@@ -14,15 +14,16 @@ export default function DefaultMoviePage() {
     const {setIsLoading, castPopUpOpen} = useGlobalContext();
     const navigate = useNavigate();
     const [movieData, setMovieData] = useState();
+
     useEffect(() => {
         getMovie(id);
-    }, [])
+    }, []);
 
     useEffect(() => {
         if(movieData) {
             document.title = `Movie Mavericks: ${movieData.name}`;
         }
-    }, [movieData])
+    }, [movieData]);
 
     const getMovie = async (movieID) => {
         try {
@@ -35,7 +36,7 @@ export default function DefaultMoviePage() {
             console.log(e);
             navigate('/error-page', { replace: true });
         }
-    }
+    };
 
     return (
         <div className={`main ${castPopUpOpen ? 'popup-open' : ''}`}>

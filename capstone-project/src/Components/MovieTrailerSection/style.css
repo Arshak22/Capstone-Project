@@ -63,7 +63,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: url('../../assets/images/TrailerSection/CinemaElements1.jpg');
+    background-image: url(../../assets/images/TrailerSection/CinemaElements1.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -116,7 +116,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: url('../../assets/images/TrailerSection/NoTrailer.gif');
+    background-image: url(../../assets/images/TrailerSection/NoTrailer.gif);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

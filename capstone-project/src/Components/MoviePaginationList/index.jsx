@@ -6,19 +6,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useGlobalContext } from "../../Context/Context";
-
 import ReactPaginate from "react-paginate";
 import { getAllMovies, getAllSeries, getLatestWatchables, getLatestMovies, getLatestSeries, getPopularWatchables, getPopularMovies, getPopularSeries, getUpcomingMovies, getUpcomingSeries } from "../../Platform/Watchables";
 import { searchWatchable, userSearchWatchable, searchMovieByGenre, searchSeriesByGenre, searchMovieByReleaseYear, searchSeriesByReleaseYear } from "../../Platform/Search";
-
 import { NavLink } from "react-router-dom";
 import { ROUTE_NAMES } from "../../Routes";
+import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
 
 //icons
 import { IoIosArrowDropleftCircle } from "react-icons/io";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-
-import DefaultPoster from "../../assets/images/BackgroundImages/DefaultPoster.jpg";
 
 export default function MoviePaginationList() {
   const {type} = useParams();
@@ -31,7 +28,6 @@ export default function MoviePaginationList() {
   const itemsPerPage = 30;
   const navigate = useNavigate();
 
-
   useEffect(() => {
     if(type.startsWith("searchItem:")) {
       const searchItem = type.split("searchItem:")[1].split("/")[0];
@@ -39,7 +35,7 @@ export default function MoviePaginationList() {
           handleUserSearchWatchable(localStorage.getItem("email"), itemOffset, itemsPerPage, searchItem);
       }
     }
-  }, [])
+  }, []);
 
 
   useEffect(() => {

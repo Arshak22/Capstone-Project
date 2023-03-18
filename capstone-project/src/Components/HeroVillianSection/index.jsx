@@ -104,6 +104,7 @@ export default function HeroVillianSection() {
             description: "Darkside is a powerful and mysterious villain in the Zack Snyder's Justice League. He is a force of evil who threatens the safety and survival of Earth. The Zack Snyder's Justice League is a retelling of the Justice League story, with a more darker and serious tone. Darkside serves as the main antagonist of the film, and his presence raises the stakes for the Justice League members as they work together to stop him from destroying the planet. The film is filled with stunning visual effects and intense action sequences that will leave you breathless. With a strong ensemble cast, and a new villain to introduce, Zack Snyder's Justice League is sure to be a thrilling and epic watch. If you're a fan of superhero movies, epic battles, and a darker take on the DC universe, Zack Snyder's Justice League is a must-watch."
         },
     ];
+    
     const settings = {
         className: "center",
         centerMode: true,
@@ -150,6 +151,7 @@ export default function HeroVillianSection() {
           }
         ]
     };
+
     return (
         <div className="HeroVillianSection">
             <div>

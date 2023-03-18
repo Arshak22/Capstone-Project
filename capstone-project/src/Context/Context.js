@@ -8,8 +8,7 @@ const AppProvider = ({ children }) => {
       email: "",
       password: null,
     }
-  )
-
+  );
   const [user, setUser] = useState(
     {
         firstName: "First Name",
@@ -19,7 +18,6 @@ const AppProvider = ({ children }) => {
         password: null
     }
   );
-
   const [newUser, setNewUser] = useState(
     {
         username: null,
@@ -28,15 +26,10 @@ const AppProvider = ({ children }) => {
         confirmPassword: null
     }
   );
-
   const [userFavGenres, setUserFavGenres] = useState([]);
-
   const [avatar, setAvatar] = useState("");
-
   const [showProfile, setShowProfile] = useState(false);
-
   const [castPopUpOpen, setCastPopUpOpen] = useState(false);
-
   const [renderOnCommentChange, setRenderOnCommentChange] = useState(false);
 
   return (

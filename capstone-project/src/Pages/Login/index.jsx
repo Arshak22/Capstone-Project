@@ -34,7 +34,7 @@ export default function Login() {
             passwordError: "",
             confirmPasswordError: ""
         }
-    )
+    );
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -48,7 +48,7 @@ export default function Login() {
             setIsLoading(false);
             setActive(true);
         }, 1000)
-    }, [])
+    }, []);
 
     useEffect(() => {
         setSignInErrors({
@@ -66,54 +66,54 @@ export default function Login() {
         } else if(flag && document.getElementById("emailAddress")) {
             document.getElementById("emailAddress").value = "";
         }
-    }, [flag])
+    }, [flag]);
 
     const handleShowPassword = () => {
         setShow(!show);
-    }
+    };
 
     const handleUserEmail = (e) => {
         setLoginUser({...loginUser, email: e.target.value})
         setUser({...user, email: e.target.value})
-    }
+    };
 
     const handleUserPassword = (e) => {
         setLoginUser({...loginUser, password: e.target.value})
         setUser({...user, password: e.target.value})
-    }
+    };
 
     const handleShowPassword1 = () => {
         setShow1(!show1);
-    }
+    };
 
     const handleShowPassword2 = () => {
         setShow2(!show2);
-    }
+    };
 
     const handleNewUserUsername = (e) => {
         setNewUser({...newUser, username: e.target.value})
-    }
+    };
 
     const handleNewUserEmail = (e) => {
         setNewUser({...newUser, email: e.target.value})
-    }
+    };
 
     const handleNewUserPassword = (e) => {
         setNewUser({...newUser, password: e.target.value})
-    }
+    };
 
     const handleNewUserConfirmPassword = (e) => {
         setNewUser({...newUser, confirmPassword: e.target.value})
-    }
+    };
 
     const handleSignInorSignUp = (e) => {
         (e.target.innerHTML === "Sign In") ? setFlag(true) : setFlag(false);
-    }
+    };
 
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
-    }
+    };
 
     const handleSignIn = (user) => {
         let f = true;
@@ -135,13 +135,13 @@ export default function Login() {
         } else {
             setSignInErrors(error);
         }
-    }
+    };
 
     const handleEnterSignIn = (e) => {
         if(e.key === "Enter") {
             handleSignIn(loginUser);
         }
-    }
+    };
       
     const LogIn = async (user) => {
         try {
@@ -156,21 +156,20 @@ export default function Login() {
             }
             setSignInErrors(error);
         }
-    }
+    };
 
-    function isFullName(str) {
+    const isFullName = (str) => {
         const words = str.split(" ");
         if (words.length < 2) {
           return false;
         }
-        
         for (const word of words) {
           if (word[0] !== word[0].toUpperCase()) {
             return false;
           }
         }
         return true;
-      }
+    };
       
 
     const handleSignUp = () => {
@@ -223,7 +222,7 @@ export default function Login() {
         } else if(!f) {
             setSignUpErrors(error);
         }
-    }
+    };
 
     const SignUpUser = async (user) => {
         try {
@@ -242,13 +241,13 @@ export default function Login() {
             }
             setSignUpErrors(error);
         }
-    }
+    };
 
     const handleEnterSignUp = (e) => {
         if(e.key === "Enter") {
             handleSignUp();
         }
-    }
+    };
 
     return (
     <>

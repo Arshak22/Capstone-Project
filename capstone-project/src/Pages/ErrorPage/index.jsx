@@ -28,7 +28,7 @@ export default function ErrorPage() {
             clearTimeout(timeout1);
             clearTimeout(timeout2);
         };
-      }, []);
+    }, []);
 
 
     return (

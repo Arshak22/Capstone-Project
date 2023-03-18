@@ -315,7 +315,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image:url("./assets/images/BackgroundImages/bg5.jpg");
+  background-image:url(./assets/images/BackgroundImages/bg5.jpg);
   filter: brightness(50%) contrast(100%) blur(2px);
   background-repeat: no-repeat;
   background-position: center;
