@@ -226,12 +226,8 @@ export default function Login() {
 
     const SignUpUser = async (user) => {
         try {
-            const result = await addProfile(user);
+            await addProfile(user);
             setConfirmEmail(true);
-            setTimeout(() => {
-                setFlag(true);
-                setConfirmEmail(false);
-            }, 5000);
         } catch (e) {
             let error = {
                 fullNameError: "",

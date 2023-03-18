@@ -54,23 +54,32 @@
     z-index: -1;
 }
 
+.emailAnimation {
+    margin-bottom: -50px;
+}
+
 .confirmEmailBox h1 {
     color: #ffffff;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     text-transform: uppercase;
     letter-spacing: 5px;
     padding: 50px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .confirmEmailBox h2 {
     color: #ffffff;
     text-align: center;
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: 3px;
     padding: 20px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
+}
+
+.confirmEmailBtnBox {
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 700px) {
