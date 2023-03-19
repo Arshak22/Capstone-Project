@@ -22,6 +22,13 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { BsStar } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
 
+//Lotties
+import Lottie from 'react-lottie';
+import * as Share from "../../assets/lotties/Share.json";
+import * as Heart from "../../assets/lotties/Heart.json";
+import * as Plus from "../../assets/lotties/Plus.json";
+import * as Star from "../../assets/lotties/Star.json";
+
 export default function MovieInfoSection({movie}) {
     const {setCastPopUpOpen} = useGlobalContext();
     const [logedIn, setLogedIn] = useState(false);
@@ -37,6 +44,7 @@ export default function MovieInfoSection({movie}) {
     const [shareFacebookPopupState, setShareFacebookPopupState] = useState(false);
     const [shareTwitterPopupState, setShareTwitterPopupState] = useState(false);
     const [shareTelegramPopupState, setShareTelegramPopupState] = useState(false);
+    const [successedShare, setSuccessedShare] = useState(false);
     const [successedFavorite, setSuccessedFavorite] = useState(false);
     const [successedWatchlist, setSuccessedWatchlist] = useState(false);
     const [successedRating, setSuccessedRating] = useState(false);
@@ -53,6 +61,42 @@ export default function MovieInfoSection({movie}) {
         storyError: "",
         actorsError: ""
     });
+
+    const defaultOptionsShare = {
+        loop: true,
+        autoplay: true, 
+        animationData: Share,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
+
+    const defaultOptionsHeart = {
+        loop: true,
+        autoplay: true, 
+        animationData: Heart,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
+
+    const defaultOptionsPlus = {
+        loop: true,
+        autoplay: true, 
+        animationData: Plus,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
+
+    const defaultOptionsStar = {
+        loop: true,
+        autoplay: true, 
+        animationData: Star,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
 
     useEffect(() => {
         setCastPopUpOpen(false);
@@ -226,14 +270,17 @@ export default function MovieInfoSection({movie}) {
     };
 
     const shareWithFacebook = () => {
+        setSuccessedShare(true);
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
     };
 
     const shareWithTwitter = () => {
+        setSuccessedShare(true);
         window.open(`https://twitter.com/intent/tweet?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
     };
 
     const shareWithTelegram = () => {
+        setSuccessedShare(true);
         window.open(`https://t.me/share/url?url=${url}&text=Check%20Out%20This%20Movie`, '_blank');
     };
 
@@ -268,7 +315,12 @@ export default function MovieInfoSection({movie}) {
                         </div>
                         <div className="iconBoxes">
                             <div className="iconBox">
-                                <button className="moviePageIcon" id="shareBtn"><FaShareAlt/></button>
+                                <button className={`moviePageIcon${successedShare ? " activeIcon": ""}`} id="shareBtn">
+                                    {successedShare ? <Lottie options={defaultOptionsShare}
+                                        height={35}
+                                        width={35}
+                                    />: <FaShareAlt/>}
+                                </button>
                                 <div className="moviePageShareIcons">
                                     {!logedIn ? <Popup trigger={<button className="moviePageShareIcon"><FaFacebookF/></button>} 
                                     position="center"
@@ -328,7 +380,12 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your favourites.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button onClick={handleFavoriteAdd} className={`moviePageIcon${successedFavorite ? " activeIcon": ""}`}><FaHeart/></button>}
+                                </Popup>: <button onClick={handleFavoriteAdd} className={`moviePageIcon${successedFavorite ? " activeIcon": ""}`}>
+                                    {successedFavorite ? <Lottie options={defaultOptionsHeart}
+                                        height={50}
+                                        width={50}
+                                    />: <FaHeart/>}
+                                    </button>}
                             </div>
                             <div className="iconBox">
                                 {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaPlus/></button>} 
@@ -344,7 +401,12 @@ export default function MovieInfoSection({movie}) {
                                         <h3>Please register to add a movie to your watchlist.</h3>
                                     </div>
                                 )}
-                                </Popup>: <button onClick={handleWatchlistAdd} className={`moviePageIcon${successedWatchlist ? " activeIcon": ""}`}><FaPlus/></button>}
+                                </Popup>: <button onClick={handleWatchlistAdd} className={`moviePageIcon${successedWatchlist ? " activeIcon": ""}`}>
+                                    {successedWatchlist ? <Lottie options={defaultOptionsPlus}
+                                        height={50}
+                                        width={50}
+                                    />: <FaPlus/>}
+                                    </button>}
                             </div>
                             <div className="iconBox">
                                 {!logedIn ? <Popup trigger={<button className="moviePageIcon"><FaStar/></button>} 
@@ -361,7 +423,12 @@ export default function MovieInfoSection({movie}) {
                                     </div>
                                 )}
                                 </Popup>: 
-                                <Popup trigger={<button className={`moviePageIcon${successedRating ? " activeIcon": ""}`}><FaStar/></button>} 
+                                <Popup trigger={<button className={`moviePageIcon${successedRating ? " activeIcon": ""}`}>
+                                    {successedRating ? <Lottie options={defaultOptionsStar}
+                                        height={35}
+                                        width={35}
+                                    />: <FaStar/>}
+                                    </button>} 
                                 position="center"
                                 open={ratePopupState}
                                 onOpen={() => handleOpen("rate")}
