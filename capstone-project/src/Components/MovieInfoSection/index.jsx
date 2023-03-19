@@ -335,7 +335,7 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>: <FaFacebookF onClick={shareWithFacebook} className="moviePageShareIcon"/>}
+                                    </Popup>: <button className="moviePageShareIcon" onClick={shareWithFacebook}><FaFacebookF/></button>}
                                     {!logedIn ? <Popup trigger={<button className="moviePageShareIcon"><FaTwitter/></button>} 
                                     position="center"
                                     open={shareTwitterPopupState}
@@ -349,7 +349,7 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>: <FaTwitter onClick={shareWithTwitter} className="moviePageShareIcon"/>}
+                                    </Popup>: <button className="moviePageShareIcon" onClick={shareWithTwitter}><FaTwitter/></button>}
                                     {!logedIn ? <Popup trigger={<button className="moviePageShareIcon"><FaTelegramPlane/></button>} 
                                     position="center"
                                     open={shareTelegramPopupState}
@@ -363,7 +363,7 @@ export default function MovieInfoSection({movie}) {
                                             <h3>Please register to share a movie.</h3>
                                         </div>
                                     )}
-                                    </Popup>: <FaTelegramPlane onClick={shareWithTelegram} className="moviePageShareIcon"/>}
+                                    </Popup>: <button className="moviePageShareIcon" onClick={shareWithTelegram}><FaTelegramPlane/></button>}
                                 </div>
                             </div>
                             <div className="iconBox">
