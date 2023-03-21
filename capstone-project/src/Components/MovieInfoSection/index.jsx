@@ -63,7 +63,7 @@ export default function MovieInfoSection({movie}) {
     });
 
     const defaultOptionsShare = {
-        loop: true,
+        loop: false,
         autoplay: true, 
         animationData: Share,
         rendererSettings: {
@@ -72,7 +72,7 @@ export default function MovieInfoSection({movie}) {
     };
 
     const defaultOptionsHeart = {
-        loop: true,
+        loop: false,
         autoplay: true, 
         animationData: Heart,
         rendererSettings: {
@@ -81,7 +81,7 @@ export default function MovieInfoSection({movie}) {
     };
 
     const defaultOptionsPlus = {
-        loop: true,
+        loop: false,
         autoplay: true, 
         animationData: Plus,
         rendererSettings: {
@@ -90,7 +90,7 @@ export default function MovieInfoSection({movie}) {
     };
 
     const defaultOptionsStar = {
-        loop: true,
+        loop: false,
         autoplay: true, 
         animationData: Star,
         rendererSettings: {
