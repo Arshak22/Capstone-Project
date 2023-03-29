@@ -164,7 +164,7 @@ nav {
 .pages:hover > #dropdownMenu {
     display: block;
     transform: scale(0);
-    animation: scale-up 0.5s ease forwards;
+    animation: scale-up 0.3s ease forwards;
 }
   
 @keyframes scale-up {
@@ -305,7 +305,7 @@ nav {
 .userMainBox:hover #dropdownMenu2 {
     display: block;
     transform: scale(0);
-    animation: scale-up 0.5s ease forwards;
+    animation: scale-up 0.3s ease forwards;
 }
 
 #dropdownMenu2:hover {
