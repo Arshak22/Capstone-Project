@@ -352,12 +352,14 @@ export default function MoviePaginationList() {
                     <div className="paginationMovieBlock">
                       {!loaded ? <Skeleton variant="rectangular" duration={2} animation="wave" className="paginationMovieSkeleton"/>: elem.posterPath ? <LazyLoadImage src={`https://www.themoviedb.org/t/p/original${elem.posterPath}`} alt={elem.posterPath} effect="blur" className="paginationMovie"/>: <LazyLoadImage src={DefaultPoster} alt={DefaultPoster} effect="blur" className="paginationMovie"/>}
                             <div className="paginationMovieBlockPlayer">
-                              <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">
-                                    <polygon className="triangle" fill="none" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1"></polygon>
-                                    <circle className="circle" fill="none" strokeWidth="15" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
-                                  </svg>
-                              </NavLink>
+                              <div className="playerBox">
+                                <NavLink to={ROUTE_NAMES.DEFAULT_PAGE + elem.id} end>
+                                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 213.7 213.7" enableBackground="new 0 0 213.7 213.7" xmlSpace="preserve">
+                                      <polygon className="triangle" fill="none" strokeWidth="13" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="73.5,62.5 148.5,105.8 73.5,149.1"></polygon>
+                                      <circle className="circle" fill="none" strokeWidth="25" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" cx="106.8" cy="106.8" r="103.3"></circle>
+                                    </svg>
+                                </NavLink>
+                              </div>
                             </div>
                             <div className="paginationMovieBlockSocialInfo">
                               <div className="ratingSmall" style={{backgroundImage: `conic-gradient(rgb(299 9 20) ${Math.floor(elem.rating * 10)}%, transparent 0 100%)`}}>

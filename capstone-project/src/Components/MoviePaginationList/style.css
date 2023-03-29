@@ -57,8 +57,8 @@
     box-shadow: none;
 }
 
-.paginationMovieBlock:hover>img {
-    filter: brightness(0.3);
+.paginationMovieBlock:hover .paginationMovie {
+    filter: brightness(0.5) blur(5px);
 }
 
 .paginationMovieBlock::after {
@@ -109,10 +109,39 @@
 }
 
 .paginationMovieBlockPlayer {
+    position: relative;
     width: 100%;
     justify-content: center;
     opacity: 0;
     transition: opacity 0.5s ease;
+}
+
+.playerBox {
+    position: absolute;
+    bottom: 7.5em;
+    /* border-radius: 50%; */
+}
+
+.playerBox>a {
+    font-size: 0px;
+}
+
+.playerBox::after {
+    display: block;
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    bottom: 10em;
+    left: 0;
+    animation: cd-pulse 1.2s ease-out infinite;
+}
+
+@keyframes cd-pulse {
+    0%  {box-shadow:0 0 0 0 #ffffff}
+    100% {box-shadow:0 0 0 40px rgba(255, 255, 255, 0)}
 }
 
 .triangle {
