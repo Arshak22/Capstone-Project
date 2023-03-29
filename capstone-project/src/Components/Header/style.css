@@ -110,6 +110,8 @@ nav {
     width: 200px;
     height: 230px;
     z-index: 999;
+    transform: scale(0);
+    transition: all 0.3s ease-in-out;
     pointer-events: all;
 }
 
@@ -159,8 +161,19 @@ nav {
     pointer-events: all;
 }
 
-.pages:hover>#dropdownMenu{
+.pages:hover > #dropdownMenu {
     display: block;
+    transform: scale(0);
+    animation: scale-up 0.5s ease forwards;
+}
+  
+@keyframes scale-up {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 #dropdownMenu:hover {
@@ -291,6 +304,8 @@ nav {
 
 .userMainBox:hover #dropdownMenu2 {
     display: block;
+    transform: scale(0);
+    animation: scale-up 0.5s ease forwards;
 }
 
 #dropdownMenu2:hover {
