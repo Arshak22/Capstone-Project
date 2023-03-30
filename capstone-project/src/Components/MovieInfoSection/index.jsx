@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
 import "./style.css";
 import Rating from "react-rating";
 import jwt_decode from 'jwt-decode';
@@ -31,6 +32,7 @@ import * as Star from "../../assets/lotties/Star.json";
 
 export default function MovieInfoSection({movie}) {
     const {setCastPopUpOpen} = useGlobalContext();
+    const navigate = useNavigate();
     const [logedIn, setLogedIn] = useState(false);
     const [rating, setRating] = useState(0);
     const [duration, setDuration] = useState("");
@@ -269,6 +271,14 @@ export default function MovieInfoSection({movie}) {
         }
     };
 
+    const filterByGenre = (genre) => {
+        if(movie.type === "MOVIE") {
+            navigate(`/movies/filmGenre:${genre}`);
+        } else {
+            navigate(`/tv-shows/seriesGenre:${genre}`);
+        }
+    }
+
     const shareWithFacebook = () => {
         setSuccessedShare(true);
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
@@ -301,9 +311,9 @@ export default function MovieInfoSection({movie}) {
                     {duration && movie.duration !== 0 ? <h4>Duration:{duration}</h4>: null}
                     {date ? <h4>Realease Date: {date}</h4>: null}
                     {movie.genres.length !== 0 ? 
-                    <h4>Genres: {movie.genres.map((elem, index) => {
+                    <h4 className="genreList">Genres: {movie.genres.map((elem, index) => {
                         return (
-                                <span key={index} className="genres">{elem.replace("_", " ").split(" ").map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(" ")}{index < movie.genres.length - 1 ? ', ' : ''}</span>
+                            <span key={index} onClick={() => filterByGenre(elem)} className="genres">{elem.replace("_", " ").split(" ").map(word => word[0].toUpperCase() + word.slice(1).toLowerCase()).join(" ")}</span>
                         )
                     })}</h4>: null}
                     <div className="moviePageIcons">
