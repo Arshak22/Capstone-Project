@@ -280,7 +280,13 @@ export default function MoviePaginationList() {
     try {
       const result = await searchMovieByGenre(pageNumber, pageSize, genre);
       setTotal(result.data.totalElements);
-      setCurrentItems(result.data.content);
+      let tempCurrent = [];
+      result.data.content.forEach(elem => {
+        if(!tempCurrent.some(item => JSON.stringify(item) === JSON.stringify(elem))) {
+          tempCurrent.push(elem);
+        }
+      });
+      setCurrentItems(tempCurrent);
       setTimeout(() => {
         setIsLoading(false);
       }, 2000)
@@ -296,7 +302,13 @@ export default function MoviePaginationList() {
     try {
       const result = await searchSeriesByGenre(pageNumber, pageSize, genre);
       setTotal(result.data.totalElements);
-      setCurrentItems(result.data.content);
+      let tempCurrent = [];
+      result.data.content.forEach(elem => {
+        if(!tempCurrent.some(item => JSON.stringify(item) === JSON.stringify(elem))) {
+          tempCurrent.push(elem);
+        }
+      });
+      setCurrentItems(tempCurrent);
       setTimeout(() => {
         setIsLoading(false);
       }, 2000)
