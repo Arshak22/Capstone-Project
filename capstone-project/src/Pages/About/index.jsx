@@ -3,6 +3,7 @@ import { useGlobalContext } from "../../Context/Context";
 import MainPic from "../../assets/images/BackgroundImages/About.jpg";
 import MainPicture from "../../Components/MainPicture";
 import TeamMembers from "../../Components/TeamMembers";
+import Arshak from "../../assets/images/TeamMembers/Arshak.png";
 import Member from "../../assets/images/TeamMember.png";
 import MapAndAboutUs from "../../Components/MapAndAboutUs";
 import Map from "../../Components/Map";
@@ -21,7 +22,7 @@ export default function About() {
         {
             id: 1,
             name: "Arshak Kosakyan",
-            img: Member,
+            img: Arshak,
             profession: "Front-End Developer",
             FB: "https://www.facebook.com/arshak.qosakyan",
             LinkedIn: "https://www.linkedin.com/in/arshak-kosakyan-10a6a3268/",
