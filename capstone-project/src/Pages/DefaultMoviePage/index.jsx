@@ -8,6 +8,7 @@ import TopCast from "../../Components/TopCast";
 import MovieBackdropSlider from "../../Components/MovieBackdropSlider";
 import MovieTrailerSection from "../../Components/MovieTrailerSection";
 import MovieCommentSection from "../../Components/MovieCommentSection";
+import SimiliarMoviesRecommendation from "../../Components/SimiliarMoviesRecommendation";
 
 export default function DefaultMoviePage() {
     const {id} = useParams();
@@ -43,8 +44,9 @@ export default function DefaultMoviePage() {
             {movieData ? 
                 <>
                     <MovieInfoSection movie={movieData}/>
-                    <TopCast movie={movieData.id}/>
+                    <TopCast movie={id}/>
                     <MovieBackdropSlider movie={movieData}/>
+                    <SimiliarMoviesRecommendation id={id}/>
                     <MovieTrailerSection movie={movieData}/>
                     <MovieCommentSection movieID={id} isAdmin/>
                 </>

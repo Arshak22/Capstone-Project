@@ -4,7 +4,8 @@ import MainPic from "../../assets/images/BackgroundImages/About.jpg";
 import MainPicture from "../../Components/MainPicture";
 import TeamMembers from "../../Components/TeamMembers";
 import Arshak from "../../assets/images/TeamMembers/Arshak.png";
-import Member from "../../assets/images/TeamMember.png";
+import Emin from "../../assets/images/TeamMembers/Emin.png";
+import Arman from "../../assets/images/TeamMembers/Arman.png";
 import MapAndAboutUs from "../../Components/MapAndAboutUs";
 import Map from "../../Components/Map";
 import SkillsSection from "../../Components/SkillsSection";
@@ -31,7 +32,7 @@ export default function About() {
         {
             id: 2,
             name: "Emin Ter-Mkrtchyan",
-            img: Member,
+            img: Emin,
             profession: "Back-End Developer",
             FB: "https://www.facebook.com/emin.termkrtchyan",
             LinkedIn: "https://www.linkedin.com/in/emin-ter-mkrtchian-778b6722b/",
@@ -40,7 +41,7 @@ export default function About() {
         {
             id: 3,
             name: "Arman Harutyunyan",
-            img: Member,
+            img: Arman,
             profession: "Data Specialist",
             FB: "https://www.facebook.com/profile.php?id=100008017995400",
             LinkedIn: "https://www.linkedin.com/in/arman-harutyunyan30303/",
